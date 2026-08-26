@@ -63,6 +63,16 @@
     outline: none;
   }
 
+  /* 1. 强制卡片图片为 4:3 长方形，覆盖内联的 100% */
+.card__inner.ratio {
+  --ratio-percent: 75% !important;
+}
+
+/* 2. 消除 card__information 被拉伸的空隙 */
+.card__information {
+  flex: 0 0 auto !important;
+}
+
   @media screen and (min-width: 990px) {
     .collection-tag-filter__toolbar-top {
       display: flex;
