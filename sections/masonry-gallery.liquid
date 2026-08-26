@@ -1,0 +1,370 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{{ 'popup-styling.css' | asset_url | stylesheet_tag }}
+
+<section class="section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} section-{{section.id}} nav-transparent section-image-text-overlay relative flex flex-col flex-wrap items-center justify-center {{ section.settings.section_top_margin }} {{ section.settings.section_bottom_margin }} {{ section.settings.section_top_margin_mobile }} {{ section.settings.section_bottom_margin_mobile }} {{ section.settings.height }} {{ section.settings.height_mobile }} {% if section.settings.show_desktop == true and section.settings.show_mobile == true %} block-section {% elsif section.settings.show_desktop == true and section.settings.show_mobile == false %} hidden-section lg:block {% elsif section.settings.show_desktop == false and section.settings.show_mobile == false %} hidden-section {% elsif section.settings.show_desktop == false and section.settings.show_mobile == true %} block-section lg:hidden {% endif %} isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+  <div class="grid-gallery-{{ section.id }} {% unless section.settings.full_width %} page-width{% endunless %}">
+    {% for block in section.blocks %}
+      {% if block.settings.image != blank %}
+        {% assign ratio = block.settings.aspect_ratio %}
+        <div
+          class="grid-item-{{ section.id }} aspect-{{ ratio | replace: '/', '-' }} block-item-{{ block.id }}"
+          style="
+            grid-column: span {{ block.settings.col_span }};
+            grid-row: span {{ block.settings.row_span }};">
+          <div class="aspect-wrapper-{{ block.id }} image_block relative overflow-hidden group">
+            {% if section.settings.enable_popup %}
+              <modal-opener-image
+                class="product-popup-modal__opener quick-add-hidden"
+                data-modal="#PopupModal-{{ block.id }}">
+                <img
+                  src="{{ block.settings.image | image_url: width: 1000 }}"
+                  alt="{{ block.settings.image.alt }}"
+                  loading="lazy"
+                  aria-haspopup="dialog"
+                  class="block w-full h-auto"
+                  id="ProductPopup-{{ block.id }}">
+              </modal-opener-image>
+            {% else %}
+              <img
+                src="{{ block.settings.image | image_url: width: 1000 }}"
+                alt="{{ block.settings.image.alt }}"
+                loading="lazy"
+                class="block w-full h-auto">
+            {% endif %}
+            {% if block.settings.caption_text != blank %}
+              <div class="image_caption">
+                {{ block.settings.caption_text }}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+{% if section.settings.enable_popup %}
+{% for block in section.blocks %}
+  <modal-dialog id="PopupModal-{{ block.id }}" class="product-popup-modal" {{ block.shopify_attributes }}>
+    <div
+      role="dialog"
+      aria-label="{{ block.settings.caption_text }}"
+      aria-modal="true"
+      class="product-popup-modal__content"
+      tabindex="-1"
+    >
+      <button
+        id="ModalClose-{{ block.id }}"
+        type="button"
+        class="product-popup-modal__toggle"
+        aria-label="{{ 'accessibility.close' | t }}"
+      >
+        {{- 'icon-close.svg' | inline_asset_content -}}
+      </button>
+      <div class="product-popup-modal__content-info">
+        <img
+          src="{{ block.settings.image | image_url: width: master }}"
+          alt="{{ block.settings.image.alt }}"
+          loading="lazy"
+          class="block w-full h-auto">
+      </div>
+    </div>
+    {% if block.settings.product != blank %}
+      <a href="{{ block.settings.product }}" class="button button--secondary color-{{ section.settings.color_scheme }}" style="position: fixed;
+        bottom: 10rem;
+        left: 50%;
+        transform: translateX(-50%);">
+        SHOP NOW
+      </a>
+      {% endif %}
+  </modal-dialog>
+{%- endfor -%}
+{% endif %}
+
+{% if section.settings.custom_liquid != blank%}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="section-{{ section.id }}-padding">
+    {{ section.settings.custom_liquid }}
+  </div>
+</div>
+{% endif %}
+
+{% if section.settings.transport != blank %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const block = document.getElementById('shopify-section-{{ section.id}}');
+      const target = document.querySelector('{{ section.settings.transport }}');
+
+      if (block && target) {
+        target.append(block);
+      }
+    });
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Masonry Gallery",
+  "settings": [
+    {
+      "type": "text",
+      "id": "transport",
+      "label": "Transport Location",
+      "info": "JavaScript selector for transport location, using append method"
+    },
+    {
+      "type": "header",
+      "content": "Display Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_desktop",
+      "label": "Show desktop",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile",
+      "label": "Show mobile",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "col_grid",
+      "label": "Grid Column",
+      "default": 3,
+      "min": 2,
+      "max": 6
+    },
+    {
+      "type": "range",
+      "id": "col_gape",
+      "label": "Grid Gape",
+      "default": 5,
+      "min": 0,
+      "max": 20
+    },
+    {
+      "type": "header",
+      "content": "Section Display Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "default": true,
+      "label": "t:sections.rich-text.settings.full_width.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_popup",
+      "label": "Enable popup on image click",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 52
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "liquid",
+      "id": "custom_liquid",
+      "label": "t:sections.custom-liquid.settings.custom_liquid.label",
+      "info": "t:sections.custom-liquid.settings.custom_liquid.info"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Gallery Image"
+        },
+        {
+          "type": "richtext",
+          "id": "caption_text",
+          "label": "Image caption"
+        },
+        {
+          "type": "url",
+          "id": "product",
+          "label": "Reference product"
+        },
+        {
+          "type": "range",
+          "id": "col_span",
+          "label": "Number of columns wide",
+          "default": 1,
+          "min": 1,
+          "max": 6
+        },
+        {
+          "type": "range",
+          "id": "row_span",
+          "label": "Number of rows tall",
+          "default": 1,
+          "min": 1,
+          "max": 5
+        },
+        {
+          "type": "select",
+          "id": "aspect_ratio",
+          "label": "Aspect Ratio",
+          "default": "auto",
+          "options": [
+            { "value": "auto", "label": "Auto" },
+            { "value": "1/1", "label": "Square (1:1)" },
+            { "value": "4/3", "label": "Landscape (4:3)" },
+            { "value": "3/4", "label": "Portrait (3:4)" },
+            { "value": "16/9", "label": "Widescreen (16:9)" }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Masonry Gallery",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}
+
+
+<style>
+  .product-popup-modal__content {
+    height: unset !important;
+    width: calc(90vw - 50px);
+    max-width: max-content;
+    max-height: unset !important;
+  }
+  .product-popup-modal__content-info {
+    height: unset !important;
+    width: unset !important;
+    max-width: unset !important;
+    max-height: unset !important;
+    padding: 0px;
+  }
+  .product-popup-modal__content img {
+    max-width: 100% !important;
+    max-height: 80vh !important;
+    height: 100% !important;
+  }
+  .product-popup-modal .button--secondary{
+    color: white;
+  }
+  .product-popup-modal .button--secondary:hover {
+    background-color: #be2d36;
+  }
+  .image_caption{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    transform: translateY(100%);
+    transition: 0.3s;
+  }
+  .image_caption p{
+    margin: 0;
+    padding: 5px;
+    text-transform: uppercase;
+    font-size: 18px;
+  }
+  .image_block:hover > .image_caption{
+    transform: translateY(0);
+  }
+.grid-gallery-{{ section.id }} {
+  display: grid;
+  grid-template-columns: repeat({{ section.settings.col_grid }}, 1fr);
+  gap: {{ section.settings.col_gape }}px;
+}
+
+.grid-item-{{ section.id }} {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.aspect-wrapper-{{ block.id }} {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+{% for block in section.blocks %}
+.aspect-auto .aspect-wrapper-{{ block.id }}::before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+  
+.aspect-1-1 .aspect-wrapper-{{ block.id }}::before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+.aspect-4-3 .aspect-wrapper-{{ block.id }}::before {
+  content: "";
+  display: block;
+  padding-top: 75%;
+}
+
+.aspect-3-4 .aspect-wrapper-{{ block.id }}::before {
+  content: "";
+  display: block;
+  padding-top: 133.33%;
+}
+
+.aspect-16-9 .aspect-wrapper-{{ block.id }}::before {
+  content: "";
+  display: block;
+  padding-top: 51.25%;
+}
+
+.aspect-wrapper-{{ block.id }} img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+{% endfor %}
+</style>

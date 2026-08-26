@@ -1,0 +1,37 @@
+{% assign productTitle = product.title | split: '|' %}
+{% assign styleGenderType =  productTitle[0]  | slice: 0 %}
+         
+    {%  if styleGenderType == '0' %}           
+        {% render 'size-chart-men' %}
+    {% elsif styleGenderType == '9'  %}
+        {% render 'size-chart-women' %}
+    {% elsif styleGenderType == '2'  %}
+        {% render 'size-chart-toddler' %}
+    {% elsif styleGenderType == '5'  %}
+        {% render 'size-chart-kids' %}
+    {% elsif styleGenderType == '8'  %}
+        {% render 'size-chart-teen' %}
+    {% elsif styleGenderType == '7'  %}
+        {% render 'size-chart-men' %}
+        {% render 'size-chart-women' %}
+        {% render 'size-chart-teen' %}
+    {% elsif styleGenderType == '1'  %}
+        {% assign styleGenderType =  productTitle[0]  | slice: 0, 2 %}   
+        {% if styleGenderType == '17' %}
+            {% render 'size-chart-mens-apparel' %}
+             
+        {% elsif product.tags contains "WOMENS" %}
+            {% render 'size-chart-womens-apparel' %}
+        {% elsif product.tags contains 'MENS'  %}
+            {% render 'size-chart-mens-apparel' %}
+        {% endif %}
+    {% else %}
+        {{ "1SZ" }}
+    {% endif %}
+
+    <style>
+        .accordion__content table{
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+    </style>

@@ -1,0 +1,19 @@
+<li>
+  {% if block.settings.menu_image != blank %}
+    <div class="mega-menu__image">
+      <a href="{{ block.settings.menu_link }}" class="mega-menu__link mega-menu__link--level-2 link">
+        <img
+          src="{{ block.settings.menu_image | image_url: width: 500 }}"
+          alt="{{ block.settings.menu_title | escape }}"
+          loading="lazy"
+        >
+
+      {% if block.settings.menu_title != blank %}
+        <p class="mega-menu__image-title center">
+          {{ block.settings.menu_title }}
+        </p>
+      {% endif %}
+      </a>
+    </div>
+  {% endif %}
+</li>

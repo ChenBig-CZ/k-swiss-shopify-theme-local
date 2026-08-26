@@ -1,0 +1,33 @@
+{% if settings.cart_sub_upgrade_show %}
+  {% unless item.selling_plan_allocation == empty or item.variant.selling_plan_allocations == nil or item.variant.selling_plan_allocations == empty %}
+    {% if item.selling_plan_allocation == nil  and item.variant.selling_plan_allocations != nil %}
+      <td class="cart-item__sub-upgrade" role="cell" headers="CartDrawer-ColumnProduct">
+        <ml-cart-sub-upgrade-selector
+          data-index="{{ item.index | plus: 1 }}"
+          data-variant-id="{{ item.variant.id }}"
+          data-quantity="{{ item.quantity }}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" class="ml-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 10L9 4l-6 6"></path><path d="M20 20h-7a4 4 0 0 1-4-4V5"></path>
+          </svg>
+          <div class="select">
+            <select
+              class="select__select"
+              aria-label="{{ 'custom.cart.sub_upgrade_selector_label' | t }}">
+              <option>
+                {{ 'custom.cart.sub_upgrade_selector_label' | t }}
+              </option>   
+              {% for selling_plan_allocation in item.variant.selling_plan_allocations %}
+                <option value="{{ selling_plan_allocation.selling_plan.id }}">
+                  {{ selling_plan_allocation.selling_plan.name }} - {{ selling_plan_allocation.price | money }}
+                </option>
+              {% endfor %}
+            </select>
+            <span class="svg-wrapper">
+              {{- 'icon-caret.svg' | inline_asset_content -}}
+            </span>
+          </div>
+        </ml-cart-sub-upgrade-selector>
+      </td>
+    {% endif %}
+  {% endunless %}
+{% endif %}

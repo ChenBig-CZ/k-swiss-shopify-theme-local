@@ -1,0 +1,30 @@
+{% liquid 
+	if config.tags != blank
+		assign matches = config.tags | split: ','
+		assign tagMatch = false
+		for matchitem in matches
+		  assign inclusions = matchitem | split: '+'
+		  assign passes = true
+		  for inclusion in inclusions
+		    assign inc = inclusion | strip
+		    unless tags contains inc
+		      assign passes = false
+		      break
+		    endunless
+		  endfor
+		  if passes
+		  	assign tagMatch = true
+		  	break
+			endif
+		endfor
+	else
+		assign tagMatch = true
+	endif
+%}
+{% if tagMatch %}
+<div class="motivator flex justify-center m-0 mt-3 bg-light px-8 py-4 text-center">
+	<div>
+		<p class="text-small m-0">{{config.title}} {% if config.link != blank %}<a class="underline lg:no-underline hover:underline focus:underline" href="{{ config.link }}">{{ config.link_text }}</a>{% endif %}</p>
+	</div>
+</div>
+{% endif %}

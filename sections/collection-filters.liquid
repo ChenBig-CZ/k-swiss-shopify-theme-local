@@ -1,0 +1,716 @@
+{% liquid
+  if search.performed
+    assign collection = collections['all']
+  endif
+
+  assign collection_base_url = routes.root_url | append: 'collections/' | append: collection.handle
+
+  if search.performed
+    assign sort_by = search.sort_by | default: search.default_sort_by
+    assign sort_options = search.sort_options
+  else
+    assign sort_by = collection.sort_by | default: collection.default_sort_by
+    assign sort_options = collection.sort_options
+  endif
+%}
+
+<div class="page-width collection-tag-filter">
+  <div class="facets-container">
+    <div class="facets small-hide">
+      <div class="facets__form-vertical">
+        <div class="move_here"></div>
+        <div class="active-facets active-facets-desktop">
+          <div class="active-facets">
+                    <h2
+                      role="heading"
+                      aria-level="1"
+                      class="facets__heading facets__heading--vertical caption-large text-body"
+                      id="verticalTitle"
+                      tabindex="-1"
+                    >
+                      {{ 'products.facets.filter_by_label' | t }}
+                    </h2>
+                  {% comment %} <facet-remove class="active-facets__button-wrapper facets__heading">
+                    <a href="{{ collection.url }}" class="active-facets__button-remove underlined-link">
+                      <span>{{ 'products.facets.clear_all' | t }}</span>
+                    </a>
+                  </facet-remove> {% endcomment %}
+          </div>
+          <div class="collection-tag-filter__active-filters">
+            {% for tag in current_tags %}
+              {% assign active_filter_label = tag %}
+              {% for block in section.blocks %}
+                {% if block.type == 'set' %}
+                  {% if block.settings.options != blank %}
+                    {% assign options = block.settings.options | newline_to_br | split: '<br />' %}
+                    {% for option in options %}
+                      {% assign option_label = option | split: '>>>' | first | strip %}
+                      {% assign option_value = option | split: '>>>' | last | strip %}
+                      {% if option_value == tag %}
+                        {% assign first_char = option_label | slice: 0, 1 %}
+                        {% assign size_tag = tag | split:"_" | first %}
+                        {% if block.settings.format == 'color' and first_char == '#' and option_label.size == 7 %}
+                          {% assign active_filter_label = option_value | strip %}
+                        {% elsif size_tag == "SIZE" %}
+                          {% assign size_label = option_value | split:"_" %}
+                          {% assign active_filter_label = size_label[1] | append: ' ' | append: size_label[2] %}
+                        {% else %}
+                          {% assign active_filter_label = option_label | default: option_value | strip %}
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+
+                  {% if block.settings.remote_options != blank %}
+                    {% assign options = block.settings.remote_options | newline_to_br | split: '<br />' %}
+                    {% for option in options %}
+                      {% assign option_label = option | split: '>>>' | first | strip %}
+                      {% assign option_value = option | split: '>>>' | last | strip %}
+                      {% if option_value == tag %}
+                        {% assign first_char = option_label | slice: 0, 1 %}
+                        {% if block.settings.format == 'color' and first_char == '#' and option_label.size == 7 %}
+                          {% assign active_filter_label = option_value | strip %}
+                        {% else %}
+                          {% assign active_filter_label = option_label | default: option_value | strip %}
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+
+              {% assign active_filter_remove_url = tag | link_to_remove_tag: tag | split: 'href="' | last | split: '"' | first %}
+              <div class="collection-tag-filter__active-filter">
+                <a
+                href="{{ active_filter_remove_url }}"
+                class="active-facets__button active-facets__button--light"
+                >
+                  <span class="active-facets__button-inner button button--tertiary">
+                    {{ active_filter_label | escape }}
+
+                    <span class="svg-wrapper">
+                      {{- 'icon-close-small.svg' | inline_asset_content -}}
+                    </span>
+                  </span>
+                </a>
+             </div>
+            {% endfor %}
+
+            {% if current_tags.size > 0 %}
+              <div class="active-facets__button-wrapper">
+                <a href="{{ collection_base_url }}" class="active-facets__button-remove underlined-link">
+                  <span>{{ 'products.facets.clear_all' | t }}</span>
+                </a>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <template id="CollectionFilterMobileActiveTagsTemplate">
+          {% if current_tags.size > 0 %}
+            <div class="collection-tag-filter__mobile-active-tags">
+              <div class="active-facets active-facets-mobile">
+                <div class="active-facets">
+                  {% for tag in current_tags %}
+                    {% assign active_filter_label = tag %}
+                    {% for block in section.blocks %}
+                      {% if block.type == 'set' %}
+                        {% if block.settings.options != blank %}
+                          {% assign options = block.settings.options | newline_to_br | split: '<br />' %}
+                          {% for option in options %}
+                            {% assign option_label = option | split: '>>>' | first | strip %}
+                            {% assign option_value = option | split: '>>>' | last | strip %}
+                            {% if option_value == tag %}
+                              {% assign first_char = option_label | slice: 0, 1 %}
+                              {% assign size_tag = tag | split:"_" | first %}
+                              {% if block.settings.format == 'color' and first_char == '#' and option_label.size == 7 %}
+                                {% assign active_filter_label = option_value | strip %}
+                              {% elsif size_tag == "SIZE" %}
+                                {% assign size_label = option_value | split:"_" %}
+                                {% assign active_filter_label = size_label[1] | append: ' ' | append: size_label[2] %}
+                              {% else %}
+                                {% assign active_filter_label = option_label | default: option_value | strip %}
+                              {% endif %}
+                            {% endif %}
+                          {% endfor %}
+                        {% endif %}
+
+                        {% if block.settings.remote_options != blank %}
+                          {% assign options = block.settings.remote_options | newline_to_br | split: '<br />' %}
+                          {% for option in options %}
+                            {% assign option_label = option | split: '>>>' | first | strip %}
+                            {% assign option_value = option | split: '>>>' | last | strip %}
+                            {% if option_value == tag %}
+                              {% assign first_char = option_label | slice: 0, 1 %}
+                              {% if block.settings.format == 'color' and first_char == '#' and option_label.size == 7 %}
+                                {% assign active_filter_label = option_value | strip %}
+                              {% else %}
+                                {% assign active_filter_label = option_label | default: option_value | strip %}
+                              {% endif %}
+                            {% endif %}
+                          {% endfor %}
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+
+                    {% assign active_filter_remove_url = tag | link_to_remove_tag: tag | split: 'href="' | last | split: '"' | first %}
+                    <div class="collection-tag-filter__active-filter">
+                      <span>{{- active_filter_label | escape -}}</span>
+                      <a href="{{ active_filter_remove_url }}">
+                        X
+                      </a>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </template>
+
+        <div class="collection-tag-filter__header">
+          <div class="collection-tag-filter__header-text">
+            {% comment %} <h2 class="collection-tag-filter__drawer-title">{{ 'products.facets.filter_and_sort' | t }}</h2> {% endcomment %}
+            {% if current_tags.size > 0 %}
+              <p class="collection-tag-filter__drawer-subtitle">
+                {{ 'products.facets.filters_selected' | t: count: current_tags.size }}
+              </p>
+            {% endif %}
+          </div>
+          <div class="collection-tag-filter__header-count">
+            {%- if search.performed -%}
+              {%- if search.results_count -%}
+                {{ 'templates.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+              {%- elsif search.products_count == search.all_products_count -%}
+                {{ 'products.facets.product_count_simple' | t: count: search.products_count }}
+              {%- else -%}
+                {{ 'products.facets.product_count' | t: product_count: search.products_count, count: search.all_products_count }}
+              {%- endif -%}
+            {%- else -%}
+              {%- if collection.products_count == collection.all_products_count -%}
+                {{ 'products.facets.product_count_simple' | t: count: collection.products_count }}
+              {%- else -%}
+                {{ 'products.facets.product_count' | t: product_count: collection.products_count, count: collection.all_products_count }}
+              {%- endif -%}
+            {%- endif -%}
+          </div>
+        </div>
+
+        {% if sort_options != blank %}
+          <div class="collection-tag-filter__sort-panel">
+            <label for="CollectionFilterSort" class="collection-tag-filter__sort-label">
+              {{ 'products.facets.sort_by_label' | t }}
+            </label>
+            <div class="select collection-tag-filter__sort-select">
+              <select id="CollectionFilterSort" name="sort_by" data-collection-filter-sort>
+                {% for option in sort_options %}
+                  {% unless option.value == 'title-ascending'
+                      or option.value == 'title-descending'
+                      or option.value == 'created-ascending'
+                      or option.value == 'created-descending'
+                  %}
+                    <option value="{{ option.value | escape }}" {% if option.value == sort_by %}selected{% endif %}>
+                      {{ option.name | escape }}
+                    </option>
+                  {% endunless %}
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        {% endif %}
+
+        <div id="FacetsWrapperDesktop" aria-labelledby="CustomFilterTitle">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'title' %}
+                {% if block.settings.title != blank %}
+                  <h3 class="facets__heading caption-large text-body collection-tag-filter__title">
+                    {{ block.settings.title }}
+                  </h3>
+                {% endif %}
+
+              {% when 'set' %}
+                {% render 'collection-filters-set',
+                  collection: collection,
+                  settings: block.settings,
+                  search: search,
+                  offset: forloop.index,
+                  blocks: section.blocks
+                %}
+
+              {% when 'liquid' %}
+                <div class="collection-tag-filter__custom-liquid">
+                  {{ block.settings.liquid }}
+                </div>
+            {% endcase %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <details class="mobile-facets__disclosure medium-hide large-up-hide">
+      <summary class="mobile-facets__open-wrapper focus-offset">
+        <span class="mobile-facets__open">
+          <span class="svg-wrapper">
+            {{- 'icon-filter.svg' | inline_asset_content -}}
+          </span>
+          <span>{{ 'products.facets.filter_and_sort' | t }}</span>
+        </span>
+        <span class="mobile-facets__product-count">
+          {%- if search.performed -%}
+            {%- if search.results_count -%}
+              {{ 'templates.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+            {%- elsif search.products_count == search.all_products_count -%}
+              {{ 'products.facets.product_count_simple' | t: count: search.products_count }}
+            {%- else -%}
+              {{ 'products.facets.product_count' | t: product_count: search.products_count, count: search.all_products_count }}
+            {%- endif -%}
+          {%- else -%}
+            {%- if collection.products_count == collection.all_products_count -%}
+              {{ 'products.facets.product_count_simple' | t: count: collection.products_count }}
+            {%- else -%}
+              {{ 'products.facets.product_count' | t: product_count: collection.products_count, count: collection.all_products_count }}
+            {%- endif -%}
+          {%- endif -%}
+        </span>
+      </summary>
+
+      <div class="mobile-facets">
+        <div class="mobile-facets__inner gradient">
+          <div class="mobile-facets__header">
+            <div class="mobile-facets__header-inner">
+              <h2 class="mobile-facets__heading medium-hide large-up-hide">
+                {{ 'products.facets.filter_and_sort' | t }}
+              </h2>
+            </div>
+            <button
+              class="mobile-facets__close-button"
+              type="button"
+              aria-label="{{ 'accessibility.close' | t }}"
+              data-close-filter
+            >
+              <svg class="icon icon-close" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                <path d="M15 1L1 15M1 1l14 14" stroke="currentColor" stroke-width="2" fill="none"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="mobile-facets__main">
+            {% if sort_options != blank %}
+              <div class="mobile-facets__summary" style="padding: 0px;">
+                <div class="mobile-facets__sort">
+                  <label for="SortBy-mobile">{{ 'products.facets.sort_by_label' | t }}</label>
+                  <div class="select">
+                    <select id="SortBy-mobile" name="sort_by" data-collection-filter-sort class="select__select">
+                      {% for option in sort_options %}
+                        {% unless option.value == 'title-ascending'
+                              or option.value == 'title-descending'
+                              or option.value == 'created-ascending'
+                              or option.value == 'created-descending'
+                        %} 
+                          <option value="{{ option.value | escape }}" {% if option.value == sort_by %}selected{% endif %}>
+                            {{ option.name | escape }}
+                          </option>
+                        {% endunless %}
+                      {% endfor %}
+                    </select>
+                    <span class="svg-wrapper">
+                      {{- 'icon-caret.svg' | inline_asset_content -}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+
+            {% for block in section.blocks %}
+              {% case block.type %}
+                {% when 'set' %}
+                  {% render 'collection-filters-set',
+                    collection: collection,
+                    settings: block.settings,
+                    search: search,
+                    offset: forloop.index,
+                    blocks: section.blocks
+                  %}
+                {% when 'liquid' %}
+                  <div class="collection-tag-filter__custom-liquid">
+                    {{ block.settings.liquid }}
+                  </div>
+              {% endcase %}
+            {% endfor %}
+
+            <div class="mobile-facets__footer">
+              <a href="{{ collection_base_url }}" class="mobile-facets__clear underlined-link">
+                {{ 'products.facets.clear_all' | t }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+</div>
+
+<script>
+  (() => {
+    const filterSection = document.currentScript.closest('.shopify-section');
+
+    if (!filterSection) return;
+
+    const syncFilterHeight = () => {
+      const filterContainer = filterSection.querySelector('.collection-tag-filter .facets-container');
+      const productContainer = document.querySelector('#ProductGridContainer');
+
+      if (!filterContainer || !productContainer) return;
+
+      if (!window.matchMedia('(min-width: 750px)').matches) {
+        filterContainer.style.removeProperty('--collection-filter-max-height');
+        return;
+      }
+
+      const productHeight = Math.round(productContainer.getBoundingClientRect().height);
+
+      if (productHeight > 0) {
+        filterContainer.style.setProperty('--collection-filter-max-height', `${productHeight}px`);
+      }
+    };
+
+    const initShowMore = () => {
+      filterSection.querySelectorAll('[data-filter-show-more]').forEach((button) => {
+        if (button.dataset.filterShowMoreReady === 'true') return;
+
+        const options = button.closest('.facets-wrap')?.querySelector('[data-filter-options]');
+        const label = button.querySelector('[data-filter-show-more-label]');
+
+        if (!options || !label) return;
+
+        button.dataset.filterShowMoreReady = 'true';
+        button.addEventListener('click', () => {
+          const expanded = button.getAttribute('aria-expanded') === 'true';
+
+          button.setAttribute('aria-expanded', String(!expanded));
+          options.classList.toggle('is-collapsed', expanded);
+          label.textContent = expanded ? 'See more' : 'See less';
+          syncFilterHeight();
+        });
+      });
+    };
+
+    const initSortSelects = () => {
+      filterSection.querySelectorAll('[data-collection-filter-sort]').forEach((select) => {
+        if (select.dataset.sortListener === 'true') return;
+
+        select.dataset.sortListener = 'true';
+        select.addEventListener('change', (event) => {
+          const value = event.target.value;
+          const url = new URL(window.location.href);
+
+          if (value) {
+            url.searchParams.set('sort_by', value);
+          } else {
+            url.searchParams.delete('sort_by');
+          }
+
+          window.location.href = url.toString();
+        });
+      });
+    };
+
+    const syncMobileActiveFilters = () => {
+      const productGridContainer = document.querySelector('#ProductGridContainer');
+      const template = filterSection.querySelector('#CollectionFilterMobileActiveTagsTemplate');
+      const existing = document.querySelector('.collection-tag-filter__mobile-active-tags');
+      const isMobile = window.matchMedia('(max-width: 749px)').matches;
+
+      if (!productGridContainer || !template) {
+        if (existing) {
+          existing.remove();
+        }
+        return;
+      }
+
+      if (!isMobile) {
+        if (existing) {
+          existing.remove();
+        }
+        return;
+      }
+
+      const html = template.innerHTML.trim();
+      if (!html) {
+        if (existing) {
+          existing.remove();
+        }
+        return;
+      }
+
+      if (existing) {
+        existing.innerHTML = html;
+        return;
+      }
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'collection-tag-filter__mobile-active-tags';
+      wrapper.innerHTML = html;
+      productGridContainer.parentNode.insertBefore(wrapper, productGridContainer);
+    };
+
+    // Initialize mobile filter close button and click-outside functionality
+    const initMobileFilterClose = () => {
+      const filterDisclosure = filterSection.querySelector('.mobile-facets__disclosure');
+      const closeButton = filterSection.querySelector('[data-close-filter]');
+
+      if (!filterDisclosure || !closeButton) return;
+
+      // Close button click handler
+      closeButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        filterDisclosure.open = false;
+      });
+
+      // Click-outside handler (on the backdrop)
+      filterDisclosure.addEventListener('click', (e) => {
+        // Close only if clicking on the summary (backdrop area) directly, not inside the modal content
+        if (e.target === filterDisclosure) {
+          filterDisclosure.open = false;
+        }
+      });
+
+      // Alternative: Handle backdrop click more robustly
+      let backdropClickListener = null;
+      
+      const updateBackdropListener = () => {
+        // Remove old listener if it exists
+        if (backdropClickListener) {
+          document.removeEventListener('click', backdropClickListener);
+        }
+
+        // Only attach backdrop listener when the filter is open
+        if (filterDisclosure.open) {
+          backdropClickListener = (e) => {
+            const mobileInner = filterSection.querySelector('.mobile-facets__inner');
+            const isClickInsideModal = mobileInner && mobileInner.contains(e.target);
+            const isCloseButton = closeButton.contains(e.target);
+            
+            // Close if clicking outside the modal and not on the close button
+            if (!isClickInsideModal && !isCloseButton) {
+              filterDisclosure.open = false;
+            }
+          };
+          
+          // Use capture phase to detect clicks early
+          document.addEventListener('click', backdropClickListener, true);
+        }
+      };
+
+      // Update listener when details element opens/closes
+      const observer = new MutationObserver(updateBackdropListener);
+      observer.observe(filterDisclosure, { attributes: true, attributeFilter: ['open'] });
+
+      // Initialize listener state
+      updateBackdropListener();
+    };
+
+    initShowMore();
+    initSortSelects();
+    syncFilterHeight();
+    syncMobileActiveFilters();
+    initMobileFilterClose();
+
+    window.addEventListener('resize', () => {
+      syncFilterHeight();
+      syncMobileActiveFilters();
+    });
+    window.addEventListener('load', () => {
+      syncFilterHeight();
+      syncMobileActiveFilters();
+    });
+    document.addEventListener('shopify:section:load', () => {
+      syncFilterHeight();
+      syncMobileActiveFilters();
+    });
+    document.addEventListener('collection:productsRendered', () => {
+      syncFilterHeight();
+      syncMobileActiveFilters();
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Collection Filters",
+  "tag": "aside",
+  "class": "collection-filters",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Tag Delimiter",
+      "id": "tag_delimiter",
+      "default": ":",
+      "info": "This is the character that separates the tag names for filters."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Title",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        }
+      ]
+    },
+    {
+      "type": "liquid",
+      "name": "Liquid",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "liquid",
+          "label": "Liquid"
+        }
+      ]
+    },
+    {
+      "type": "set",
+      "name": "Filter Set",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Filter Set Title"
+        },
+        {
+          "type": "select",
+          "label": "Field",
+          "id": "field",
+          "default": "tags",
+          "options": [
+            {
+              "label": "Tags",
+              "value": "tags"
+            },
+            {
+              "label": "Vendor",
+              "value": "vendor"
+            },
+            {
+              "label": "Product Type",
+              "value": "type"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "label": "Product Type Restriction",
+          "id": "product_type"
+        },
+        {
+          "type": "text",
+          "label": "Collection Inclusion",
+          "id": "collection_inclusion",
+          "info": "Only display on Collections as listed above in comma-separated handles"
+        },
+        {
+          "type": "text",
+          "label": "Collection Exclusion",
+          "id": "collection_exclusion",
+          "info": "Do not display on Collections listed above in comma-separated handles"
+        },
+        {
+          "type": "select",
+          "label": "Format",
+          "id": "format",
+          "options": [
+            {
+              "label": "Checkboxes (select many)",
+              "value": "checkbox"
+            },
+            {
+              "label": "Radio Buttons (select one)",
+              "value": "radio"
+            },
+            {
+              "label": "Text Links",
+              "value": "text"
+            },
+            {
+              "label": "Grid",
+              "value": "grid"
+            },
+            {
+              "label": "Color",
+              "value": "color"
+            }
+          ],
+          "default": "checkbox",
+          "info": "For large Collections, it is STRONGLY recommended to use Radio buttons or Tag Links to avoid slow product batch loads"
+        },
+        {
+          "type": "text",
+          "label": "Units",
+          "id": "units"
+        },
+        {
+          "type": "number",
+          "label": "Minimum Values",
+          "id": "minimum_values",
+          "default": 1
+        },
+        {
+          "type": "header",
+          "content": "Dynamic Filter Options"
+        },
+        {
+          "type": "paragraph",
+          "content": "Dynamic Filter Options require that the Field dropdown is set to `Tags`"
+        },
+        {
+          "type": "text",
+          "id": "inclusion",
+          "label": "Tag Inclusion"
+        },
+        {
+          "type": "text",
+          "id": "delimiter",
+          "label": "Tag Delimeter",
+          "default": ":"
+        },
+        {
+          "type": "number",
+          "id": "display",
+          "label": "Display Segment"
+        },
+        {
+          "type": "textarea",
+          "id": "find_replace",
+          "label": "Find and Replace"
+        },
+        {
+          "type": "textarea",
+          "id": "sort_order",
+          "label": "Sort Order",
+          "info": "Values may include 'alpha', 'numeric', or a series of specific values one per line"
+        },
+        {
+          "type": "header",
+          "content": "Manual Filter Options"
+        },
+        {
+          "type": "textarea",
+          "id": "options",
+          "label": "Filter Options",
+          "info": "one option per line following format {{ label }}>>>{{ tag }}"
+        },
+        {
+          "type": "text",
+          "id": "remote_options",
+          "label": "Remote Filter Options",
+          "info": "Follows same formatting, but may be mapped to dynamic source per collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

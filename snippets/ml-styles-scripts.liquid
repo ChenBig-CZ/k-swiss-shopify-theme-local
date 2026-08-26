@@ -1,0 +1,40 @@
+{% comment %} 
+  Vendor styles/scripts
+{% endcomment %}
+<link href="{{ 'ml-vendor-swiper.bundle.min.css' | asset_url }}" rel="stylesheet">
+<script src="{{ 'ml-vendor-swiper.bundle.min.js' | asset_url }}" defer="defer"></script>
+
+<script>
+  window.custom = {
+    moneyFormat: '{{ shop.money_format }}',
+    times: {
+      ago: '{{ 'custom.times.ago' | t }}',
+      moments: '{{ 'custom.times.moments' | t }}',
+      s: '{{ 'custom.times.s' | t }}',
+      second: '{{ 'custom.times.second' | t }}',
+      seconds: '{{ 'custom.times.seconds' | t }}',
+      m: '{{ 'custom.times.m' | t }}',
+      minute: '{{ 'custom.times.minute' | t }}',
+      minutes: '{{ 'custom.times.minutes' | t }}',
+      h: '{{ 'custom.times.h' | t }}',
+      hour: '{{ 'custom.times.hour' | t }}',
+      hours: '{{ 'custom.times.hours' | t }}',
+      d: '{{ 'custom.times.d' | t }}',
+      day: '{{ 'custom.times.day' | t }}',
+      days: '{{ 'custom.times.days' | t }}',
+      expired: '{{ 'custom.times.expired' | t }}'
+    },
+    wishlist: {
+      add: '{{ 'custom.wishlist.add' | t }}',
+      remove: '{{ 'custom.wishlist.remove' | t }}',
+    }
+  }
+</script>
+
+<link href="{{ 'ml-main.css' | asset_url }}" rel="stylesheet">
+<link href="{{ 'ml-product.css' | asset_url }}" rel="stylesheet">
+<link href="{{ 'ml-sections.css' | asset_url }}" rel="stylesheet">
+
+<script src="{{ 'ml-main.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'ml-product.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'ml-sections.js' | asset_url }}" defer="defer"></script>

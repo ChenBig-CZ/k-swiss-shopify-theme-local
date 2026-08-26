@@ -1,0 +1,261 @@
+{%- style -%}
+  .tab-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .tab-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{% if section.blocks.size > 0 %}
+<div class="tabs-section color-{{ section.settings.color_scheme }} isolate gradient tab-{{ section.id }}">
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="//code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+  <div class="page-width">
+
+    <div id="tabs-{{ section.id }}" class="tabs">
+
+      <!-- HEADER -->
+      <div class="tab_header">
+        {% if section.settings.title != blank %}
+          <h2 class="m-0 h1">
+            {{ section.settings.title }}
+          </h2>
+        {% endif %}
+
+        <!-- TAB TITLES -->
+        <ul class="tab-box">
+          {% for block in section.blocks %}
+            <li>
+              <a href="#tab-{{ section.id }}-{{ forloop.index }}">
+                {{ block.settings.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- TAB CONTENT -->
+      {% for block in section.blocks %}
+        <div id="tab-{{ section.id }}-{{ forloop.index }}" class="tab-content">
+          {{ block.settings.liquid }}
+          {{ block.settings.richtext }}
+          {{ block.settings.html }}
+          {{ block.settings.page.content }}
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function () {
+    $("#tabs-{{ section.id }}").tabs({
+      create: function () {
+        $('.tab-{{ section.id }}').addClass('is-loaded');
+      }
+    });
+  });
+</script>
+
+<style>
+    .tab-{{ section.id }}  .tab_box li{
+background: #000;
+    color: #fff;
+}
+.tab-{{ section.id }} .ui-tabs .ui-tabs-nav li.ui-tabs-active{
+  background: #000;
+  color: #fff;
+}
+    .tab-{{ section.id }} .tabs-section {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.tab-{{ section.id }} .tabs-section.is-loaded {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.25s ease;
+}
+.tab-{{ section.id }} table{
+    border-collapse: collapse;
+}
+.tab-{{ section.id }} .ui-tabs .ui-tabs-panel{
+    overflow: auto;
+}
+    /* ----------------------------
+   SPLIDE ARROWS
+----------------------------- */
+.tab-{{ section.id }} .splide__arrow {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-100%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 0;
+  background: #fff;
+  border: 1px solid transparent;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.9;
+}
+.tab-{{ section.id }} .splide__arrow svg {
+  fill: #000;
+  width: 0.8em;
+  height: 0.8em;
+}
+
+.tab-{{ section.id }} .splide__arrow:disabled {
+  pointer-events: none;
+}
+.tab-{{ section.id }} .splide__arrow--prev {
+  left: -20px;
+}
+.tab-{{ section.id }} .splide__arrow--next {
+  right: -20px;
+}
+.tab-{{ section.id }} .tabs-section{
+    border: 1px solid #E1E1E1;
+  }
+
+.tab-{{ section.id }} .tab_header{
+    display: flex;
+    justify-content: center;
+}
+  .tab-{{ section.id }} .grid__item{
+    padding: 5px;
+            border-left: 1px solid #e1e1e1;
+  }
+  .tab-{{ section.id }} .product-grid{
+    margin: 0px;
+       border: 1px solid #e1e1e1;
+        border-bottom: 0;
+    border-left: 0;
+  }
+    .tab-{{ section.id }} .tabs .slick-next::before,.tab-{{ section.id }} .tabs .slick-prev::before { color: #000;}
+    .tab-{{ section.id }} .tabs { background: none!important;border: none!important; padding: 0px;}
+    .tab-{{ section.id }} .tabs.ui-tabs .ui-tabs-nav {
+    background: #fff;
+    border: 1px solid #0000001A;
+    border-radius: 40px;
+    padding: 4px;
+    display: flex;
+    }
+.tab-{{ section.id }} .ui-state-default, .tab-{{ section.id }} .ui-widget-content .ui-state-default, .tab-{{ section.id }} .ui-widget-header .ui-state-default{
+    background: #fff;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 90px;
+    cursor: pointer;
+    border: none;
+    margin: 0 !important;
+}
+.tab-{{ section.id }} td{
+min-width: 100px;
+}
+   .tab-{{ section.id }} .ui-tabs .ui-tabs-nav li a{
+        width: 100%;
+        padding: 0.7em 1em !important;
+            font-family: var(--font-body-family);
+  }
+
+  </style>
+{% endif %}
+
+
+
+{% schema %}
+{
+  "name": "Tabbed Content",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "scheme-1",
+      "label": "Color scheme"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tab title"
+        },
+        {
+          "type": "liquid",
+          "id": "liquid",
+          "label": "Liquid content"
+        },
+        {
+          "type": "richtext",
+          "id": "richtext",
+          "label": "Text content"
+        },
+        {
+          "type": "html",
+          "id": "html",
+          "label": "HTML content"
+        },
+        {
+          "type": "page",
+          "id": "page",
+          "label": "Page content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tabbed Content"
+    }
+  ]
+}
+{% endschema %}

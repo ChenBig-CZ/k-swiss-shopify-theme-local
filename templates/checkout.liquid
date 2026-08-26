@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}" dir="{{ direction }}" className="{{ checkout_html_classes }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0" />
+    <meta name="referrer" content="origin" />
+
+    <title>{{ page_title }}</title>
+
+    {% if settings.gtm_code != blank %}
+      {% include 'gtm-head' %}
+    {% endif %}
+
+    {{ content_for_header }}
+
+    {{ checkout_stylesheets }}
+    {{ checkout_scripts }}
+
+    <!-- TIK-TOK PIXEL TRACKER  -->
+    <script>
+    (function()
+    { var ta = document.createElement('script'); ta.type = 'text/javascript'; ta.async = true; ta.src = document.location.protocol + '//' + 'static.bytedance.com/pixel/sdk.js?sdkid=BOU6QKADJKUQUDN34GO0'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ta, s); }
+    )();
+    </script>
+    
+    <!-- ADDRESS VALIDATOR -->
+<script async src="https://d3ox8tdk614ykk.cloudfront.net/pobox_checker.js"></script>
+  
+  {% render 'shogun-head' %}
+  {% if shop.name == "K-Swiss EU" or shop.name == "PALLADIUM EU" %}
+  <!-- Mondial Relay -->
+  <script>
+    if (window.location.href.indexOf("checkout") > -1){
+      var enseigneClient = 'F2PALLAD';
+      var MondialRelayScript = document.createElement('script');
+      MondialRelayScript.type = 'text/javascript';
+      MondialRelayScript.src = 'https://shopify-mondial-relay.s3.eu-west-3.amazonaws.com/MR-select-pickup-shopify-plus.js';
+      MondialRelayScript.setAttribute('enseigne', enseigneClient);
+      document.getElementsByTagName('head')[0].appendChild(MondialRelayScript);
+      var waitFunction = function() {
+        if (document.querySelectorAll('.section--shipping-method input').length > 0) {
+          var selectedInput = document.querySelector('input[checked=\'checked\']');
+          if (decodeURIComponent(selectedInput.getAttribute('value')).toLowerCase().indexOf('point de retrait') > 1 && document.querySelectorAll('.section-shipping-method input')[1]) {
+            document.querySelectorAll('.section--shipping-method input')[1].click();
+          } else {
+            setTimeout(function(){
+              waitFunction();
+            }, 10);
+          }
+        }
+      };
+      waitFunction();
+    }
+  </script>
+  {% endif %}
+
+  </head>
+  <body>
+    {{ skip_to_content_link }}
+
+    {% if settings.gtm_code != blank %}
+      {% include 'gtm-body' %}
+    {% endif %}
+
+    <header className="banner" data-header role="banner">
+      <div className="wrap">
+        {{ content_for_logo }}
+      </div>
+    </header>
+
+    {{ order_summary_toggle }}
+    <div className="content" data-content>
+      <div className="wrap">
+        <div className="main">
+          <header className="main__header" role="banner">
+            {{ content_for_logo }}
+            {{ breadcrumb }}
+            {{ alternative_payment_methods }}
+          </header>
+          <main className="main__content" role="main">
+            {{ content_for_layout }}
+          </main>
+          <footer className="main__footer" role="contentinfo">
+            {{ content_for_footer }}
+          </footer>
+        </div>
+        <aside className="sidebar" role="complementary">
+          <div className="sidebar__header">
+            {{ content_for_logo }}
+          </div>
+          <div className="sidebar__content">
+            {{ content_for_order_summary }}
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    {{ tracking_code }}
+  </body>
+
+  {% render 'po-box-blocker' %}
+
+  <script src="https://cdn-widgetsrepository.yotpo.com/v1/loader/7IxZsje1OxmZNgpH1dDSVw" async></script>
+  <div class="yotpo-widget-instance" data-yotpo-instance-id="78899"></div>
+  <div class="yotpo-widget-instance" data-yotpo-instance-id="81297"></div>
+  
+  {% if shop.currency == 'USD' %}  
+    <!-- AFTERPAY WIDGET -->
+    <script type="text/javascript" src="https://static-us.afterpay.com/javascript/present-afterpay.js"></script>
+    <script>
+      const apConfig = {
+        priceSelector: '.sidebar__content',
+        amount: {{product.price | json}},
+        locale: 'en_US',
+        currency: 'USD',
+        giftCard: {{product.type | json}} == 'Gift Card',
+        minMaxThreshold: {
+          min: 3500,
+          max: 100000,
+        },
+      };
+      document.addEventListener('DOMContentLoaded', function() {
+        new presentAfterpay(apConfig).init();
+      });
+    </script>
+  
+    <!-- KLAVIYO SMS SNIPPET -->
+    <script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=H8TnRm&module=CONSENT_AT_CHECKOUT"></script>
+  {% endif %}
+  {% include 'checkout-validator' %}
+
+  
+</html>

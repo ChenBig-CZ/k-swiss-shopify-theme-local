@@ -1,0 +1,369 @@
+{%- style -%}
+  #ml-lookbook-{{ section.id }} {
+    padding-top: {{ section.settings.pt | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.pb | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #ml-lookbook-{{ section.id }} {
+      padding-top: {{ section.settings.pt }}px;
+      padding-bottom: {{ section.settings.pb }}px;
+    }
+  }
+
+  #ml-lookbook-{{ section.id }} .ml-lookbook-point-list-item button > span {
+    border-color: {{ section.settings.point_color }};
+    animation: lookbook-point-animation-{{ section.id }} 2s infinite;
+  }
+
+  #ml-lookbook-{{ section.id }} .ml-lookbook-point-list-item button > span > span {
+    background: {{ section.settings.point_color }};
+    width: {{ section.settings.point_diameter | append: 'rem' }};
+    height: {{ section.settings.point_diameter | append: 'rem' }};
+  }
+
+  @keyframes lookbook-point-animation-{{ section.id }} {
+    0% { box-shadow: 0 0 0 0px rgba({{ section.settings.point_color | color_to_rgb | remove: 'rgb(' | remove: ')' }}, 0.25); }
+    100% { box-shadow: 0 0 0 20px rgba({{ section.settings.point_color | color_to_rgb | remove: 'rgb(' | remove: ')' }}, 0); }
+  }
+
+  @media (max-width: 749px) {
+    {% for block in section.blocks %}
+      #ml-lookbook-{{ section.id }} .ml-lookbook-point-list-item:nth-child({{ forloop.index }}) button {
+        left: {{ block.settings.mobile_pos_left }}%;
+        top: {{ block.settings.mobile_pos_top }}%;
+      }
+    {% endfor %}
+  }
+
+  @media (min-width: 750px) {
+    {% for block in section.blocks %}
+      #ml-lookbook-{{ section.id }} .ml-lookbook-point-list-item:nth-child({{ forloop.index }}) button {
+        left: {{ block.settings.desktop_pos_left }}%;
+        top: {{ block.settings.desktop_pos_top }}%;
+      }
+    {% endfor %}
+  }
+</style>
+{% endstyle %}
+
+<ml-lookbook 
+  id="ml-lookbook-{{ section.id }}"
+  class="ml-lookbook color-{{ section.settings.color_scheme }} gradient">
+  <div 
+    class="page-width"  
+    style="max-width: {{ section.settings.page_width | append: 'px' }}">
+
+    <div class="ml-section-header">
+      {%- unless section.settings.title == blank -%}
+        <h2 
+          class="
+            title title-wrapper--no-top-margin inline-richtext 
+            {{ section.settings.heading_size }}
+            {% if settings.animations_reveal_on_scroll %}scroll-trigger animate--slide-in{% endif %}
+          ">
+          {{ section.settings.title }}
+        </h2>
+      {%- endunless -%}
+      {%- unless section.settings.description == blank -%}
+        <div class="description rte {{ section.settings.description_size }} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          {{ section.settings.description }}
+        </div>
+      {%- endunless -%}
+    </div>
+
+    <div class="img-wrapper {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="d-desktop-none">
+        {% if section.settings.img_mobile == nil %}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'svg-placeholder' }}
+        {% else %}
+          {% render 'ml-image-url', img: section.settings.img_mobile, size: 800, ratio: section.settings.img_mobile_ratio %}
+        {% endif %}
+      </div>
+      <div class="d-none d-desktop-block">
+        {% if section.settings.img_desktop == nil %}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'svg-placeholder' }}
+        {% else %}
+          {% render 'ml-image-url', img: section.settings.img_desktop, size: 1200, ratio: section.settings.img_desktop_ratio  %}
+        {% endif %}
+      </div>
+      <div 
+        class="ml-lookbook-point-list"> 
+        {% for block in section.blocks %}
+          {% liquid
+            assign product = block.settings.product 
+          %}
+          <div 
+            class="ml-lookbook-point-list-item" 
+            role="listitem" 
+            {{ block.shopify_attributes }}>
+            <button class="{% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
+              <span><span>
+              </span></span>
+            </button>
+            <div 
+              class="ml-tooltip color-{{ section.settings.color_scheme }}" 
+              role="tooltip">
+              <img 
+                class="ml-lookbook-product-img" 
+                src="{{ product.featured_image | image_url: width: 600 }}" 
+                width="600"
+                height="{{ 600 | divided_by: product.featured_image.aspect_ratio | round }}" 
+                loading="lazy">
+              <h3 class="title h5 text-truncate-2-lines">
+                {% assign productTitle = block.settings.product.title | split: '|' %}
+                {{ productTitle[1] }}
+              </h3>
+              {% render 'price', product: product %}
+              <a 
+                class="button {{ block.settings.btn_style }}"
+                href="{{ product.url }}"
+                aria-hidden="true">
+                {{ block.settings.btn_text }}
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</ml-lookbook>
+
+{% schema %}
+{
+  "name": "Lookbook",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "page_width",
+      "label": "Page width (px)",
+      "info": "Leave empty to use the global \"page-width\"."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Heading",
+      "default": "Look Book",
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" },
+        { "value": "hxl", "label": "Extra large" },
+        { "value": "hxxl", "label": "Extra extra large" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>An optional description for this section</p>",
+    },
+    {
+      "type": "select",
+      "id": "description_size",
+      "label": "Description size",
+      "default": "fs-md",
+      "options": [
+        { "value": "fs-xs", "label": "xs" },
+        { "value": "fs-sm", "label": "sm" },
+        { "value": "fs-md", "label": "md" },
+        { "value": "fs-lg", "label": "lg" },
+        { "value": "fs-xl", "label": "xl" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "img_mobile",
+      "label": "Mobile image"
+    },
+    {
+      "type": "select",
+      "id": "img_mobile_ratio",
+      "label": "Image mobile - ratio",
+      "default": "adapt",
+      "options": [
+        { "group": "Adapt", "value": "adapt", "label": "Adapt" },
+        { "group": "Square", "value": "ratio-1x1", "label": "1x1" },
+        { "group": "Horizontal", "value": "ratio-4x3", "label": "4x3" },
+        { "group": "Horizontal", "value": "ratio-16x9", "label": "16x9" },
+        { "group": "Horizontal", "value": "ratio-21x9", "label": "21x9" },
+        { "group": "Vertical", "value": "ratio-3x4", "label": "3x4" },
+        { "group": "Vertical", "value": "ratio-9x16", "label": "9x16" },
+        { "group": "Vertical", "value": "ratio-9x21", "label": "9x21" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "img_desktop",
+      "label": "Desktop image"
+    },
+    {
+      "type": "select",
+      "id": "img_desktop_ratio",
+      "label": "Image desktop - ratio",
+      "default": "adapt",
+      "options": [
+        { "group": "Adapt", "value": "adapt", "label": "Adapt" },
+        { "group": "Square", "value": "ratio-1x1", "label": "1x1" },
+        { "group": "Horizontal", "value": "ratio-4x3", "label": "4x3" },
+        { "group": "Horizontal", "value": "ratio-16x9", "label": "16x9" },
+        { "group": "Horizontal", "value": "ratio-21x9", "label": "21x9" },
+        { "group": "Vertical", "value": "ratio-3x4", "label": "3x4" },
+        { "group": "Vertical", "value": "ratio-9x16", "label": "9x16" },
+        { "group": "Vertical", "value": "ratio-9x21", "label": "9x21" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Points"
+    },
+    {
+      "type": "color",
+      "id": "point_color",
+      "label": "Point color",
+      "default": "#121212"
+    },
+    {
+      "type": "range",
+      "id": "point_diameter",
+      "label": "Point diameter",
+      "unit": "rem",
+      "min": 0.2,
+      "max": 3,
+      "step": 0.1,
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "pt",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 36,
+      "unit": "px",
+    },
+    {
+      "type": "range",
+      "id": "pb",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 36,
+      "unit": "px",
+    }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Point",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Product"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "btn_text",
+          "label": "Button text",
+          "default": "View product"
+        },
+        {
+          "type": "select",
+          "id": "btn_style",
+          "label": "Button style",
+          "default": "button--secondary",
+          "options": [
+            { "value": "button--primary", "label": "Primary" },
+            { "value": "button--secondary", "label": "Secondary" }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Point position - Mobile"
+        },
+        {
+          "type": "range",
+          "id": "mobile_pos_left",
+          "label": "Left (%)",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "mobile_pos_top",
+          "label": "Top (%)",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Desktop Positioning"
+        },
+        {
+          "type": "range",
+          "id": "desktop_pos_left",
+          "label": "Left (%)",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "desktop_pos_top",
+          "label": "Top (%)",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "presets": [
+    {
+      "name": "Lookbook"
+    }
+  ]
+}
+{% endschema %}

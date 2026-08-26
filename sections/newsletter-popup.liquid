@@ -1,0 +1,272 @@
+<style>
+  #ml-newsletter-popup img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    opacity: 0;
+    height: 0;
+    transition: all .6s ease-out;
+    transition-delay: .4s;
+  }
+  #ml-newsletter-popup[open] img {
+    opacity: 1;
+    height: {{ section.settings.img_height }}px;
+  }
+</style>
+
+{% if request.design_mode %}
+  <script>
+    const showModal = (event) => {
+      const popup = document.querySelector('#ml-newsletter-popup')
+
+      if (event.target.querySelector('#ml-newsletter-popup')) {
+        popup.open()
+      } else {
+        popup.close()
+      }
+    }
+
+    document.addEventListener('shopify:section:load', showModal)
+    document.addEventListener('shopify:section:select', showModal)
+  </script>
+{% endif %}
+
+<ml-newsletter-popup 
+  id="ml-newsletter-popup"
+  class="ml-newsletter-popup ml-dawn-modal"
+  data-config-delay="{{ section.settings.config_delay }}"
+  data-config-days-to-wait="{{ section.settings.config_days_to_wait }}">
+  <div
+    role="dialog"
+    aria-label="Newsletter subscribe"
+    aria-modal="true"
+    class="global-settings-popup ml-dawn-modal-inner color-{{ section.settings.color_scheme }} gradient"
+    tabindex="-1"
+    style="max-width: {{ section.settings.max_width | append: 'px;' }}">
+    <button
+      type="button"
+      class="ml-dawn-modal-toggler"
+      aria-label="{{ 'accessibility.close' | t }}">
+      {{- 'icon-close.svg' | inline_asset_content -}}
+    </button> 
+    {% if section.settings.img != nil %}
+      <div class="img-wrapper">
+        <img
+          src="{{ section.settings.img | image_url: width: 800 }}"
+          alt="{{ section.settings.img.alt }}"
+          class="img-fluid"
+          width="800"
+          height="{{ 800 | divided_by: section.settings.img.aspect_ratio | round }}"
+          loading="lazy">
+      </div>
+    {% endif %}
+    <div class="ml-dawn-modal-content">
+      <div class="ml-section-header">
+        {%- unless section.settings.title == blank -%}
+          <h2 
+            class="
+              title title-wrapper--no-top-margin inline-richtext 
+              {{ section.settings.heading_size }}
+            ">
+            {{ section.settings.title }}
+          </h2>
+        {%- endunless -%}
+        {%- unless section.settings.description == blank -%}
+          <div class="description rte {{ section.settings.description_size }}">
+            {{ section.settings.description }}
+          </div>
+        {%- endunless -%}
+      </div>
+      {% form 'customer', class: 'newsletter-form' %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="newsletter-form__field-wrapper">
+          <div class="field">
+            <input
+              id="NewsletterForm--{{ section.id }}"
+              type="email"
+              name="contact[email]"
+              class="field__input"
+              value="{{ form.email }}"
+              aria-required="true"
+              autocorrect="off"
+              autocapitalize="off"
+              autocomplete="email"
+              {% if form.errors %}
+                autofocus
+                aria-invalid="true"
+                aria-describedby="Newsletter-error--{{ section.id }}"
+              {% elsif form.posted_successfully? %}
+                aria-describedby="Newsletter-success--{{ section.id }}"
+              {% endif %}
+              placeholder="{{ 'newsletter.label' | t }}"
+              required
+            >
+            <label class="field__label" for="NewsletterForm--{{ section.id }}">
+              {{ 'newsletter.label' | t }}
+            </label>
+            <button
+              type="submit"
+              class="newsletter-form__button field__button"
+              name="commit"
+              id="Subscribe"
+              aria-label="{{ 'newsletter.button_label' | t }}"
+            >
+              <span class="svg-wrapper">
+                {{- 'icon-arrow.svg' | inline_asset_content -}}
+              </span>
+            </button>
+          </div>
+          {%- if form.errors -%}
+            <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">
+              <span class="svg-wrapper">
+                {{- 'icon-error.svg' | inline_asset_content -}}
+              </span>
+              {{- form.errors.translated_fields.email | capitalize }}
+              {{ form.errors.messages.email -}}
+            </small>
+          {%- endif -%}
+        </div>
+        {%- if form.posted_successfully? -%}
+          <h3
+            class="newsletter-form__message newsletter-form__message--success form__message"
+            id="Newsletter-success--{{ section.id }}"
+            tabindex="-1"
+            autofocus>
+            <span class="svg-wrapper">
+              {{- 'icon-success.svg' | inline_asset_content -}}
+            </span>
+            {{- 'newsletter.success' | t }}
+          </h3>
+        {%- endif -%}
+      {% endform %}
+      {% unless section.settings.notice == blank %}
+        <div class="ml-newsletter-notice rte">
+          {{ section.settings.notice }}
+        </div>
+      {% endunless %}
+    </div>
+  </div>
+</ml-newsletter-popup>
+
+{% schema %}
+{
+  "name": "Newsletter popup",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "max_width",
+      "label": "Modal max-width (px)",
+      "default": "600"
+    },
+    {
+      "type": "header",
+      "content": "Config"
+    },
+    {
+      "type": "range",
+      "id": "config_delay",
+      "label": "Delay (sec)",
+      "info": "The time to wait before showing the dialog on page load. (in seconds)",
+      "default": 5,
+      "min": 1,
+      "max": 20,
+      "unit": "sec"
+    },
+    {
+      "type": "range",
+      "id": "config_days_to_wait",
+      "label": "Days to wait",
+      "info": "Days to wait before showing the newsletter popup again.",
+      "default": 3,
+      "min": 1,
+      "max": 30
+    },
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Heading",
+      "default": "Newsletter Subscribe",
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" },
+        { "value": "hxl", "label": "Extra large" },
+        { "value": "hxxl", "label": "Extra extra large" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>An optional description for this section</p>",
+    },
+    {
+      "type": "select",
+      "id": "description_size",
+      "label": "Description size",
+      "default": "fs-md",
+      "options": [
+        { "value": "fs-xs", "label": "xs" },
+        { "value": "fs-sm", "label": "sm" },
+        { "value": "fs-md", "label": "md" },
+        { "value": "fs-lg", "label": "lg" },
+        { "value": "fs-xl", "label": "xl" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "img",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "img_height",
+      "label": "Image height (px)",
+      "default": "300"
+    },
+    {
+      "type": "header",
+      "content": "Other"
+    },
+    {
+      "type": "richtext",
+      "id": "notice",
+      "label": "Notice text",
+      "default": "<p>By signing up for email, you agree to our <a href=\"/policies/terms-of-service\">Terms of Service</a> and <a href=\"/policies/privacy-policy\">Privacy Policy</a>.</p>"
+    }
+  ],
+  "enabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "presets": [
+    {
+      "name": "Newsletter popup"
+    }
+  ]
+}
+{% endschema %}

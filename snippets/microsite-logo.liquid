@@ -1,0 +1,34 @@
+{%- assign logo_height = settings.microsite_logo_width | divided_by: settings.logo.aspect_ratio -%}
+{% capture sizes %}(max-width: {{ settings.microsite_logo_width | times: 2 }}px) 50vw, {{ settings.microsite_logo_width }}px{% endcapture %}
+{% capture widths %}{{ settings.microsite_logo_width }}, {{ settings.microsite_logo_width | times: 1.5 | round }}, {{ settings.microsite_logo_width | times: 2 }}{% endcapture %}
+
+<div class="ksrc_logo_line">&nbsp;</div>
+
+<a href="{{ settings.microsite_link }}" class="header__heading-link link link--text focus-inset">
+    {{
+        settings.microsite_logo
+        | image_url: width: 600
+        | image_tag:
+        class: 'header__heading-logo motion-reduce ksrc_logo',
+        widths: widths,
+        height: logo_height,
+        width: settings.microsite_logo_width,
+        sizes: sizes,
+        preload: true
+    }}
+</a>
+
+<style>
+    .header__heading-logo-wrapper{
+        column-gap: 5px;
+    }
+    .ksrc_logo{
+        margin-left: 5px;
+    }
+    .ksrc_logo_line{
+        width: 1px;
+        height: 30px;
+        display: block;
+        background-color: #1F1F1F;
+    }
+</style>

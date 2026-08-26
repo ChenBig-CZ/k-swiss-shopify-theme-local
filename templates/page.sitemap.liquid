@@ -1,0 +1,18 @@
+<div class="page-width">
+  <h1>{{ page.title }}</h1>
+  <div>{{ page.content }}</div>
+
+  <h2>Collections</h2>
+  <ul>
+    {% for collection in collections %}
+      <li><a href="{{ collection.url }}">{{ collection.title }}</a></li>
+    {% endfor %}
+  </ul>
+
+  <h2>Information Pages</h2>
+  <ul>
+    {% for link in linklists.main-menu.links %}
+      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>

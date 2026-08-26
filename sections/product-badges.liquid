@@ -1,0 +1,167 @@
+{% assign now = "now" | date: "%Y-%m-%d %H:%M" %}
+
+{% if product %}
+  {%- comment -%} ================= PDP ================= {%- endcomment -%}
+
+  <div class="product-badges" id="move-badge-{{ section.id }}">
+    {% assign coming_soon_enabled = settings.plp_coming_soon %}
+
+    {% if product.tags contains 'SMART_TAG_COMINGSOON' and coming_soon_enabled %}
+      <span class="badge badge--coming-soon">COMING SOON</span>
+    {% else %}
+      {% for block in section.blocks %}
+        {% assign include_badge = true %}
+
+        {% if block.settings.end != blank and block.settings.end < now %}
+          {% assign include_badge = false %}
+        {% endif %}
+
+        {% if block.settings.start != blank and block.settings.start > now %}
+          {% assign include_badge = false %}
+        {% endif %}
+
+        {% if include_badge and product.tags contains block.settings.tag %}
+          <span
+            class="badge"
+            style="background-color: {{ block.settings.badge_bg_color }}; color: {{ block.settings.badge_text_color }};"
+          >
+            {{ block.settings.product_badge }}
+          </span>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  </div>
+
+{% elsif collection %}
+  {%- comment -%} ============== COLLECTION ============== {%- endcomment -%}
+
+  {% for product in collection.products %}
+    <div class="product-badges badge_card-{{ forloop.index }}">
+
+      {% assign coming_soon_enabled = settings.plp_coming_soon %}
+
+      {% if product.tags contains 'SMART_TAG_COMINGSOON' and coming_soon_enabled %}
+        <span class="badge badge--coming-soon">COMING SOON</span>
+      {% else %}
+        {% for block in section.blocks %}
+          {% assign include_badge = true %}
+
+          {% if block.settings.end != blank and block.settings.end < now %}
+            {% assign include_badge = false %}
+          {% endif %}
+
+          {% if block.settings.start != blank and block.settings.start > now %}
+            {% assign include_badge = false %}
+          {% endif %}
+
+          {% if include_badge and product.tags contains block.settings.tag %}
+            <span
+              class="badge"
+              style="background-color: {{ block.settings.badge_bg_color }}; color: {{ block.settings.badge_text_color }};"
+            >
+              {{ block.settings.collection_badge }}
+            </span>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+    </div>
+  {% endfor %}
+
+{% endif %}
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const block = document.getElementById('move-badge-{{ section.id }}');
+  const target = document.querySelector('.product__media-list .product__media-item:first-child .product-media-container');
+
+  if (block && target) {
+    target.prepend(block);
+  }
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const badges = document.querySelectorAll('.product-badges[class*="badge_card-"]');
+
+  badges.forEach(function (badge) {
+    const badgeClass = Array.from(badge.classList).find(cls =>
+      cls.startsWith('badge_card-')
+    );
+
+    if (!badgeClass) return;
+
+    const targetCard = document.querySelector('.card__inner.' + badgeClass);
+
+    if (targetCard) {
+      targetCard.prepend(badge);
+    }
+  });
+});
+</script>
+
+
+{% schema %}
+{
+  "name": "Product Badges",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "Section ID"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tier",
+      "name": "Badge",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Product Tag"
+        },
+        {
+          "type": "text",
+          "id": "collection_badge",
+          "label": "Collection Grid Badge Text"
+        },
+        {
+          "type": "text",
+          "id": "product_badge",
+          "label": "Product Detail Badge Text"
+        },
+        {
+          "type": "color",
+          "id": "badge_text_color",
+          "label": "Badge text color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "badge_bg_color",
+          "label": "Badge background color",
+          "default": "#000000"
+        },
+        {
+          "type": "text",
+          "id": "start",
+          "label": "Start date (YYYY-MM-DD HH:MM)"
+        },
+        {
+          "type": "text",
+          "id": "end",
+          "label": "End date (YYYY-MM-DD HH:MM)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Badges"
+    }
+  ]
+}
+{% endschema %}

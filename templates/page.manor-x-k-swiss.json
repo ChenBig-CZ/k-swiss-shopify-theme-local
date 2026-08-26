@@ -1,0 +1,638 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "rich_text_z3V99w": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_UgpqGP": {
+          "type": "heading",
+          "settings": {
+            "heading": "K-Swiss Social Impact",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading_UgpqGP"
+      ],
+      "custom_css": [
+        "h2 {text-transform: uppercase;}"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "autoplay_video_jLRytf": {
+      "type": "autoplay-video",
+      "name": "Autoplay Video",
+      "settings": {
+        "show_desktop": true,
+        "show_mobile": false,
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/f96415dd51b84cbfa2d6bbbbfe490948.mp4",
+        "fallback_image": "shopify://shop_images/video-capture-t0000.00seg-4020.png",
+        "parallax": false
+      }
+    },
+    "autoplay_video_k9wyTw": {
+      "type": "autoplay-video",
+      "name": "Autoplay Video",
+      "settings": {
+        "show_desktop": false,
+        "show_mobile": true,
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/321bc3975a154755bbb2ef588a09a61c.mp4",
+        "fallback_image": "shopify://shop_images/video-capture-t0000.00seg-6991.png",
+        "parallax": false
+      }
+    },
+    "rich_text_3h6gYp": {
+      "type": "rich-text",
+      "blocks": {
+        "caption_ewEWGM": {
+          "type": "caption",
+          "settings": {
+            "caption": "K-SWISS AND MANOR PRESENT",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading_RpVdUm": {
+          "type": "heading",
+          "settings": {
+            "heading": "A Tribute To the Greenskeepers",
+            "heading_size": "h1"
+          }
+        },
+        "text_FPkaHR": {
+          "type": "text",
+          "settings": {
+            "text": "<p> K-Swiss teams up with Phoenix-based lifestyle brand Manor for a collection rooted in legacy, community, and craft. Honoring golf’s unsung greenskeepers —the quiet stewards who turn courses into playable art — the drop reimagines two icons: the Classic VN with off-white soles flecked in green, and the Si-18 International in a bold green colorway. Together, they carry forward a story where craft meets community and sport shapes culture.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "caption_ewEWGM",
+        "heading_RpVdUm",
+        "text_FPkaHR"
+      ],
+      "custom_css": [
+        "h2 {text-transform: uppercase;}",
+        ".rte p {font-size: 18px;}"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": false,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "media_slider_QELwmh": {
+      "type": "media-slider",
+      "blocks": {
+        "slide_WUmnqW": {
+          "type": "slide",
+          "settings": {
+            "show_only_media": false,
+            "media_alignment": "left",
+            "img": "shopify://shop_images/ART-OF-THE_GAME-DESKTOP_406X392_b231082b-b641-4aa1-9bd5-f18106ccbe6e.jpg",
+            "img_height_mobile": 0,
+            "img_height_desktop": 0,
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_muted": true,
+            "video_controls": true,
+            "external_video": "",
+            "text_align_mobile": "text-center",
+            "text_align_desktop": "text-tablet-start",
+            "subtitle": "COUNTERPOINT X K-SWISS",
+            "subtitle_font_size": "fs-sm",
+            "title": "ART OF THE GAME",
+            "title_font_size": "h1",
+            "description": "<p>In honor of Black History Month, we partnered with Counterpoint to support their Art of the Game initiative. With help from Rakeem Miles, the Utah Jazz, and Spyhop, students were able to learn the process of shoe design using donated K-Swiss shoes, supplies, and expertise. We value events like these that give space to young creators to meet their peers, grow their network, and discover their paths to a creative future.</p>",
+            "description_font_size": "fs-lg",
+            "btn_primary_text": "",
+            "btn_primary_style": "button--primary",
+            "btn_primary_url": "",
+            "btn_secondary_text": "",
+            "btn_secondary_style": "button--secondary",
+            "btn_secondary_url": ""
+          }
+        },
+        "slide_YUDiKP": {
+          "type": "slide",
+          "settings": {
+            "show_only_media": false,
+            "media_alignment": "left",
+            "img": "shopify://shop_images/SHARING-THE-JOY-MOBILE_406X392_bbcf5b9e-aaa4-4e63-99a5-65795e861814.jpg",
+            "img_height_mobile": 0,
+            "img_height_desktop": 0,
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_muted": true,
+            "video_controls": true,
+            "external_video": "",
+            "text_align_mobile": "text-center",
+            "text_align_desktop": "text-tablet-start",
+            "subtitle": "TDE X K-SWISS",
+            "subtitle_font_size": "fs-sm",
+            "title": "SHARING THE JOY",
+            "title_font_size": "h1",
+            "description": "<p>We teamed up with Top Dawg Entertainment for their annual holiday concert and toy drive in Watts, California—donating 500 pairs of shoes to local individuals. With TDE’s prominent artists like Doechii, Kendrick Lamar, and SZA, we united through music and generosity to uplift a community that continues to shape the artists of tomorrow.</p>",
+            "description_font_size": "fs-lg",
+            "btn_primary_text": "",
+            "btn_primary_style": "button--primary",
+            "btn_primary_url": "",
+            "btn_secondary_text": "",
+            "btn_secondary_style": "button--secondary",
+            "btn_secondary_url": ""
+          }
+        },
+        "slide_DYejCp": {
+          "type": "slide",
+          "settings": {
+            "show_only_media": false,
+            "media_alignment": "left",
+            "img": "shopify://shop_images/SHARING-THE-ARTS-MOBILE_406X392_063e9030-7a06-4c61-a4b2-caacdcc9ccfe.jpg",
+            "img_height_mobile": 0,
+            "img_height_desktop": 0,
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_muted": true,
+            "video_controls": true,
+            "external_video": "",
+            "text_align_mobile": "text-center",
+            "text_align_desktop": "text-tablet-start",
+            "subtitle": "SUB ZERO X K-SWISS",
+            "subtitle_font_size": "fs-sm",
+            "title": "SHARING THE ARTS",
+            "title_font_size": "h1",
+            "description": "<p>In partnering with Sub Zero, a transformative mental health event, we’re championing authenticity and giving back to the city that shaped K-Swiss. By donating shoes and resources, we’re empowering local youth to find their voice through fashion and music. Together, we’re creating a powerful space where every story resonates.</p>",
+            "description_font_size": "fs-lg",
+            "btn_primary_text": "",
+            "btn_primary_style": "button--primary",
+            "btn_primary_url": "",
+            "btn_secondary_text": "",
+            "btn_secondary_style": "button--secondary",
+            "btn_secondary_url": ""
+          }
+        },
+        "slide_mGBbYc": {
+          "type": "slide",
+          "settings": {
+            "show_only_media": false,
+            "media_alignment": "left",
+            "img": "shopify://shop_images/SHARING-THE-GAME-MOBILE_406X392_cc2e46fa-6aed-4406-b181-d75f7f9beee4.jpg",
+            "img_height_mobile": 0,
+            "img_height_desktop": 0,
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_muted": true,
+            "video_controls": true,
+            "external_video": "",
+            "text_align_mobile": "text-center",
+            "text_align_desktop": "text-tablet-start",
+            "subtitle": "YOUTH TENNIS L.A. X K-SWISS",
+            "subtitle_font_size": "fs-sm",
+            "title": "SHARING THE GAME",
+            "title_font_size": "h1",
+            "description": "<p>We partnered with Youth Tennis Los Angeles for a “Day of Play” in honor of National Tennis Month, driven by a clear mission: to ensure every child received a free pair of performance shoes. Because when every kid gets a fair shot at the game they love, everyone comes out a winner</p>",
+            "description_font_size": "fs-lg",
+            "btn_primary_text": "",
+            "btn_primary_style": "button--primary",
+            "btn_primary_url": "",
+            "btn_secondary_text": "",
+            "btn_secondary_style": "button--secondary",
+            "btn_secondary_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_WUmnqW",
+        "slide_YUDiKP",
+        "slide_DYejCp",
+        "slide_mGBbYc"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".slider__slide {display: flex; align-items: center;}",
+        ".slider-counter {display: none;}",
+        ".slider-buttons {position: absolute; top: 50%; left: 0; width: 100%; transform: translateY(-50%); display: flex; justify-content: space-between; pointer-events: none;}",
+        ".slider-button {pointer-events: auto; width: 48px; height: 48px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; border: 1px solid #0001;}",
+        ".page-width {position: relative;}",
+        "slider-component {position: unset;}"
+      ],
+      "name": "Media Slider",
+      "settings": {
+        "color_scheme": "",
+        "page_width": "",
+        "pt": 36,
+        "pb": 36
+      }
+    },
+    "image_banner_jzHYyn": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "hide_mobile": true,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "banner_link": "",
+        "image": "shopify://shop_images/03KSxManor-LP-Desktop-SubBanner-2546x875_dcde9165-11f0-4b57-9213-228029a6279c.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "image_banner_zX9rcd": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": true,
+        "hide_desktop": true,
+        "banner_link": "",
+        "image": "shopify://shop_images/03KSxManor-LP-Mobile-SubBanner-490x750_dc60983e-fa92-4a63-9b68-3995b37ce0e4.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "rich_text_yziCtX": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_f9UKhE": {
+          "type": "heading",
+          "settings": {
+            "heading": "Valley Life & Style",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_f9UKhE"
+      ],
+      "custom_css": [
+        "h2 {text-transform: uppercase;}"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "featured_collection_aay6pX": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "manor-x-k-swiss",
+        "products_to_show": 2,
+        "title": "",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 2,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "show_siblings": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_fx47f3": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_Bche8x": {
+          "type": "heading",
+          "settings": {
+            "heading": "Stay Up To Date",
+            "heading_size": "h1"
+          }
+        },
+        "text_bVCfmB": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share your email and get notified about new product launches.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_Bche8x",
+        "text_bVCfmB"
+      ],
+      "custom_css": [
+        "h2 {text-transform: uppercase;}"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 0
+      }
+    },
+    "177371402558e030d5": {
+      "type": "apps",
+      "blocks": {
+        "klaviyo_email_marketing_sms_form_embed_block_MzDjxR": {
+          "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/form-embed-block/2632fe16-c075-4321-a88b-50b567f42507",
+          "settings": {
+            "formId": "RCefsA"
+          }
+        }
+      },
+      "block_order": [
+        "klaviyo_email_marketing_sms_form_embed_block_MzDjxR"
+      ],
+      "settings": {
+        "include_margins": false
+      }
+    },
+    "image_with_text_7Exwte": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_7bppbN": {
+          "type": "heading",
+          "settings": {
+            "heading": "Meet Jeremy Davis – Founder of Manor",
+            "heading_size": "h1"
+          }
+        },
+        "text_khwVnp": {
+          "type": "text",
+          "settings": {
+            "text": "<p>​​Inspired by childhood memories of his father’s K-Swiss sneakers — white leather classics dusted with green specks from mowing the lawn — the collection carries forward a generational story. “I remember an instance when going on a family vacation, when my dad had to pick up some shoes at the Sands Hotel Tennis ProShop,” Davis recalls. “He returned to the car with two brand-new identical pairs of K-Swiss Classics, and that’s when he shared his philosophy of always having a clean pair ready to go. I wear K-Swiss because my dad did.”</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_7bppbN",
+        "text_khwVnp"
+      ],
+      "custom_css": [
+        "h2 {text-transform: uppercase;}"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "image": "shopify://shop_images/06KSxManor-LP-Desktop-FounderSpotlight-1072x1250_67fb462b-aefd-439f-aa3a-bda847e3c9de.jpg",
+        "image_link": "",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "masonry_gallery_qWwMPb": {
+      "type": "masonry-gallery",
+      "blocks": {
+        "image_E8N9jd": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/07KSxManor-LP-Desktop-Gallery-A-809x1222_b0cc84a2-ed5a-4261-8105-25dcbceb0c09.jpg",
+            "caption_text": "",
+            "product": "",
+            "col_span": 1,
+            "row_span": 4,
+            "aspect_ratio": "3/4"
+          }
+        },
+        "image_kp4BKb": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/07KSxManor-LP-Desktop-Gallery-B-909x606_e2d57826-15b6-4c31-bbe2-76f1490c15b8.jpg",
+            "caption_text": "",
+            "product": "",
+            "col_span": 1,
+            "row_span": 2,
+            "aspect_ratio": "16/9"
+          }
+        },
+        "image_dmhKdk": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/07KSxManor-LP-Desktop-Gallery-D-809x1222_7894d59a-58ab-4431-ba49-0df1a7b26799.jpg",
+            "caption_text": "",
+            "product": "",
+            "col_span": 1,
+            "row_span": 4,
+            "aspect_ratio": "3/4"
+          }
+        },
+        "image_ejkYnT": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/07KSxManor-LP-Desktop-Gallery-C-909x606_2e1f073a-34e7-44d9-87c2-3afe8918a8ad.jpg",
+            "caption_text": "",
+            "product": "",
+            "col_span": 1,
+            "row_span": 2,
+            "aspect_ratio": "16/9"
+          }
+        }
+      },
+      "block_order": [
+        "image_E8N9jd",
+        "image_kp4BKb",
+        "image_dmhKdk",
+        "image_ejkYnT"
+      ],
+      "custom_css": [
+        ".image_block {height: 100%;}"
+      ],
+      "name": "Masonry Gallery",
+      "settings": {
+        "transport": "",
+        "show_desktop": true,
+        "show_mobile": false,
+        "col_grid": 3,
+        "col_gape": 5,
+        "full_width": true,
+        "enable_popup": false,
+        "padding_top": 40,
+        "padding_bottom": 0,
+        "color_scheme": "",
+        "custom_liquid": ""
+      }
+    },
+    "masonry_gallery_XWA4n6": {
+      "type": "masonry-gallery",
+      "blocks": {
+        "image_baYH3V": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/07KSxManor-LP-Desktop-Gallery-A-809x1222_b0cc84a2-ed5a-4261-8105-25dcbceb0c09.jpg",
+            "caption_text": "",
+            "product": "",
+            "col_span": 2,
+            "row_span": 1,
+            "aspect_ratio": "3/4"
+          }
+        },
+        "image_QGxwF3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/07KSxManor-LP-Desktop-Gallery-B-909x606_e2d57826-15b6-4c31-bbe2-76f1490c15b8.jpg",
+            "caption_text": "",
+            "product": "",
+            "col_span": 2,
+            "row_span": 1,
+            "aspect_ratio": "4/3"
+          }
+        },
+        "image_texHrK": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/07KSxManor-LP-Desktop-Gallery-D-809x1222_7894d59a-58ab-4431-ba49-0df1a7b26799.jpg",
+            "caption_text": "",
+            "product": "",
+            "col_span": 2,
+            "row_span": 1,
+            "aspect_ratio": "3/4"
+          }
+        },
+        "image_MUG9jn": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/07KSxManor-LP-Desktop-Gallery-C-909x606_2e1f073a-34e7-44d9-87c2-3afe8918a8ad.jpg",
+            "caption_text": "",
+            "product": "",
+            "col_span": 2,
+            "row_span": 1,
+            "aspect_ratio": "4/3"
+          }
+        }
+      },
+      "block_order": [
+        "image_baYH3V",
+        "image_QGxwF3",
+        "image_texHrK",
+        "image_MUG9jn"
+      ],
+      "custom_css": [
+        ".image_block {height: 100%;}"
+      ],
+      "name": "Masonry Gallery",
+      "settings": {
+        "transport": "",
+        "show_desktop": false,
+        "show_mobile": true,
+        "col_grid": 2,
+        "col_gape": 5,
+        "full_width": true,
+        "enable_popup": false,
+        "padding_top": 40,
+        "padding_bottom": 0,
+        "color_scheme": "",
+        "custom_liquid": ""
+      }
+    },
+    "shogun-helper": {
+      "type": "shogun-helper",
+      "disabled": true,
+      "settings": {}
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "shogun-optimizer": {
+      "type": "shogun-optimizer",
+      "disabled": true,
+      "settings": {}
+    }
+  },
+  "order": [
+    "rich_text_z3V99w",
+    "autoplay_video_jLRytf",
+    "autoplay_video_k9wyTw",
+    "rich_text_3h6gYp",
+    "media_slider_QELwmh",
+    "image_banner_jzHYyn",
+    "image_banner_zX9rcd",
+    "rich_text_yziCtX",
+    "featured_collection_aay6pX",
+    "rich_text_fx47f3",
+    "177371402558e030d5",
+    "image_with_text_7Exwte",
+    "masonry_gallery_qWwMPb",
+    "masonry_gallery_XWA4n6",
+    "shogun-helper",
+    "main",
+    "shogun-optimizer"
+  ]
+}

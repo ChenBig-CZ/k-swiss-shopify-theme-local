@@ -1,0 +1,188 @@
+<nav 
+  class="ml-breadcrumb-nav" 
+  aria-label="{{ 'custom.breadcrumbs.label' | t }}">
+  <ol class="ml-breadcrumb">
+    <li class="ml-breadcrumb-item">
+      <a href="{{ routes.root_url }}">
+        {{ 'custom.breadcrumbs.home' | t }}
+      </a>
+    </li>
+    {% case request.page_type %}
+      {% when 'list-collections' %}
+        <li class="ml-breadcrumb-item active" aria-current="page">
+          {{ section.settings.title }}
+        </li>
+      {% when 'collection' %}
+        <li class="ml-breadcrumb-item">
+          {{ 'custom.breadcrumbs.collections' | t | link_to: routes.collections_url }}
+        </li>
+        {% if current_tags %}
+          <li class="ml-breadcrumb-item">
+            {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+            {{ collection.title | link_to: url }}
+          </li>
+          <li class="ml-breadcrumb-item active" aria-current="page">
+            {{ current_tags | join: ', ' | capitalize }}
+          </li>
+        {% else %}
+          <li class="ml-breadcrumb-item active" aria-current="page">
+            {{ collection.title }}
+          </li>
+        {% endif %}
+      {% when 'product' %}
+        {% if collection %}
+          <li class="ml-breadcrumb-item">
+            {{ collection.title | link_to: collection.url }}
+          </li>
+          <li class="ml-breadcrumb-item active" aria-current="page">
+            {% assign productTitle = product.title | remove: product.type | split: ' | ' %}
+            {% if productTitle.size > 1 and productTitle[1] != blank %}
+                {{ productTitle[1] | downcase | capitalize | escape }}
+            {% else %}
+                {{ product.title | downcase | capitalize | escape }}
+            {% endif %}
+          </li>
+        {% else %}
+          <li class="ml-breadcrumb-item active" aria-current="page">
+            {% assign productTitle = product.title | remove: product.type | split: ' | ' %}
+            {% if productTitle.size > 1 and productTitle[1] != blank %}
+                {{ productTitle[1] | downcase | capitalize | escape }}
+            {% else %}
+                {{ product.title | downcase | capitalize | escape }}
+            {% endif %}
+          </li>
+        {% endif %}
+      {% when 'blog' %}
+        {% if current_tags %}
+          <li class="ml-breadcrumb-item">
+            {{ blog.title | link_to: blog.url }}
+          </li>
+          <li class="ml-breadcrumb-item active" aria-current="page">
+            {{ current_tags | join: ', ' | capitalize }}
+          </li>
+        {% else %}
+          <li class="ml-breadcrumb-item active" aria-current="page">
+            {{ blog.title }}
+          </li>
+        {% endif %}
+      {% when 'article' %}
+        <li class="ml-breadcrumb-item">
+          {{ blog.title | link_to: blog.url }}
+        </li>
+        <li class="ml-breadcrumb-item active" aria-current="page">
+          {{ article.title }}
+        </li>
+      {% when 'page' %}
+        <li class="ml-breadcrumb-item active" aria-current="page">
+          {{ page.title }}
+        </li>
+    {% endcase %}
+  </ol>
+</nav>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "{{ 'custom.breadcrumbs.home' | t }}",
+        "item": "{{ request.origin | append: routes.root_url  }}"
+      },
+      {% case request.page_type %}
+        {% when 'list-collections' %}
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "{{ section.settings.title }}"
+          }
+        {% when 'collection' %}
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "{{ 'custom.breadcrumbs.collections' | t }}",
+            "item": "{{ request.origin | append: routes.collections_url  }}"
+          },
+          {% if current_tags %}
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "{{ collection.title }}",
+              "item": "{{ request.origin | append: '/collections/' | append: collection.handle  }}"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "{{ current_tags | join: ', ' | capitalize }}"
+            }
+          {% else %}
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "{{ collection.title }}"
+            }
+          {% endif %}
+        {% when 'product' %}
+          {% if collection %}
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "{{ collection.title }}",
+              "item": "{{ request.origin | append: collection.url  }}"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "{{ product.title }}",
+            }
+          {% else %}
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "{{ product.title }}",
+            }
+          {% endif %}
+        {% when 'blog' %}
+          {% if current_tags %}
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "{{ blog.title }}",
+              "item": "{{ request.origin | append: blog.url }}'  }}"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "{{ current_tags | join: ', ' | capitalize }}"
+            }
+          {% else %}
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "{{ blog.title }}"
+            }
+          {% endif %}
+        {% when 'article' %}
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "{{ blog.title }}",
+            "item": "{{ request.origin | append: blog.url }}'  }}"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "{{ article.title }}"
+          }
+        {% when 'page' %}
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "{{ page.title }}"
+          }
+      {% endcase %}
+    ]
+  }
+</script>

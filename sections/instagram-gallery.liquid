@@ -1,0 +1,373 @@
+{{ 'quick-add.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  #ml-instagram-gallery-{{ section.id }} {
+    padding-top: {{ section.settings.pt | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.pb | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #ml-instagram-gallery-{{ section.id }} {
+      padding-top: {{ section.settings.pt }}px;
+      padding-bottom: {{ section.settings.pb }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div
+  id="ml-instagram-gallery-{{ section.id }}"
+  class="ml-instagram-gallery"
+>
+  <div class="ml-section-header page-width {% if settings.animations_reveal_on_scroll %}scroll-trigger animate--slide-in{% endif %}">
+    {%- unless section.settings.title == blank -%}
+      <h2
+        class="
+          title title-wrapper--no-top-margin inline-richtext
+          {{ section.settings.heading_size }}
+          {% if section.settings.header_title_instagram %}title-instagram-branded{% endif %}
+        "
+      >
+        {{ section.settings.title }}
+      </h2>
+    {%- endunless -%}
+    {% unless section.settings.header_btn_text == blank %}
+      <a
+        href="{{ section.settings.header_btn_url }}"
+        class="button {{ section.settings.header_btn_style }}"
+        target="_blank"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="me-4"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path d="M16.98 0a6.9 6.9 0 0 1 5.08 1.98A6.94 6.94 0 0 1 24 7.02v9.96c0 2.08-.68 3.87-1.98 5.13A7.14 7.14 0 0 1 16.94 24H7.06a7.06 7.06 0 0 1-5.03-1.89A6.96 6.96 0 0 1 0 16.94V7.02C0 2.8 2.8 0 7.02 0h9.96zm.05 2.23H7.06c-1.45 0-2.7.43-3.53 1.25a4.82 4.82 0 0 0-1.3 3.54v9.92c0 1.5.43 2.7 1.3 3.58a5 5 0 0 0 3.53 1.25h9.88a5 5 0 0 0 3.53-1.25 4.73 4.73 0 0 0 1.4-3.54V7.02a5 5 0 0 0-1.3-3.49 4.82 4.82 0 0 0-3.54-1.3zM12 5.76c3.39 0 6.2 2.8 6.2 6.2a6.2 6.2 0 0 1-12.4 0 6.2 6.2 0 0 1 6.2-6.2zm0 2.22a3.99 3.99 0 0 0-3.97 3.97A3.99 3.99 0 0 0 12 15.92a3.99 3.99 0 0 0 3.97-3.97A3.99 3.99 0 0 0 12 7.98zm6.44-3.77a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8z"/>
+        </svg>
+        {{ section.settings.header_btn_text }}
+      </a>
+    {% endunless %}
+  </div>
+
+  <ml-instagram-gallery
+    class="swiper"
+    data-section-id="{{ section.id }}"
+    data-slider-speed="{{ section.settings.slider_speed }}"
+    data-swiper-spacing="{{ section.settings.slider_spacing }}"
+    data-slider-autoplay="{{ section.settings.slider_autoplay }}"
+    data-swiper-spacing-mobile="{{ settings.spacing_grid_horizontal | divided_by: 2 }}"
+    data-swiper-spacing-desktop="{{ settings.spacing_grid_horizontal }}"
+  >
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        <div class="swiper-slide" {{ block.shopify_attributes }}>
+          <div
+            class="ml-instagram-gallery-card {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+              style="--animation-order: {{ forloop.index }};"
+            {% endif %}
+          >
+            <div class="img-wrapper">
+              {% unless section.settings.header_btn_text == blank %}
+                <a
+                  href="{{ section.settings.header_btn_url }}"
+                  target="_blank"
+                  title="View on Instagram"
+                >
+              {% endunless %}
+              {% if block.settings.img != blank %}
+                <img
+                  src="{{ block.settings.img | image_url: width: 480, height: 480, crop: 'center' }}"
+                  class="img-fluid d-block"
+                  alt="{{ block.settings.img.alt | escape }}"
+                  width="480"
+                  height="480"
+                  loading="lazy"
+                >
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'svg-placeholder' }}
+              {% endif %}
+              {% unless section.settings.header_btn_text == blank %}
+                </a>
+              {% endunless %}
+            </div>
+            {% unless block.settings.custom_badge == blank %}
+              <div
+                class="ml-badge-custom badge"
+                style="background-color: {{ block.settings.custom_badge_bg_color }}"
+              >
+                {{ block.settings.custom_badge }}
+              </div>
+            {% endunless %}
+            {% unless block.settings.product == blank %}
+              {% liquid
+                assign product = block.settings.product
+                assign product_form_id = 'quick-add-' | append: section.id | append: product.id
+              %}
+              <modal-opener data-modal="#QuickAdd-{{ product.id }}">
+                <button
+                  id="{{ product_form_id }}-submit"
+                  type="submit"
+                  name="add"
+                  class="ml-product-wrapper full-unstyled-link"
+                  aria-haspopup="dialog"
+                  aria-labelledby="{{ product_form_id }}-submit title-{{ section.id }}-{{ product.id }}"
+                  data-product-url="{{ product.url }}"
+                  style="
+                    background-color: {{ block.settings.product_bg_color | color_modify: 'alpha', 0.85  }};
+                    color: {{ block.settings.product_text_color }};
+                  "
+                >
+                  <div class="img-wrapper">
+                    <img
+                      src="{{ product.featured_image | image_url: width: 120, height: auto, crop: 'center' }}"
+                      class="img-fluid d-block"
+                      alt="{{ product.featured_image.alt | escape }}"
+                      width="60"
+                      height="60"
+                      loading="lazy"
+                    >
+                  </div>
+                  <div class="ml-product-wrapper-content">
+                    <h4 class="title h5 text-truncate-2-lines">
+                      {% assign productTitle = product.title | remove: product.type | split: ' | ' %}
+                      {{ productTitle[1] | escape }}
+                    </h4>
+                    <div class="price">
+                      <div class="price__container">
+                        <span class="price-item price-item--last">
+                          {{ product.price | money }}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="ml-product-wrapper-icons">
+                    <span class="icon-wrapper">
+                      {% render 'ml-svg-icons', icon: 'eye', size: 16 %}
+                    </span>
+                    {%- render 'loading-spinner' -%}
+                  </div>
+                </button>
+              </modal-opener>
+              <quick-add-modal id="QuickAdd-{{ product.id }}" class="quick-add-modal">
+                <div
+                  role="dialog"
+                  aria-label="{{ 'products.product.choose_product_options' | t: product_name: product.title | escape }}"
+                  aria-modal="true"
+                  class="quick-add-modal__content global-settings-popup"
+                  tabindex="-1"
+                >
+                  <button
+                    id="ModalClose-{{ product.id }}"
+                    type="button"
+                    class="quick-add-modal__toggle"
+                    aria-label="{{ 'accessibility.close' | t }}"
+                  >
+                    {{- 'icon-close.svg' | inline_asset_content -}}
+                  </button>
+                  <div id="QuickAddInfo-{{ product.id }}" class="quick-add-modal__content-info"></div>
+                </div>
+              </quick-add-modal>
+            {% endunless %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </ml-instagram-gallery>
+</div>
+
+{% schema %}
+{
+  "name": "Instagram gallery",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Heading",
+      "default": "Instagram Gallery"
+    },
+    {
+      "type": "checkbox",
+      "id": "header_title_instagram",
+      "label": "Title with Instagram colors",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" },
+        { "value": "hxl", "label": "Extra large" },
+        { "value": "hxxl", "label": "Extra extra large" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "text",
+      "id": "header_btn_text",
+      "label": "Button text",
+      "default": "@shopify",
+      "info": "Leave empty to disable"
+    },
+    {
+      "type": "url",
+      "id": "header_btn_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "select",
+      "id": "header_btn_style",
+      "label": "Button style",
+      "default": "button--secondary",
+      "options": [
+        { "value": "button--primary", "label": "Primary" },
+        { "value": "button--secondary", "label": "Secondary" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Slider"
+    },
+    {
+      "type": "range",
+      "id": "slider_speed",
+      "label": "Speed",
+      "default": 800,
+      "min": 0,
+      "max": 2000,
+      "step": 100,
+      "unit": "ms"
+    },
+    {
+      "type": "checkbox",
+      "id": "slider_spacing",
+      "label": "Space between slides",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "slider_autoplay",
+      "label": "Autoplay",
+      "min": 0,
+      "max": 10,
+      "default": 3,
+      "unit": "sec",
+      "info": "Selecing \"0\" will disable autoplay."
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "pt",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 36,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "pb",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 36,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Image"
+        },
+        {
+          "type": "header",
+          "content": "Product"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "color",
+          "id": "product_bg_color",
+          "label": "Background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "product_text_color",
+          "label": "Text color",
+          "default": "#121212"
+        },
+        {
+          "type": "header",
+          "content": "Custom badge"
+        },
+        {
+          "type": "text",
+          "id": "custom_badge",
+          "label": "Text",
+          "info": "NOTE: Leave empty to disable",
+          "default": "NEW"
+        },
+        {
+          "type": "color",
+          "id": "custom_badge_bg_color",
+          "label": "Bg color",
+          "default": "#334FB4"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "presets": [
+    {
+      "name": "Instagram gallery",
+      "blocks": [
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" }
+      ]
+    }
+  ]
+}
+{% endschema %}

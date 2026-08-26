@@ -1,0 +1,261 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "shogun-helper": {
+      "type": "shogun-helper",
+      "settings": {}
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "shogun-optimizer": {
+      "type": "shogun-optimizer",
+      "settings": {}
+    },
+    "rich_text_9mTMwE": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_MjMyAe": {
+          "type": "heading",
+          "settings": {
+            "heading": "Choose Your Location",
+            "heading_size": "h0"
+          }
+        }
+      },
+      "block_order": [
+        "heading_MjMyAe"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "country_selector_HBDG9i": {
+      "type": "country-selector",
+      "blocks": {
+        "region_DrjxLd": {
+          "type": "region",
+          "settings": {
+            "title": "North America"
+          }
+        },
+        "country_EgcJzB": {
+          "type": "country",
+          "settings": {
+            "region": "North America",
+            "title": "United States",
+            "url": "https://kswiss.com/?geo:override:country=US&flag=us",
+            "code": "us",
+            "show_flag": true,
+            "is_eu": false
+          }
+        },
+        "country_CMn6b8": {
+          "type": "country",
+          "settings": {
+            "region": "North America",
+            "title": "Mexico",
+            "url": "https://k-swiss.com.mx/?geo%3Aoverride%3Acountry=MX&flag=mx",
+            "code": "mx",
+            "show_flag": true,
+            "is_eu": false
+          }
+        },
+        "region_bUmd7c": {
+          "type": "region",
+          "settings": {
+            "title": "Europe"
+          }
+        },
+        "country_xNzwfL": {
+          "type": "country",
+          "settings": {
+            "region": "Europe",
+            "title": "France",
+            "url": "https://kswiss.fr/?geo:override:country=FR&flag=fr",
+            "code": "fr",
+            "show_flag": true,
+            "is_eu": false
+          }
+        },
+        "country_DK9MVz": {
+          "type": "country",
+          "settings": {
+            "region": "Europe",
+            "title": "Germany",
+            "url": "https://kswiss.de/?geo:override:country=DE&flag=de",
+            "code": "de",
+            "show_flag": true,
+            "is_eu": false
+          }
+        },
+        "country_W7qM4L": {
+          "type": "country",
+          "settings": {
+            "region": "Europe",
+            "title": "Netherlands",
+            "url": "https://kswiss.nl/?geo:override:country=NL&flag=nl",
+            "code": "nl",
+            "show_flag": true,
+            "is_eu": false
+          }
+        },
+        "country_JGiFH6": {
+          "type": "country",
+          "settings": {
+            "region": "Europe",
+            "title": "EU International",
+            "url": "https://kswiss.eu/?geo:override:country=AT&flag=at",
+            "code": "eu",
+            "show_flag": true,
+            "is_eu": true
+          }
+        },
+        "country_ptBjdp": {
+          "type": "country",
+          "settings": {
+            "region": "Europe",
+            "title": "United Kingdom",
+            "url": "https://kswiss.co.uk/?geo:override:country=GB&flag=gb",
+            "code": "gb",
+            "show_flag": true,
+            "is_eu": false
+          }
+        },
+        "region_Qzxyik": {
+          "type": "region",
+          "settings": {
+            "title": "Asia"
+          }
+        },
+        "country_6GqJge": {
+          "type": "country",
+          "settings": {
+            "region": "Asia",
+            "title": "Hong Kong, China",
+            "url": "https://k-swiss.com.hk/?geo:override:country=HK&flag=hk",
+            "code": "hk",
+            "show_flag": true,
+            "is_eu": false
+          }
+        },
+        "country_8R9cGV": {
+          "type": "country",
+          "settings": {
+            "region": "Asia",
+            "title": "Israel",
+            "url": "https://kswiss.co.il/",
+            "code": "il",
+            "show_flag": true,
+            "is_eu": false
+          }
+        },
+        "country_RPBX7T": {
+          "type": "country",
+          "settings": {
+            "region": "Asia",
+            "title": "Japan",
+            "url": "https://k-swiss.jp/?geo:override:country=JP&flag=jp",
+            "code": "jp",
+            "show_flag": true,
+            "is_eu": false
+          }
+        },
+        "country_8akWac": {
+          "type": "country",
+          "settings": {
+            "region": "Asia",
+            "title": "Philippines",
+            "url": "https://k-swiss.com.ph/?geo:override:country=PH&flag=ph",
+            "code": "ph",
+            "show_flag": true,
+            "is_eu": false
+          }
+        },
+        "country_eUtVGC": {
+          "type": "country",
+          "settings": {
+            "region": "Asia",
+            "title": "Taiwan, China",
+            "url": "https://www.k-swiss.com.tw/?geo:override:country=NOT&flag=not",
+            "code": "tw",
+            "show_flag": true,
+            "is_eu": false
+          }
+        },
+        "region_BXLaat": {
+          "type": "region",
+          "settings": {
+            "title": "Australia"
+          }
+        },
+        "country_6QX3ak": {
+          "type": "country",
+          "settings": {
+            "region": "Australia",
+            "title": "Australia",
+            "url": "https://kswiss.com.au/?geo:override:country=AU&flag=au",
+            "code": "au",
+            "show_flag": true,
+            "is_eu": false
+          }
+        }
+      },
+      "block_order": [
+        "region_DrjxLd",
+        "country_EgcJzB",
+        "country_CMn6b8",
+        "region_bUmd7c",
+        "country_xNzwfL",
+        "country_DK9MVz",
+        "country_W7qM4L",
+        "country_JGiFH6",
+        "country_ptBjdp",
+        "region_Qzxyik",
+        "country_6GqJge",
+        "country_8R9cGV",
+        "country_RPBX7T",
+        "country_8akWac",
+        "country_eUtVGC",
+        "region_BXLaat",
+        "country_6QX3ak"
+      ],
+      "name": "Country Selector",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 36,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "shogun-helper",
+    "main",
+    "shogun-optimizer",
+    "rich_text_9mTMwE",
+    "country_selector_HBDG9i"
+  ]
+}

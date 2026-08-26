@@ -1,0 +1,331 @@
+{%- style -%}
+  #ml-marquee-{{ section.id }} {
+    padding-top: {{ section.settings.pt | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.pb | times: 0.75 | round: 0 }}px;
+  }
+  #ml-marquee-{{ section.id }} .ml-marquee-item > span {
+    padding-left: {{ section.settings.gap | times: 0.75 | round: 0 }}px;
+    padding-right: {{ section.settings.gap | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #ml-marquee-{{ section.id }} {
+      padding-top: {{ section.settings.pt }}px;
+      padding-bottom: {{ section.settings.pb }}px;
+    }
+    #ml-marquee-{{ section.id }} .ml-marquee-item > span {
+      padding-left: {{ section.settings.gap }}px;
+      padding-right: {{ section.settings.gap }}px;
+    }
+  }
+{%- endstyle -%}
+
+<ml-marquee
+  id="ml-marquee-{{ section.id }}"
+  class="ml-marquee color-{{ section.settings.color_scheme }}"
+  data-marquee-duration="{{ section.settings.marquee_duration }}"
+  data-marquee-direction="{{ section.settings.marquee_direction }}"
+  data-marquee-id="{{ section.id }}"
+  style="--mar">
+  <div class="ml-marquee-wrapper">
+    <ul 
+      class="
+        ml-marquee-list
+        {{ section.settings.text_transform }}
+        {{ section.settings.letter_spacing | prepend: 'ls-' }} 
+        {{ section.settings.font_size }}
+        {{ section.settings.font_size_desktop }}
+      " 
+      aria-label="{{ section.settings.list_label }}">
+      {% for block in section.blocks %}
+        <li 
+          class="ml-marquee-item" 
+          {{ block.shopify_attributes }}>
+          <span>
+            {% if block.settings.url != nil %}
+              <a href="{{ block.settings.url }}">
+            {% endif %}
+            {% if block.type == 'image' %}
+              {% if block.settings.img == blank %}
+                <div 
+                  class="" 
+                  style="width: 120px; height: 120px;">
+                  {{ 'image' | placeholder_svg_tag: 'img-thumbnail' }}
+                </div>
+              {% else %}
+                {% assign img_height_scaled = block.settings.img_height | times: 2 %}
+                <img
+                  src="{{ block.settings.img | image_url: height: img_height_scaled }}"
+                  class="img-fluid"
+                  alt="{{ block.settings.img.alt }}"
+                  width="{{ block.settings.img_height | times: block.settings.img.aspect_ratio | round }}"
+                  height="{{ block.settings.img_height }}"
+                  loading="lazy"
+                  style="opacity: {{ section.settings.img_opacity }}">
+              {% endif %}
+            {% else %}
+              <span>
+                {{ block.settings.text }}
+              </span>
+            {% endif %}
+            {% if block.settings.url != nil %}
+              </a>
+            {% endif %}
+          </span>
+          {% if section.settings.separator_icon != blank %}
+            <div 
+              class="ml-marquee-separator-icon"
+              aria-hidden="true">
+              {% render 'ml-svg-icons', icon: section.settings.separator_icon, size: section.settings.separator_icon_size, stroke_width: section.settings.separator_icon_stroke_width %}
+            </div>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</ml-marquee>
+
+{% schema %}
+{
+  "name": "Marquee",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "font_size",
+      "label": "Font size - mobile",
+      "default": "fs-sm",
+      "options": [
+        { "value": "fs-xs", "label": "xs" },
+        { "value": "fs-sm", "label": "sm" },
+        { "value": "fs-md", "label": "md" },
+        { "value": "fs-lg", "label": "lg" },
+        { "value": "fs-xl", "label": "xl" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "font_size_desktop",
+      "label": "Font size - desktop",
+      "default": "fs-desktop-md",
+      "options": [
+        { "value": "fs-desktop-xs", "label": "xs" },
+        { "value": "fs-desktop-sm", "label": "sm" },
+        { "value": "fs-desktop-md", "label": "md" },
+        { "value": "fs-desktop-lg", "label": "lg" },
+        { "value": "fs-desktop-xl", "label": "xl" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_transform",
+      "label": "Text transform",
+      "default": "text-capitalize",
+      "options": [
+        { "value": "", "label": "Normal" },
+        { "value": "text-capitalize", "label": "Capitalize" },
+        { "value": "text-lowercase", "label": "Lowercase" },
+        { "value": "text-uppercase", "label": "Uppercase" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Letter spacing",
+      "default": 0,
+      "min": 0,
+      "max": 5
+    },
+    {
+      "type": "range",
+      "id": "img_opacity",
+      "label": "Image opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 1
+    },
+    {
+      "type": "text",
+      "id": "list_label",
+      "label": "List label",
+      "default": "Promotional list",
+      "info": "It is used for accessiblity purposes."
+    },
+    {
+      "type": "header",
+      "content": "Marquee"
+    },
+    {
+      "type": "range",
+      "id": "marquee_duration",
+      "label": "Duration",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 30,
+      "unit": "sec"
+    },
+    {
+      "type": "select",
+      "id": "marquee_direction",
+      "label": "Marquee direction",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Separator"
+    },
+    {
+      "type": "select",
+      "id": "separator_icon",
+      "label": "Icon",
+      "default": "star",
+      "options": [
+        { "value": "", "label": "None" },
+        { "value": "award", "label": "Award" },
+        { "value": "smile", "label": "Smile" },
+        { "value": "thumbs-up", "label": "Thumbs up" },
+        { "value": "sun", "label": "Sun" },
+        { "value": "star", "label": "Star" },
+        { "value": "percent", "label": "Percent" },
+        { "value": "truck", "label": "Truck" },
+        { "value": "gift", "label": "Gift" },
+        { "value": "heart", "label": "Heart" },
+        { "value": "cart", "label": "Cart" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "separator_icon_size",
+      "label": "Icon size",
+      "default": 18,
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "separator_icon_stroke_width",
+      "label": "Stroke width",
+      "default": 1.5,
+      "min": 1,
+      "max": 3,
+      "step": 0.5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap",
+      "info": "Spacing between items",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "pt",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 4,
+      "unit": "px",
+    },
+    {
+      "type": "range",
+      "id": "pb",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 4,
+      "unit": "px",
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "img_height",
+          "label": "Image height (px)",
+          "min": 10,
+          "max": 100,
+          "step": 2,
+          "default": 16,
+          "unit": "px"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL",
+          "info": "Optional"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Marquee Text"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL",
+          "info": "Optional"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee",
+      "blocks": [
+        { "type": "text" },
+        { "type": "text" },
+        { "type": "text" },
+        { "type": "text" },
+        { "type": "text" },
+        { "type": "text" },
+        { "type": "text" },
+        { "type": "text" }
+      ]
+    }
+  ]
+}
+{% endschema %}

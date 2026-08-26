@@ -1,0 +1,196 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "shogun-helper": {
+      "type": "shogun-helper",
+      "settings": {}
+    },
+    "rich_text_LwbkqY": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_aWHp8p": {
+          "type": "heading",
+          "settings": {
+            "heading": "ULTRASHOT 3 & 4 WARRANTY",
+            "heading_size": "h0"
+          }
+        },
+        "text_9q7NHq": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We know the outsole durability of any tennis shoe varies on the frequency of play, court surface, and style of play.</p>"
+          }
+        },
+        "heading_hTcpwh": {
+          "type": "heading",
+          "settings": {
+            "heading": "TO QUALITY FOR THE WARRANTY",
+            "heading_size": "h1"
+          }
+        },
+        "text_yUGQMw": {
+          "type": "text",
+          "settings": {
+            "text": "<p>1. You must submit a claim to K-Swiss within 180 calendar days of date of purchase as evidenced by retail sale slip.</p><p>2. The outsole of your Ultrashot 3 or Ultrashot 4 shoe must have a hole in it through which the upper material of the shoe is visible.</p><p>3. This wear must have resulted exclusively from playing tennis, paddle tennis, or pickleball. Only one claim per purchase.</p>"
+          }
+        },
+        "button_fbPCN8": {
+          "type": "button",
+          "settings": {
+            "button_label": "SUBMIT A CLAIM",
+            "button_link": "https://kswiss.com/pages/contact-us?formdrop=ultra",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_aWHp8p",
+        "text_9q7NHq",
+        "heading_hTcpwh",
+        "text_yUGQMw",
+        "button_fbPCN8"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "collapsible_content_JJtYNe": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_zPznVw": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Which shoe does this guarantee apply to?",
+            "icon": "none",
+            "row_content": "<p>This guarantee applies only to Ultrashot 3 or Ultrashot 4 shoes sold at retail stores within the 50 United States and the District of Columbia or purchased through www.kswiss.com by customers with delivery addresses within the 50 United States and the District of Columbia and who reside in those locations. Sample shoes do not qualify.<br/><br/></p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_3ayyc3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Are the upper and midsole covered by this guarantee?",
+            "icon": "none",
+            "row_content": "<p>The upper of the Ultrashot 3 and Ultrashot 4 are not covered by the guarantee. All uppers have DragGuard materials to protect them, but wear or holes in the upper due to extreme play are not covered by the outsole warranty. The warranty does not apply if the shoe has been abused or mishandled.<br/><br/></p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_YaUPdQ": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What's next if my shoes qualify?",
+            "icon": "none",
+            "row_content": "<p>After confirmation that the shoes qualify under the guarantee, K-Swiss Customer Relations will create and email you a promo code that you can use to place your replacement order on www.kswiss.com. This promo code is only valid for 6- months. After that timeframe, a replacement promo code will not be issued, regardless of circumstances. Your code will only be valid to replace the same product that you returned. So, if you returned and Ultrashot 3 you need to pick from the remaining Ultrashot 3’s that are available. Ultrashot 4’s will be given a code for new Ultrashot 4’s.</p><p>A $10.00 fee plus state applicable tax will be applied to cover shipping and handling costs at the time the replacement order is entered.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_zPznVw",
+        "collapsible_row_3ayyc3",
+        "collapsible_row_YaUPdQ"
+      ],
+      "name": "RETURNS & EXCHANGES",
+      "settings": {
+        "caption": "",
+        "heading": "RETURNS & EXCHANGES",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "scheme-2",
+        "color_scheme": "",
+        "open_first_collapsible_row": false,
+        "image_ratio": "square",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "shogun-optimizer": {
+      "type": "shogun-optimizer",
+      "settings": {}
+    },
+    "rich_text_GAjyHF": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_4HL9ER": {
+          "type": "heading",
+          "settings": {
+            "heading": "TERMS & CONDITIONS",
+            "heading_size": "h1"
+          }
+        },
+        "text_N7U89Q": {
+          "type": "text",
+          "settings": {
+            "text": "<p>K-Swiss’ available inventory may vary at the time of approval and no alternative styles are allowed. Limit one claim per purchaser per pair of Ultrashot 3 or Ultrashot 4 shoes. The warranty claim replacements are final sale. K-Swiss reserves the right to have the shoes shipped back to us for further inspection at the discretion of the Customer Relations Department, if need be. This is the entire warranty program and process for the Ultrashot 3 and Ultrashot 4 shoes. No other warranty, express or implied, shall apply except as expressly stated above or as required by applicable law. Other exclusions may apply. Void where prohibited. All copyrights, trademarks, and other intellectual property rights in all material or content supplied as part of the site or in connection with any sale of goods will remain at all times vested in K-Swiss.<br/><br/></p>"
+          }
+        },
+        "button_yj89iP": {
+          "type": "button",
+          "settings": {
+            "button_label": "CONTACT US",
+            "button_link": "shopify://pages/contact-us",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_4HL9ER",
+        "text_N7U89Q",
+        "button_yj89iP"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "shogun-helper",
+    "rich_text_LwbkqY",
+    "main",
+    "collapsible_content_JJtYNe",
+    "shogun-optimizer",
+    "rich_text_GAjyHF"
+  ]
+}

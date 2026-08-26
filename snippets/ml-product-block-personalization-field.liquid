@@ -1,0 +1,142 @@
+{%- style -%}
+  #ml-product-block-personalization-field-{{ block.id }} {
+    padding-top: {{ block.settings.pt | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ block.settings.pb | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #ml-product-block-personalization-field-{{ block.id }} {
+      padding-top: {{ block.settings.pt }}px;
+      padding-bottom: {{ block.settings.pb }}px;
+    }
+  }
+{% endstyle %}
+
+<ml-personalization-field
+  id="ml-product-block-personalization-field-{{ block.id }}" 
+  class="ml-product-block-personalization-field" 
+  data-type="{{ block.settings.type }}"
+  {{ block.shopify_attributes }}>
+  {% case block.settings.type %}
+    {% when 'text' or 'email' or 'tel' or 'date' %}
+      <div class="field">
+        <input 
+          id="personalization-field-{{ block.id }}"
+          class="field__input" 
+          type="{{ block.settings.type }}" 
+          name="properties[{{ block.settings.label }}]"
+          placeholder="
+            {{ block.settings.label }} 
+            {% if block.settings.required %} 
+              {{ block.settings.required_text }}
+            {% endif %}"
+          {% if block.settings.required %}required{% endif %}>
+        <label class="field__label" for="personalization-field-{{ block.id }}">
+          {{ block.settings.label }} 
+          {% if block.settings.required %} 
+            {{ block.settings.required_text }}
+          {% endif %}
+        </label>
+      </div>
+    {% when 'textarea' %}
+      <div class="field">
+        <label class="ml-field-label" for="personalization-field-{{ block.id }}">
+          {{ block.settings.label }} 
+          {% if block.settings.required %} 
+            {{ block.settings.required_text }}
+          {% endif %}
+        </label>
+        <textarea
+          id="personalization-field-{{ block.id }}"
+          class="text-area field__input"
+          name="properties[{{ block.settings.label }}]"
+          placeholder="{{ block.settings.placeholder }}"
+          style="height: {{ block.settings.textarea_height | append: 'px' }}"
+          {% if block.settings.required %}required{% endif %}></textarea>
+      </div>
+    {% when 'select' %}
+      {% assign options = block.settings.options | split: ',' %}
+      <div class="field-other">
+        <label class="ml-field-label" for="personalization-field-{{ block.id }}">
+          {{ block.settings.label }} 
+          {% if block.settings.required %} 
+            {{ block.settings.required_text }}
+          {% endif %}
+        </label>
+        <div class="select">
+          <select 
+            id="personalization-field-{{ block.id }}"
+            class="select__select" 
+            name="properties[{{ block.settings.label }}]"
+            aria-label="{{ block.settings.label }}">
+            {% for option in options %}
+              <option>{{ option }}</option>
+            {% endfor %}
+          </select>
+          <span class="svg-wrapper">
+            {{- 'icon-caret.svg' | inline_asset_content -}}
+          </span>
+        </div>
+      </div>
+    {% when 'checkbox' %}
+      {% assign options = block.settings.options | split: ',' %}
+      <p class="ml-field-label">
+        {{ block.settings.label }}
+      </p>
+      {% for option in options %}
+        <div class="bs-form-check">
+          <input 
+            id="personalization-field-{{ block.id }}-{{ forloop.index }}"
+            class="bs-form-check-input" 
+            type="checkbox"
+            name="properties[{{ block.settings.label }}]"
+            value="{{ option | strip }}">
+          <label class="bs-form-check-label" for="personalization-field-{{ block.id }}-{{ forloop.index }}">
+            {{ option | strip }}
+          </label>
+        </div>
+      {% endfor %}
+    {% when 'radio' %}
+      {% assign options = block.settings.options | split: ',' %}
+      <p class="ml-field-label">
+        {{ block.settings.label }}
+      </p>
+      {% for option in options %}
+        <div class="bs-form-check">
+          <input 
+            id="personalization-field-{{ block.id }}-{{ forloop.index }}"
+            class="bs-form-check-input" 
+            type="radio"
+            name="properties[{{ block.settings.label }}]"
+            value="{{ option | strip }}"
+            {% if forloop.first %}checked{% endif %}>
+          <label class="bs-form-check-label" for="personalization-field-{{ block.id }}-{{ forloop.index }}">
+            {{ option | strip }}
+          </label>
+        </div>
+      {% endfor %}
+    {% when 'file' %}
+      <ml-personalization-field-file-upload class="">
+        <label 
+          for="personalization-field-{{ block.id }}" 
+          class="ml-field-label">
+          {{ block.settings.label }}
+        </label>
+        <input 
+          id="personalization-field-{{ block.id }}"
+          class="" 
+          type="file"
+          name="properties[{{ block.settings.label }}]"
+          style="opacity: 0;"
+          {% if block.settings.required %}required{% endif %}>
+        <div data-label-text hidden>
+          {{ 'custom.product.personalization_file_html' | t }}
+        </div>
+      </ml-personalization-field-file-upload>
+  {% endcase %}
+  {% unless block.settings.info_text == blank %}
+    <div class="ml-personalization-field-helper-text">
+      {{ block.settings.info_text }}
+    </div>
+  {% endunless %}
+</ml-personalization-field>

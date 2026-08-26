@@ -1,0 +1,165 @@
+{{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
+    <div class="rich-text content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} rich-text--full-width content-container--full-width{% endif %} section-{{ section.id }}-padding">
+        <div class="{% if section.settings.full_width %} page-width{% endif %}">
+        {% render 'country-selector', section: section %}
+        </div>
+    </div>
+</div>
+
+<style>
+/* ===== Country Selector Wrapper ===== */
+.section-{{ section.id }}-padding .country-selector {
+  max-width: 100rem;
+  margin: 0 auto;
+}
+
+/* ===== Region block ===== */
+.section-{{ section.id }}-padding .country-selector__region {
+  margin-bottom: 40px;
+}
+
+/* ===== Region title (NORTH AMERICA etc) ===== */
+.section-{{ section.id }}-padding .country-selector__region-title {
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  padding-left: 0;
+}
+
+/* ===== Country row wrapper ===== */
+.section-{{ section.id }}-padding .country_select {
+  margin-bottom: 12px;
+}
+
+/* ===== Country item ===== */
+.section-{{ section.id }}-padding .country-selector--item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #f4f5f6;
+  border-radius: 4px;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Hover effect */
+.section-{{ section.id }}-padding .country-selector--item:hover {
+  background-color: #eceeef;
+  transform: translateY(-1px);
+}
+
+/* ===== Flag ===== */
+.section-{{ section.id }}-padding .country-selector--item img {
+  width: 26px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+/* ===== Country name ===== */
+.section-{{ section.id }}-padding .country-selector--item span {
+  font-weight: 500;
+  color: #111827; /* near-black */
+}
+
+/* ===== Mobile spacing ===== */
+@media (max-width: 768px) {
+  .section-{{ section.id }}-padding .country-selector {
+    padding: 0 16px;
+  }
+}
+
+</style>
+
+
+{% schema %}
+{
+  "name": "Country Selector",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "default": true,
+      "label": "t:sections.rich-text.settings.full_width.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 52
+    }
+  ],
+  "blocks": [
+    {
+      "type": "region",
+      "name": "Region",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Region title"
+        }
+      ]
+    },
+    {
+      "type": "country",
+      "name": "Country",
+      "settings": [
+        { "type": "text", "id": "region", "label": "Region key (exact)" },
+        { "type": "text", "id": "title", "label": "Country title" },
+        { "type": "url", "id": "url", "label": "Country URL" },
+        { "type": "text", "id": "code", "label": "Country code (us, fr, de)" },
+        { "type": "checkbox", "id": "show_flag", "label": "Show flag", "default": true },
+        { "type": "checkbox", "id": "is_eu", "label": "EU International", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Country Selector",
+      "category": "International"
+    }
+  ]
+}
+{% endschema %}

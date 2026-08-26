@@ -1,0 +1,8 @@
+{% assign productTitle = product.title | split: '|' %}      
+{% if settings.different_gender == true %}
+<div class="different_gender_btn">
+    <a class="bg-light button button--full-width button--secondary" href="/search?type=product&q={{ productTitle[1] }}">
+      {{ settings.different_gender_message }}
+    </a>
+</div>
+{% endif %}

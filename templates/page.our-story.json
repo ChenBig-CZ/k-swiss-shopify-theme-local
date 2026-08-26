@@ -1,0 +1,832 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "shogun-helper": {
+      "type": "shogun-helper",
+      "settings": {}
+    },
+    "image_banner_QnVdqE": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_bYJtG4": {
+          "type": "heading",
+          "settings": {
+            "heading": "CALIFORNIA CLASSIC™",
+            "heading_size": "h1"
+          }
+        },
+        "text_4RVzkW": {
+          "type": "text",
+          "settings": {
+            "text": "From the beginning, K-Swiss has been driven by an entrepreneurial spirit when two Swiss brothers moved to California to create a footwear brand focused on tennis. As avid skiers, the brothers took inspiration from leather ski boots to create a supportive, leather tennis shoe. Introduced in 1966, the K-Swiss Classic was the world’s first all-leather tennis shoe.",
+            "text_style": "body"
+          }
+        },
+        "buttons_dFhz6d": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_bYJtG4",
+        "text_4RVzkW",
+        "buttons_dFhz6d"
+      ],
+      "custom_css": [
+        ".content-container--full-width-mobile {background: transparent;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "hide_mobile": true,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "banner_link": "",
+        "image": "shopify://shop_images/BLOCK-A_DESKTOP_1920x980_48568dfe-1940-4507-a071-2d5ade4353f4.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "top-right",
+        "desktop_content_alignment": "left",
+        "show_text_box": true,
+        "color_scheme": "scheme-1",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "left",
+        "show_text_below": true
+      }
+    },
+    "image_banner_JaVhXp": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_VcqynP": {
+          "type": "heading",
+          "settings": {
+            "heading": "CALIFORNIA CLASSIC™",
+            "heading_size": "h1"
+          }
+        },
+        "text_9x8FTb": {
+          "type": "text",
+          "settings": {
+            "text": "From the beginning, K-Swiss has been driven by an entrepreneurial spirit when two Swiss brothers moved to California to create a footwear brand focused on tennis. As avid skiers, the brothers took inspiration from leather ski boots to create a supportive, leather tennis shoe. Introduced in 1966, the K-Swiss Classic was the world’s first all-leather tennis shoe.",
+            "text_style": "body"
+          }
+        },
+        "buttons_R8hN69": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_VcqynP",
+        "text_9x8FTb",
+        "buttons_R8hN69"
+      ],
+      "custom_css": [
+        ".content-container--full-width-mobile {background: transparent;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": true,
+        "hide_desktop": true,
+        "banner_link": "",
+        "image": "shopify://shop_images/BLOCK-A_MOBILE_980x710_41e1b8e2-bcc2-4a1b-96ca-a066012d715d.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "top-right",
+        "desktop_content_alignment": "left",
+        "show_text_box": true,
+        "color_scheme": "scheme-1",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "left",
+        "show_text_below": true
+      }
+    },
+    "image_banner_tHbYk4": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_P9yjYX": {
+          "type": "heading",
+          "settings": {
+            "heading": "55 YEARS OF AMERICAN TENNIS",
+            "heading_size": "h1"
+          }
+        },
+        "text_MYkLhq": {
+          "type": "text",
+          "settings": {
+            "text": "Building from its heritage as an American tennis brand and writing new chapters in its storied history, K-Swiss pays homage to the hard work of our founders and the competitive nature of the game that inspired it all. We are dedicated to inspiring the next generation and injecting that same inspiration and energy into our sport and lifestyle products.",
+            "text_style": "body"
+          }
+        },
+        "buttons_qrtbMN": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_P9yjYX",
+        "text_MYkLhq",
+        "buttons_qrtbMN"
+      ],
+      "custom_css": [
+        ".content-container--full-width-mobile {background: transparent;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": true,
+        "hide_desktop": true,
+        "banner_link": "",
+        "image": "shopify://shop_images/BLOCK-B_MOBILE_980x710_fd0fe008-7238-47d4-9865-bb9b9c030fbb.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "top-right",
+        "desktop_content_alignment": "left",
+        "show_text_box": true,
+        "color_scheme": "scheme-1",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "left",
+        "show_text_below": true
+      }
+    },
+    "image_with_text_QLhMX8": {
+      "type": "image-with-text",
+      "blocks": {
+        "caption_pxKF6i": {
+          "type": "caption",
+          "settings": {
+            "caption": "OUR HERITAGE",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "large"
+          }
+        },
+        "heading_NDUiRr": {
+          "type": "heading",
+          "settings": {
+            "heading": "55 YEARS OF AMERICAN TENNIS",
+            "heading_size": "h1"
+          }
+        },
+        "text_az7ep9": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Building from its heritage as an American tennis brand and writing new chapters in its storied history, K-Swiss pays homage to the hard work of our founders and the competitive nature of the game that inspired it all. We are dedicated to inspiring the next generation and injecting that same inspiration and energy into our sport and lifestyle products.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_DRwX4k": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "caption_pxKF6i",
+        "heading_NDUiRr",
+        "text_az7ep9",
+        "button_DRwX4k"
+      ],
+      "custom_css": [
+        ".image-with-text__media {border: none;}"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "hide_mobile": true,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "image": "shopify://shop_images/BLOCK-B_DESKTOP_1920x820_4f89e8f7-3464-4b3d-a6f3-dfb8e4646afc.png",
+        "image_link": "",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "section_id": ""
+      }
+    },
+    "image_with_text_WmXaUD": {
+      "type": "image-with-text",
+      "blocks": {
+        "caption_rxddDF": {
+          "type": "caption",
+          "disabled": true,
+          "settings": {
+            "caption": "OUR HERITAGE",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "large"
+          }
+        },
+        "heading_RjHbz7": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "55 YEARS OF AMERICAN TENNIS",
+            "heading_size": "h1"
+          }
+        },
+        "text_wUBnVB": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Building from its heritage as an American tennis brand and writing new chapters in its storied history, K-Swiss pays homage to the hard work of our founders and the competitive nature of the game that inspired it all. We are dedicated to inspiring the next generation and injecting that same inspiration and energy into our sport and lifestyle products.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_Q8NDeM": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "caption_rxddDF",
+        "heading_RjHbz7",
+        "text_wUBnVB",
+        "button_Q8NDeM"
+      ],
+      "custom_css": [
+        ".image-with-text__media {border: none;}"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": true,
+        "hide_desktop": true,
+        "image": "shopify://shop_images/BLOCK-B_DESKTOP_1920x820_20c2d79d-8da8-461b-a41a-76f5a059d98f.png",
+        "image_link": "",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "section_id": ""
+      }
+    },
+    "media_slider_wCcaLD": {
+      "type": "media-slider",
+      "blocks": {
+        "slide_MxqHQh": {
+          "type": "slide",
+          "settings": {
+            "show_only_media": false,
+            "media_alignment": "left",
+            "img": "shopify://shop_images/TIMELINE-1966_MOBILE_980x600_c581afe5-07fe-44a8-a61a-0ce1ca57e7a3.png",
+            "img_height_mobile": 0,
+            "img_height_desktop": 0,
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_muted": true,
+            "video_controls": true,
+            "external_video": "",
+            "text_align_mobile": "text-center",
+            "text_align_desktop": "text-tablet-start",
+            "subtitle": "",
+            "subtitle_font_size": "fs-sm",
+            "title": "1966",
+            "title_font_size": "h1",
+            "description": "<p>Two Swiss brothers move to California and take inspiration from leather ski boots to create the world’s first all-leather tennis shoe. The K-Swiss Classic debuts just in time for the Wimbledon tennis tournament. </p>",
+            "description_font_size": "fs-lg",
+            "btn_primary_text": "",
+            "btn_primary_style": "button--primary",
+            "btn_primary_url": "",
+            "btn_secondary_text": "",
+            "btn_secondary_style": "button--secondary",
+            "btn_secondary_url": ""
+          }
+        },
+        "slide_BgHRph": {
+          "type": "slide",
+          "settings": {
+            "show_only_media": false,
+            "media_alignment": "left",
+            "img": "shopify://shop_images/TIMELINE-1970s_MOBILE_980x600_545e7212-8707-4433-909a-573c93824cf8.jpg",
+            "img_height_mobile": 0,
+            "img_height_desktop": 0,
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_muted": true,
+            "video_controls": true,
+            "external_video": "",
+            "text_align_mobile": "text-center",
+            "text_align_desktop": "text-tablet-start",
+            "subtitle": "",
+            "subtitle_font_size": "fs-sm",
+            "title": "1970",
+            "title_font_size": "h1",
+            "description": "<p>The style and function of the iconic K-Swiss Classic makes it a staple on and off the courts.</p>",
+            "description_font_size": "fs-lg",
+            "btn_primary_text": "",
+            "btn_primary_style": "button--primary",
+            "btn_primary_url": "",
+            "btn_secondary_text": "",
+            "btn_secondary_style": "button--secondary",
+            "btn_secondary_url": ""
+          }
+        },
+        "slide_b7NHAa": {
+          "type": "slide",
+          "settings": {
+            "show_only_media": false,
+            "media_alignment": "left",
+            "img": "shopify://shop_images/TIMELINE-1986_MOBILE_980x600_9cd0a7a8-dbaa-41f4-b726-3fb9da84438c.jpg",
+            "img_height_mobile": 0,
+            "img_height_desktop": 0,
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_muted": true,
+            "video_controls": true,
+            "external_video": "",
+            "text_align_mobile": "text-center",
+            "text_align_desktop": "text-tablet-start",
+            "subtitle": "",
+            "subtitle_font_size": "fs-sm",
+            "title": "1986",
+            "title_font_size": "h1",
+            "description": "<p>20 years after the company’s founding, K-Swiss debuts its second ever style: the Gstaad.</p>",
+            "description_font_size": "fs-lg",
+            "btn_primary_text": "",
+            "btn_primary_style": "button--primary",
+            "btn_primary_url": "",
+            "btn_secondary_text": "",
+            "btn_secondary_style": "button--secondary",
+            "btn_secondary_url": ""
+          }
+        },
+        "slide_MdaABc": {
+          "type": "slide",
+          "settings": {
+            "show_only_media": false,
+            "media_alignment": "left",
+            "img": "shopify://shop_images/TIMELINE-1991_MOBILE_980x600_a246f7a8-9148-45e2-9afc-5c51ffff1614.jpg",
+            "img_height_mobile": 0,
+            "img_height_desktop": 0,
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_muted": true,
+            "video_controls": true,
+            "external_video": "",
+            "text_align_mobile": "text-center",
+            "text_align_desktop": "text-tablet-start",
+            "subtitle": "",
+            "subtitle_font_size": "fs-sm",
+            "title": "1991",
+            "title_font_size": "h1",
+            "description": "<p>K-Swiss opens distribution in the UK and Europe for the first time.</p>",
+            "description_font_size": "fs-lg",
+            "btn_primary_text": "",
+            "btn_primary_style": "button--primary",
+            "btn_primary_url": "",
+            "btn_secondary_text": "",
+            "btn_secondary_style": "button--secondary",
+            "btn_secondary_url": ""
+          }
+        },
+        "slide_nwD3Fq": {
+          "type": "slide",
+          "settings": {
+            "show_only_media": false,
+            "media_alignment": "left",
+            "img": "shopify://shop_images/TIMELINE-2000_MOBILE_980x600_555cd8f6-12e5-402b-a4b6-1a51b222dccb.jpg",
+            "img_height_mobile": 0,
+            "img_height_desktop": 0,
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_muted": true,
+            "video_controls": true,
+            "external_video": "",
+            "text_align_mobile": "text-center",
+            "text_align_desktop": "text-tablet-start",
+            "subtitle": "",
+            "subtitle_font_size": "fs-sm",
+            "title": "2000",
+            "title_font_size": "h1",
+            "description": "<p>The Classic shoe gets its first makeover with the Classic LX, offering a thicker sole and a more refined silhouette.</p>",
+            "description_font_size": "fs-lg",
+            "btn_primary_text": "",
+            "btn_primary_style": "button--primary",
+            "btn_primary_url": "",
+            "btn_secondary_text": "",
+            "btn_secondary_style": "button--secondary",
+            "btn_secondary_url": ""
+          }
+        },
+        "slide_kppcbX": {
+          "type": "slide",
+          "settings": {
+            "show_only_media": false,
+            "media_alignment": "left",
+            "img": "shopify://shop_images/TIMELINE-2010_MOBILE_980x600_2cffcc26-02e4-4c7a-9368-d06c14503303.jpg",
+            "img_height_mobile": 0,
+            "img_height_desktop": 0,
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_muted": true,
+            "video_controls": true,
+            "external_video": "",
+            "text_align_mobile": "text-center",
+            "text_align_desktop": "text-tablet-start",
+            "subtitle": "",
+            "subtitle_font_size": "fs-sm",
+            "title": "2010",
+            "title_font_size": "h1",
+            "description": "<p>K-Swiss introduces Tubes, a new style with patented technology that consists of a dynamic tubular structures that cushion and support the foot.</p>",
+            "description_font_size": "fs-lg",
+            "btn_primary_text": "",
+            "btn_primary_style": "button--primary",
+            "btn_primary_url": "",
+            "btn_secondary_text": "",
+            "btn_secondary_style": "button--secondary",
+            "btn_secondary_url": ""
+          }
+        },
+        "slide_PtqN3n": {
+          "type": "slide",
+          "settings": {
+            "show_only_media": false,
+            "media_alignment": "left",
+            "img": "shopify://shop_images/TIMELINE-2022_MOBILE_980x600_8fce290b-add9-459d-81b6-1ae71a8a59bc.jpg",
+            "img_height_mobile": 0,
+            "img_height_desktop": 0,
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_muted": true,
+            "video_controls": true,
+            "external_video": "",
+            "text_align_mobile": "text-center",
+            "text_align_desktop": "text-tablet-start",
+            "subtitle": "",
+            "subtitle_font_size": "fs-sm",
+            "title": "2022",
+            "title_font_size": "h1",
+            "description": "<p>K-Swiss announces a global, multi-year partnership with McLaren F1 Racing.</p>",
+            "description_font_size": "fs-lg",
+            "btn_primary_text": "",
+            "btn_primary_style": "button--primary",
+            "btn_primary_url": "",
+            "btn_secondary_text": "",
+            "btn_secondary_style": "button--secondary",
+            "btn_secondary_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_MxqHQh",
+        "slide_BgHRph",
+        "slide_b7NHAa",
+        "slide_MdaABc",
+        "slide_nwD3Fq",
+        "slide_kppcbX",
+        "slide_PtqN3n"
+      ],
+      "custom_css": [
+        ".slider__slide {display: flex; align-items: center;}",
+        ".slider-counter {display: none;}",
+        ".slider-buttons {position: absolute; top: 50%; left: 0; width: 100%; transform: translateY(-50%); display: flex; justify-content: space-between; pointer-events: none;}",
+        ".slider-button {pointer-events: auto; width: 48px; height: 48px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; border: 1px solid #0001;}",
+        ".page-width {position: relative;}",
+        "slider-component {position: unset;}"
+      ],
+      "name": "Media Slider",
+      "settings": {
+        "color_scheme": "scheme-4",
+        "page_width": "",
+        "pt": 36,
+        "pb": 36
+      }
+    },
+    "media_slider_7HgCAP": {
+      "type": "media-slider",
+      "blocks": {
+        "slide_KrDw8g": {
+          "type": "slide",
+          "settings": {
+            "show_only_media": false,
+            "media_alignment": "right",
+            "img": "shopify://shop_images/OUR-VALUES-A_MOBILE_980x710_6e7d0bd0-11a2-4701-96c1-9d7bda4d74dd.jpg",
+            "img_height_mobile": 0,
+            "img_height_desktop": 0,
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_muted": true,
+            "video_controls": true,
+            "external_video": "",
+            "text_align_mobile": "text-center",
+            "text_align_desktop": "text-tablet-start",
+            "subtitle": "Our VALUES",
+            "subtitle_font_size": "fs-sm",
+            "title": "COMMITTED",
+            "title_font_size": "h1",
+            "description": "<p>What we start, we finish. We know what we are going after and settle for nothing less. </p>",
+            "description_font_size": "fs-lg",
+            "btn_primary_text": "",
+            "btn_primary_style": "button--primary",
+            "btn_primary_url": "",
+            "btn_secondary_text": "",
+            "btn_secondary_style": "button--secondary",
+            "btn_secondary_url": ""
+          }
+        },
+        "slide_r98iYd": {
+          "type": "slide",
+          "settings": {
+            "show_only_media": false,
+            "media_alignment": "right",
+            "img": "shopify://shop_images/OUR-VALUE-B_MOBILE_980x710_76b22d07-d8e0-4469-8fb1-08baaedd4e28.jpg",
+            "img_height_mobile": 0,
+            "img_height_desktop": 0,
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_muted": true,
+            "video_controls": true,
+            "external_video": "",
+            "text_align_mobile": "text-center",
+            "text_align_desktop": "text-tablet-start",
+            "subtitle": "OUR VALUES",
+            "subtitle_font_size": "fs-sm",
+            "title": "PASSIONATE",
+            "title_font_size": "h1",
+            "description": "<p>There’s heart in what we do. We bring energy and spark into everything. <br/>‎ </p>",
+            "description_font_size": "fs-lg",
+            "btn_primary_text": "",
+            "btn_primary_style": "button--primary",
+            "btn_primary_url": "",
+            "btn_secondary_text": "",
+            "btn_secondary_style": "button--secondary",
+            "btn_secondary_url": ""
+          }
+        },
+        "slide_pJcaKY": {
+          "type": "slide",
+          "settings": {
+            "show_only_media": false,
+            "media_alignment": "right",
+            "img": "shopify://shop_images/OUR-VALUE-C_MOBILE_980x710-revised.jpg",
+            "img_height_mobile": 0,
+            "img_height_desktop": 0,
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_muted": true,
+            "video_controls": true,
+            "external_video": "",
+            "text_align_mobile": "text-center",
+            "text_align_desktop": "text-tablet-start",
+            "subtitle": "OUR VALUES",
+            "subtitle_font_size": "fs-sm",
+            "title": "REAL",
+            "title_font_size": "h1",
+            "description": "<p>No nonsense, just us. We are honest with ourselves about who we are and what we have to offer.</p>",
+            "description_font_size": "fs-lg",
+            "btn_primary_text": "",
+            "btn_primary_style": "button--primary",
+            "btn_primary_url": "",
+            "btn_secondary_text": "",
+            "btn_secondary_style": "button--secondary",
+            "btn_secondary_url": ""
+          }
+        },
+        "slide_7fz6Y4": {
+          "type": "slide",
+          "settings": {
+            "show_only_media": false,
+            "media_alignment": "right",
+            "img": "shopify://shop_images/OUR-VALUE-D_MOBILE_980x710_81aba199-be80-4b80-adb4-f0ce602bd5bc.jpg",
+            "img_height_mobile": 0,
+            "img_height_desktop": 0,
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_muted": true,
+            "video_controls": true,
+            "external_video": "",
+            "text_align_mobile": "text-center",
+            "text_align_desktop": "text-tablet-start",
+            "subtitle": "OUR VALUES",
+            "subtitle_font_size": "fs-sm",
+            "title": "INVITING",
+            "title_font_size": "h1",
+            "description": "<p>Everyone has a voice. By making space for everyone’s knowledge, we invest in our ability to evolve and grow stronger. </p>",
+            "description_font_size": "fs-lg",
+            "btn_primary_text": "",
+            "btn_primary_style": "button--primary",
+            "btn_primary_url": "",
+            "btn_secondary_text": "",
+            "btn_secondary_style": "button--secondary",
+            "btn_secondary_url": ""
+          }
+        },
+        "slide_mDzrYj": {
+          "type": "slide",
+          "settings": {
+            "show_only_media": false,
+            "media_alignment": "right",
+            "img": "shopify://shop_images/OUR-VALUE-E_MOBILE_980x710_3df64d3c-e395-4d8d-9eaf-c9e49b6e420a.jpg",
+            "img_height_mobile": 0,
+            "img_height_desktop": 0,
+            "video_autoplay": true,
+            "video_loop": true,
+            "video_muted": true,
+            "video_controls": true,
+            "external_video": "",
+            "text_align_mobile": "text-center",
+            "text_align_desktop": "text-tablet-start",
+            "subtitle": "OUR VALUES",
+            "subtitle_font_size": "fs-sm",
+            "title": "BELIEVERS",
+            "title_font_size": "h1",
+            "description": "<p>Potential inspires us. We are firm in our vision of the future, and we trust in our ability to get there.</p>",
+            "description_font_size": "fs-lg",
+            "btn_primary_text": "",
+            "btn_primary_style": "button--primary",
+            "btn_primary_url": "",
+            "btn_secondary_text": "",
+            "btn_secondary_style": "button--secondary",
+            "btn_secondary_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_KrDw8g",
+        "slide_r98iYd",
+        "slide_pJcaKY",
+        "slide_7fz6Y4",
+        "slide_mDzrYj"
+      ],
+      "custom_css": [
+        ".slider__slide {display: flex; align-items: center;}",
+        ".slider-counter {display: none;}",
+        ".slider-buttons {position: absolute; top: 50%; left: 0; width: 100%; transform: translateY(-50%); display: flex; justify-content: space-between; pointer-events: none;}",
+        ".slider-button {pointer-events: auto; width: 48px; height: 48px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; border: 1px solid #0001;}",
+        ".page-width {position: relative;}",
+        "slider-component {position: unset;}"
+      ],
+      "name": "Media Slider",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "page_width": "",
+        "pt": 36,
+        "pb": 36
+      }
+    },
+    "fancy_slideshow_HkLync": {
+      "type": "fancy-slideshow",
+      "blocks": {
+        "slide_zKdDik": {
+          "type": "slide",
+          "settings": {
+            "img_mobile": "shopify://shop_images/TIMELINE-1966_MOBILE_980x600_c581afe5-07fe-44a8-a61a-0ce1ca57e7a3.png",
+            "img_desktop": "shopify://shop_images/TIMELINE-A_DESKTOP_1920x600_e30b9bfa-4962-4a93-baaf-ab36d879518a.jpg",
+            "overlay_color": "rgba(0,0,0,0)",
+            "overlay_opacity": 0,
+            "overlay_blur": 0,
+            "caption_position_mobile": "bottom",
+            "caption_text_align_mobile": "text-start",
+            "caption_position_desktop": "right",
+            "caption_text_align_desktop": "text-desktop-start",
+            "caption_max_width": "450",
+            "subtitle": "",
+            "subtitle_font_size": "fs-sm",
+            "title": "1966",
+            "title_font_size": "h1",
+            "description": "<p>Two Swiss brothers move to California and take inspiration from leather ski boots to create the world’s first all-leather tennis shoe. The K-Swiss Classic debuts just in time for the Wimbledon tennis tournament. </p>",
+            "description_font_size": "fs-lg",
+            "btn_primary_text": "",
+            "btn_primary_style": "button--primary",
+            "btn_primary_url": "",
+            "btn_secondary_text": "",
+            "btn_secondary_style": "button--secondary",
+            "btn_secondary_url": ""
+          }
+        },
+        "slide_Q3nX3Y": {
+          "type": "slide",
+          "settings": {
+            "img_mobile": "shopify://shop_images/TIMELINE-1970s_MOBILE_980x600_545e7212-8707-4433-909a-573c93824cf8.jpg",
+            "img_desktop": "shopify://shop_images/TIMELINE-B_DESKTOP_1920x600_0b6b6465-dc08-4f64-992f-7bd63e25c66b.jpg",
+            "overlay_color": "rgba(0,0,0,0)",
+            "overlay_opacity": 0,
+            "overlay_blur": 0,
+            "caption_position_mobile": "bottom",
+            "caption_text_align_mobile": "text-start",
+            "caption_position_desktop": "right",
+            "caption_text_align_desktop": "text-desktop-start",
+            "caption_max_width": "450",
+            "subtitle": "",
+            "subtitle_font_size": "fs-sm",
+            "title": "1970s",
+            "title_font_size": "h1",
+            "description": "<p>The style and function of the iconic K-Swiss Classic makes it a staple on and off the courts.</p>",
+            "description_font_size": "fs-lg",
+            "btn_primary_text": "",
+            "btn_primary_style": "button--primary",
+            "btn_primary_url": "",
+            "btn_secondary_text": "",
+            "btn_secondary_style": "button--secondary",
+            "btn_secondary_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_zKdDik",
+        "slide_Q3nX3Y"
+      ],
+      "disabled": true,
+      "name": " Fancy slideshow",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "slider_navigation": true,
+        "slider_pagination": "bullets",
+        "slider_effect": "slide",
+        "slider_speed": 700,
+        "slider_autoplay": 5,
+        "slider_partial": false,
+        "slider_spacing": true,
+        "media_mobile_height": 300,
+        "media_desktop_height": 600,
+        "media_adapt": true,
+        "pt": 36,
+        "pb": 36
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "shogun-optimizer": {
+      "type": "shogun-optimizer",
+      "settings": {}
+    }
+  },
+  "order": [
+    "shogun-helper",
+    "image_banner_QnVdqE",
+    "image_banner_JaVhXp",
+    "image_banner_tHbYk4",
+    "image_with_text_QLhMX8",
+    "image_with_text_WmXaUD",
+    "media_slider_wCcaLD",
+    "media_slider_7HgCAP",
+    "fancy_slideshow_HkLync",
+    "main",
+    "shogun-optimizer"
+  ]
+}

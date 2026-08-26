@@ -1,0 +1,561 @@
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+
+.section-{{ section.id }}-padding{
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+
+@media screen and (min-width: 750px){
+  .section-{{ section.id }}-padding{
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+}
+
+#shopify-section-{{ section.id }} .custom-lookbook-slider{
+  overflow:hidden;
+}
+
+#shopify-section-{{ section.id }} .slider-button[disabled]{
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+#shopify-section-{{ section.id }} .slider-mobile-gutter{
+  position:relative;
+}
+
+#shopify-section-{{ section.id }} .custom-lookbook-track{
+  display:flex;
+  flex-wrap:nowrap !important;
+  gap:20px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-behavior:smooth;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+  cursor:grab;
+  margin:0;
+}
+
+#shopify-section-{{ section.id }} .custom-lookbook-track::-webkit-scrollbar{
+  display:none;
+}
+
+#shopify-section-{{ section.id }} .slider__slide{
+  flex-shrink:0;
+  min-width:0;
+  list-style:none;
+}
+
+@media screen and (min-width:750px){
+
+  #shopify-section-{{ section.id }} .slider__slide{
+    width: calc((100% - (20px * ({{ section.settings.columns_desktop }} - 1))) / {{ section.settings.columns_desktop }});
+    max-width: calc((100% - (20px * ({{ section.settings.columns_desktop }} - 1))) / {{ section.settings.columns_desktop }});
+  }
+}
+
+@media screen and (max-width:749px){
+
+  #shopify-section-{{ section.id }} .custom-lookbook-track{
+    padding-inline:1.5rem;
+  }
+
+  #shopify-section-{{ section.id }} .slider__slide{
+    width: calc((100% - (20px * ({{ section.settings.columns_mobile }} - 1))) / {{ section.settings.columns_mobile }});
+    max-width: calc((100% - (20px * ({{ section.settings.columns_mobile }} - 1))) / {{ section.settings.columns_mobile }});
+  }
+
+  #shopify-section-{{ section.id }} .lookbook-button{
+    width:100%;
+  }
+}
+
+#shopify-section-{{ section.id }} .lookbook-card{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+#shopify-section-{{ section.id }} .lookbook-image{
+  position:relative;
+  overflow:hidden;
+  aspect-ratio:1/1;
+  margin-bottom:18px;
+}
+
+#shopify-section-{{ section.id }} .lookbook-image img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+}
+
+#shopify-section-{{ section.id }} .lookbook-title{
+  margin:0 0 10px;
+  line-height:1.2;
+}
+
+#shopify-section-{{ section.id }} .uppercase-heading{
+  text-transform:uppercase;
+}
+
+#shopify-section-{{ section.id }} .lookbook-text{
+  margin-bottom:16px;
+}
+
+#shopify-section-{{ section.id }} .lookbook-button{
+  width:fit-content;
+}
+
+#shopify-section-{{ section.id }} .slider-buttons{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+#shopify-section-{{ section.id }} .slider-button{
+  position:absolute;
+  top:35%;
+  transform:translateY(-50%);
+  width:44px;
+  height:44px;
+  border:0;
+  background:transparent;
+  pointer-events:auto;
+  z-index:2;
+}
+
+#shopify-section-{{ section.id }} .slider-button svg{
+  width:18px;
+  height:18px;
+}
+
+#shopify-section-{{ section.id }} .slider-button path{
+  fill: {{ section.settings.arrow_color }};
+}
+
+#shopify-section-{{ section.id }} .slider-button--prev{
+  left:-10px;
+}
+
+#shopify-section-{{ section.id }} .slider-button--next{
+  right:-10px;
+}
+
+#shopify-section-{{ section.id }} .slider-counter{
+  display:none;
+}
+
+    #shopify-section-{{ section.id }} .slider:not(.slider--everywhere):not(.slider--desktop)+.slider-buttons {
+        display: block !important;
+    }
+
+{%- endstyle -%}
+
+<div class="custom-lookbook-slider color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width section-{{ section.id }}-padding">
+
+    <slider-component class="slider-mobile-gutter">
+
+      <ul
+        id="Slider-{{ section.id }}"
+        class="grid slider custom-lookbook-track"
+        role="list"
+      >
+
+        {% for block in section.blocks %}
+
+          <li
+            class="grid__item slider__slide"
+            id="Slide-{{ section.id }}-{{ forloop.index }}"
+            {{ block.shopify_attributes }}
+          >
+
+            <div class="lookbook-card">
+
+              {% if block.settings.link != blank %}
+                <a href="{{ block.settings.link }}">
+              {% endif %}
+
+              <div class="lookbook-image">
+
+                {% if block.settings.image != blank %}
+                  {{
+                    block.settings.image
+                    | image_url: width: 1200
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '400,600,800,1000,1200'
+                  }}
+                {% endif %}
+
+              </div>
+
+              {% if block.settings.link != blank %}
+                </a>
+              {% endif %}
+
+              {% if block.settings.title != blank %}
+                <h3 class="lookbook-title inline-richtext {{ block.settings.heading_size }} {% if block.settings.heading_uppercase %}uppercase-heading{% endif %}">
+                  {{ block.settings.title }}
+                </h3>
+              {% endif %}
+
+              {% if block.settings.text != blank %}
+                <div class="lookbook-text rte">
+                  {{ block.settings.text }}
+                </div>
+              {% endif %}
+
+              {% if block.settings.button_label != blank %}
+                <a
+                  href="{{ block.settings.link }}"
+                  class="button lookbook-button {% if block.settings.button_style_secondary %}button--secondary{% else %}button--primary{% endif %}"
+                >
+                  {{ block.settings.button_label }}
+                </a>
+              {% endif %}
+
+            </div>
+
+          </li>
+
+        {% endfor %}
+
+      </ul>
+
+      <div class="slider-buttons">
+
+        <button
+          type="button"
+          class="slider-button slider-button--prev"
+          name="previous"
+          aria-label="Previous"
+        >
+          {{- 'icon-caret.svg' | inline_asset_content -}}
+        </button>
+
+        <button
+          type="button"
+          class="slider-button slider-button--next"
+          name="next"
+          aria-label="Next"
+        >
+          {{- 'icon-caret.svg' | inline_asset_content -}}
+        </button>
+
+      </div>
+
+    </slider-component>
+
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+
+  const slider = document.querySelector('#Slider-{{ section.id }}');
+  const nextBtn = document.querySelector('#shopify-section-{{ section.id }} .slider-button--next');
+  const prevBtn = document.querySelector('#shopify-section-{{ section.id }} .slider-button--prev');
+
+  if(!slider) return;
+
+  const slides = Array.from(slider.children);
+
+  slides.forEach(slide => {
+
+    const clone = slide.cloneNode(true);
+    slider.appendChild(clone);
+
+  });
+
+  const slide = slider.querySelector('.slider__slide');
+
+  if(!slide) return;
+
+  function enableButtons(){
+
+  nextBtn?.removeAttribute('disabled');
+  prevBtn?.removeAttribute('disabled');
+
+  nextBtn?.removeAttribute('aria-disabled');
+  prevBtn?.removeAttribute('aria-disabled');
+
+}
+
+enableButtons();
+
+slider.addEventListener('scroll', enableButtons);
+
+  const gap = 20;
+
+  function getSlideWidth(){
+    return slide.offsetWidth + gap;
+  }
+
+  function getOriginalWidth(){
+    return (slide.offsetWidth + gap) * slides.length;
+  }
+
+  /* NEXT */
+
+  nextBtn?.addEventListener('click', function(){
+
+    slider.scrollBy({
+      left: getSlideWidth(),
+      behavior: 'smooth'
+    });
+
+    setTimeout(() => {
+
+      if(slider.scrollLeft >= getOriginalWidth()){
+
+        slider.style.scrollBehavior = 'auto';
+
+        slider.scrollLeft = slider.scrollLeft - getOriginalWidth();
+
+        slider.offsetHeight;
+
+        slider.style.scrollBehavior = 'smooth';
+
+      }
+
+    }, 500);
+
+  });
+
+  /* PREV */
+
+  prevBtn?.addEventListener('click', function(){
+
+    if(slider.scrollLeft <= 0){
+
+      slider.style.scrollBehavior = 'auto';
+
+      slider.scrollLeft = getOriginalWidth();
+
+      slider.offsetHeight;
+
+      slider.style.scrollBehavior = 'smooth';
+
+    }
+
+    slider.scrollBy({
+      left: -getSlideWidth(),
+      behavior: 'smooth'
+    });
+
+  });
+
+  /* AUTOPLAY */
+
+  {% if section.settings.autoplay %}
+
+    setInterval(function(){
+
+      slider.scrollBy({
+        left: getSlideWidth(),
+        behavior: 'smooth'
+      });
+
+      setTimeout(() => {
+
+        if(slider.scrollLeft >= getOriginalWidth()){
+
+          slider.style.scrollBehavior = 'auto';
+
+          slider.scrollLeft = slider.scrollLeft - getOriginalWidth();
+
+          slider.offsetHeight;
+
+          slider.style.scrollBehavior = 'smooth';
+
+        }
+
+      }, 500);
+
+    }, {{ section.settings.autoplay_speed | times: 1000 }});
+
+  {% endif %}
+
+});
+</script>
+
+{% schema %}
+{
+  "name": "Custom Lookbook Slider",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow Color",
+      "default": "#ff0040"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4,
+      "label": "Desktop Columns"
+    },
+    {
+      "type": "range",
+      "id": "columns_mobile",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2,
+      "label": "Mobile Columns"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "default": false,
+      "label": "Enable autoplay"
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 4,
+      "label": "Autoplay speed"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40,
+      "label": "Padding top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40,
+      "label": "Padding bottom"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Slide Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "Title",
+          "default": "Palla Ace Tigers"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "",
+              "label": "XS"
+            },
+            {
+              "value": "h2",
+              "label": "Small"
+            },
+            {
+              "value": "h1",
+              "label": "Medium"
+            },
+            {
+              "value": "h0",
+              "label": "Large"
+            },
+            {
+              "value": "hxl",
+              "label": "XL"
+            },
+            {
+              "value": "hxxl",
+              "label": "XXL"
+            }
+          ],
+          "default": "h1",
+          "label": "Heading Size"
+        },
+        {
+          "type": "checkbox",
+          "id": "heading_uppercase",
+          "default": false,
+          "label": "Uppercase Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>85€</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary",
+          "default": false,
+          "label": "Use Outline Button"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Lookbook Slider",
+      "blocks": [
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

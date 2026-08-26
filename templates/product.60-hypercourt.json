@@ -1,0 +1,613 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "shogun-helper": {
+      "type": "shogun-helper",
+      "settings": {}
+    },
+    "shogun-above": {
+      "type": "shogun-above",
+      "settings": {}
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "liquid_title_FEQFYT": {
+          "type": "liquid_title",
+          "settings": {
+            "liquid": "{% assign productTitle = product.title | split: '|' %}\n{{ productTitle[1] }}"
+          }
+        },
+        "text_aEpVWf": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>2000s Runner Reimagined</strong>",
+            "text_style": "subtitle"
+          }
+        },
+        "promo_messaging_rPCQLz": {
+          "type": "promo_messaging",
+          "disabled": true,
+          "settings": {}
+        },
+        "rating_Q764MW": {
+          "type": "rating",
+          "settings": {}
+        },
+        "vendor": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "disabled": true,
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "motivator_4Jm8GY": {
+          "type": "motivator",
+          "disabled": true,
+          "settings": {
+            "title": "Black Friday Sale 30% OFF Sitewide*",
+            "link_text": "terms & conditions",
+            "link": "https://kswiss.com/pages/terms-and-conditions",
+            "tags": ""
+          }
+        },
+        "motivator_jAKWAQ": {
+          "type": "motivator",
+          "settings": {
+            "title": "15% off when you preorder this item today",
+            "link_text": "",
+            "link": "",
+            "tags": "SMART_TAG_PRESALES"
+          }
+        },
+        "afterpay_on_site_messaging_payments_messaging_9FFzgr": {
+          "type": "shopify://apps/afterpay-on-site-messaging/blocks/payments-messaging/f45a5524-d177-4475-bf59-281efd2215a8",
+          "settings": {
+            "text_align": "left",
+            "margin_top": 12,
+            "margin_bottom": 12,
+            "color": "",
+            "size": "xs",
+            "intro_text": "Pay",
+            "show_interest_free": true,
+            "payment_amount_is_bold": true,
+            "show_with": true,
+            "logo_type": "badge",
+            "logo_theme": "black-on-mint",
+            "modal_link_style": "circled-info-icon",
+            "modal_theme": "mint",
+            "breakpoint": 749,
+            "text_align_mobile": "inherit",
+            "margin_top_mobile": 16,
+            "margin_bottom_mobile": 16,
+            "show_lower_limit": true,
+            "show_upper_limit": false,
+            "show_if_outside_limits": true,
+            "product": "{{product}}"
+          }
+        },
+        "sibling_eBxRG6": {
+          "type": "sibling",
+          "settings": {}
+        },
+        "custom_liquid_AA8a3J": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{%  if settings.prod_add_info2 == true %}\n{% assign split_tags = settings.prod_add_info_tag | split: ',' %}\n{% assign avail_tag= false %}\n{% for stag in split_tags %}\n{%   if product.tags contains  stag %}\n   {% assign avail_tag= true %}\n  {% endif %}\n{% endfor %}\n{% if avail_tag == true %}\n<div class=\"flex items-center p-4 text-sm text-gray-800 rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-gray-300\" role=\"alert\">\n  <svg class=\"flex-shrink-0 inline w-4 h-4 me-3\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" viewBox=\"0 0 20 20\">\n    <path d=\"M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z\"></path>\n  </svg>\n  <span class=\"sr-only\">Info</span>\n  <div>\n    <span class=\"font-medium px-2 md:px-0 md:pl-2\">Runs Small-Size Up\n  </div>\n</div>\n  {%  endif %}\n  {%  endif %}"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "giftnote_engine_for_gifting_button_JQCcfH": {
+          "type": "shopify://apps/giftnote-engine-for-gifting/blocks/button/37eb4f2f-4979-41f3-a677-fa25a2a97659",
+          "disabled": true,
+          "settings": {
+            "add_label": "Add a gift message 🎁",
+            "edit_label": "Edit gift message 🎁",
+            "font_size": 16,
+            "font": "inter_n4",
+            "letter_spacing": 1,
+            "button_type": "button",
+            "background_color": "#ffffff",
+            "border_color": "#000000",
+            "font_color": "#000000",
+            "border_radius": 6,
+            "alignment": "center",
+            "height": 50,
+            "width": 250,
+            "full_width": true,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "breakpoint": 740,
+            "mobile_alignment": "center",
+            "mobile_height": 50,
+            "mobile_width": 250,
+            "mobile_full_width": true,
+            "mobile_margin_top": 0,
+            "mobile_margin_bottom": 0,
+            "exclusion_tags": "",
+            "custom_styles": ""
+          }
+        },
+        "motivator_i8pbEV": {
+          "type": "motivator",
+          "disabled": true,
+          "settings": {
+            "title": "FREE SHIPPING ON ORDERS OVER $50",
+            "link_text": "More Info",
+            "link": "shopify://pages/shipping-policy",
+            "tags": ""
+          }
+        },
+        "collapsible_tab_bMfHKy": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Size Chart",
+            "icon": "none",
+            "content": "",
+            "page": "",
+            "custom_liquid": "{% render \"size-chart\" %}"
+          }
+        },
+        "collapsible_tab_TbJ8h3": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Details",
+            "icon": "none",
+            "content": "",
+            "page": "",
+            "custom_liquid": "{{ product.description }}"
+          }
+        },
+        "custom_liquid_QXf7Jt": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"product__accordion accordion\">\n<summary style=\"cursor: unset;\" role=\"button\"><div class=\"summary__title\">\n<h3 class=\"h5 accordion__title inline-richtext\">\n              FREE SHIPPING ON ORDERS OVER $90</h3></div>\n</summary>\n</div>"
+          }
+        },
+        "collapsible_tab_Wkme4D": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Shipping and Returns/Exchanges",
+            "icon": "none",
+            "content": "<p><strong>SHIPPING</strong></p><p>Kswiss.com will ship all orders Monday-Friday. All orders received with Two-Day Air by 10:30AM PST will ship the same business day, Monday through Friday. All Standard FedEx Ground orders will ship within 2 to 3 business days. </p><p>Note that all orders placed after 10:30AM PST on Fridays, Saturday or Sunday will not processed until the next business day.</p><p><strong>RETURNS/EXCHANGES</strong></p><p>We hope you love your K-Swiss product, but if you’re not completely satisfied, you can return or exchange merchandise within 30 days of purchase. Extended return/exchanges window may apply during holiday. </p>",
+            "page": "",
+            "custom_liquid": ""
+          }
+        },
+        "custom_liquid_7pkznj": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% assign productTitle = product.title | split: '|' %}\n<div class=\"product__accordion accordion\">\n<summary style=\"cursor: unset;\" role=\"button\"><div class=\"summary__title\">\n<h3 class=\"h5 accordion__title inline-richtext\">\n              Style: {{ productTitle[0] }}</h3></div>\n</summary>\n</div>"
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "disabled": true,
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "ml_sticky_atc_c4EdqW": {
+          "type": "ml-sticky-atc",
+          "settings": {
+            "color_scheme": "scheme-1",
+            "border_top_opacity": 100,
+            "max_width": "",
+            "img_ratio": "adapt",
+            "btn_style": "button--primary"
+          }
+        }
+      },
+      "block_order": [
+        "liquid_title_FEQFYT",
+        "text_aEpVWf",
+        "promo_messaging_rPCQLz",
+        "rating_Q764MW",
+        "vendor",
+        "title",
+        "price",
+        "motivator_4Jm8GY",
+        "motivator_jAKWAQ",
+        "afterpay_on_site_messaging_payments_messaging_9FFzgr",
+        "sibling_eBxRG6",
+        "custom_liquid_AA8a3J",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "giftnote_engine_for_gifting_button_JQCcfH",
+        "motivator_i8pbEV",
+        "collapsible_tab_bMfHKy",
+        "collapsible_tab_TbJ8h3",
+        "custom_liquid_QXf7Jt",
+        "collapsible_tab_Wkme4D",
+        "custom_liquid_7pkznj",
+        "description",
+        "share",
+        "ml_sticky_atc_c4EdqW"
+      ],
+      "custom_css": [
+        ".lg-grid-cols-5 {grid-template-columns: repeat(2, minmax(0, 1fr));}"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "columns",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "hover",
+        "zoom_scale": 2,
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12,
+        "promo_messaging": "MENS | EXTRA WIDE | WOMENS | WIDE | VARSITY | CHILDREN | INFANTS"
+      }
+    },
+    "image_banner_N8riNh": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_6z639F": {
+          "type": "heading",
+          "settings": {
+            "heading": "MARINA RMX X RAKEEM MILES",
+            "heading_size": "hxl",
+            "heading_uppercase": false
+          }
+        },
+        "text_fR4T8z": {
+          "type": "text",
+          "settings": {
+            "text": "The Marina RMX x Rakeem Miles shoe is rooted in his “Get Me Out The Woods” project—blending ‘90s nostalgia, bold design, and personal history into a statement of style and storytelling.",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_6z639F",
+        "text_fR4T8z"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".banner__box {max-width: 45rem;}",
+        ".banner__text {font-size: 2rem;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "hide_mobile": true,
+        "hide_tablet": true,
+        "hide_desktop": false,
+        "banner_link": "",
+        "image": "shopify://shop_images/RakeemMiles-GMOTWDrop2-PDP-TECH-BANNER_DESKTOP.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-right",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "image_banner_7qQTat": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_8NEr9C": {
+          "type": "heading",
+          "settings": {
+            "heading": "MARINA RMX X RAKEEM MILES",
+            "heading_size": "h0",
+            "heading_uppercase": false
+          }
+        },
+        "text_PVpN8a": {
+          "type": "text",
+          "settings": {
+            "text": "The Marina RMX x Rakeem Miles shoe is rooted in his “Get Me Out The Woods” project—blending ‘90s nostalgia, bold design, and personal history into a statement of style and storytelling.",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_8NEr9C",
+        "text_PVpN8a"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".banner__box {max-width: 50rem;}",
+        ".banner__text {font-size: 2rem;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": true,
+        "banner_link": "",
+        "image": "shopify://shop_images/RakeemMiles-GMOTWDrop2-PDP-TECH-BANNER_MOBILE.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-right",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "multicolumn_bFqq7e": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_UbWxci": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/RakeemMiles-GMOTWDrop2-PDP-TECH-MoveableVelcro_DESKTOP.jpg",
+            "image_link": "",
+            "title": "Movable Velcro Action Figure Miles",
+            "text": "<p>Bring Miles' creative universe to life with a custom-designed adjustable \"Action Figure Miles\" character - a nod to his playful and inventive spirit. Move the ghillie-suited Miles along a velcro trail trail to \"get out of the woods\".</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_L6Edkg": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/RakeemMiles-GMOTWDrop2-PDP-TECH-Tubes_RMX_Upper_DESKTOP.jpg",
+            "image_link": "",
+            "title": "Tubes RMX Upper",
+            "text": "<p>Merging breathable mesh and suede overlays, the upper’s mixed-media design channels the tech-runner aesthetics of the '90s with a distinctly modern edge.</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_PRC6iN": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/RakeemMiles-GMOTWDrop2-PDP-TECH-MarinaOutsole_DESKTOP.jpg",
+            "image_link": "",
+            "title": "Marina Outsole",
+            "text": "<p>With its two-part rubber construction, the chunky K-Swiss Marina outsole delivers comfort and durability—perfect for Miles' story of resilience and exploration.</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_UbWxci",
+        "column_L6Edkg",
+        "column_PRC6iN"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "h3.inline-richtext {text-transform: uppercase; font-size: 2.7rem;}",
+        ".rte {font-size: 2rem;}"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "square",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "section_id": ""
+      }
+    },
+    "masonry_gallery_bjxmrR": {
+      "type": "masonry-gallery",
+      "blocks": {
+        "image_U6YBWk": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1-KSRC-Desktop-PDP-HPE3-IMG.png",
+            "caption_text": "",
+            "product": "",
+            "col_span": 4,
+            "row_span": 1,
+            "aspect_ratio": "4/3"
+          }
+        },
+        "image_7wLh4g": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/2-KSRC-Desktop-PDP_HPE3_-IMG.png",
+            "caption_text": "",
+            "product": "",
+            "col_span": 2,
+            "row_span": 2,
+            "aspect_ratio": "3/4"
+          }
+        },
+        "image_VmjCgP": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/3-KSRC-Desktop-PDP_HPE3_-IMG.png",
+            "caption_text": "",
+            "product": "",
+            "col_span": 2,
+            "row_span": 2,
+            "aspect_ratio": "3/4"
+          }
+        }
+      },
+      "block_order": [
+        "image_U6YBWk",
+        "image_7wLh4g",
+        "image_VmjCgP"
+      ],
+      "name": "Masonry Gallery",
+      "settings": {
+        "transport": "#related_products",
+        "show_desktop": true,
+        "show_mobile": false,
+        "col_grid": 4,
+        "col_gape": 20,
+        "full_width": true,
+        "enable_popup": true,
+        "padding_top": 40,
+        "padding_bottom": 0,
+        "color_scheme": "",
+        "custom_liquid": ""
+      }
+    },
+    "masonry_gallery_QQec68": {
+      "type": "masonry-gallery",
+      "blocks": {
+        "image_gjJnVM": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/1-KSRC-Mobile-PDP_HPE3_-IMG.png",
+            "caption_text": "",
+            "product": "",
+            "col_span": 2,
+            "row_span": 1,
+            "aspect_ratio": "auto"
+          }
+        },
+        "image_kd64kw": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/2-KSRC-Mobile-PDP_HPE3_-IMG.png",
+            "caption_text": "",
+            "product": "",
+            "col_span": 2,
+            "row_span": 2,
+            "aspect_ratio": "3/4"
+          }
+        },
+        "image_mJNYQq": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/3-KSRC-Mobile-PDP_HPE3_-IMG.png",
+            "caption_text": "",
+            "product": "",
+            "col_span": 2,
+            "row_span": 2,
+            "aspect_ratio": "3/4"
+          }
+        }
+      },
+      "block_order": [
+        "image_gjJnVM",
+        "image_kd64kw",
+        "image_mJNYQq"
+      ],
+      "name": "Masonry Gallery",
+      "settings": {
+        "transport": "",
+        "show_desktop": false,
+        "show_mobile": true,
+        "col_grid": 2,
+        "col_gape": 20,
+        "full_width": false,
+        "enable_popup": true,
+        "padding_top": 40,
+        "padding_bottom": 52,
+        "color_scheme": "",
+        "custom_liquid": ""
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "custom_css": [
+        ".related-products {padding-left: 0; padding-right: 0;}"
+      ],
+      "settings": {
+        "transport": ".product_description_custom",
+        "id": "related_products",
+        "heading": "Recommended Products",
+        "heading_size": "h2",
+        "products_to_show": 3,
+        "columns_desktop": 3,
+        "columns_mobile": "1",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "shogun-below": {
+      "type": "shogun-below",
+      "settings": {}
+    },
+    "shogun-optimizer": {
+      "type": "shogun-optimizer",
+      "settings": {}
+    }
+  },
+  "order": [
+    "shogun-helper",
+    "shogun-above",
+    "main",
+    "image_banner_N8riNh",
+    "image_banner_7qQTat",
+    "multicolumn_bFqq7e",
+    "masonry_gallery_bjxmrR",
+    "masonry_gallery_QQec68",
+    "related-products",
+    "shogun-below",
+    "shogun-optimizer"
+  ]
+}

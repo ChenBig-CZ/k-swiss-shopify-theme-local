@@ -1,0 +1,46 @@
+{% comment %}
+  Renders customized variant label
+  Accepts:
+  - value: variant title string
+  - product: product object
+{% endcomment %}
+
+{% assign v = value %}
+
+{% assign strip_from_swatches = settings.strip_from_swatches | split: ',' %}
+
+{% for strip in strip_from_swatches %}
+  {% assign v = v | remove: strip %}
+{% endfor %}
+
+{% if shop.name contains "Palladium US" %}
+  {{ value
+    | replace: "Womens", "W"
+    | replace: "Big Kids", "K"
+    | replace: "Mens", "M"
+    | replace: "Little Kids", "K"
+  }}
+{% elsif shop.name contains "K-Swiss US" and product.tags contains "UNISEX" %}
+  {{ value
+    | replace: "Womens", "W"
+    | replace: "Big Kids", "K"
+    | replace: "Mens", "M"
+    | replace: "Little Kids", "K"
+  }}
+{% elsif childrenSizes == "true" and shop.name contains "K-Swiss US" %}
+  {% if product.tags contains "INFANTS" %}
+    {{ v }}C
+  {% elsif product.tags contains "CHILDREN" %}
+    {% if v <= 3 %}
+      {{ v }}Y
+    {% else %}
+      {{ v }}C
+    {% endif %}
+  {% elsif product.tags contains "VARSITY" %}
+    {{ v }}Y
+  {% else %}
+    {{ v }}
+  {% endif %}
+{% else %}
+  {{ v }}
+{% endif %}

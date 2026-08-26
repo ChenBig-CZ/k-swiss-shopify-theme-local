@@ -1,0 +1,128 @@
+{% liquid
+  assign render_set = true
+  assign group_values = ''
+
+  if settings.title == blank
+    assign render_set = false
+  endif
+
+  if settings.collection_exclusion contains 'search' and search.performed
+    assign render_set = false
+  endif
+
+  if settings.collection_exclusion contains collection.handle
+    assign render_set = false
+  endif
+
+  if settings.collection_inclusion != blank
+    unless settings.collection_inclusion contains collection.handle
+      assign render_set = false
+    endunless
+  endif
+
+  if settings.options != blank
+    assign options = settings.options | newline_to_br | split: '<br />'
+    for option in options
+      assign option_value = option | split: '>>>' | last | strip
+      if settings.title == 'Price' or collection.all_tags contains option_value
+        assign group_values = group_values | append: option_value | append: '|'
+      endif
+    endfor
+  endif
+
+  if settings.remote_options != blank
+    assign options = settings.remote_options | newline_to_br | split: '<br />'
+    for option in options
+      assign option_value = option | split: '>>>' | last | strip
+      if settings.title == 'Price' or collection.all_tags contains option_value
+        assign group_values = group_values | append: option_value | append: '|'
+      endif
+    endfor
+  endif
+
+  if settings.inclusion != blank
+    assign matchinc = settings.inclusion | downcase
+    for tag in collection.all_tags
+      assign matchtag = tag | downcase
+      if matchtag contains matchinc
+        assign group_values = group_values | append: tag | append: '|'
+      endif
+    endfor
+  endif
+
+  if group_values == blank
+    assign render_set = false
+  endif
+
+  assign option_count = group_values | split: '|' | compact | size
+%}
+
+{% if render_set %}
+  <details
+    class="facets__disclosure-vertical js-filter collection-tag-filter__set"
+    data-index="{{ offset }}"
+    open
+  >
+    <summary class="facets__summary caption-large focus-offset">
+      <div>
+        <span class="facets__summary-label">{{ settings.title | escape }}</span>
+        {{- 'icon-caret.svg' | inline_asset_content -}}
+      </div>
+    </summary>
+
+    <div class="facets__display-vertical collection-tag-filter__display">
+      <fieldset class="facets-wrap parent-wrap facets-wrap-vertical">
+        <legend class="visually-hidden">{{ settings.title | escape }}</legend>
+
+        <ul
+          class="facets-layout facets-layout-list facets-layout-list--text facets__list--vertical list-unstyled filter-options filter-options--{{ settings.format }}{% if option_count > 6 %} filter-options--collapsible is-collapsed{% endif %}"
+          role="list"
+          data-filter-options
+          {% if settings.sort_order != blank %}
+            neptune-sort='{on:innerText.trim(),{% if settings.sort_order == 'alpha' or settings.sort_order == 'numeric' %}as:{{ settings.sort_order }},{% endif %}reverse:false{% if settings.sort_order != 'alpha' and settings.sort_order != 'numeric' %},order:{{ settings.sort_order | newline_to_br | split: '<br />' | json }}{% endif %} }'
+          {% endif %}
+        >
+          {% liquid
+            if settings.inclusion != blank
+              render 'filter-options-dynamic', collection: collection, filter: settings, set: settings
+            endif
+
+            if settings.options != blank
+              assign options = settings.options | newline_to_br | split: '<br />'
+              for option in options
+                assign label = option | split: '>>>' | first | strip
+                assign value = option | split: '>>>' | last | strip
+                if settings.title == 'Price' or collection.all_tags contains value
+                  render 'collection-filters-option', collection: collection, set: settings.title, value: value, label: label, format: settings.format, units: settings.units, group_values: group_values
+                endif
+              endfor
+            endif
+
+            if settings.remote_options != blank
+              assign options = settings.remote_options | newline_to_br | split: '<br />'
+              for option in options
+                assign label = option | split: '>>>' | first | strip
+                assign value = option | split: '>>>' | last | strip
+                if settings.title == 'Price' or collection.all_tags contains value
+                  render 'collection-filters-option', collection: collection, set: settings.title, value: value, label: label, format: settings.format, units: settings.units, group_values: group_values
+                endif
+              endfor
+            endif
+          %}
+        </ul>
+
+        {% if option_count > 6 %}
+          <button
+            type="button"
+            class="collection-tag-filter__show-more"
+            aria-expanded="false"
+            data-filter-show-more
+          >
+            <span data-filter-show-more-label>See more</span>
+            {{- 'icon-caret.svg' | inline_asset_content -}}
+          </button>
+        {% endif %}
+      </fieldset>
+    </div>
+  </details>
+{% endif %}

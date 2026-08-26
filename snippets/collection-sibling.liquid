@@ -1,0 +1,88 @@
+<div
+  class="collection-siblings"
+  data-handle="{{ card_product.handle }}"
+  data-family="{{ card_product.title | split: '-' | first | strip }}"
+  data-type="{{ card_product.type }}"
+  data-size="{{ card_product.title | split: ' | ' | first | split: '-' | last | strip }}"
+  data-collection="{{ collection.handle }}"
+>
+  <span
+  class="sibling-count"
+  {% unless settings.show_siblings_count_plp %}
+    style="display:none"
+  {% endunless %}
+></span>
+
+  <p class="collection-siblings__label form__label">
+    <strong>Color:</strong>
+    <span class="active-color">
+      {{ card_product.title | split: ' | ' | last }}
+    </span>
+  </p>
+
+  <div class="plp_sibling_box">
+    <div class="collection-siblings__grid"></div>
+  </div>
+</div>
+
+<script>
+  window.PLP_COMING_SOON = {{ settings.show_siblings_plp | json }};
+  window.PLP_SHOW_SIBLING_COUNT = {{ settings.show_siblings_count_plp | json }};
+
+  function renderSiblings(container, siblings, currentHandle) {
+    const grid = container.querySelector('.collection-siblings__grid');
+    const activeColorEl = container.querySelector('.active-color');
+    const countEl = container.querySelector('.sibling-count');
+
+    if (!grid || !siblings.length) return;
+
+    if (countEl && window.PLP_SHOW_SIBLING_COUNT) {
+      const colorCount = siblings.length;
+    countEl.textContent = `${colorCount} ${colorCount === 1 ? 'Color' : 'Colors'}`;
+    }
+
+
+    grid.innerHTML = '';
+
+    const active = siblings.find(p => p.handle === currentHandle);
+    const activeColor = active?.title.split('|').pop().trim() || '';
+    activeColorEl.textContent = activeColor;
+
+    const sorted = [...siblings].sort((a, b) => {
+      if (a.handle === currentHandle) return -1;
+      if (b.handle === currentHandle) return 1;
+      return 0;
+    });
+
+    sorted.forEach(p => {
+      const isActive = p.handle === currentHandle;
+      const color = p.title.split('|').pop().trim();
+
+      const el = isActive ? document.createElement('div') : document.createElement('button');
+      el.className = 'sibling-swatch' + (isActive ? ' active' : ' sibling-link');
+
+      if (!isActive) {
+        el.type = 'button';
+        const collectionHandle = container.dataset.collection;
+
+        el.dataset.url = collectionHandle
+          ? `/collections/${collectionHandle}/products/${p.handle}`
+          : `/products/${p.handle}`;
+      }
+
+      const imgSrc = p.image.replace(/(\.(jpg|jpeg|png|webp))/i, '_120x$1');
+
+      el.innerHTML = `
+        <div class="fix_transparent_image_collection_sibling" role="link" href="#">
+          <img src="${imgSrc}" alt="${p.title}">
+        </div>
+      `;
+
+      el.onmouseenter = () => activeColorEl.textContent = color;
+      el.onmouseleave = () => activeColorEl.textContent = activeColor;
+
+      grid.appendChild(el);
+    });
+  }
+  
+</script>

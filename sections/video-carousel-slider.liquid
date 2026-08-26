@@ -1,0 +1,730 @@
+<style>
+  /* =========================================
+   SECTION WRAPPER
+========================================= */
+.carousel-{{ section.id }} {
+  background-color: {{ section.settings.background_color }};
+  overflow: hidden;
+}
+
+/* =========================================
+   CONTROLS
+========================================= */
+.carousel-{{ section.id }} .controls {
+  position: absolute;
+  width: 100%;
+  padding: 20px;
+  z-index: 1;
+  opacity: 0;
+}
+
+.carousel-{{ section.id }} 
+.splide__slide.is-active .controls,
+.carousel-{{ section.id }} 
+.splide__slide.is-active .block__product-video-slider--featured-product {
+  opacity: 1;
+}
+
+.carousel-{{ section.id }} .controls-list {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  gap: 20px;
+}
+
+.carousel-{{ section.id }} .play-pause-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.carousel-{{ section.id }} .controls button {
+  cursor: pointer;
+  background: transparent;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #fff;
+}
+
+/* =========================================
+   TITLE
+========================================= */
+.carousel-{{ section.id }} .title-wrapper-with-link .title {
+  margin-bottom: 40px;
+}
+
+/* =========================================
+   PRODUCT INFO
+========================================= */
+.carousel-{{ section.id }} .flex-wrapper-product {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.carousel-{{ section.id }} .block__featured-product-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.carousel-{{ section.id }} .block__featured-product-content a {
+  color: #000;
+  text-decoration: none;
+  margin-top: 4px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.carousel-{{ section.id }} .block__featured-product-price {
+  color: #0009;
+  margin-bottom: 4px;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.carousel-{{ section.id }} .block__featured-product-image {
+  max-width: 50px;
+  height: 30px;
+  background-color: var(--quinary-color);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* =========================================
+   PRODUCT OVERLAY
+========================================= */
+.carousel-{{ section.id }} .block__product-video-slider--featured-product {
+  position: absolute;
+  bottom: 5rem;
+  left: 12px;
+  width: calc(100% - 25px);
+  padding: 10px 12px;
+  background: #fff;
+  box-shadow: 0 10px 20px #d7615d0d;
+  transform: scale(.91);
+  opacity: 0;
+}
+
+/* =========================================
+   SLIDES
+========================================= */
+.carousel-{{ section.id }} .splide__slide {
+  position: relative;
+  box-sizing: border-box;
+  list-style: none !important;
+  flex-shrink: 0;
+  border: 5px solid #fff;
+  background: #fff;
+  transform: scale(.97);
+  transition: all .4s ease-in-out;
+  backface-visibility: hidden;
+}
+
+.carousel-{{ section.id }} .splide__slide.is-active {
+  transform: scale(1.17);
+  z-index: 99999;
+}
+
+.carousel-{{ section.id }} 
+.splide__slide.is-active .block__product-video-slider-media {
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+/* =========================================
+   MEDIA
+========================================= */
+.carousel-{{ section.id }} video,
+.carousel-{{ section.id }} .splide__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* =========================================
+   SPLIDE CORE
+========================================= */
+.carousel-{{ section.id }} .splide {
+  position: relative;
+  visibility: hidden;
+}
+
+.carousel-{{ section.id }} .splide.is-initialized,
+.carousel-{{ section.id }} .splide.is-rendered {
+  visibility: visible;
+}
+
+.carousel-{{ section.id }} .splide__container {
+  position: relative;
+  box-sizing: border-box;
+}
+
+.carousel-{{ section.id }} .splide__list {
+  display: flex;
+  backface-visibility: hidden;
+}
+
+.carousel-{{ section.id }} .splide__pagination {
+  display: none;
+}
+
+.carousel-{{ section.id }} .splide__progress__bar {
+  width: 0;
+}
+
+/* =========================================
+   ARROWS
+========================================= */
+.carousel-{{ section.id }} .splide__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(0,0,0,.15);
+  cursor: pointer;
+  opacity: 0.9;
+  transition: all .3s ease;
+  z-index: 9;
+}
+
+.carousel-{{ section.id }} .splide__arrow--prev {
+  left: 35px;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.carousel-{{ section.id }} .splide__arrow--next {
+  right: 35px;
+}
+
+.carousel-{{ section.id }} .splide__arrow svg {
+  fill: #000;
+  width: 1.2em;
+  height: 1.2em;
+}
+
+/* =========================================
+   HOVER TEXT
+========================================= */
+.carousel-{{ section.id }} .collection-explore-gallery__item {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.carousel-{{ section.id }} .collection-explore-gallery__text-box svg {
+  opacity: 0;
+  margin-left: 5px;
+  transition: .5s;
+}
+
+.carousel-{{ section.id }} 
+.collection-explore-gallery__item:hover 
+.collection-explore-gallery__text-box svg {
+  opacity: 1;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+@media (max-width: 767px) {
+
+  .carousel-{{ section.id }} .splide__arrow {
+    width: 43px;
+    height: 43px;
+  }
+
+  .carousel-{{ section.id }} .splide__arrow--prev {
+    left: 20px;
+  }
+
+  .carousel-{{ section.id }} .splide__arrow--next {
+    right: 20px;
+  }
+
+  .carousel-{{ section.id }} .splide__slide {
+    width: 80%;
+    transform: scale(1);
+  }
+
+  .carousel-{{ section.id }} .splide__slide.is-active {
+    transform: scale(1);
+  }
+
+  .carousel-{{ section.id }} 
+  .collection-explore-gallery__text-box h3 {
+    font-size: 28px;
+  }
+}
+
+/* =========================================
+   MISC
+========================================= */
+.carousel-{{ section.id }} a:not([href]) {
+  cursor: unset;
+}
+</style>
+
+<section class="rich-text carousel-{{ section.id }}" style="margin-top: {{ section.settings.margin_top }}px; margin-bottom: {{ section.settings.margin_bottom }}px;">
+  
+{%- unless section.settings.title == blank -%}
+    <div class="page-width">
+    <div class="title-wrapper-with-link" style="justify-content:{{ section.settings.heading_align }};">
+        <h3 class="title inline-richtext {{ section.settings.heading_size }}">
+        {{ section.settings.title }}
+        </h3>
+        {%- if section.settings.button_label != blank and show_mobile_slider -%}
+        <a href="{{ section.settings.button_link }}" class="link underlined-link large-up-hide">
+            {{- section.settings.button_label | escape -}}
+        </a>
+        {%- endif -%}
+    </div>
+    </div>
+{%- endunless -%}
+
+<div id="splide" class="splide">
+  <div class="splide__track">
+    <ul class="splide__list">
+     {%- for block in section.blocks -%}
+      <li class="splide__slide block-{{ block.id }}">
+         <div class="collection-explore-gallery__img-box">
+
+          {%- if block.settings.video != blank -%}
+          <div class="controls">
+                        <div class="controls-list">
+                          <div class="play-pause-btns">
+                            <button id="playPause" class="playPause">
+                              <svg id="playIcon" class="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="display: none;" fill="white">
+                                <path d="M29.91 14.89a4.78 4.78 0 0 0-2.56-3.1L8.7 2.47a4.63 4.63 0 0 0-5.52 1A4.73 4.73 0 0 0 2 6.73v18.48a5.53 5.53 0 0 0 1.51 3.6 4.62 4.62 0 0 0 5.19.72l18.78-9.39a4.63 4.63 0 0 0 2.43-5.25Z"></path>
+                              </svg>
+
+                              <svg id="pauseIcon" class="pauseIcon" width="16" height="16" viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg" style="display: block;">
+                                <path d="M7 2.5V13.5C7 13.8978 6.84196 14.2794 6.56066 14.5607C6.27936 14.842 5.89782 15 5.5 15H4C3.60218 15 3.22064 14.842 2.93934 14.5607C2.65804 14.2794 2.5 13.8978 2.5 13.5V2.5C2.5 2.10218 2.65804 1.72064 2.93934 1.43934C3.22064 1.15804 3.60218 1 4 1H5.5C5.89782 1 6.27936 1.15804 6.56066 1.43934C6.84196 1.72064 7 2.10218 7 2.5ZM12 1H10.5C10.1022 1 9.72064 1.15804 9.43934 1.43934C9.15804 1.72064 9 2.10218 9 2.5V13.5C9 13.8978 9.15804 14.2794 9.43934 14.5607C9.72064 14.842 10.1022 15 10.5 15H12C12.3978 15 12.7794 14.842 13.0607 14.5607C13.342 14.2794 13.5 13.8978 13.5 13.5V2.5C13.5 2.10218 13.342 1.72064 13.0607 1.43934C12.7794 1.15804 12.3978 1 12 1Z" fill="white"></path>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    {% endif %}
+
+          <div class="block__product-video-slider-media">
+           {{ block.settings.video | video_tag:
+              image_size: '1100x',
+              autoplay: true,
+              loop: true,
+              controls: false,
+              muted: true }}
+            </div>
+              
+              {%- if block.settings.product_id != blank -%}
+                
+                  {% assign product__info = all_products[block.settings.product_id] %}
+
+                  
+
+                      <div class="block__product-video-slider--featured-product flex items-center gap-10 justify-between tertiary-border-radius">
+
+                  <div class="flex-wrapper-product">
+
+                    <div class="block__featured-product-image flex items-center">
+                  <img src="{{ product__info.featured_image | img_url: '600x' }}" alt="{{ product__info.title }}">
+                    </div>
+
+                    <div class="block__featured-product-content ">
+
+                      
+
+                  {% if block.settings.product_title != blank %}
+                  <a href="{{ product__info.url }}" title="{{ block.settings.product_title }}" class="small_body">{{ block.settings.product_title }}</a>
+                  {% else %}
+                  <a href="{{ product__info.url }}" title="{{ product__info.title }}" class="small_body">{{ product__info.title }}</a>
+                  {% endif %}
+
+                  <span class="block__featured-product-price extra_body ">{{ product__info.price | money }}</span>
+                  </div>
+
+                  </div>
+
+                </div>
+              {%- endif -%}
+
+          </div>
+      </li>
+     {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+<script>
+    
+  if (window.Shopify.designMode) {
+document.addEventListener('DOMContentLoaded', function () {
+  const sectionId = "{{ section.id }}";
+  const splideEl = document.querySelector(`.carousel-${sectionId} .splide`);
+  if (!splideEl) return;
+
+  const splide = new Splide(splideEl, {
+    type: 'loop',
+    focus: 'center',
+    perPage: {{ section.settings.per_row }},
+    perMove: 1,
+    gap: '1rem',
+    speed: 1000,
+    breakpoints: {
+      1200: { perPage: 2 },
+      768:  { perPage: 1 },
+    },
+  });
+
+  function pauseAllVideos(except = null) {
+    document.querySelectorAll(`.carousel-${sectionId} video`).forEach((v) => {
+      if (v !== except) {
+        v.pause();
+        updatePlayPauseIcons(v, false);
+      }
+    });
+  }
+
+  function playActiveSlideVideo() {
+    const activeSlides = document.querySelectorAll(
+      `.carousel-${sectionId} .splide__slide.is-active`
+    );
+    activeSlides.forEach((slide) => {
+      const video = slide.querySelector('video');
+      if (video) {
+        video.muted = true;
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            video.muted = true;
+            video.play().catch(() => {});
+          });
+        }
+        updatePlayPauseIcons(video, true);
+      }
+    });
+  }
+
+  function updatePlayPauseIcons(video, isPlaying) {
+    const slide = video.closest('.splide__slide');
+    if (!slide) return;
+    const playIcon = slide.querySelector('.playIcon');
+    const pauseIcon = slide.querySelector('.pauseIcon');
+
+    if (playIcon && pauseIcon) {
+      playIcon.style.display = isPlaying ? 'none' : 'block';
+      pauseIcon.style.display = isPlaying ? 'block' : 'none';
+    }
+  }
+
+  function setupVideoControls() {
+    const slides = document.querySelectorAll(`.carousel-${sectionId} .splide__slide`);
+    slides.forEach((slide) => {
+      const video = slide.querySelector('video');
+      const btn = slide.querySelector('.playPause');
+      if (!video || !btn) return;
+
+      const playIcon = btn.querySelector('.playIcon');
+      const pauseIcon = btn.querySelector('.pauseIcon');
+
+      btn.addEventListener('click', () => {
+        if (video.paused) {
+          pauseAllVideos(video); 
+          video.play();         
+          updatePlayPauseIcons(video, true);
+        } else {
+          video.pause();        
+          updatePlayPauseIcons(video, false);
+        }
+      });
+
+      video.addEventListener('play', () => updatePlayPauseIcons(video, true));
+      video.addEventListener('pause', () => updatePlayPauseIcons(video, false));
+    });
+  }
+
+  splide.on('mounted', function () {
+    setupVideoControls();
+    pauseAllVideos();
+    setTimeout(playActiveSlideVideo, 300);
+  });
+
+  splide.on('move', function () {
+    pauseAllVideos();
+  });
+
+  splide.on('moved', function () {
+    setTimeout(playActiveSlideVideo, 300);
+  });
+
+  splide.mount();
+});
+  }
+document.addEventListener('DOMContentLoaded', function () {
+  const sectionId = "{{ section.id }}";
+  const splideEl = document.querySelector(`.carousel-${sectionId} .splide`);
+  if (!splideEl) return;
+
+  const splide = new Splide(splideEl, {
+    type: 'loop',
+    focus: 'center',
+    perPage: {{ section.settings.per_row }},
+    perMove: 1,
+    gap: '1rem',
+    speed: 1000,
+    breakpoints: {
+      1200: { perPage: 2 },
+      768:  { perPage: 1 },
+    },
+  });
+
+  function pauseAllVideos(except = null) {
+    document.querySelectorAll(`.carousel-${sectionId} video`).forEach((v) => {
+      if (v !== except) {
+        v.pause();
+        updatePlayPauseIcons(v, false);
+      }
+    });
+  }
+
+  function playActiveSlideVideo() {
+    const activeSlides = document.querySelectorAll(
+      `.carousel-${sectionId} .splide__slide.is-active`
+    );
+    activeSlides.forEach((slide) => {
+      const video = slide.querySelector('video');
+      if (video) {
+        video.muted = true;
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            video.muted = true;
+            video.play().catch(() => {});
+          });
+        }
+        updatePlayPauseIcons(video, true);
+      }
+    });
+  }
+
+  function updatePlayPauseIcons(video, isPlaying) {
+    const slide = video.closest('.splide__slide');
+    if (!slide) return;
+    const playIcon = slide.querySelector('.playIcon');
+    const pauseIcon = slide.querySelector('.pauseIcon');
+
+    if (playIcon && pauseIcon) {
+      playIcon.style.display = isPlaying ? 'none' : 'block';
+      pauseIcon.style.display = isPlaying ? 'block' : 'none';
+    }
+  }
+
+  function setupVideoControls() {
+    const slides = document.querySelectorAll(`.carousel-${sectionId} .splide__slide`);
+    slides.forEach((slide) => {
+      const video = slide.querySelector('video');
+      const btn = slide.querySelector('.playPause');
+      if (!video || !btn) return;
+
+      const playIcon = btn.querySelector('.playIcon');
+      const pauseIcon = btn.querySelector('.pauseIcon');
+
+      btn.addEventListener('click', () => {
+        if (video.paused) {
+          pauseAllVideos(video); 
+          video.play();         
+          updatePlayPauseIcons(video, true);
+        } else {
+          video.pause();        
+          updatePlayPauseIcons(video, false);
+        }
+      });
+
+      video.addEventListener('play', () => updatePlayPauseIcons(video, true));
+      video.addEventListener('pause', () => updatePlayPauseIcons(video, false));
+    });
+  }
+
+  splide.on('mounted', function () {
+    setupVideoControls();
+    pauseAllVideos();
+    setTimeout(playActiveSlideVideo, 300);
+  });
+
+  splide.on('move', function () {
+    pauseAllVideos();
+  });
+
+  splide.on('moved', function () {
+    setTimeout(playActiveSlideVideo, 300);
+  });
+
+  splide.mount();
+});
+</script>
+
+</section>
+
+{% schema %}
+{
+  "name": "Video Carousel slider",
+  "class": "shopify-section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "t:sections.multicolumn.settings.title.default",
+      "label": "t:sections.multicolumn.settings.title.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "hxl",
+          "label": "t:sections.all.heading_size.options__4.label"
+        },
+        {
+          "value": "hxxl",
+          "label": "t:sections.all.heading_size.options__5.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_align",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "flex-center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+      "default": "flex-start",
+      "label": "Left"
+    },
+    {
+      "type": "range",
+      "id": "per_row",
+      "label": "Slide per row",
+      "max": 6,
+      "min": 2,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "label": "Slide height",
+      "max": 700,
+      "min": 100,
+      "step": 50,
+      "default": 400
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Margin top in PX",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Margin bottom in PX",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video slide",
+      "settings": [
+        {
+        "type": "video",
+        "id": "video",
+        "label": "t:sections.video.settings.video.label"
+        },
+        {
+          "type": "product",
+          "id": "product_id",
+          "label": "t:sections.featured-product.settings.product.label"
+        },
+        {
+          "type": "text",
+          "id": "product_title",
+          "label": "Product title"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Carousel slider",
+      "category": "Video",
+      "settings": {
+      },
+      "blocks": [
+        {
+          "type": "video"
+        },
+        {
+          "type": "video"
+        },
+        {
+          "type": "video"
+        },
+        {
+          "type": "video"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

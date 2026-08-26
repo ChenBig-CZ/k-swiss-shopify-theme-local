@@ -1,0 +1,36 @@
+<div class="ml-section-content ml-section-content-block">
+  {% unless block.settings.subtitle == blank %}
+    <p class="subtitle {{ block.settings.subtitle_font_size }}">
+      {{ block.settings.subtitle }}
+    </p>
+  {% endunless %}
+  {% unless block.settings.title == blank %}
+    <h2 class="title {{ block.settings.title_font_size }}">
+      {{ block.settings.title }}
+
+    </h2>
+  {% endunless %}
+  {% unless block.settings.description == blank %}
+    <div class="description rte {{ block.settings.description_font_size }}">
+      {{ block.settings.description }}
+    </div>
+  {% endunless %}
+  {% if block.settings.btn_primary_text != blank or block.settings.btn_secondary_text != blank %}
+    <div class="btn-wrapper">
+      {% unless block.settings.btn_primary_text == blank %}
+        <a 
+          class="button {{ block.settings.btn_primary_style }}"  
+          href="{{ block.settings.btn_primary_url }}">
+          {{ block.settings.btn_primary_text }}
+        </a>
+      {% endunless %}
+      {% unless block.settings.btn_secondary_text == blank %}
+        <a 
+          class="button {{ block.settings.btn_secondary_style }}"  
+          href="{{ block.settings.btn_secondary_url }}">
+          {{ block.settings.btn_secondary_text }}
+        </a>
+      {% endunless %}
+    </div>
+  {% endif %}
+</div>

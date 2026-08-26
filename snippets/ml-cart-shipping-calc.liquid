@@ -1,0 +1,89 @@
+{% if settings.cart_shipping_calc_show %}
+  <details class="ml-cart-shipping-calc">
+    <summary onclick="mlCartDrawerFixScrollPosition(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="ml-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle>
+      </svg>
+      <span class="summary__title">
+        {{ 'custom.cart.shipping_calculator.title' | t }}
+        {{- 'icon-caret.svg' | inline_asset_content -}}
+      </span>
+    </summary>
+    <div class="details-inner">
+      <ml-cart-shipping-calculator
+        id="ml-shipping-calculator"
+        data-shopify-common-js="{{ 'shopify_common.js' | shopify_asset_url }}"
+        data-customer-country="{{ customer.addresses.first.country }}"
+        data-customer-province="{{ customer.addresses.first.province }}"
+        data-customer-zip="{{ customer.addresses.first.zip }}">
+        <div 
+          id="ml-shipping-calculator-alert"
+          class="ml-alert"
+          role="alert" 
+          aria-atomic="true"
+          data-text-no-results="{{ 'custom.cart.shipping_calculator.no_results' | t }}"
+          hidden>
+        </div>
+        <div class="field-wrapper">
+          <div class="select">
+            <select 
+              id="ml-shipping-calculator-country"
+              class="select__select"
+              aria-label="{{ 'custom.cart.shipping_calculator.country' | t }}"
+              autocomplete="country">
+              {{ all_country_option_tags }}
+            </select>
+            <span class="svg-wrapper">
+              {{- 'icon-caret.svg' | inline_asset_content -}}
+            </span>
+          </div>
+        </div>
+        <div
+          id="ml-shipping-calculator-province-wrapper" 
+          class="field-wrapper"
+          style="display: none;">
+          {% comment %} <label 
+            class="form__label" 
+            for="ml-shipping-calculator-province">
+            {{ 'custom.cart.shipping_calculator.province' | t }}
+          </label> {% endcomment %}
+          <div class="select">
+            <select 
+              id="ml-shipping-calculator-province"
+              class="select__select"
+              autocomplete="address-level1">
+            </select>
+            <span class="svg-wrapper">
+              {{- 'icon-caret.svg' | inline_asset_content -}}
+            </span>
+          </div>
+        </div>
+        <div class="field-wrapper">
+          <div class="field">
+            <input 
+              id="ml-shipping-calculator-zip" 
+              class="field__input" 
+              type="text"
+              placeholder="{{ 'custom.cart.shipping_calculator.zip' | t }}"
+              autocomplete="postal-code">
+            {% comment %} <label 
+              class="field__label" 
+              for="ml-shipping-calculator-zip">
+              {{ 'custom.cart.shipping_calculator.zip' | t }}
+            </label> {% endcomment %}
+          </div>
+        </div>
+        <div class="field-wrapper">
+          <button 
+            id="ml-shipping-calculator-btn" 
+            class="button button--full-width button--primary"
+            data-text="{{ 'custom.cart.shipping_calculator.button_label' | t }}"
+            type="button">
+            <span>{{ 'custom.cart.shipping_calculator.button_label' | t }}</span>
+            {%- render 'loading-spinner' -%}
+          </button>
+        </div>
+      </ml-cart-shipping-calculator>
+    </div>
+  </details>
+{% endif %}

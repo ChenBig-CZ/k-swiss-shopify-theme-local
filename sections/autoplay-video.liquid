@@ -1,0 +1,344 @@
+{%- liquid
+  assign show_desktop = section.settings.show_desktop
+  assign show_mobile = section.settings.show_mobile
+  assign video_url = section.settings.video_url | strip
+-%}
+
+{%- if video_url != blank and show_desktop == false and show_mobile == false -%}
+  {%- comment -%} Hidden on both breakpoints: render nothing so the video is never downloaded {%- endcomment -%}
+{%- elsif video_url != blank -%}
+
+  {%- liquid
+    if show_desktop and show_mobile
+      assign visibility_classes = 'block-section'
+    elsif show_desktop
+      assign visibility_classes = 'hidden-section lg:block'
+    else
+      assign visibility_classes = 'block-section lg:hidden'
+    endif
+
+    assign video_ext = video_url | split: '?' | first | split: '.' | last | downcase
+    case video_ext
+      when 'webm'
+        assign video_type = 'video/webm'
+      when 'ogv', 'ogg'
+        assign video_type = 'video/ogg'
+      when 'mov'
+        assign video_type = 'video/quicktime'
+      else
+        assign video_type = 'video/mp4'
+    endcase
+
+    assign poster_url = ''
+    if section.settings.fallback_image != blank
+      assign poster_url = section.settings.fallback_image | image_url: width: 1400
+    endif
+  -%}
+
+  <div
+    id="AutoplayVideo-{{ section.id }}"
+    class="autoplay-video-wrapper autoplay_video_section {{ visibility_classes }}{% if section.settings.parallax %} autoplay-video-wrapper--parallax{% endif %}"
+    data-parallax="{{ section.settings.parallax }}"
+  >
+    <div class="autoplay-video-inner relative{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+
+      <!-- Video element -->
+      <video
+        class="autoplay-video-media"
+        id="video-{{ section.id }}"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        {% if poster_url != blank %}poster="{{ poster_url }}"{% endif %}
+      >
+        <source src="{{ video_url | escape }}" type="{{ video_type }}">
+        Your browser does not support the video tag.
+      </video>
+
+      <!-- Custom controls -->
+      <div class="video-controls header__icons">
+        <button
+          type="button"
+          class="video-play-toggle header__icon"
+          aria-label="Pause video"
+          aria-pressed="false"
+        >
+          <span class="play-icon svg-wrapper" aria-hidden="true"></span>
+        </button>
+
+        <button
+          type="button"
+          class="video-mute-toggle header__icon"
+          aria-label="Unmute video"
+          aria-pressed="true"
+        >
+          <span class="mute-icon svg-wrapper" aria-hidden="true"></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <style>
+    #AutoplayVideo-{{ section.id }} .autoplay-video-media {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    #AutoplayVideo-{{ section.id }} .video-controls {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      display: flex;
+      gap: 10px;
+      z-index: 2;
+    }
+
+    #AutoplayVideo-{{ section.id }} .video-controls button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      background: rgba(0, 0, 0, 0.3);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    #AutoplayVideo-{{ section.id }} .video-controls button:hover {
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    #AutoplayVideo-{{ section.id }} .video-controls svg {
+      width: 22px;
+      height: 22px;
+      display: block;
+      fill: #fff;
+    }
+
+    {%- if section.settings.parallax -%}
+      #AutoplayVideo-{{ section.id }}.autoplay-video-wrapper--parallax {
+        position: relative;
+        height: {{ section.settings.section_height }}vh;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      #AutoplayVideo-{{ section.id }}.autoplay-video-wrapper--parallax .autoplay-video-inner {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+
+      #AutoplayVideo-{{ section.id }}.autoplay-video-wrapper--parallax .autoplay-video-media {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        min-width: 100%;
+        min-height: 100%;
+        /* translate first, then scale — reversed order shifts the video off-center */
+        transform: translate(-50%, -50%) scale(1.2);
+        will-change: transform;
+        pointer-events: none;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        #AutoplayVideo-{{ section.id }}.autoplay-video-wrapper--parallax .autoplay-video-media {
+          transform: translate(-50%, -50%) scale(1.2) !important;
+          will-change: auto;
+        }
+      }
+    {%- endif -%}
+  </style>
+
+  <script>
+    (function () {
+      var SECTION_ID = {{ section.id | json }};
+      var PARALLAX = {{ section.settings.parallax | json }};
+      var SCALE = 1.2;
+
+      var ICONS = {
+        play: '<svg xmlns="http://www.w3.org/2000/svg" class="play-svg icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"/></svg>',
+        pause: '<svg xmlns="http://www.w3.org/2000/svg" class="pause-svg icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>',
+        muted: '<svg xmlns="http://www.w3.org/2000/svg" class="muted-svg icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zM19 12c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.8 8.8 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3 3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25a7 7 0 0 1-2.25 1.17v2.06a9 9 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4 9.91 6.09 12 8.18V4z"/></svg>',
+        unmuted: '<svg xmlns="http://www.w3.org/2000/svg" class="unmuted-svg icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05A4.5 4.5 0 0 0 16.5 12zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>'
+      };
+
+      function init() {
+        var wrapper = document.getElementById('AutoplayVideo-' + SECTION_ID);
+        if (!wrapper || wrapper.dataset.avInit === 'true') return;
+
+        var video = wrapper.querySelector('.autoplay-video-media');
+        var playBtn = wrapper.querySelector('.video-play-toggle');
+        var muteBtn = wrapper.querySelector('.video-mute-toggle');
+        if (!video || !playBtn || !muteBtn) return;
+
+        wrapper.dataset.avInit = 'true';
+
+        var playIcon = playBtn.querySelector('.play-icon');
+        var muteIcon = muteBtn.querySelector('.mute-icon');
+        var userPaused = false;
+
+        // Sync icons from the actual media state, never from click state
+        function syncPlay() {
+          var paused = video.paused;
+          playIcon.innerHTML = paused ? ICONS.play : ICONS.pause;
+          playBtn.setAttribute('aria-label', paused ? 'Play video' : 'Pause video');
+          playBtn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+        }
+
+        function syncMute() {
+          var muted = video.muted;
+          muteIcon.innerHTML = muted ? ICONS.muted : ICONS.unmuted;
+          muteBtn.setAttribute('aria-label', muted ? 'Unmute video' : 'Mute video');
+          muteBtn.setAttribute('aria-pressed', muted ? 'true' : 'false');
+        }
+
+        video.addEventListener('play', syncPlay);
+        video.addEventListener('pause', syncPlay);
+        video.addEventListener('volumechange', syncMute);
+        syncPlay();
+        syncMute();
+
+        playBtn.addEventListener('click', function () {
+          if (video.paused) {
+            userPaused = false;
+            var p = video.play();
+            if (p && typeof p.catch === 'function') p.catch(function () { syncPlay(); });
+          } else {
+            userPaused = true;
+            video.pause();
+          }
+        });
+
+        muteBtn.addEventListener('click', function () {
+          video.muted = !video.muted;
+        });
+
+        // Pause when fully out of view (saves CPU/battery and stops offscreen audio)
+        if ('IntersectionObserver' in window) {
+          new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                if (!userPaused && video.paused) {
+                  var p = video.play();
+                  if (p && typeof p.catch === 'function') p.catch(function () {});
+                }
+              } else if (!video.paused) {
+                video.pause();
+              }
+            });
+          }, { threshold: 0 }).observe(wrapper);
+        }
+
+        if (PARALLAX) initParallax(wrapper, video);
+      }
+
+      function initParallax(wrapper, video) {
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (reduceMotion.matches) return;
+
+        var ticking = false;
+
+        function update() {
+          ticking = false;
+
+          var rect = wrapper.getBoundingClientRect();
+          if (rect.bottom <= 0 || rect.top >= window.innerHeight) return;
+
+          // -1 when the section is entering from the bottom, +1 when leaving at the top
+          var center = rect.top + rect.height / 2;
+          var travel = (window.innerHeight + rect.height) / 2;
+          var progress = Math.max(-1, Math.min(1, (window.innerHeight / 2 - center) / travel));
+
+          // Clamp to the actual overflow created by the scale, so no empty edge is ever exposed
+          var maxOffset = Math.max(0, (rect.height * SCALE - rect.height) / 2);
+          var offset = (progress * maxOffset).toFixed(1);
+
+          video.style.transform =
+            'translate(-50%, calc(-50% + ' + offset + 'px)) scale(' + SCALE + ')';
+        }
+
+        function onScroll() {
+          if (ticking) return;
+          ticking = true;
+          window.requestAnimationFrame(update);
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+        update();
+      }
+
+      init();
+      document.addEventListener('shopify:section:load', function (event) {
+        if (event.detail && event.detail.sectionId === SECTION_ID) init();
+      });
+    })();
+  </script>
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Autoplay Video",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_desktop",
+      "label": "Show desktop",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile",
+      "label": "Show mobile",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Video File URL",
+      "info": "Upload your .mp4 file in Settings > Files and paste the link here."
+    },
+    {
+      "type": "image_picker",
+      "id": "fallback_image",
+      "label": "Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "parallax",
+      "default": false,
+      "label": "Enable Parallax Effect"
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "label": "Section height",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "default": 90,
+      "info": "Only applies when parallax is enabled."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Autoplay Video"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,511 @@
+<!-- Product Gallery Section -->
+<div class="custom-product-gallery section-{{ section.id }}">
+  
+  <div class="product-gallery-wrapper">
+    <!-- Thumbnails -->
+    <div class="thumbnail-slider-wrapper">
+      <button class="thumb-nav up-thumb-arrow"><span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span></button>
+      <div class="thumbnail-slider scrollable-thumbs">
+        {% for media in product.media %}
+        <div class="thumb-item" data-index="{{ forloop.index0 }}">
+          {{ media | image_url: width: 150 | image_tag: loading: "lazy", class: "thumbnail-image" }}
+        </div>
+        {% endfor %}
+      </div>
+      <button class="thumb-nav down-thumb-arrow"><span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span></button>
+    </div>
+
+    <!-- Main Image with arrows -->
+    <div class="main-image-slider-wrapper">
+      <button class="nav-arrow left-arrow"><span class="svg-wrapper">{{- 'icon-arrow.svg' | inline_asset_content -}}</span></button>
+      <div class="main-image-slider tiles">
+
+        {% for media in product.media %}
+        <div class="main-image-slide h-full product-gallery--slide-image-wrapper swiper-zoom-container" data-index="{{ forloop.index0 }}">
+          <div class="main_image" data-scale="{{ zoom_scale }}" data-image="{{ media | image_url: width: 1200 }}"></div>
+        </div>
+        {% endfor %}
+      </div>
+      <button class="nav-arrow right-arrow"><span class="svg-wrapper">{{- 'icon-arrow.svg' | inline_asset_content -}}</span></button>
+    </div>
+  </div>
+
+  <div class="hidden-section lg:block">
+  <div class="product_bottom_part">
+  <div class="aside_blank">
+    &nbsp;
+  </div>
+
+  <div class="main_content">
+
+
+  </div>
+  </div>
+</div>
+      </div>
+
+<!-- CSS -->
+<style>
+
+.section-{{ section.id }} .block-image-wrapper {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); /* 12 column grid */
+  gap: 10px;
+}
+
+.section-{{ section.id }} .col-12 {
+  grid-column: span 12;
+}
+.section-{{ section.id }} .col-6 {
+  grid-column: span 6;
+}
+.section-{{ section.id }} .col-4 {
+  grid-column: span 4;
+}
+.section-{{ section.id }} .col-3 {
+  grid-column: span 3;
+}
+
+.section-{{ section.id }} .product-gallery-wrapper, .section-{{ section.id }} .product_bottom_part{
+  display: flex;
+  margin-top: 10px;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.section-{{ section.id }} .thumbnail-slider-wrapper, .section-{{ section.id }} .aside_blank{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+  max-height: 550px;
+  position: relative;
+}
+ .section-{{ section.id }} .thumbnail-slider-wrapper svg{
+    margin: 0 auto;
+  }
+
+.section-{{ section.id }} .thumbnail-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: max-content;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+.section-{{ section.id }} .thumb-item {
+  cursor: pointer;
+  border: 2px solid #e5e5e5;
+  padding: 5px;
+}
+
+.section-{{ section.id }} .thumb-item.active {
+  border-color: black;
+}
+
+.section-{{ section.id }} .thumbnail-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.section-{{ section.id }} .thumb-nav {
+  cursor: pointer;
+  position: absolute;
+  padding: 10px;
+  background-color: white;
+  width: 100%;
+  display: none;
+  border: none;
+}
+.section-{{ section.id }} .thumb-nav .svg-wrapper{
+    height: 15px;
+    width: 15px;
+}
+ .section-{{ section.id }} .up-thumb-arrow{
+    top: 0px;
+    transform: rotate(180deg);
+  }
+.section-{{ section.id }} .down-thumb-arrow{
+    bottom: 0px;
+  }
+
+.section-{{ section.id }} .main-image-slider-wrapper{
+  position: relative;
+  width: 80%;
+  height: -webkit-fill-available;
+}
+.section-{{ section.id }} .main_content{
+  position: relative;
+  width: 80%;
+}
+
+.section-{{ section.id }} .main-image-slider {
+  position: relative;
+  width: 100%;
+  border: 2px solid #e5e5e5;
+  height: -webkit-fill-available;
+}
+
+.section-{{ section.id }} .main-image-slide {
+  display: none;
+}
+
+.section-{{ section.id }} .main-image-slide.active {
+  display: block;
+}
+
+.section-{{ section.id }} .main-image {
+  width: 100%;
+  display: block;
+  padding: 30px;
+  object-fit: contain;
+  height: -webkit-fill-available;
+}
+
+.section-{{ section.id }} .nav-arrow {
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+    z-index: 1;
+    background-color: rgba(000, 000, 000, 0.2);
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    transition: all 0.3s ease;
+}
+.section-{{ section.id }} .nav-arrow:hover {
+background-color: rgba(000, 000, 000, 0.4);
+}
+.section-{{ section.id }} .nav-arrow .svg-wrapper{
+    height: 20px;
+    width: 20px;
+}
+.section-{{ section.id }} .left-arrow {
+  left: 10px;
+  transform: translateY(-50%) rotate(-180deg);
+}
+
+.section-{{ section.id }} .right-arrow {
+  right: 10px;
+  transform: translateY(-50%) rotate(0deg);
+}
+ .section-{{ section.id }} .scrollable-thumbs{
+  overflow-y: scroll; /* ensures layout remains consistent */
+  scrollbar-width: none; /* Firefox */
+}
+
+.section-{{ section.id }} .scrollable-thumb::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+@media screen and (max-width: 767px) {
+  .section-{{ section.id }} .product-gallery-wrapper {
+    flex-direction: column-reverse;
+    overflow: hidden;
+  }
+  .section-{{ section.id }} .thumbnail-slider-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+    max-width: 100%;
+  }
+  .section-{{ section.id }} .main-image-slider-wrapper {
+    width: 100%;
+  }
+  .section-{{ section.id }} .main-image-slider {
+    height: unset;
+  }
+  .section-{{ section.id }} .thumbnail-slider {
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+        gap: 5px;
+    margin: 0 5px;
+  }
+  .section-{{ section.id }} .thumbnail-slider::-webkit-scrollbar {
+    display: none;
+  }
+  .section-{{ section.id }} .thumb-item {
+    flex: 0 0 auto;
+    height: 75px;
+  }
+  .section-{{ section.id }} .thumbnail-image{
+    width: 80px;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+  .main-image-slide div:empty{
+  display: block
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  runSlider();
+});
+
+function runSlider() {
+  const thumbs = document.querySelectorAll(".thumb-item");
+  const slides = document.querySelectorAll(".main-image-slide");
+  const leftArrow = document.querySelector(".left-arrow");
+  const rightArrow = document.querySelector(".right-arrow");
+
+  const thumbWrapper = document.querySelector(".scrollable-thumbs");
+  const upArrow = document.querySelector(".up-thumb-arrow");
+  const downArrow = document.querySelector(".down-thumb-arrow");
+
+  let currentIndex = 0;
+  let startX = 0;
+  let endX = 0;
+
+  /* =====================
+     CORE SLIDE FUNCTION
+  ====================== */
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === index);
+      slide.style.opacity = i === index ? "1" : "0";
+      slide.style.transition = "opacity 0.4s ease";
+      thumbs[i]?.classList.toggle("active", i === index);
+    });
+
+    thumbs[index]?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "nearest"
+    });
+  }
+
+  /* =====================
+     INFINITE NAVIGATION
+  ====================== */
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    showSlide(currentIndex);
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    showSlide(currentIndex);
+  }
+
+  /* =====================
+     ARROWS CLICK
+  ====================== */
+  leftArrow?.addEventListener("click", prevSlide);
+  rightArrow?.addEventListener("click", nextSlide);
+
+  /* =====================
+     THUMB CLICK
+  ====================== */
+  thumbs.forEach((thumb, index) => {
+    thumb.addEventListener("click", () => {
+      currentIndex = index;
+      showSlide(currentIndex);
+    });
+  });
+
+  /* =====================
+     KEYBOARD SUPPORT
+  ====================== */
+  document.addEventListener("keydown", e => {
+    if (e.key === "ArrowLeft") prevSlide();
+    if (e.key === "ArrowRight") nextSlide();
+  });
+
+  /* =====================
+     TOUCH / SWIPE (MOBILE)
+  ====================== */
+  const sliderArea = document.querySelector(".main-image-slider");
+
+  sliderArea?.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+  });
+
+  sliderArea?.addEventListener("touchend", e => {
+    endX = e.changedTouches[0].clientX;
+    handleSwipe();
+  });
+
+  function handleSwipe() {
+    const diff = startX - endX;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? nextSlide() : prevSlide();
+    }
+  }
+
+  /* =====================
+     THUMB SCROLL ARROWS
+  ====================== */
+  function updateThumbNavVisibility() {
+    if (!thumbWrapper) return;
+
+    const scrollTop = thumbWrapper.scrollTop;
+    const scrollHeight = thumbWrapper.scrollHeight;
+    const clientHeight = thumbWrapper.clientHeight;
+
+    upArrow.style.display = scrollTop > 0 ? "block" : "none";
+    downArrow.style.display =
+      scrollTop + clientHeight < scrollHeight - 1 ? "block" : "none";
+  }
+
+  thumbWrapper?.addEventListener("scroll", updateThumbNavVisibility);
+
+  upArrow?.addEventListener("click", () => {
+    thumbWrapper.scrollBy({ top: -150, behavior: "smooth" });
+  });
+
+  downArrow?.addEventListener("click", () => {
+    thumbWrapper.scrollBy({ top: 150, behavior: "smooth" });
+  });
+
+  /* =====================
+     INIT
+  ====================== */
+  showSlide(currentIndex);
+  setTimeout(updateThumbNavVisibility, 300);
+}
+</script>
+
+
+<style>
+  .section-{{ section.id }} .main-image-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .section-{{ section.id }} .main_image {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .section-{{ section.id }} .photo {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition: all 0.3s ease;
+    cursor: move;
+  }
+
+</style>
+{% if image_zoom == 'hover' %}
+<script>
+(function () {
+  if (window.__vanillaZoomInit) return;
+  window.__vanillaZoomInit = true;
+
+  function initZoom(scope = document) {
+    scope.querySelectorAll('.main_image').forEach(tile => {
+      if (tile.dataset.zoomReady) return;
+      tile.dataset.zoomReady = "1";
+
+      const scale = parseFloat(tile.dataset.scale || 1.6);
+      const image = tile.dataset.image;
+
+      const photo = document.createElement('div');
+      photo.className = 'photo';
+      photo.style.backgroundImage = `url(${image})`;
+      tile.appendChild(photo);
+
+      let targetX = 50, targetY = 50;
+      let currentX = 50, currentY = 50;
+      let rafId = null;
+
+      function animate() {
+        currentX += (targetX - currentX) * 0.10;
+        currentY += (targetY - currentY) * 0.10;
+        photo.style.transformOrigin = `${currentX}% ${currentY}%`;
+        rafId = requestAnimationFrame(animate);
+      }
+
+      tile.addEventListener('mouseenter', () => {
+        photo.style.transform = `scale(${scale})`;
+        animate();
+      });
+
+      tile.addEventListener('mouseleave', () => {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+        targetX = currentX = 50;
+        targetY = currentY = 50;
+        photo.style.transform = 'scale(1)';
+        photo.style.transformOrigin = '50% 50%';
+      });
+
+      tile.addEventListener('mousemove', e => {
+        const rect = tile.getBoundingClientRect();
+        targetX = ((e.clientX - rect.left) / rect.width) * 100;
+        targetY = ((e.clientY - rect.top) / rect.height) * 100;
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initZoom();
+  });
+
+  document.addEventListener('slide:change', () => {
+    initZoom();
+  });
+
+})();
+</script>
+{% else %}
+  
+  <script>
+(function () {
+
+  function initSimpleImage(scope = document) {
+    scope.querySelectorAll('.main_image').forEach(tile => {
+
+      delete tile.dataset.zoomReady;
+
+      const photo = tile.querySelector('.photo');
+      if (photo) photo.remove();
+
+      const image = tile.dataset.image;
+      if (!image) return;
+
+      tile.style.backgroundImage = `url(${image})`;
+      tile.style.backgroundRepeat = 'no-repeat';
+      tile.style.backgroundPosition = 'center';
+      tile.style.backgroundSize = 'contain';
+    });
+  }
+
+  window.initSimpleImage = initSimpleImage;
+
+})();
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  initSimpleImage();
+});
+</script>
+
+
+{% endif %}

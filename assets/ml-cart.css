@@ -1,0 +1,462 @@
+/*
+  General cart drawer styles
+*/
+.ml-cart-drawer-wrapper {
+  flex: 1;
+  overflow: auto;
+  margin-bottom: -1px;
+  padding-right: 5px;
+}
+
+.ml-cart-drawer-wrapper::-webkit-scrollbar {
+  width: 3px;
+}
+
+.ml-cart-drawer-wrapper::-webkit-scrollbar-thumb {
+  background-color: #c32033;
+  border-radius: 100px;
+}
+
+.ml-cart-drawer-wrapper::-webkit-scrollbar-track-piece {
+  margin-top: 31px;
+}
+
+body .cart-drawer .cart-items thead {
+  margin: 0;
+}
+
+body #CartDrawer-Form {
+  margin-bottom: 1rem;
+}
+
+body .cart-drawer .cart-item:not(:last-child) {
+  padding-bottom: 1.25rem;
+  border-bottom: .1rem solid rgba(var(--color-foreground),.08);
+}
+
+body .cart-items th {
+  padding-bottom: 1rem;
+}
+
+.cart-drawer details {
+  border-top: .1rem solid rgba(var(--color-foreground), .2);
+  border-bottom: .1rem solid rgba(var(--color-foreground), .2);
+}
+
+.cart-drawer details + details {
+  border-top: none;
+}
+
+.cart-drawer details summary {
+  display: flex;
+  align-items: center;
+  position: relative;
+  line-height: 1;
+  padding: 1.5rem 2.8rem 1.5rem 0;
+}
+
+.cart-drawer details .summary__title {
+  font-size: .95em;
+}
+
+.cart-drawer details summary .ml-svg-icon {
+  margin-right: 1rem;
+}
+
+.cart-drawer details summary .icon-caret {
+  right: .5rem;
+}
+
+cart-drawer .totals {
+  margin-top: 0;
+  margin-bottom: 1.75rem;
+}
+
+body .cart-drawer .tax-note {
+  margin: -1rem 0 1.25rem;
+}
+
+.cart-drawer__footer .discounts {
+  margin-bottom: .5rem;
+}
+
+cart-drawer .button--continue-shopping {
+  margin-top: .75rem;
+  height: auto;
+  min-height: auto;
+  padding: .75rem 0;
+  font-size: .8em;
+}
+
+.is-empty .ml-cart-drawer-wrapper,
+.is-empty .drawer__footer {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  body .drawer {
+    background-color: transparent !important;
+  }
+  body .drawer__inner {
+    width: 100vw;
+    max-width: none;
+    border-left: none;
+  }
+}
+
+
+/*
+  Cart announcement
+*/
+.ml-cart-announcement {
+  text-align: center;
+  padding: .5rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  line-height: normal;
+}
+
+.is-empty .ml-cart-announcement {
+  display: none;
+}
+
+.ml-cart-announcement .description {
+  animation-name: flash;
+  animation-duration: 1s;
+  animation-delay: .4s;
+}
+
+
+/*
+  "Low stock" text
+*/
+.ml-cart-low-stock-text {
+  font-size: 1.4rem;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  margin: -.25rem 0 1.5rem;
+}
+
+.ml-cart-low-stock-text svg {
+  flex-shrink: 0;
+  margin-right: .5rem;
+}
+
+
+/*
+  Cart goal
+*/
+.ml-cart-goal {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.ml-cart-goal .description {
+  text-align: center;
+  color: rgba(var(--color-foreground), 1);
+  font-size: .95em;
+  margin-bottom: 1.25rem;
+  line-height: normal;
+}
+
+.ml-cart-goal .bs-progress {
+  position: relative;
+  overflow: visible;
+}
+
+.ml-cart-goal-icons {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-14px);
+  width: 100%;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  color: rgba(var(--color-foreground), 1);
+}
+
+.ml-cart-goal-icons > div {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+.ml-cart-goal-icons > div > div {
+  width: 28px;
+  height: 28px;
+  transform: translateX(40%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(var(--color-background), 1);
+  border: 1px solid currentColor;
+}
+
+.ml-cart-goal-icons > div:last-child > div {
+  transform: translateX(0);
+}
+
+.ml-cart-goal-icons > div.active > div {
+  color: rgba(var(--color-background), 1);
+  background-color: rgba(var(--color-foreground), 1);
+  border-color: rgba(var(--color-foreground), 1);
+}
+
+.ml-cart-goal-icons > div.active > div svg {
+  animation: eg_cart_goal_icon 1s linear alternate both infinite;
+}
+
+@keyframes eg_cart_goal_icon {
+  from { transform: translateX(-2px); }
+  to { transform: translateX(2px); }
+}
+
+#ml-cart-goal-confetti-canvas {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 160px;
+}
+
+
+/*
+  Cart upsells
+*/
+.ml-cart-upsells {
+}
+
+.ml-cart-upsells .details-inner {
+  padding: .75rem 0 1rem;
+}
+
+.ml-cart-upsells .grid {
+  margin: 0 !important;
+}
+
+.ml-cart-upsell-item {
+  display: flex;
+  margin-bottom: 1rem;
+  box-sizing: content-box;
+}
+
+.ml-cart-upsell-item-image {
+  width: 34%;
+}
+
+.ml-cart-upsell-item-details {
+  padding-left: 1.5rem;
+  width: calc(66% - 1.75rem);
+}
+
+.ml-cart-upsell-item .cart-item__name {
+  margin: 0 0 1rem;
+}
+
+.ml-cart-upsell-item .price {
+  margin-bottom: 1.5rem;
+}
+
+.ml-cart-upsell-item .field-wrapper {
+  margin-bottom: 1rem;
+}
+
+.ml-cart-upsell-item .select__select {
+  font-size: .8em;
+}
+
+.ml-cart-upsell-item .select__select,
+.ml-cart-upsell-item button {
+  line-height: normal;
+  min-height: auto;
+  height: auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.ml-cart-upsell-item .select .svg-wrapper {
+  margin-right: 1rem;
+}
+
+.ml-cart-upsell-item button {
+  box-sizing: border-box;
+}
+
+
+/*
+  Cart note
+*/
+.ml-cart-note .cart__note {
+  top: auto;
+}
+
+.ml-cart-note .details-inner {
+  padding: .5rem .1rem 2.5rem;
+}
+
+
+/*
+  Gift upsell
+*/
+.ml-cart-gift-upsell .details-inner {
+  padding: .75rem 0 2rem;
+}
+
+.ml-cart-gift-upsell .description {
+  line-height: normal;
+  margin-bottom: 1rem;
+}
+
+
+/*
+  Discount form
+*/
+.ml-cart-discount-form .details-inner {
+  padding: .5rem 0 2.5rem;
+}
+
+ml-cart-discount-form form {
+  display: flex;
+  padding-left: .1rem;
+  padding-right: .1rem;
+  gap: 5px;
+}
+
+.ml-cart-discount-form form button {
+  padding-left: 1.75rem;
+  padding-right: 1.75rem;
+  width: auto;
+  min-width: auto;
+}
+
+ml-cart-discount-form form button svg {
+  margin-left: .5rem;
+}
+
+.ml-cart-discount-form .discounts {
+  margin-top: .75rem;
+  display: flex;
+  gap: .75rem;
+}
+
+.ml-cart-discount-form .discounts button {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  border: 1px solid rgba(var(--color-foreground), .1);
+  background-color: rgba(var(--color-foreground), .05);
+  color: rgba(var(--color-foreground), 1);
+  cursor: pointer;
+}
+
+.ml-cart-discount-form .discounts button:hover,
+.ml-cart-discount-form .discounts button:focus {
+  border-color: rgba(var(--color-foreground), .25);
+}
+
+.ml-cart-discount-form .discounts button svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+
+/*
+  Shipping calculator
+*/
+.ml-cart-shipping-calc .details-inner {
+  padding: .5rem .1rem 2rem;
+}
+
+.ml-cart-shipping-calc .select .svg-wrapper {
+  right: 1.5rem;
+}
+
+.ml-cart-shipping-calc .field-wrapper {
+  margin-bottom: 1rem;
+}
+
+.ml-cart-shipping-calc .select__select {
+  font-size: 1.4rem;
+}
+
+#ml-shipping-calculator-province-wrapper {
+  background: rgba(var(--color-foreground), .05);
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+
+/*
+  Delivery calendar
+*/
+.ml-cart-delivery-calendar .details-inner {
+  padding: .5rem .1rem 2rem;
+}
+
+.ml-cart-delivery-calendar .ml-alert {
+  text-align: center;
+}
+
+
+/*
+  Payment icons
+*/
+.ml-cart-payment-icons {
+  display: flex;
+  justify-content: center;
+  margin: 1rem -.25rem 0;
+}
+
+.ml-cart-payment-icons > div {
+  display: flex;
+}
+
+.ml-cart-payment-icons svg {
+  height: 18px;
+  width: auto;
+  border: 1px solid rgba(var(--color-foreground), .1);
+  margin: .25rem;
+}
+
+.ml-cart-payment-icons-text {
+  display: flex;
+  justify-content: center;
+  line-height: normal;
+  margin: 0 0 -.5rem;
+}
+
+
+/*
+  Upgrade to subscription
+*/
+.cart-item__sub-upgrade {
+  grid-column: 1 / 5;
+  padding: 1rem !important;
+  background-color: rgba(var(--color-foreground), .05);
+  margin-bottom: .5rem;
+}
+
+ml-cart-sub-upgrade-selector {
+  display: flex;
+  align-items: center;
+}
+
+ml-cart-sub-upgrade-selector .ml-svg-icon {
+  margin-right: .75rem;
+  flex-shrink: 0;
+}
+
+ml-cart-sub-upgrade-selector .select__select {
+  line-height: normal;
+  min-height: auto;
+  height: auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+ml-cart-sub-upgrade-selector .select .svg-wrapper {
+  margin-right: 1rem;
+}

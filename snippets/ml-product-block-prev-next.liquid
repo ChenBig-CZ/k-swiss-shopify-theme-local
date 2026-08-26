@@ -1,0 +1,43 @@
+{% if collection.previous_product or collection.next_product %}
+  <ml-product-prev-next class="ml-product-block-prev-next" {{ block.shopify_attributes }}>
+    <h2 class="h6 title">
+      {{ block.settings.title }}
+    </h2>
+    <div class="ml-product-block-prev-next-inner">
+      {% if collection.previous_product %}
+        <a 
+          class="ml-product-block-prev-next--prev"
+          href="{{ collection.previous_product.url }}">
+          {% render 'ml-image-url', img: collection.previous_product.featured_image, ratio: block.settings.img_ratio, class: 'img-thumbnail'  %}
+          <span class="visually-hidden">
+            {{ 'ecomgraduates.product.prev_product' }}
+          </span>
+          <div class='icon-wrapper'>
+            {% render 'ml-svg-icons', icon: 'arrow-left', size: 16 %}
+          </div>
+        </a>
+        <div class="ml-tooltip" role="tooltip">
+          {{ collection.previous_product.title }} - {{ collection.previous_product.price | money }}
+        </div>
+      {% endif %}
+    </div>
+    <div class="ml-product-block-prev-next-inner">
+      {% if collection.next_product %}
+        <a 
+          class="ml-product-block-prev-next--next"
+          href="{{ collection.next_product.url }}">
+          {% render 'ml-image-url', img: collection.next_product.featured_image, ratio: block.settings.img_ratio, class: 'img-thumbnail'  %}
+          <span class="visually-hidden">
+            {{ 'ecomgraduates.product.next_product' }}
+          </span>
+          <div class='icon-wrapper'>
+            {% render 'ml-svg-icons', icon: 'arrow-right', size: 16 %}
+          </div>
+        </a>
+        <div class="ml-tooltip" role="tooltip">
+          {{ collection.next_product.title }} - {{ collection.next_product.price | money }}
+        </div>
+      {% endif %}
+    </div>
+  </ml-product-prev-next>
+{% endif %}

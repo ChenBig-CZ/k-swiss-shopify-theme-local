@@ -1,0 +1,236 @@
+{% comment %}
+  Magic Zoom Plus integration for Dawn's native product media gallery.
+
+  Purpose:
+  Magic Zoom Plus normally replaces the theme gallery with its own markup
+  (a single main image plus a thumbnail strip), which removes Dawn's
+  two-column "columns" layout. This snippet disables that takeover and
+  attaches Magic Zoom to each image of Dawn's own gallery instead, so the
+  grid layout stays intact while zoom and fullscreen still work.
+
+  Requirements (set per product template in the theme editor):
+  - Product information > Media > Desktop layout = "Two column"
+  - Product information > Media > Image zoom    = "None"
+    (Dawn's built-in magnify.js must be off, otherwise both zooms fight)
+
+  Usage - render inside main-product.liquid, immediately after
+  <div class="grid__item product__media-wrapper"> and BEFORE the
+  'product-media-gallery' render:
+
+  {% render 'magic-zoom-gallery' %}
+{% endcomment %}
+
+{%- liquid
+  assign mz_enabled = true
+  if section.settings.gallery_layout == blank
+    assign mz_enabled = false
+  endif
+-%}
+
+{%- if mz_enabled -%}
+  <style>
+    /* Magic Zoom anchor fills Dawn's media box */
+    #MediaGallery-{{ section.id }} .product__media .MagicZoom {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Keep the image proportional inside the zoom anchor.
+       "contain" is required for accurate zoom coordinate mapping. */
+    #MediaGallery-{{ section.id }} .product__media .MagicZoom img,
+    #MediaGallery-{{ section.id }} .product__media .mz-figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    #MediaGallery-{{ section.id }} .product__media figure.mz-figure {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+
+    /* Disable Dawn's lightbox trigger overlay so the pointer reaches the zoom.
+       Without this, .product__media-toggle::after (z-index 2) swallows hover. */
+    #MediaGallery-{{ section.id }} .product__media-toggle {
+      pointer-events: none;
+    }
+    #MediaGallery-{{ section.id }} .product__media-toggle::after {
+      display: none;
+    }
+    #MediaGallery-{{ section.id }} .product__media-icon {
+      display: none;
+    }
+
+    /* Mobile: hover zoom is useless, so a full-size tap target opens
+       Magic Zoom's fullscreen view instead. */
+    #MediaGallery-{{ section.id }} .mz-tap-target {
+      display: none;
+    }
+    @media screen and (max-width: 749px) {
+      #MediaGallery-{{ section.id }} .mz-tap-target {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+      }
+    }
+
+    /* Cap the floating zoom window so it does not overflow the viewport */
+    .mz-zoom-window img {
+      max-width: 800px !important;
+      height: auto !important;
+    }
+
+    .mz-hint {
+      text-align: center;
+    }
+  </style>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var GALLERY_ID = 'MediaGallery-{{ section.id }}';
+      var GALLERY_GROUP = 'dawn-gallery-{{ section.id }}';
+      var ZOOM_WIDTH = 2048;
+      var ZOOM_OPTIONS = 'zoomMode:zoom; zoomPosition:inner; expandCaption:false; hint:once';
+
+      var isWrapping = false;
+      var observer = null;
+
+      /* Stop the app from replacing the theme gallery with its own markup.
+         This is the key flag - without it Magic Zoom takes over the DOM. */
+      function disableThemeTakeover() {
+        window.MagicToolboxSupportedThemes = '';
+      }
+
+      document.addEventListener('magiczoomplus:beforeinit', disableThemeTakeover);
+      disableThemeTakeover();
+
+      function getGallery() {
+        return document.getElementById(GALLERY_ID);
+      }
+
+      /* Build a high resolution source URL from Dawn's rendered image */
+      function hiResUrl(img) {
+        var src = img.getAttribute('src') || '';
+        if (!src) return '';
+        if (src.indexOf('width=') !== -1) {
+          return src.replace(/([?&])width=\d+/gi, '$1width=' + ZOOM_WIDTH);
+        }
+        return src + (src.indexOf('?') === -1 ? '?' : '&') + 'width=' + ZOOM_WIDTH;
+      }
+
+      function findUnwrapped() {
+        var gallery = getGallery();
+        if (!gallery) return [];
+        var images = gallery.querySelectorAll(
+          '.product-media-container.media-type-image .product__media img'
+        );
+        return Array.prototype.filter.call(images, function (img) {
+          return !img.closest('a.MagicZoom');
+        });
+      }
+
+      function wrapImage(img) {
+        var href = hiResUrl(img);
+        if (!href) return;
+
+        var parent = img.parentNode;
+        if (!parent) return;
+
+        var anchor = document.createElement('a');
+        anchor.className = 'MagicZoom';
+        anchor.setAttribute('href', href);
+        anchor.setAttribute('data-gallery', GALLERY_GROUP);
+        anchor.setAttribute('data-options', ZOOM_OPTIONS);
+
+        parent.insertBefore(anchor, img);
+        anchor.appendChild(img);
+
+        var tapTarget = document.createElement('span');
+        tapTarget.className = 'mz-tap-target';
+        parent.insertBefore(tapTarget, anchor);
+      }
+
+      function startZoom() {
+        if (typeof window.MagicZoom === 'undefined') return;
+        try {
+          window.MagicZoom.start();
+        } catch (error) {
+          /* Magic Zoom throws when an anchor is already initialised - safe to ignore */
+        }
+      }
+
+      function sync() {
+        if (isWrapping) return;
+
+        var pending = findUnwrapped();
+        if (!pending.length) return;
+
+        isWrapping = true;
+        if (observer) observer.disconnect();
+
+        pending.forEach(wrapImage);
+        startZoom();
+
+        if (observer) observeGallery();
+        isWrapping = false;
+      }
+
+      /* Dawn's product-info.js swaps <li> nodes into the gallery on variant
+         change instead of re-rendering the section, so new images arrive
+         unwrapped. Watch the list and re-attach as they appear. */
+      function observeGallery() {
+        var gallery = getGallery();
+        if (!gallery) return;
+        var list = gallery.querySelector('ul.product__media-list');
+        if (!list) return;
+        observer.observe(list, { childList: true, subtree: true });
+      }
+
+      /* Mobile tap target opens the fullscreen view */
+      document.addEventListener('mousedown', function (event) {
+        var target = event.target;
+        if (!target || !target.classList) return;
+        if (!target.classList.contains('mz-tap-target')) return;
+        if (typeof window.MagicZoom === 'undefined') return;
+
+        var anchor = target.parentNode.querySelector('a.MagicZoom');
+        if (anchor && anchor.id) {
+          window.MagicZoom.expand(anchor.id);
+        }
+      });
+
+      /* The app script may load before or after this snippet, so poll briefly
+         until MagicZoom is available rather than relying on load order alone. */
+      function init() {
+        var attempts = 0;
+        var timer = setInterval(function () {
+          attempts += 1;
+          if (typeof window.MagicZoom !== 'undefined' || attempts > 40) {
+            clearInterval(timer);
+            observer = new MutationObserver(sync);
+            observeGallery();
+            sync();
+          }
+        }, 250);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+{%- endif -%}

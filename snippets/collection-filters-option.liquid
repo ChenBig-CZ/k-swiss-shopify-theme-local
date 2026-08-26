@@ -1,0 +1,226 @@
+{% comment %}
+  Renders a tag-based collection filter option.
+
+  Accepts:
+  - collection: Collection object
+  - set: Filter set title
+  - value: Product tag to add/remove
+  - label: Visible label or swatch color
+  - format: checkbox, radio, text, grid, color
+  - units: Optional label suffix
+  - group_values: Pipe-delimited list of tags in this filter set, used for radio replacement
+{% endcomment %}
+
+{%- liquid
+  assign tag_value = value | strip
+  assign option_label = label | default: tag_value | strip
+  assign filter_format = format | default: 'checkbox'
+  assign filter_mode = filter_format
+  assign is_active = false
+  assign collection_base_url = routes.root_url | append: 'collections/' | append: collection.handle
+  assign option_url = ''
+  assign is_price_filter = false
+
+  if filter_mode == 'color' or filter_mode == 'grid'
+    assign filter_mode = 'checkbox'
+  endif
+
+  case set
+    when 'Price'
+      assign is_price_filter = true
+  endcase
+
+  if is_price_filter
+
+    assign current_query = request.query_string
+
+    case tag_value
+
+      when 'PRICE_UNDER_50'
+        if current_query contains 'filter.v.price.lte=50'
+          assign is_active = true
+        endif
+
+      when 'PRICE_50_TO_75'
+        if current_query contains 'filter.v.price.gte=50' and current_query contains 'filter.v.price.lte=75'
+          assign is_active = true
+        endif
+
+      when 'PRICE_75_TO_100'
+        if current_query contains 'filter.v.price.gte=75' and current_query contains 'filter.v.price.lte=100'
+          assign is_active = true
+        endif
+
+      when 'PRICE_OVER_100'
+        if current_query contains 'filter.v.price.gte=100'
+          assign is_active = true
+        endif
+
+      when 'PRICE_100_TO_150'
+        if current_query contains 'filter.v.price.gte=100' and current_query contains 'filter.v.price.lte=150'
+          assign is_active = true
+        endif
+
+      when 'PRICE_150_TO_200'
+        if current_query contains 'filter.v.price.gte=150' and current_query contains 'filter.v.price.lte=200'
+          assign is_active = true
+        endif
+
+      when 'PRICE_OVER_200'
+        if current_query contains 'filter.v.price.gte=200'
+          assign is_active = true
+        endif
+
+    endcase
+
+  elsif current_tags contains tag_value
+    assign is_active = true
+  endif
+
+  if is_price_filter
+    assign current_path = request.path
+  if is_active
+    assign option_url = current_path
+  else
+    case tag_value
+
+      when 'PRICE_UNDER_50'
+        assign option_url = current_path | append: '?filter.v.price.lte=50'
+
+      when 'PRICE_50_TO_75'
+        assign option_url = current_path | append: '?filter.v.price.gte=50&filter.v.price.lte=75'
+
+      when 'PRICE_75_TO_100'
+        assign option_url = current_path | append: '?filter.v.price.gte=75&filter.v.price.lte=100'
+
+      when 'PRICE_OVER_100'
+        assign option_url = current_path | append: '?filter.v.price.gte=100'
+
+      when 'PRICE_100_TO_150'
+        assign option_url = current_path | append: '?filter.v.price.gte=100&filter.v.price.lte=150'
+
+      when 'PRICE_150_TO_200'
+        assign option_url = current_path | append: '?filter.v.price.gte=150&filter.v.price.lte=200'
+
+      when 'PRICE_OVER_200'
+        assign option_url = current_path | append: '?filter.v.price.gte=200'
+
+    endcase
+
+  endif
+
+  elsif filter_mode == 'checkbox'
+
+    if is_active
+      assign option_url = tag_value | link_to_remove_tag: tag_value | split: 'href="' | last | split: '"' | first
+    else
+      assign option_url = tag_value | link_to_add_tag: tag_value | split: 'href="' | last | split: '"' | first
+    endif
+
+  else
+
+    assign group_lookup = group_values | default: '' | prepend: '|' | append: '|'
+    assign target_tags = ''
+
+    for active_tag in current_tags
+      assign active_lookup = active_tag | prepend: '|' | append: '|'
+      assign keep_tag = true
+
+      if group_lookup contains active_lookup
+        assign keep_tag = false
+      endif
+
+      if active_tag == tag_value
+        assign keep_tag = false
+      endif
+
+      if keep_tag
+        assign target_tags = target_tags | append: active_tag | append: '||'
+      endif
+    endfor
+
+    unless is_active
+      assign target_tags = target_tags | append: tag_value | append: '||'
+    endunless
+
+    assign target_tags_array = target_tags | split: '||' | compact
+    assign tag_path = ''
+
+    for target_tag in target_tags_array
+      assign clean_target_tag = target_tag | strip
+      if clean_target_tag != blank
+        assign tag_path = tag_path | append: clean_target_tag | handleize | append: '+'
+      endif
+    endfor
+
+    assign tag_path = tag_path | remove_last: '+'
+    assign option_url = collection_base_url
+
+    if tag_path != blank
+      assign option_url = collection_base_url | append: '/' | append: tag_path
+    endif
+  endif
+
+  assign sort_by = collection.sort_by | default: ''
+  if sort_by != blank
+    assign sort_separator = '?'
+    if option_url contains '?'
+      assign sort_separator = '&'
+    endif
+    unless option_url contains 'sort_by='
+      assign option_url = option_url | append: sort_separator | append: 'sort_by=' | append: sort_by
+    endunless
+  endif
+
+  assign readable_label = option_label
+  if filter_format == 'color'
+    assign readable_label = tag_value | replace: '_', ' ' | replace: '-', ' '
+  endif
+-%}
+
+<li class="list-menu__item facets__item collection-tag-filter__item collection-tag-filter__item--{{ filter_format }}">
+  <a
+    href="{{ option_url }}"
+    aria-label="{{ readable_label | escape }}"
+    class="facets__label facet-checkbox collection-tag-filter__link{% if is_active %} active{% endif %}"
+    {% if is_active %}
+      aria-current="true"
+    {% endif %}
+  >
+    {%- if filter_format == 'text' -%}
+      <span class="collection-tag-filter__text-link">
+        {{ readable_label | escape }}{% if units != blank %} {{ units }}{% endif %}
+      </span>
+    {%- elsif filter_format == 'grid' -%}
+      <span class="collection-tag-filter__grid-tile">
+        {{ readable_label | escape }}{% if units != blank %} {{ units }}{% endif %}
+      </span>
+    {%- elsif filter_format == 'color' -%}
+      <span
+        class="collection-tag-filter__swatch"
+        style="background-color: {{ option_label }};"
+        aria-hidden="true"
+      ></span>
+    {%- elsif filter_format == 'radio' -%}
+      <span class="collection-tag-filter__radio" aria-hidden="true"></span>
+    {%- else -%}
+      {{- 'square.svg' | inline_asset_content -}}
+      <span class="svg-wrapper collection-tag-filter__check">
+        {{- 'icon-checkmark.svg' | inline_asset_content -}}
+      </span>
+    {%- endif -%}
+
+    <span class="facet-checkbox__text" aria-hidden="true">
+      {%- unless filter_format == 'text' or filter_format == 'grid' -%}
+        <span class="facet-checkbox__text-label">{{ readable_label | escape }}</span>{% if units != blank %} {{ units }}{% endif %}
+      {%- endunless -%}
+    </span>
+    {% comment %} <span class="visually-hidden">
+      {%- if is_active -%}
+        Remove filter {{ readable_label | escape }}
+      {%- else -%}
+        Add filter {{ readable_label | escape }}
+      {%- endif -%}
+    </span> {% endcomment %}
+  </a>
+</li>

@@ -1,0 +1,1026 @@
+{%- liquid
+  assign bg_desktop = section.settings.background_image
+  assign bg_mobile = section.settings.background_image_mobile
+  if bg_mobile == blank
+    assign bg_mobile = bg_desktop
+  endif
+
+  assign collage_img = section.settings.collage_image
+  assign collage_img_mobile = section.settings.collage_image_mobile
+  if collage_img_mobile == blank
+    assign collage_img_mobile = collage_img
+  endif
+
+  assign caption_font_stack = 'var(--font-heading-family)'
+  case section.settings.caption_font
+    when 'caveat'
+      assign caption_font_stack = "'Caveat', cursive"
+    when 'sacramento'
+      assign caption_font_stack = "'Sacramento', cursive"
+    when 'dancing'
+      assign caption_font_stack = "'Dancing Script', cursive"
+    when 'homemade'
+      assign caption_font_stack = "'Homemade Apple', cursive"
+  endcase
+
+  assign show_blocks = false
+  if section.settings.collage_source == 'blocks' and section.blocks.size > 0
+    assign show_blocks = true
+  endif
+-%}
+
+{%- comment -%} Load the handwriting face only when captions are rendered from blocks {%- endcomment -%}
+{%- if show_blocks and section.settings.caption_font != 'theme' -%}
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  {%- case section.settings.caption_font -%}
+    {%- when 'caveat' -%}
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap" media="print" onload="this.media='all'">
+    {%- when 'sacramento' -%}
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" media="print" onload="this.media='all'">
+    {%- when 'dancing' -%}
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap" media="print" onload="this.media='all'">
+    {%- when 'homemade' -%}
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" media="print" onload="this.media='all'">
+  {%- endcase -%}
+{%- endif -%}
+
+{%- style -%}
+  #Collage-{{ section.id }} {
+    --kw-card-w: {{ section.settings.card_width_mobile }}px;
+    --kw-overlap: {{ section.settings.overlap_mobile }}px;
+    --kw-frame: calc(var(--kw-card-w) * 0.06);
+    --kw-chin: calc(var(--kw-card-w) * 0.2);
+    --kw-caption-size: {{ section.settings.caption_size | times: 0.85 | round: 0 }}px;
+    --kw-caption-font: {{ caption_font_stack }};
+    --kw-text: {{ section.settings.text_color }};
+    --kw-overlay: {{ section.settings.overlay_color }};
+    --kw-overlay-top: {{ section.settings.overlay_top | divided_by: 100.0 }};
+    --kw-overlay-bottom: {{ section.settings.overlay_bottom | divided_by: 100.0 }};
+
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  #Collage-{{ section.id }} .kw-collage__bg,
+  #Collage-{{ section.id }} .kw-collage__bg img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: {{ section.settings.image_position }};
+    z-index: -2;
+  }
+
+  #Collage-{{ section.id }} .kw-collage__bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      to bottom,
+      rgba(from var(--kw-overlay) r g b / var(--kw-overlay-top)) 0%,
+      rgba(from var(--kw-overlay) r g b / var(--kw-overlay-bottom)) 100%
+    );
+  }
+
+  {%- comment -%} Fallback for browsers without relative color syntax {%- endcomment -%}
+  @supports not (color: rgb(from #fff r g b / 50%)) {
+    #Collage-{{ section.id }} .kw-collage__bg::after {
+      background: var(--kw-overlay);
+      opacity: {{ section.settings.overlay_bottom | divided_by: 100.0 }};
+    }
+  }
+
+  #Collage-{{ section.id }} .kw-collage__head {
+    text-align: center;
+    margin: 0 auto;
+    max-width: {{ section.settings.content_width }}px;
+  }
+
+  #Collage-{{ section.id }} .kw-collage__logo {
+    display: block;
+    margin: 0 auto;
+    width: {{ section.settings.logo_width_mobile }}px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  #Collage-{{ section.id }} .kw-collage__heading {
+    margin: {{ section.settings.heading_gap | times: 0.7 | round: 0 }}px 0 0;
+    color: {{ section.settings.heading_color }};
+    font-size: {{ section.settings.heading_size_mobile }}px;
+    line-height: {{ section.settings.heading_line_height | divided_by: 100.0 }};
+    letter-spacing: {{ section.settings.heading_spacing | divided_by: 100.0 }}em;
+    {% if section.settings.heading_uppercase %}text-transform: uppercase;{% endif %}
+    word-break: break-word;
+  }
+
+  #Collage-{{ section.id }} .kw-collage__text {
+    margin-top: {{ section.settings.description_gap | times: 0.7 | round: 0 }}px;
+    color: var(--kw-text);
+    font-size: {{ section.settings.description_size | times: 0.9 | round: 0 }}px;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+
+  #Collage-{{ section.id }} .kw-collage__text > * {
+    margin: 0;
+  }
+
+  #Collage-{{ section.id }} .kw-collage__text > * + * {
+    margin-top: 0.6em;
+  }
+
+  #Collage-{{ section.id }} .kw-collage__cta {
+    margin-top: {{ section.settings.button_gap | times: 0.7 | round: 0 }}px;
+  }
+
+  #Collage-{{ section.id }} .kw-collage__cta .button {
+    margin: 0;
+  }
+
+  {%- comment -%} Single image mode: the collage artwork is one asset (supports GIF) {%- endcomment -%}
+  #Collage-{{ section.id }} .kw-collage__art {
+    display: block;
+    margin: {{ section.settings.collage_gap | times: 0.6 | round: 0 }}px auto 0;
+    width: 100%;
+    max-width: {{ section.settings.collage_max_width }}px;
+    height: auto;
+    padding: 0 15px;
+  }
+
+  #Collage-{{ section.id }} .kw-collage__art--desktop {
+    display: none;
+  }
+
+  #Collage-{{ section.id }} .kw-collage__track {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: {{ section.settings.collage_gap | times: 0.6 | round: 0 }}px;
+    padding: 3rem 1.5rem 4rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  #Collage-{{ section.id }} .kw-collage__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  #Collage-{{ section.id }} .kw-collage__item {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+    width: var(--kw-card-w);
+  }
+
+  #Collage-{{ section.id }} .kw-collage__item + .kw-collage__item {
+    margin-left: calc(var(--kw-overlap) * -1);
+  }
+
+  #Collage-{{ section.id }} .kw-polaroid {
+    display: block;
+    background: {{ section.settings.frame_color }};
+    padding: var(--kw-frame) var(--kw-frame) var(--kw-chin);
+    box-shadow: 0 {{ section.settings.shadow_size | divided_by: 2 }}px {{ section.settings.shadow_size }}px rgba(0, 0, 0, {{ section.settings.shadow_opacity | divided_by: 100.0 }});
+    transform: rotate(var(--kw-rotate)) translateY(var(--kw-shift)) scale(var(--kw-scale));
+    transform-origin: center center;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  #Collage-{{ section.id }} .kw-polaroid__media {
+    display: block;
+    width: 100%;
+    background: #ebebeb;
+    overflow: hidden;
+  }
+
+  #Collage-{{ section.id }} .kw-polaroid__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #Collage-{{ section.id }} .kw-polaroid__caption {
+    display: block;
+    margin-top: calc(var(--kw-chin) * 0.42);
+    font-family: var(--kw-caption-font);
+    font-size: var(--kw-caption-size);
+    line-height: 1.1;
+    text-align: center;
+    color: {{ section.settings.caption_color }};
+    word-break: break-word;
+  }
+
+  @media screen and (min-width: 750px) {
+    #Collage-{{ section.id }} {
+      --kw-card-w: {{ section.settings.card_width }}px;
+      --kw-overlap: {{ section.settings.overlap }}px;
+      --kw-caption-size: {{ section.settings.caption_size }}px;
+
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    #Collage-{{ section.id }} .kw-collage__logo {
+      width: {{ section.settings.logo_width }}px;
+    }
+
+    #Collage-{{ section.id }} .kw-collage__heading {
+      margin-top: {{ section.settings.heading_gap }}px;
+      font-size: {{ section.settings.heading_size }}px;
+    }
+
+    #Collage-{{ section.id }} .kw-collage__text {
+      margin-top: {{ section.settings.description_gap }}px;
+      font-size: {{ section.settings.description_size }}px;
+    }
+
+    #Collage-{{ section.id }} .kw-collage__cta {
+      margin-top: {{ section.settings.button_gap }}px;
+    }
+
+    #Collage-{{ section.id }} .kw-collage__art {
+      margin-top: {{ section.settings.collage_gap }}px;
+    }
+
+    #Collage-{{ section.id }} .kw-collage__art--mobile {
+      display: none;
+    }
+
+    #Collage-{{ section.id }} .kw-collage__art--desktop {
+      display: block;
+    }
+
+    #Collage-{{ section.id }} .kw-collage__track {
+      justify-content: center;
+      overflow: visible;
+      margin-top: {{ section.settings.collage_gap }}px;
+      padding: 4rem 1.5rem 0;
+    }
+
+    {%- if section.settings.enable_hover -%}
+      #Collage-{{ section.id }} .kw-collage__item:hover .kw-polaroid {
+        transform: rotate(var(--kw-rotate)) translateY(calc(var(--kw-shift) - 12px)) scale(calc(var(--kw-scale) + 0.03));
+        box-shadow: 0 {{ section.settings.shadow_size }}px {{ section.settings.shadow_size | times: 1.6 | round: 0 }}px rgba(0, 0, 0, {{ section.settings.shadow_opacity | plus: 8 | divided_by: 100.0 }});
+      }
+    {%- endif -%}
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #Collage-{{ section.id }} .kw-polaroid {
+      transition: none;
+    }
+  }
+{%- endstyle -%}
+
+<div
+  id="Collage-{{ section.id }}"
+  class="kw-collage color-{{ section.settings.color_scheme }} gradient"
+  {{ section.shopify_attributes }}
+>
+  {%- if bg_desktop != blank -%}
+    <div class="kw-collage__bg">
+      <img
+        src="{{ bg_desktop | image_url: width: 2400 }}"
+        srcset="
+          {%- if bg_mobile.width >= 750 -%}{{ bg_mobile | image_url: width: 750 }} 750w,{%- endif -%}
+          {%- if bg_desktop.width >= 1100 -%}{{ bg_desktop | image_url: width: 1100 }} 1100w,{%- endif -%}
+          {%- if bg_desktop.width >= 1500 -%}{{ bg_desktop | image_url: width: 1500 }} 1500w,{%- endif -%}
+          {%- if bg_desktop.width >= 2400 -%}{{ bg_desktop | image_url: width: 2400 }} 2400w{%- endif -%}
+        "
+        sizes="100vw"
+        alt=""
+        role="presentation"
+        width="{{ bg_desktop.width }}"
+        height="{{ bg_desktop.height }}"
+        loading="lazy"
+      >
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.logo_image != blank
+    or section.settings.heading != blank
+    or section.settings.description != blank
+    or section.settings.button_label != blank
+  -%}
+    <div class="page-width">
+      <div
+        class="kw-collage__head{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        {% if settings.animations_reveal_on_scroll %}
+          data-cascade
+        {% endif %}
+      >
+        {%- if section.settings.logo_image != blank -%}
+          {%- assign logo_alt = section.settings.logo_image.alt | default: shop.name -%}
+          <img
+            class="kw-collage__logo"
+            src="{{ section.settings.logo_image | image_url: width: 1200 }}"
+            srcset="
+              {{ section.settings.logo_image | image_url: width: 400 }} 400w,
+              {{ section.settings.logo_image | image_url: width: 800 }} 800w,
+              {{ section.settings.logo_image | image_url: width: 1200 }} 1200w
+            "
+            sizes="(min-width: 750px) {{ section.settings.logo_width }}px, {{ section.settings.logo_width_mobile }}px"
+            alt="{{ logo_alt | escape }}"
+            width="{{ section.settings.logo_image.width }}"
+            height="{{ section.settings.logo_image.height }}"
+            loading="lazy"
+          >
+        {%- endif -%}
+
+        {%- if section.settings.heading != blank -%}
+          <{{ section.settings.heading_tag }} class="kw-collage__heading">
+            {{- section.settings.heading -}}
+          </{{ section.settings.heading_tag }}>
+        {%- endif -%}
+
+        {%- if section.settings.description != blank -%}
+          <div class="kw-collage__text rte">{{ section.settings.description }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.button_label != blank -%}
+          <div class="kw-collage__cta">
+            <a
+              {% if section.settings.button_link == blank %}
+                role="link" aria-disabled="true"
+              {% else %}
+                href="{{ section.settings.button_link }}"
+              {% endif %}
+              class="button{% if section.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+            >
+              {{- section.settings.button_label | escape -}}
+            </a>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.collage_source == 'image' -%}
+    {%- if collage_img != blank -%}
+      {%- liquid
+        assign art_alt = collage_img.alt
+        if art_alt == blank
+          assign art_alt = section.settings.heading | strip_html
+        endif
+      -%}
+      <div class="{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        {%- comment -%}
+          Rendered with plain <img> and no width param so animated GIFs keep animating.
+          Shopify strips animation when a GIF is resized through image_url.
+        {%- endcomment -%}
+        <img
+          class="kw-collage__art kw-collage__art--desktop"
+          src="{{ collage_img | image_url }}"
+          alt="{{ art_alt | escape }}"
+          width="{{ collage_img.width }}"
+          height="{{ collage_img.height }}"
+          loading="lazy"
+        >
+        <img
+          class="kw-collage__art kw-collage__art--mobile"
+          src="{{ collage_img_mobile | image_url }}"
+          alt="{{ art_alt | escape }}"
+          width="{{ collage_img_mobile.width }}"
+          height="{{ collage_img_mobile.height }}"
+          loading="lazy"
+        >
+      </div>
+    {%- endif -%}
+
+  {%- elsif show_blocks -%}
+    <div
+      class="kw-collage__track{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+      {% if settings.animations_reveal_on_scroll %}
+        data-cascade
+      {% endif %}
+    >
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign ratio = 1.0
+          case block.settings.image_ratio
+            when 'square'
+              assign ratio = 1.0
+            when 'portrait'
+              assign ratio = 1.25
+            when 'landscape'
+              assign ratio = 0.75
+            else
+              if block.settings.image != blank and block.settings.image.aspect_ratio > 0
+                assign ratio = 1 | divided_by: block.settings.image.aspect_ratio
+              endif
+          endcase
+
+          assign card_scale = block.settings.scale | divided_by: 100.0
+        -%}
+
+        <div
+          class="kw-collage__item"
+          style="z-index: {{ block.settings.layer }};"
+          {{ block.shopify_attributes }}
+        >
+          <figure
+            class="kw-polaroid"
+            style="
+              --kw-rotate: {{ block.settings.rotation }}deg;
+              --kw-shift: {{ block.settings.offset_y }}px;
+              --kw-scale: {{ card_scale }};
+            "
+          >
+            <div class="kw-polaroid__media" style="aspect-ratio: 1 / {{ ratio }};">
+              {%- if block.settings.image != blank -%}
+                {%- assign img_alt = block.settings.image.alt | default: block.settings.caption -%}
+                <img
+                  src="{{ block.settings.image | image_url: width: 800 }}"
+                  srcset="
+                    {{ block.settings.image | image_url: width: 300 }} 300w,
+                    {{ block.settings.image | image_url: width: 500 }} 500w,
+                    {{ block.settings.image | image_url: width: 800 }} 800w
+                  "
+                  sizes="(min-width: 750px) {{ section.settings.card_width }}px, {{ section.settings.card_width_mobile }}px"
+                  alt="{{ img_alt | escape }}"
+                  width="{{ block.settings.image.width }}"
+                  height="{{ block.settings.image.height }}"
+                  loading="lazy"
+                >
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+
+            {%- if block.settings.caption != blank -%}
+              <figcaption class="kw-polaroid__caption">{{ block.settings.caption | escape }}</figcaption>
+            {%- endif -%}
+          </figure>
+        </div>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Anniversary Collage",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 10,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_mobile",
+      "label": "Background image (mobile)",
+      "info": "Falls back to the desktop image."
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Background focal point",
+      "default": "center center",
+      "options": [
+        { "value": "center top", "label": "Top" },
+        { "value": "center center", "label": "Center" },
+        { "value": "center bottom", "label": "Bottom" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "overlay_top",
+      "label": "Overlay opacity (top)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "overlay_bottom",
+      "label": "Overlay opacity (bottom)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 70
+    },
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Logo image"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Logo width",
+      "min": 100,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "default": 260
+    },
+    {
+      "type": "range",
+      "id": "logo_width_mobile",
+      "label": "Logo width (mobile)",
+      "min": 80,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "default": 180
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "info": "Use H1 only once per page.",
+      "default": "h2",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "p", "label": "Paragraph" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 20,
+      "max": 90,
+      "step": 2,
+      "unit": "px",
+      "default": 44
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading size (mobile)",
+      "min": 16,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "checkbox",
+      "id": "heading_uppercase",
+      "label": "Uppercase heading",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "label": "Heading letter spacing",
+      "min": -5,
+      "max": 20,
+      "step": 1,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "heading_line_height",
+      "label": "Heading line height",
+      "min": 90,
+      "max": 180,
+      "step": 5,
+      "unit": "%",
+      "default": 115
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "heading_gap",
+      "label": "Space above heading",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Celebrating six decades of sport, style, and innovation, the K-Swiss 60th Anniversary Collection features commemorative gold accents and a special anniversary shoebox—honoring our legacy while looking ahead to what's next.</p>"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "label": "Text max width",
+      "min": 300,
+      "max": 1000,
+      "step": 20,
+      "unit": "px",
+      "default": 900
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "description_gap",
+      "label": "Space above description",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "info": "Leave blank to hide the button."
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_style_secondary",
+      "label": "Use outline button style",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "button_gap",
+      "label": "Space above button",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Photo collage"
+    },
+    {
+      "type": "select",
+      "id": "collage_source",
+      "label": "Collage source",
+      "info": "Single image supports animated GIFs. Photo blocks build the collage from individual images.",
+      "default": "image",
+      "options": [
+        { "value": "image", "label": "Single image" },
+        { "value": "blocks", "label": "Photo blocks" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "collage_image",
+      "label": "Collage image"
+    },
+    {
+      "type": "image_picker",
+      "id": "collage_image_mobile",
+      "label": "Collage image (mobile)",
+      "info": "Falls back to the desktop image."
+    },
+    {
+      "type": "range",
+      "id": "collage_max_width",
+      "label": "Collage max width",
+      "min": 400,
+      "max": 2000,
+      "step": 20,
+      "unit": "px",
+      "default": 1820
+    },
+    {
+      "type": "range",
+      "id": "collage_gap",
+      "label": "Space above collage",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Photo block styling"
+    },
+    {
+      "type": "range",
+      "id": "card_width",
+      "label": "Photo width",
+      "min": 120,
+      "max": 420,
+      "step": 10,
+      "unit": "px",
+      "default": 350
+    },
+    {
+      "type": "range",
+      "id": "card_width_mobile",
+      "label": "Photo width (mobile)",
+      "min": 100,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "default": 180
+    },
+    {
+      "type": "range",
+      "id": "overlap",
+      "label": "Overlap",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "overlap_mobile",
+      "label": "Overlap (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "frame_color",
+      "label": "Frame color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "shadow_size",
+      "label": "Shadow size",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "shadow_opacity",
+      "label": "Shadow opacity",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "%",
+      "default": 18
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_hover",
+      "label": "Lift photo on hover",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "caption_font",
+      "label": "Caption font",
+      "default": "caveat",
+      "info": "Handwriting fonts load from Google Fonts.",
+      "options": [
+        { "value": "theme", "label": "Theme heading font" },
+        { "value": "caveat", "label": "Caveat" },
+        { "value": "sacramento", "label": "Sacramento" },
+        { "value": "dancing", "label": "Dancing Script" },
+        { "value": "homemade", "label": "Homemade Apple" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "caption_size",
+      "label": "Caption size",
+      "min": 10,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "caption_color",
+      "label": "Caption color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "photo",
+      "name": "Photo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "image_ratio",
+          "label": "Image ratio",
+          "default": "natural",
+          "options": [
+            { "value": "natural", "label": "Natural" },
+            { "value": "square", "label": "Square" },
+            { "value": "portrait", "label": "Portrait" },
+            { "value": "landscape", "label": "Landscape" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption"
+        },
+        {
+          "type": "range",
+          "id": "rotation",
+          "label": "Rotation",
+          "min": -12,
+          "max": 12,
+          "step": 1,
+          "unit": "deg",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "offset_y",
+          "label": "Vertical offset",
+          "min": -100,
+          "max": 100,
+          "step": 5,
+          "unit": "px",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "scale",
+          "label": "Size",
+          "min": 70,
+          "max": 140,
+          "step": 5,
+          "unit": "%",
+          "default": 100
+        },
+        {
+          "type": "range",
+          "id": "layer",
+          "label": "Layer order",
+          "info": "Higher sits in front.",
+          "min": 1,
+          "max": 20,
+          "step": 1,
+          "default": 10
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Anniversary Collage",
+      "blocks": [
+        {
+          "type": "photo",
+          "settings": {
+            "image_ratio": "portrait",
+            "rotation": -4,
+            "offset_y": -20,
+            "layer": 5
+          }
+        },
+        {
+          "type": "photo",
+          "settings": {
+            "image_ratio": "portrait",
+            "rotation": 2,
+            "offset_y": -55,
+            "layer": 4
+          }
+        },
+        {
+          "type": "photo",
+          "settings": {
+            "image_ratio": "landscape",
+            "caption": "since 1966",
+            "rotation": -3,
+            "offset_y": 35,
+            "layer": 6
+          }
+        },
+        {
+          "type": "photo",
+          "settings": {
+            "image_ratio": "portrait",
+            "rotation": 3,
+            "offset_y": -40,
+            "layer": 5
+          }
+        },
+        {
+          "type": "photo",
+          "settings": {
+            "image_ratio": "landscape",
+            "caption": "Holding Court",
+            "rotation": 5,
+            "offset_y": 25,
+            "layer": 7
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

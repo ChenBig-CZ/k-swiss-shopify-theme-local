@@ -1,0 +1,390 @@
+<style>
+/* ----------------------------
+   SPLIDE CORE STYLING (Unique)
+----------------------------- */
+.carousel-{{ section.id }} .splide__container {
+  box-sizing: border-box;
+  position: relative;
+}
+.carousel-{{ section.id }} .splide {
+  position: relative;
+  visibility: hidden;
+}
+.carousel-{{ section.id }} .splide.is-initialized,
+.carousel-{{ section.id }} .splide.is-rendered {
+  visibility: visible;
+}
+.carousel-{{ section.id }} .splide__list {
+  display: flex;
+  height: 100%;
+  backface-visibility: hidden;
+}
+.carousel-{{ section.id }} .splide__slide {
+  flex-shrink: 0;
+  list-style-type: none !important;
+  margin: 0;
+  position: relative;
+  box-sizing: border-box;
+  backface-visibility: hidden;
+}
+.carousel-{{ section.id }} .splide__slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transform-origin: center center;
+}
+.carousel-{{ section.id }} .splide__pagination li {
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+  pointer-events: auto;
+}
+.carousel-{{ section.id }} .splide__progress__bar {
+  width: 0;
+}
+
+/* ----------------------------
+   SPLIDE ARROWS
+----------------------------- */
+.carousel-{{ section.id }} .splide__arrow {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-100%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  padding: 0;
+  background: #fff;
+  border: 1px solid transparent;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.9;
+}
+.carousel-{{ section.id }} .splide__arrow svg {
+  fill: #000;
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.carousel-{{ section.id }} .splide__arrow:disabled {
+  cursor: not-allowed;
+}
+.carousel-{{ section.id }} .splide__arrow--prev {
+  left: 35px;
+  transform: translateY(-100%) rotate(180deg);
+}
+.carousel-{{ section.id }} .splide__arrow--next {
+  right: 35px;
+}
+
+/* ----------------------------
+   SLIDE ITEMS + TEXT BOX
+----------------------------- */
+.carousel-{{ section.id }} li.splide__slide {
+  margin-right: 10px;
+}
+.carousel-{{ section.id }} .collection-explore-gallery__item {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  overflow: hidden;
+}
+.carousel-{{ section.id }} .collection-explore-gallery__img-box {
+  position: relative;
+  height: 100%;
+  transition: transform 1s ease-in-out;
+}
+.carousel-{{ section.id }} .collection-explore-gallery__img-box svg {
+  height: 100%;
+}
+.carousel-{{ section.id }} .collection-explore-gallery__text-box svg {
+  opacity: 0;
+  margin-left: 5px;
+  transition: .5s;
+}
+.carousel-{{ section.id }} .collection-explore-gallery__item:hover .collection-explore-gallery__text-box svg {
+  opacity: 1;
+}
+
+.carousel-{{ section.id }} .collection-explore-gallery__text-box h3 {
+  font-family: var(--font-body-family);
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: unset;
+} 
+
+/* ----------------------------
+   SECTION WRAPPER
+----------------------------- */
+.carousel-{{ section.id }} {
+  background-color: {{ section.settings.background_color }};
+  overflow: hidden;
+}
+
+/* ----------------------------
+   PAGINATION CONTROL
+----------------------------- */
+.carousel-{{ section.id }} .splide__pagination {
+  display: none;
+}
+
+/* ----------------------------
+   RESPONSIVE (Mobile)
+----------------------------- */
+@media (max-width: 767px) {
+  .carousel-{{ section.id }} .splide__arrow {
+    width: 43px;
+    height: 43px;
+  }
+  .carousel-{{ section.id }} .splide__arrow--prev {
+    left: 20px;
+  }
+  .carousel-{{ section.id }} .splide__arrow--next {
+    right: 20px;
+  }
+  .carousel-{{ section.id }} .collection-explore-gallery__text-box h3 {
+    font-size: 28px;
+  }
+}
+
+.carousel-{{ section.id }} .splide__track {
+  padding: 0 0 0 65px;
+}
+.carousel-{{ section.id }} a:not([href]) {
+  cursor: unset;
+}
+@media (min-width: 320px) and (max-width: 480px) {
+  .carousel-{{ section.id }} .splide__track {
+    padding: 0;
+  }
+  .carousel-{{ section.id }} .collection-explore-gallery__text-box{
+    padding: 0 10px;
+  }
+}
+</style>
+
+
+<section class="rich-text carousel-{{ section.id }}" style="margin-top: {{ section.settings.margin_top }}px; margin-bottom: {{ section.settings.margin_bottom }}px;">
+  
+{%- unless section.settings.title == blank -%}
+    <div class="page-width">
+    <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin multicolumn__title">
+        <h2 class="title inline-richtext {{ section.settings.heading_size }}">
+        {{ section.settings.title }}
+        </h2>
+        {%- if section.settings.button_label != blank and show_mobile_slider -%}
+        <a href="{{ section.settings.button_link }}" class="link underlined-link large-up-hide">
+            {{- section.settings.button_label | escape -}}
+        </a>
+        {%- endif -%}
+    </div>
+    </div>
+{%- endunless -%}
+
+<div id="splide" class="splide">
+  <div class="splide__track">
+    <ul class="splide__list">
+     {%- for block in section.blocks -%}
+      <li class="splide__slide block-{{ block.id }}">
+        <a {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %} {% if block.settings.new_tab %} target="_blank"{% endif %} class="collection-explore-gallery__item">
+         <div class="collection-explore-gallery__img-box">
+           {% if block.settings.image != blank %}
+             <img src="{{ block.settings.image | img_url: '1200x1200' }}" alt="{{ block.settings.image.alt }}"/>
+           {% else %}
+             {{- 'lifestyle-1' | placeholder_svg_tag: 'slideshow__image-placeholder' -}}
+           {% endif %}
+          </div>
+          <div class="collection-explore-gallery__text-box">
+           <h3>{{ block.settings.title }}
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 6H16" stroke="black"></path>
+                <path d="M11 1L16 6L11 11" stroke="black"></path>
+              </svg>
+           </h3>
+          </div>
+        </a>
+      </li>
+
+     {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+<script>
+  if (window.Shopify.designMode) {
+  document.addEventListener( 'shopify:section:load', function () {
+  var splide = new Splide( '.carousel-{{ section.id }} .splide', {
+    padding: '5rem',
+    omitEnd: true,
+    speed: 1000,
+    perPage: {{ section.settings.per_row }},
+    perMove: 1,
+    breakpoints: {
+      768: {
+        perPage: 1,
+        padding: '1.563rem'
+      },
+      1200: {
+        perPage: 2,
+        padding: '2.5rem'
+      }
+      }
+  } );
+
+splide.mount();
+});
+  }
+    document.addEventListener( 'DOMContentLoaded', function () {
+  var splide = new Splide( '.carousel-{{ section.id }} .splide', {
+    padding: '5rem',
+    omitEnd: true,
+    speed: 1000,
+    perPage: {{ section.settings.per_row }},
+    perMove: 1,
+    breakpoints: {
+      768: {
+        perPage: 1,
+        padding: '1.563rem'
+      },
+      1200: {
+        perPage: 2,
+        padding: '2.5rem'
+      }
+      }
+  } );
+
+splide.mount();
+});
+</script>
+</section>
+
+{% schema %}
+{
+  "name": "Carousel slider",
+  "class": "shopify-section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "t:sections.multicolumn.settings.title.default",
+      "label": "t:sections.multicolumn.settings.title.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "hxl",
+          "label": "t:sections.all.heading_size.options__4.label"
+        },
+        {
+          "value": "hxxl",
+          "label": "t:sections.all.heading_size.options__5.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "range",
+      "id": "per_row",
+      "label": "Slide per row",
+      "max": 6,
+      "min": 2,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Margin top in PX",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Margin bottom in PX",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Title"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "new_tab",
+          "label": "Link open in new tab",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Carousel slider",
+      "category": "Image",
+      "settings": {
+      },
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

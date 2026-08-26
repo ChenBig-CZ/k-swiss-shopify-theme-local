@@ -1,0 +1,62 @@
+{% case link %}
+  {% when 'account' %}
+    {% if shop.customer_accounts_enabled %}
+      <li>
+        <a
+          href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+          class="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+          {% render 'ml-svg-icons', icon: 'account', size: 24, stroke_width: 1.5, class: 'icon' %}
+          {%- liquid
+            if customer
+              echo 'customer.account_fallback' | t
+            else
+              echo 'customer.log_in' | t
+            endif
+          -%}
+        </a>
+      </li>
+    {% endif %}
+  {% when 'wishlist-app' %}
+      <li>
+        <a
+          href="#swym-wishlist"
+          class="swym-wishlist menu-drawer__menu-item header__icon--wishlist list-menu__item link link--text focus-inset"
+          role="button" 
+          aria-haspopup="dialog">
+          <span class="svg-wrapper-wishlist">
+          {% render 'ml-svg-icons', icon: 'heart', size: 24, stroke_width: 1.5, class: 'icon' %}
+        </span>
+          Wishlist
+          <div class=""><span class="swym-wishlist-header-counter cart-count-bubble"></span></div>
+        </a>
+      </li>
+  {% when 'wishlist' %}
+    {% if settings.ml_wishlist %}
+      <li>
+        <a
+          href="#ml-wishlist-drawer"
+          class="menu-drawer__menu-item list-menu__item link link--text focus-inset"
+          role="button" 
+          aria-haspopup="dialog">
+          {% render 'ml-svg-icons', icon: 'heart', size: 24, stroke_width: 1.5, class: 'icon' %}
+          Wishlist
+          <div class="wishlist-count-bubble" hidden>
+            &nbsp;(<span aria-hidden="true"></span>)
+          </div>
+        </a>
+      </li>
+    {% endif %}
+  {% when 'recently-viewed' %}
+    {% if settings.ml_recently_viewed %}
+      <li>
+        <a
+          href="#ml-recently-viewed-drawer" 
+          class="menu-drawer__menu-item list-menu__item link link--text focus-inset"
+          role="button" 
+          aria-haspopup="dialog">
+          {% render 'ml-svg-icons', icon: 'recently-viewed', size: 24, stroke_width: 1.5, class: 'icon' %}
+          Recently Viewed
+        </a>
+      </li>
+    {% endif %}
+{% endcase %}

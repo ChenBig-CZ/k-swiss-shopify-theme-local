@@ -1,0 +1,302 @@
+{%- style -%}
+
+/* default hidden */
+.breadcrumbs {
+  display: none;
+}
+
+/* enable logic */
+{% if section.settings.enable_complete_site %}
+  .breadcrumbs { display: block; }
+{% elsif template.name == 'product' and section.settings.enable_product_page %}
+  .breadcrumbs { display: block; }
+{% elsif template.name == 'collection' and section.settings.enable_collection_page %}
+  .breadcrumbs { display: block; }
+{% elsif template.name == 'blog' and section.settings.enable_blog_page %}
+  .breadcrumbs { display: block; }
+{% elsif template.name == 'article' and section.settings.enable_article_page %}
+  .breadcrumbs { display: block; }
+{% elsif template.name == 'page' %}
+  .breadcrumbs { display: block; }
+{% endif %}
+
+:root {
+  --svg_fill: {{ section.settings.breadcrumb_text_color }};
+}
+
+.breadcrumbs {
+  padding: 1rem 0;
+  color: {{ section.settings.breadcrumb_text_color }};
+  background-color: {{ section.settings.breadcrumb_bg_color }};
+  font-size: 13px;
+  text-transform: capitalize;
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.breadcrumbs li {
+  display: inline-block;
+}
+
+.home-icon-container {
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+{%- if section.settings.breadcrumb_accent_color_bool -%}
+.breadcrumbs a:last-of-type {
+  color: {{ section.settings.breadcrumb_accent_color }} !important;
+}
+{%- endif -%}
+
+.breadcrumb-delimeter:not(:last-child)::after {
+  {% case section.settings.breadcrumb_delimeter %}
+    {% when "angle_right" %} content: "›";
+    {% when "slash" %} content: "/";
+    {% when "arrow_right" %} content: "➤";
+    {% when "squiggle_arrow" %} content: "\27FF";
+    {% when "right_long" %} content: "\279E";
+    {% when "double_right" %} content: "\00BB";
+    {% when "diamond_arrow_head" %} content: "⤞";
+    {% when "heavy_angle_right" %} content: "\276F";
+  {% endcase %}
+  margin: 0 8px;
+}
+
+{%- endstyle -%}
+
+{% unless template.name == 'index' or template.name == 'cart' %}
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <div class="page-width">
+  {% if section.settings.breadcrumbs_home_icon_bool %}
+    <span class="home-icon-container">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8 .5l6 6V15a1 1 0 0 1-1 1h-3v-4H6v4H3a1 1 0 0 1-1-1V6.5l6-6z"/>
+      </svg>
+    </span>
+  {% endif %}
+
+  <a href="{{ routes.root_url }}">Home</a>
+
+  {% if template.name == 'product' %}
+    {% if collection %}
+      <span class="breadcrumb-delimeter"></span>
+      {{ collection.title | link_to: collection.url }}
+    {% endif %}
+    <span class="breadcrumb-delimeter"></span>
+    {% comment %} <span>{{ product.title | truncatewords: 5 }}</span> {% endcomment %}
+    {% assign productTitle = product.title | remove: product.type | split: ' | ' %}
+    <span>
+    {% if productTitle.size > 1 and productTitle[1] != blank %}
+        {{ productTitle[1] | downcase | capitalize | escape }}
+    {% else %}
+        {{ product.title | downcase | capitalize | escape }}
+    {% endif %}
+    </span>
+
+  {% elsif template.name == 'collection' %}
+    <span class="breadcrumb-delimeter"></span>
+    <span>{{ collection.title }}</span>
+
+  {% elsif template.name == 'blog' %}
+    <span class="breadcrumb-delimeter"></span>
+    <span>{{ blog.title }}</span>
+
+  {% elsif template.name == 'article' %}
+    <span class="breadcrumb-delimeter"></span>
+    <a href="/pages/blogs">Blog</a>
+
+    <span class="breadcrumb-delimeter"></span>
+    {{ blog.title | link_to: blog.url }}
+
+    <span class="breadcrumb-delimeter"></span>
+    <span>{{ article.title }}</span>
+
+  {% elsif template.name == 'page' %}
+    <span class="breadcrumb-delimeter"></span>
+    <span>{{ page.title }}</span>
+
+  {% elsif template.name == 'search' %}
+    <span class="breadcrumb-delimeter"></span>
+    <span>{{ page_title | replace: '*', '' }}</span>
+
+  {% endif %}
+  </div>
+</nav>
+{% endunless %}
+
+
+{% unless template.name == 'index' or template.name == 'cart' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ shop.url }}"
+    }
+
+    {% if template.name == 'product' %}
+      {% if collection %}
+      ,{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{ collection.title | escape }}",
+        "item": "{{ shop.url }}{{ collection.url }}"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "{{ product.title | escape }}",
+        "item": "{{ shop.url }}{{ product.url }}"
+      }
+      {% else %}
+      ,{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{ product.title | escape }}",
+        "item": "{{ shop.url }}{{ product.url }}"
+      }
+      {% endif %}
+
+    {% elsif template.name == 'collection' %}
+      ,{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{ collection.title | escape }}",
+        "item": "{{ shop.url }}{{ collection.url }}"
+      }
+
+    {% elsif template.name == 'blog' %}
+      ,{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{ blog.title | escape }}",
+        "item": "{{ shop.url }}{{ blog.url }}"
+      }
+
+    {% elsif template.name == 'article' %}
+      ,{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{ blog.title | escape }}",
+        "item": "{{ shop.url }}{{ blog.url }}"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "{{ article.title | escape }}",
+        "item": "{{ shop.url }}{{ article.url }}"
+      }
+
+    {% elsif template.name == 'page' %}
+      ,{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{ page.title | escape }}",
+        "item": "{{ shop.url }}{{ page.url }}"
+      }
+
+    {% endif %}
+
+  ]
+}
+</script>
+{% endunless %}
+
+{% schema %}
+{
+  "name": "Breadcrumb Navigation",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Subscribe to our [channel](https://www.youtube.com/@websensepro?sub_confirmation=1)"
+    },
+    {
+      "type": "checkbox",
+      "id": "breadcrumbs_home_icon_bool",
+      "label": "Use the home icon next to the Home link in the breadcrumb",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "breadcrumb_delimeter",
+      "label": "Breadcrumb Delimeter Icon",
+      "options": [
+        { "value": "angle_right", "label": "Angle Right" },
+        { "value": "slash", "label": "Slash" },
+        { "value": "arrow_right", "label": "Arrow Right" },
+        { "value": "squiggle_arrow", "label": "Squiggle Arrow" },
+        { "value": "right_long", "label": "Right Long" },
+        { "value": "double_right", "label": "Double Right" },
+        { "value": "diamond_arrow_head", "label": "Diamond Arrow Head" },
+        { "value": "heavy_angle_right", "label": "Heavy Angle Right" }
+      ],
+      "default": "angle_right"
+    },
+    {
+      "type": "color",
+      "id": "breadcrumb_bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "breadcrumb_text_color",
+      "label": "Breadcrumb Color",
+      "default": "#465076"
+    },
+    {
+      "type": "checkbox",
+      "id": "breadcrumb_accent_color_bool",
+      "label": "Enable visited page color link in breadcrumb",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "breadcrumb_accent_color",
+      "label": "Visited Page Link Color",
+      "default": "#4770db"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_product_page",
+      "label": "Enable in Product Page"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_collection_page",
+      "label": "Enable in Collection Page"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_blog_page",
+      "label": "Enable on Blog Page"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_article_page",
+      "label": "Enable on Article Page"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_complete_site",
+      "label": "Enable on Complete Website",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breadcrumb Navigation"
+    }
+  ]
+}
+{% endschema %}

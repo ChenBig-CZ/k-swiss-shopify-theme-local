@@ -1,0 +1,525 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "shogun-helper": {
+      "type": "shogun-helper",
+      "settings": {}
+    },
+    "shogun-above": {
+      "type": "shogun-above",
+      "settings": {}
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "liquid_title_FEQFYT": {
+          "type": "liquid_title",
+          "settings": {
+            "liquid": "{% assign productTitle = product.title | split: '|' %}\n{{ productTitle[1] }}"
+          }
+        },
+        "promo_messaging_rPCQLz": {
+          "type": "promo_messaging",
+          "settings": {}
+        },
+        "rating_Q764MW": {
+          "type": "rating",
+          "disabled": true,
+          "settings": {}
+        },
+        "vendor": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "disabled": true,
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "loox_reviews_loox_rating_cbtXVy": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-rating/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "contentSize": 16,
+            "pattern": "",
+            "hideText": false,
+            "alignment": "",
+            "layout": "",
+            "textColor": "",
+            "starColor": "",
+            "showAllReviews": false,
+            "looxOpenFloatingWidget": false,
+            "emptyRatingWidget": true
+          }
+        },
+        "motivator_4Jm8GY": {
+          "type": "motivator",
+          "disabled": true,
+          "settings": {
+            "title": "Black Friday Sale 30% OFF Sitewide*",
+            "link_text": "terms & conditions",
+            "link": "https://kswiss.com/pages/terms-and-conditions",
+            "tags": ""
+          }
+        },
+        "motivator_jAKWAQ": {
+          "type": "motivator",
+          "settings": {
+            "title": "15% off when you preorder this item today",
+            "link_text": "",
+            "link": "",
+            "tags": "SMART_TAG_PRESALES"
+          }
+        },
+        "afterpay_on_site_messaging_payments_messaging_9FFzgr": {
+          "type": "shopify://apps/afterpay-on-site-messaging/blocks/payments-messaging/f45a5524-d177-4475-bf59-281efd2215a8",
+          "settings": {
+            "text_align": "left",
+            "margin_top": 12,
+            "margin_bottom": 12,
+            "color": "",
+            "size": "xs",
+            "intro_text": "Pay",
+            "show_interest_free": true,
+            "payment_amount_is_bold": true,
+            "show_with": true,
+            "logo_type": "badge",
+            "logo_theme": "black-on-mint",
+            "modal_link_style": "circled-info-icon",
+            "modal_theme": "mint",
+            "breakpoint": 749,
+            "text_align_mobile": "inherit",
+            "margin_top_mobile": 16,
+            "margin_bottom_mobile": 16,
+            "show_lower_limit": true,
+            "show_upper_limit": false,
+            "show_if_outside_limits": true,
+            "product": "{{product}}"
+          }
+        },
+        "sibling_eBxRG6": {
+          "type": "sibling",
+          "settings": {}
+        },
+        "custom_liquid_AA8a3J": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{%  if settings.prod_add_info2 == true %}\n{% assign split_tags = settings.prod_add_info_tag | split: ',' %}\n{% assign avail_tag= false %}\n{% for stag in split_tags %}\n{%   if product.tags contains  stag %}\n   {% assign avail_tag= true %}\n  {% endif %}\n{% endfor %}\n{% if avail_tag == true %}\n<div class=\"flex items-center p-4 text-sm text-gray-800 rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-gray-300\" role=\"alert\">\n  <svg class=\"flex-shrink-0 inline w-4 h-4 me-3\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" viewBox=\"0 0 20 20\">\n    <path d=\"M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z\"></path>\n  </svg>\n  <span class=\"sr-only\">Info</span>\n  <div>\n    <span class=\"font-medium px-2 md:px-0 md:pl-2\">Runs Small-Size Up\n  </div>\n</div>\n  {%  endif %}\n  {%  endif %}"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "none"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "custom_liquid_wCBcEH": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'different-gender-btn', product: product %}"
+          }
+        },
+        "wishlist_plus_wishlist_pdp_button_EHmADT": {
+          "type": "shopify://apps/wishlist-plus/blocks/wishlist-pdp-button/80c3b1fc-3a8f-407e-8367-ffdeebb8b612",
+          "disabled": true,
+          "settings": {
+            "swym_atw_button_icon": "heart",
+            "swym_atw_icon_thickness": 1.7,
+            "swym_atw_display_btn_text": false,
+            "swym_button_position": "default",
+            "swym_atw_button_vertical_offset": 0,
+            "swym_atw_full_width": false,
+            "swym_atw_button_alignment": "center",
+            "swym_add_to_wishlist_color": "#000000",
+            "swym_added_to_wishlist_color": "#222222",
+            "swym_button_text_color": "#ffffff",
+            "swym_atw_border_color": "#000000",
+            "swym_atw_border_thickness": 0,
+            "swym_atw_button_border_radius": 0,
+            "swym_enable_hover_customization": false,
+            "swym_hover_add_to_wishlist_color": "#000000",
+            "swym_hover_added_to_wishlist_color": "#222222",
+            "swym_hover_button_text_color": "#ffffff",
+            "swym_hover_atw_border_color": "#000000",
+            "swym_hover_atw_border_thickness": 0,
+            "swym_hover_atw_button_border_radius": 0,
+            "swym_custom_css": ""
+          }
+        },
+        "custom_liquid_KdkhLU": {
+          "type": "custom_liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<center>\n<img src=\"https://cdn.shopify.com/s/files/1/0006/9969/5159/files/Group_1947.svg?v=1768547560\" width=\"50%\"></center>"
+          }
+        },
+        "giftnote_engine_for_gifting_button_JQCcfH": {
+          "type": "shopify://apps/giftnote-engine-for-gifting/blocks/button/37eb4f2f-4979-41f3-a677-fa25a2a97659",
+          "disabled": true,
+          "settings": {
+            "add_label": "Add a gift message 🎁",
+            "edit_label": "Edit gift message 🎁",
+            "font_size": 16,
+            "font": "inter_n4",
+            "letter_spacing": 1,
+            "button_type": "button",
+            "background_color": "#ffffff",
+            "border_color": "#000000",
+            "font_color": "#000000",
+            "border_radius": 6,
+            "alignment": "center",
+            "height": 50,
+            "width": 250,
+            "full_width": true,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "breakpoint": 740,
+            "mobile_alignment": "center",
+            "mobile_height": 50,
+            "mobile_width": 250,
+            "mobile_full_width": true,
+            "mobile_margin_top": 0,
+            "mobile_margin_bottom": 0,
+            "exclusion_tags": "",
+            "custom_styles": ""
+          }
+        },
+        "motivator_i8pbEV": {
+          "type": "motivator",
+          "disabled": true,
+          "settings": {
+            "title": "FREE SHIPPING ON ORDERS OVER $50",
+            "link_text": "More Info",
+            "link": "shopify://pages/shipping-policy",
+            "tags": ""
+          }
+        },
+        "collapsible_tab_bMfHKy": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Size Chart",
+            "icon": "none",
+            "content": "",
+            "page": "",
+            "custom_liquid": "{% render \"size-chart\" %}"
+          }
+        },
+        "collapsible_tab_TbJ8h3": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Details",
+            "icon": "none",
+            "content": "",
+            "page": "",
+            "custom_liquid": "{{ product.description }}"
+          }
+        },
+        "custom_liquid_7pkznj": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"product__accordion accordion\">\n<summary style=\"cursor: unset;\" role=\"button\"><div class=\"summary__title\">\n<h3  role=\"heading\" aria-level=\"2\" class=\"h5 accordion__title inline-richtext\">\n              FREE SHIPPING ON ORDERS OVER $90</h3></div>\n</summary>\n</div>"
+          }
+        },
+        "collapsible_tab_Wkme4D": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Shipping and Returns/Exchanges",
+            "icon": "none",
+            "content": "<p><strong>SHIPPING</strong></p><p>Kswiss.com will ship all orders Monday-Friday. All Standard orders will ship within 2 to 3 business days. </p><p>Note that all orders placed after 10:30AM PST on Fridays, Saturday or Sunday will not processed until the next business day.</p><p><strong>RETURNS/EXCHANGES</strong></p><p>We hope you love your K-Swiss product, but if you’re not completely satisfied, you can return or exchange merchandise within 30 days of purchase. Extended return/exchanges window may apply during holiday. </p>",
+            "page": "",
+            "custom_liquid": ""
+          }
+        },
+        "custom_liquid_qxzB7m": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% assign productTitle = product.title | split: '|' %}\n<div class=\"product__accordion accordion\">\n<summary style=\"cursor: unset;\" role=\"button\"><div class=\"summary__title\">\n<h3 class=\"h5 accordion__title inline-richtext\">\n              Style: {{ productTitle[0] }}</h3></div>\n</summary>\n</div>"
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "disabled": true,
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "ml_sticky_atc_wMR8qY": {
+          "type": "ml-sticky-atc",
+          "settings": {
+            "color_scheme": "scheme-1",
+            "border_top_opacity": 25,
+            "max_width": "",
+            "img_ratio": "adapt",
+            "btn_style": "button--primary"
+          }
+        }
+      },
+      "block_order": [
+        "liquid_title_FEQFYT",
+        "promo_messaging_rPCQLz",
+        "rating_Q764MW",
+        "vendor",
+        "title",
+        "price",
+        "loox_reviews_loox_rating_cbtXVy",
+        "motivator_4Jm8GY",
+        "motivator_jAKWAQ",
+        "afterpay_on_site_messaging_payments_messaging_9FFzgr",
+        "sibling_eBxRG6",
+        "custom_liquid_AA8a3J",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "custom_liquid_wCBcEH",
+        "wishlist_plus_wishlist_pdp_button_EHmADT",
+        "custom_liquid_KdkhLU",
+        "giftnote_engine_for_gifting_button_JQCcfH",
+        "motivator_i8pbEV",
+        "collapsible_tab_bMfHKy",
+        "collapsible_tab_TbJ8h3",
+        "custom_liquid_7pkznj",
+        "collapsible_tab_Wkme4D",
+        "custom_liquid_qxzB7m",
+        "description",
+        "share",
+        "ml_sticky_atc_wMR8qY"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "large",
+        "constrain_to_viewport": false,
+        "media_fit": "cover",
+        "gallery_layout": "columns",
+        "mobile_thumbnails": "hide",
+        "media_position": "left",
+        "image_zoom": "hover",
+        "zoom_scale": 2,
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12,
+        "promo_messaging": "MENS | EXTRA WIDE | WOMENS | WIDE | VARSITY | CHILDREN | INFANTS"
+      }
+    },
+    "featured_collection_hXbyKK": {
+      "type": "featured-collection",
+      "disabled": true,
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "all-product",
+        "products_to_show": 8,
+        "title": "Featured collection",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": true,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "show_siblings": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_KkK4Kb": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_VNzyXi": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_16_2026_03_09_52_AM_9e4f7301-4da3-4473-a605-89f045317b7a.png",
+            "image_link": "",
+            "title": "Responsive",
+            "text": "<p>ROAD RUNNING STYLE</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_Wd79TM": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_16_2026_03_09_52_AM_92b162d1-ebca-4dd4-b5db-7724588a4708.png",
+            "image_link": "",
+            "title": "Laceless",
+            "text": "<p>LACING</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_khTnRn": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_16_2026_03_09_52_AM_57c8c813-2686-4f56-894d-5c241befcb85.png",
+            "image_link": "",
+            "title": "6 mm",
+            "text": "<p>HEEL TO TOE DROP</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_mb8Gzn": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_16_2026_03_09_52_AM_c769e5ec-0b08-4f7c-b627-92bd81ec646b.png",
+            "image_link": "",
+            "title": "205",
+            "text": "<p>WEIGHT</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_VNzyXi",
+        "column_Wd79TM",
+        "column_khTnRn",
+        "column_mb8Gzn"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".multicolumn-card {display: flex; align-items: center; column-gap: 10px;}",
+        ".multicolumn-card__image-wrapper {width: 20%;}",
+        ".multicolumn-card__info {width: 85%;}",
+        ".background-none .multicolumn-card__image-wrapper + .multicolumn-card__info {padding: 0px; display: flex; flex-direction: column;}",
+        ".multicolumn-card__info .rte {order: 1;}",
+        ".multicolumn-card__info h3 {order: 2;}",
+        ".rte {line-height: normal;}",
+        ".slider-buttons {display: none;}",
+        ".multicolumn-list__item {padding-bottom: 15px; border-bottom: 1px solid #e5e5e5;}"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "square",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 4,
+        "column_alignment": "left",
+        "background_style": "none",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "section_id": ""
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "transport": "",
+        "id": "",
+        "heading": "You May Also Like",
+        "heading_size": "h2",
+        "products_to_show": 6,
+        "columns_desktop": 6,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "1769532479756ad48a": {
+      "type": "apps",
+      "blocks": {
+        "loox_reviews_loox_dynamic_section_b6mXfB": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-dynamic-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "reviews_to_display": "",
+            "default_tab": "automatic",
+            "only_photos": false,
+            "aggregated": false,
+            "limit": 20,
+            "hide_thumbnails": false,
+            "maxwidth": 1600,
+            "is_sample": true
+          }
+        }
+      },
+      "block_order": [
+        "loox_reviews_loox_dynamic_section_b6mXfB"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "shogun-below": {
+      "type": "shogun-below",
+      "disabled": true,
+      "settings": {}
+    },
+    "shogun-optimizer": {
+      "type": "shogun-optimizer",
+      "disabled": true,
+      "settings": {}
+    }
+  },
+  "order": [
+    "shogun-helper",
+    "shogun-above",
+    "main",
+    "featured_collection_hXbyKK",
+    "multicolumn_KkK4Kb",
+    "related-products",
+    "1769532479756ad48a",
+    "shogun-below",
+    "shogun-optimizer"
+  ]
+}

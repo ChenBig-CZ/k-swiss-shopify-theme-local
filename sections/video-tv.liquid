@@ -1,0 +1,569 @@
+{% if section.blocks.size > 0 %}
+<section class="tv-section-{{ section.id }}">
+
+  <div class="tv-wrapper">
+
+    <!-- TV Screen -->
+    <div class="tv-screen">
+
+      {% for block in section.blocks %}
+      <video
+        class="tv-video {% if forloop.first %}active{% endif %}"
+        data-index="{{ forloop.index0 }}"
+        data-video-desktop="{{ block.settings.video_url }}"
+        data-video-mobile="{{ block.settings.video_url_mobile }}"
+        data-poster-desktop="{{ block.settings.poster | image_url }}"
+        data-poster-mobile="{{ block.settings.poster_mobile | image_url }}"
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        {% if forloop.first %}autoplay{% endif %}
+      >
+      </video>
+    {% endfor %}
+
+      <!-- Flash Effect -->
+      <div class="tv-flash"></div>
+
+    </div>
+
+    <div class="tv-bottom">
+
+    <!-- Volume -->
+    <div class="tv-volume">
+        <span class="vol-bar" data-level="1"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 62 77" height="77" width="62"><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" fill="#EEE372" d="M57.4802 49.6297L32.6141 9.12533C29.511 4.0827 24.0192 1 18.0783 1C4.74695 1 -3.41926 15.6174 3.54243 26.9685L28.4085 67.4729C31.5117 72.5155 37.0034 75.5982 42.9444 75.5982C56.2757 75.5982 64.4419 60.9808 57.4802 49.6297Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M1.86914 12.7797H34.8606"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M10.2598 37.9111H50.2742"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M2.66602 25.3351H42.5783"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M17.9766 50.4666H57.9501"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M25.6934 63.0426H59.3994"></path></svg></span>
+        <span class="vol-bar" data-level="2"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 62 77" height="77" width="62"><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" fill="#EEE372" d="M57.4802 49.6297L32.6141 9.12533C29.511 4.0827 24.0192 1 18.0783 1C4.74695 1 -3.41926 15.6174 3.54243 26.9685L28.4085 67.4729C31.5117 72.5155 37.0034 75.5982 42.9444 75.5982C56.2757 75.5982 64.4419 60.9808 57.4802 49.6297Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M1.86914 12.7797H34.8606"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M10.2598 37.9111H50.2742"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M2.66602 25.3351H42.5783"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M17.9766 50.4666H57.9501"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M25.6934 63.0426H59.3994"></path></svg></span>
+        <span class="vol-bar" data-level="3"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 62 77" height="77" width="62"><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" fill="#EEE372" d="M57.4802 49.6297L32.6141 9.12533C29.511 4.0827 24.0192 1 18.0783 1C4.74695 1 -3.41926 15.6174 3.54243 26.9685L28.4085 67.4729C31.5117 72.5155 37.0034 75.5982 42.9444 75.5982C56.2757 75.5982 64.4419 60.9808 57.4802 49.6297Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M1.86914 12.7797H34.8606"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M10.2598 37.9111H50.2742"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M2.66602 25.3351H42.5783"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M17.9766 50.4666H57.9501"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M25.6934 63.0426H59.3994"></path></svg></span>
+        <span class="vol-bar" data-level="4"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 62 77" height="77" width="62"><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" fill="#EEE372" d="M57.4802 49.6297L32.6141 9.12533C29.511 4.0827 24.0192 1 18.0783 1C4.74695 1 -3.41926 15.6174 3.54243 26.9685L28.4085 67.4729C31.5117 72.5155 37.0034 75.5982 42.9444 75.5982C56.2757 75.5982 64.4419 60.9808 57.4802 49.6297Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M1.86914 12.7797H34.8606"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M10.2598 37.9111H50.2742"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M2.66602 25.3351H42.5783"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M17.9766 50.4666H57.9501"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M25.6934 63.0426H59.3994"></path></svg></span>
+        <span class="vol-bar" data-level="5"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 62 77" height="77" width="62"><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" fill="#EEE372" d="M57.4802 49.6297L32.6141 9.12533C29.511 4.0827 24.0192 1 18.0783 1C4.74695 1 -3.41926 15.6174 3.54243 26.9685L28.4085 67.4729C31.5117 72.5155 37.0034 75.5982 42.9444 75.5982C56.2757 75.5982 64.4419 60.9808 57.4802 49.6297Z"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M1.86914 12.7797H34.8606"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M10.2598 37.9111H50.2742"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M2.66602 25.3351H42.5783"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M17.9766 50.4666H57.9501"></path><path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#231F20" d="M25.6934 63.0426H59.3994"></path></svg></span>
+    </div>
+
+    <!-- Channel Buttons -->
+    <div class="tv-controls">
+    {% for block in section.blocks %}
+        <button
+        class="channel-btn {% if forloop.first %}active-btn{% endif %}"
+        data-index="{{ forloop.index0 }}"
+        >
+        {{ block.settings.channel_label }}
+        </button>
+    {% endfor %}
+    </div>
+
+    <!-- TV Control Buttons -->
+    <div class="tv-player-controls">
+
+    <button class="tv-mute">
+        <span class="icon-muted">
+        <!-- MUTE SVG -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 77 77" height="77" width="77">
+            <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="black" fill="#EEE372" d="M65.268 1H11.3301C5.62488 1 1 5.625 1 11.3302V65.268C1 70.9732 5.62488 75.5982 11.3301 75.5982H65.268C70.9732 75.5982 75.5981 70.9732 75.5981 65.268V11.3302C75.5981 5.625 70.9732 1 65.268 1Z"></path>
+            <path fill="black" d="M54.5484 13.5963L34.0103 28.9079H22.0469V47.6902H34.0103L54.5484 63.0019V13.5963Z"></path>
+            <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#EEE372" fill="black" d="M60.5307 60.6133L11.207 19.9864L16.0659 16.0054L65.3896 56.6118L60.5307 60.6133Z"></path>
+            </svg>
+        </span>
+        
+        <span class="icon-unmuted" style="display:none;">
+        <!-- UNMUTE SVG -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 77 77" height="77" width="77">
+            <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="black" fill="#EEE372" d="M65.268 1H11.3301C5.62488 1 1 5.625 1 11.3302V65.268C1 70.9732 5.62488 75.5982 11.3301 75.5982H65.268C70.9732 75.5982 75.5981 70.9732 75.5981 65.268V11.3302C75.5981 5.625 70.9732 1 65.268 1Z"></path>
+            <path fill="black" d="M54.5484 13.5963L34.0103 28.9079H22.0469V47.6902H34.0103L54.5484 63.0019V13.5963Z"></path>
+            </svg>
+        </span>
+    </button>
+
+    <button class="tv-pause">
+        <!-- PAUSE SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 77 77" height="77" width="77">
+        <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="black" fill="#EEE372" d="M65.268 1H11.3301C5.62488 1 1 5.625 1 11.3302V65.268C1 70.9732 5.62488 75.5982 11.3301 75.5982H65.268C70.9732 75.5982 75.5983 70.9732 75.5983 65.268V11.3302C75.5983 5.625 70.9732 1 65.268 1Z"></path>
+        <path fill="black" d="M32.582 63.002V13.5963H21.2719L21.2719 63.002H32.582Z"></path>
+        <path fill="black" d="M55.3262 63.0017V13.5963H44.016V63.0017H55.3262Z"></path>
+        </svg>
+    </button>
+
+    <button class="tv-play">
+        <!-- PLAY SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 77 77" height="77" width="77">
+        <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="black" fill="#EEE372" d="M65.268 1H11.3304C5.62513 1 1 5.625 1 11.3302V65.268C1 70.9732 5.62513 75.5982 11.3304 75.5982H65.268C70.9732 75.5982 75.5983 70.9732 75.5983 65.268V11.3302C75.5983 5.625 70.9732 1 65.268 1Z"></path>
+        <path fill="black" d="M22.498 13.5963V63.0019L54.0808 38.2991L22.498 13.5963Z"></path>
+        </svg>
+    </button>
+
+    </div>
+</div>
+
+  </div>
+
+</section>
+{% endif %}
+
+<style>
+    .tv-bottom{
+    display: flex;
+background-color: #F4F4F4;
+align-items: center;
+border: 1px solid;
+}
+    .tv-volume {
+  display: flex;
+  cursor: pointer;
+      justify-content: center;
+width: 15%;
+    padding: 35px 0px;
+}
+
+.vol-bar {
+  opacity: 0.3;
+  transition: 0.2s ease;
+      display: flex;
+}
+.vol-bar svg{
+    width: 30px;
+    height: 30px;
+}
+
+.vol-bar.active {
+  opacity: 1;
+}
+
+.tv-player-controls {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  width: 15%;
+      padding: 25px 0px;
+}
+
+.tv-player-controls button {
+  background: transparent;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.2s ease;
+  height: 50px;
+  width: 50px;
+}
+.tv-player-controls button svg{
+    width: 100%;
+    height: 100%;
+}
+
+.tv-wrapper {
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.tv-screen {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  background: black;
+  overflow: hidden;
+}
+
+.tv-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.tv-video.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.tv-bottom > div:not(:last-child) {
+  border-right: 2px solid #000;
+  box-shadow: 2px 0 0 rgba(255,255,255,0.2);
+}
+
+.tv-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: 70%;
+padding: 30px 0px;
+}
+
+.channel-btn {
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s ease;
+  min-width: 13%;
+min-height: 40px;
+border-radius: 6px;
+font-size: 18px;
+border: 1px solid black;
+color: black;
+}
+
+@media (max-width: 1024px) {
+  .tv-section-{{ section.id }} .tv-bottom {
+    display: grid !important;
+  }
+}
+
+/* TOTAL focus reset */
+.tv-section-{{ section.id }} *:focus,
+.tv-section-{{ section.id }} *:focus-visible,
+.tv-section-{{ section.id }} *:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Force border */
+.tv-section-{{ section.id }} .channel-btn {
+  border: 1px solid black !important;
+  border-radius: 6px !important;
+}
+
+
+
+/* ===== CHANNEL BASE COLORS ===== */
+
+.tv-controls .channel-btn:nth-child(1) {
+  background: #99CCE5;
+}
+
+.tv-controls .channel-btn:nth-child(2) {
+  background: #EEE372;
+}
+
+.tv-controls .channel-btn:nth-child(3) {
+  background: #E5AACD;
+}
+
+.tv-controls .channel-btn:nth-child(4) {
+  background: #3B9157;
+}
+
+.tv-controls .channel-btn:nth-child(5) {
+  background: #C3C3C3;
+}
+
+.tv-controls .channel-btn:nth-child(6) {
+  background: #24B24B;
+}
+.tv-controls .channel-btn:nth-child(1):hover {
+  background: #7fb9d6;
+}
+
+.tv-controls .channel-btn:nth-child(2):hover {
+  background: #d8cf5c;
+}
+
+.tv-controls .channel-btn:nth-child(3):hover {
+  background: #cf93b6;
+}
+
+.tv-controls .channel-btn:nth-child(4):hover {
+  background: #2f7847;
+}
+
+.tv-controls .channel-btn:nth-child(5):hover {
+  background: #a9a9a9;
+}
+
+.tv-controls .channel-btn:nth-child(6):hover {
+  background: #1e943f;
+}
+
+.tv-flash {
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+.active-btn{
+    filter: brightness(1.15)
+}
+
+@media (max-width: 768px) {
+.tv-screen {
+    padding-top: 125%;
+  }
+  .tv-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    align-items: center;
+    padding: 0 25px;
+  }
+
+  /* Channels full width (top) */
+  .tv-controls {
+    grid-column: 1 / -1;
+    order: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    width: 95%;
+    margin: 0 auto;
+    padding: 20px 0px 0px 0px;
+  }
+
+  .tv-controls button {
+    width: 100%;
+  }
+
+  /* Volume left bottom */
+  .tv-volume {
+    order: 2;
+    justify-content: center;
+    width: 100%;
+    padding: 15px 0px;
+  }
+
+  /* Player controls right bottom */
+  .tv-player-controls {
+    order: 3;
+    justify-content: center;
+    width: 100%;
+    padding: 15px 0px;
+  }
+
+  .tv-bottom > div:not(:last-child) {
+    border-right: none;
+    box-shadow: none;
+    }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  const section = document.querySelector(".tv-section-{{ section.id }}");
+  if (!section) return;
+
+  const videos = section.querySelectorAll(".tv-video");
+  const buttons = section.querySelectorAll(".channel-btn");
+  const flash = section.querySelector(".tv-flash");
+
+  const playBtn = section.querySelector(".tv-play");
+  const pauseBtn = section.querySelector(".tv-pause");
+  const muteBtn = section.querySelector(".tv-mute");
+  const volumeBars = section.querySelectorAll(".vol-bar");
+
+  let currentVolume = 0.6;
+  let isMuted = true;
+
+  /* ================= HELPERS ================= */
+
+  function isMobile() {
+    return window.matchMedia("(max-width: 768px)").matches;
+  }
+
+  function getActiveVideo() {
+    return section.querySelector(".tv-video.active");
+  }
+
+  function updateMuteIcon() {
+    if (!muteBtn) return;
+
+    const mutedIcon = muteBtn.querySelector(".icon-muted");
+    const unmutedIcon = muteBtn.querySelector(".icon-unmuted");
+
+    if (mutedIcon && unmutedIcon) {
+      mutedIcon.style.display = isMuted ? "inline-block" : "none";
+      unmutedIcon.style.display = isMuted ? "none" : "inline-block";
+    }
+  }
+
+  function updateVolumeUI(level) {
+    volumeBars.forEach(bar => {
+      bar.classList.toggle("active", parseInt(bar.dataset.level) <= level);
+    });
+  }
+
+  function applyStateToAllVideos() {
+    videos.forEach(video => {
+      video.volume = currentVolume;
+      video.muted = isMuted;
+    });
+  }
+
+  /* ================= VIDEO + POSTER SWITCH ================= */
+
+  function updateVideoAndPoster() {
+
+    const mobile = isMobile();
+
+    videos.forEach(video => {
+
+      const desktopSrc = video.dataset.videoDesktop;
+      const mobileSrc = video.dataset.videoMobile;
+      const desktopPoster = video.dataset.posterDesktop;
+      const mobilePoster = video.dataset.posterMobile;
+
+      const newSrc = (mobile && mobileSrc) ? mobileSrc : desktopSrc;
+      const newPoster = (mobile && mobilePoster) ? mobilePoster : desktopPoster;
+
+      /* Update Source Safely */
+      if (video.getAttribute("src") !== newSrc) {
+        const wasActive = video.classList.contains("active");
+        video.pause();
+        video.setAttribute("src", newSrc);
+        video.load();
+
+        if (wasActive) {
+          video.play().catch(()=>{});
+        }
+      }
+
+      /* Update Poster */
+      if (newPoster) {
+        video.setAttribute("poster", newPoster);
+      }
+    });
+  }
+
+  updateVideoAndPoster();
+  window.addEventListener("resize", updateVideoAndPoster);
+
+  /* ================= INITIAL STATE ================= */
+
+  applyStateToAllVideos();
+  updateVolumeUI(currentVolume * 5);
+  updateMuteIcon();
+
+  /* ================= CHANNEL SWITCH ================= */
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", function() {
+
+      const index = this.dataset.index;
+      flash.style.opacity = "1";
+
+      setTimeout(() => {
+
+        videos.forEach(video => {
+          video.pause();
+          video.classList.remove("active");
+        });
+
+        buttons.forEach(b => b.classList.remove("active-btn"));
+
+        const activeVideo = section.querySelector(
+          '.tv-video[data-index="' + index + '"]'
+        );
+
+        if (!activeVideo) return;
+
+        activeVideo.classList.add("active");
+        activeVideo.volume = currentVolume;
+        activeVideo.muted = isMuted;
+
+        activeVideo.play().catch(()=>{});
+
+        this.classList.add("active-btn");
+        this.blur();   
+
+        flash.style.opacity = "0";
+
+      }, 150);
+    });
+  });
+
+  /* ================= PLAY ================= */
+
+  if (playBtn) {
+    playBtn.addEventListener("click", function() {
+      const video = getActiveVideo();
+      if (video) video.play().catch(()=>{});
+    });
+  }
+
+  /* ================= PAUSE ================= */
+
+  if (pauseBtn) {
+    pauseBtn.addEventListener("click", function() {
+      const video = getActiveVideo();
+      if (video) video.pause();
+    });
+  }
+
+  /* ================= MUTE ================= */
+
+  if (muteBtn) {
+    muteBtn.addEventListener("click", function() {
+      isMuted = !isMuted;
+      applyStateToAllVideos();
+      updateMuteIcon();
+    });
+  }
+
+  /* ================= VOLUME ================= */
+
+  volumeBars.forEach(bar => {
+    bar.addEventListener("click", function() {
+
+      const level = parseInt(this.dataset.level);
+      currentVolume = level * 0.2;
+      isMuted = false;
+
+      applyStateToAllVideos();
+      updateVolumeUI(level);
+      updateMuteIcon();
+    });
+  });
+
+});
+</script>
+
+{% schema %}
+{
+  "name": "TV Channel Video",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "channel",
+      "name": "Channel",
+      "settings": [
+        {
+          "type": "text",
+          "id": "channel_label",
+          "label": "Channel Button Label",
+          "default": "1"
+        },
+        {
+          "type": "url",
+          "id": "video_url",
+          "label": "Video File URL (Desktop)"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster",
+          "label": "Poster Image (Optional | Desktop)"
+        },
+        {
+          "type": "url",
+          "id": "video_url_mobile",
+          "label": "Video File URL (Mobile)"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster_mobile",
+          "label": "Poster Image (Optional | Mobile)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TV Channel Video"
+    }
+  ]
+}
+{% endschema %}

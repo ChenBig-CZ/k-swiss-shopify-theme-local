@@ -1,0 +1,70 @@
+{% liquid 
+  assign show_block = false
+  assign now = 'now' | date: '%s'
+
+  assign metafield_namespace = block.settings.metafield | split: '.' | first
+  assign metafield_key = block.settings.metafield | split: '.' | last
+  assign datetime = product.metafields[metafield_namespace][metafield_key].value
+  
+  unless datetime
+    assign datetime = block.settings.datetime
+  endunless
+
+  assign unixtime = datetime | date: '%s'
+
+  if unixtime > now
+    assign show_block = true
+  endif
+
+  if shop.permanent_domain contains 'dawn-theme'
+    assign show_block = true
+  endif
+%}
+
+{% if show_block %}
+  <div 
+    id="ml-product-block-countdown-{{ section.id }}"
+    class="ml-product-block-countdown ml-countdown color-{{ block.settings.color_scheme }}"
+    {{ block.shopify_attributes }}>
+    <div class="ml-product-block-countdown-inner">
+      <ml-animated-countdown
+        class="ml-animated-countdown"
+        data-time="{{ unixtime }}"
+        data-format="long"
+        role="timer">
+        <span>
+          <span>
+            <span data-days></span>
+          </span>
+        </span>
+        <span>
+          <span>
+            <span data-hours></span>
+          </span>
+        </span>
+        <span>
+          <span>
+            <span data-min></span>
+          </span>
+        </span>
+        <span>
+          <span>
+            <span data-sec></span>
+          </span>
+        </span>
+      </ml-animated-countdown>
+      <div class="ml-product-block-countdown-header">
+        {% unless block.settings.title == blank %}
+          <h2 class="title {{ block.settings.title_font_size }} {{ block.settings.title_text_style }}">
+            {{ block.settings.title }}
+          </h2>
+        {% endunless %}
+        {% unless block.settings.description == blank %}
+          <div class="description rte {{ block.settings.description_font_size }}">
+            {{ block.settings.description }}
+          </div>
+        {% endunless %}
+      </div>
+    </div>
+  </div>
+{% endif %}

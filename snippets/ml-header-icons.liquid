@@ -1,0 +1,38 @@
+{% case icon %}
+  {% when 'wishlist' %}
+    {% if settings.ml_wishlist %}
+      <a 
+        href="#ml-wishlist-drawer" 
+        class="header__icon header__icon--wishlist link focus-inset" 
+        id="wishlist-icon-bubble" 
+        role="button" 
+        aria-haspopup="dialog">
+        <span class="svg-wrapper">
+          {% render 'ml-svg-icons', icon: 'heart', size: 24, stroke_width: 1.5, class: 'icon' %}
+        </span>
+        <span class="visually-hidden">
+          Wishlist
+        </span>
+        <div class="wishlist-count-bubble cart-count-bubble" hidden>
+          <span aria-hidden="true"></span>
+          <span class="visually-hidden"></span>
+        </div>
+      </a>
+    {% endif %}
+  {% when 'recently-viewed' %}
+    {% if settings.ml_recently_viewed %}
+      <a 
+        href="#ml-recently-viewed-drawer" 
+        class="header__icon header__icon--recently-viewed link focus-inset" 
+        id="recently-viewed-icon-bubble" 
+        role="button" 
+        aria-haspopup="dialog">
+        <span class="svg-wrapper">
+          {% render 'ml-svg-icons', icon: 'recently-viewed', size: 24, stroke_width: 1.5, class: 'icon' %}
+        </span>
+        <span class="visually-hidden">
+          Recently Viewed
+        </span>
+      </a>
+    {% endif %}
+{% endcase %}

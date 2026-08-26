@@ -1,0 +1,40 @@
+{% liquid
+  assign start = block.settings.start
+  assign end = block.settings.end
+
+  assign start_in_seconds = start | times: 86400
+  assign end_in_seconds = end | times: 86400
+  assign start_timestamp = 'now' | date: '%s' | plus: start_in_seconds
+  assign end_timestamp = 'now' | date: '%s' | plus: end_in_seconds
+  assign start_formatted = start_timestamp | date: block.settings.date_format
+  assign end_formatted = end_timestamp | date: block.settings.date_format
+%}
+
+<div class="ml-product-block-delivery-dates" {{ block.shopify_attributes }}>
+  <div class="rte {{ block.settings.description_font_size }}">
+    {% if block.settings.show_icon %}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="{{ block.settings.icon_size }}"
+        height="{{ block.settings.icon_size }}"
+        class="svg-icon-truck "
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle>
+      </svg>
+    {% endif %}
+    {{
+      block.settings.description
+      | replace: '[', '<b>'
+      | replace: ']', '</b>'
+      | replace: 'start', start_formatted
+      | replace: 'end', end_formatted
+    }}
+  </div>
+</div>

@@ -1,0 +1,96 @@
+<div id="product-siblings">
+  <p class="product-siblings__label form__label">
+    <strong>Color:</strong>
+    <span id="active-color">
+      {{ product.title | split: ' | ' | last }}
+    </span>
+  </p>
+
+  <div class="product-siblings__grid"></div>
+</div>
+
+<script>
+  window.SIBLING_FAMILY_CODE = "{{ product.title | split: '-' | first | strip }}";
+  window.SIBLING_SIZE_CODE   = "{{ product.title | split: ' | ' | first | split: '-' | last | strip }}";
+  window.CURRENT_HANDLE      = "{{ product.handle }}";
+  window.PRODUCT_TYPE        = "{{ product.type }}";
+  window.PLP_COMING_SOON     = {{ settings.show_siblings_plp }};
+  window.COMING_SOON_ENABLED = {{ settings.plp_coming_soon | json }};
+  window.product             = {{ product | json }};
+</script>
+
+<script>
+  function renderSiblings(siblings, currentHandle) {
+  const grid = document.querySelector('.product-siblings__grid');
+  const activeColorEl = document.getElementById('active-color');
+  if (!grid || siblings.length < 2) return;
+
+  grid.innerHTML = '';
+
+  const active = siblings.find(p => p.handle === currentHandle);
+  const activeColor = active?.title.split('|').pop().trim();
+
+  if (activeColor && activeColorEl) {
+    activeColorEl.textContent = activeColor;
+  }
+
+const sortedSiblings = [...siblings].sort((a, b) => {
+  if (a.handle === currentHandle) return -1;
+  if (b.handle === currentHandle) return 1;
+  return 0;
+});
+
+sortedSiblings.forEach(p => {
+  const color = p.title.split('|').pop().trim();
+  const isActive = p.handle === currentHandle;
+
+  const el = isActive ? document.createElement('div') : document.createElement('a');
+  el.className = 'sibling-swatch' + (isActive ? ' active' : '');
+  if (!isActive) el.href = `/products/${p.handle}`;
+
+  const saleBadge = p.onSale ? '<span class="sibling-swatch__sale-badge">Sale</span>' : '';
+  el.innerHTML = `${saleBadge}<img class="object-contain w-full h-full" src="${p.image}" alt="${p.title}" />`;
+
+  el.addEventListener('mouseenter', () => {
+    if (activeColorEl) activeColorEl.textContent = color;
+  });
+
+  el.addEventListener('mouseleave', () => {
+    if (activeColorEl) activeColorEl.textContent = activeColor;
+  });
+
+  grid.appendChild(el);
+});
+}
+</script>
+
+<style>
+.sibling-swatch {
+  position: relative;
+  border: var(--variant-pills-border-width) solid rgba(var(--color-foreground),var(--variant-pills-border-opacity));
+  padding: 4px;
+  border-radius: 6px;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.sibling-swatch.active, .sibling-swatch:hover {
+  border-color: #000;
+}
+
+.object-contain {
+    object-fit: contain;
+}
+.product-siblings__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .product-siblings__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+</style>

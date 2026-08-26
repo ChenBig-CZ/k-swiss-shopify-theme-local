@@ -1,0 +1,497 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "shogun-helper": {
+      "type": "shogun-helper",
+      "disabled": true,
+      "settings": {}
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "shogun-optimizer": {
+      "type": "shogun-optimizer",
+      "disabled": true,
+      "settings": {}
+    },
+    "rich_text_JqtzUG": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_h6yFEm": {
+          "type": "heading",
+          "settings": {
+            "heading": "K-Swiss Tennis",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_h6yFEm"
+      ],
+      "custom_css": [
+        "h2 {text-transform: uppercase;}"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "autoplay_video_n4tzax": {
+      "type": "autoplay-video",
+      "name": "Autoplay Video",
+      "settings": {
+        "show_desktop": true,
+        "show_mobile": false,
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/e3dee10abe10413589d5a898a431d37d.mp4",
+        "fallback_image": "shopify://shop_images/desktop_thumbnail.png",
+        "parallax": false
+      }
+    },
+    "autoplay_video_4pG9iY": {
+      "type": "autoplay-video",
+      "name": "Autoplay Video",
+      "settings": {
+        "show_desktop": false,
+        "show_mobile": true,
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/997e16011d7c408f88119f096aedad04.mp4",
+        "fallback_image": "shopify://shop_images/mobile_thumbnail.png",
+        "parallax": false
+      }
+    },
+    "multicolumn_new_TRyHdW": {
+      "type": "multicolumn-new",
+      "blocks": {
+        "image_box_eGPfgq": {
+          "type": "image-box",
+          "settings": {
+            "image": "shopify://shop_images/Q1Ultrashot4_Mobile_360x504_c2c6e2a5-f5ed-4cb6-9679-91df6728344e.jpg",
+            "title": "Ultrashot 4",
+            "text": "<p>Stability & Durability</p>",
+            "text_desc": "",
+            "link_label": "MEN",
+            "link": "https://kswiss.com/products/04437-413-m",
+            "button_style_secondary": true,
+            "link_label_2": "WOMEN",
+            "link_2": "https://kswiss.com/products/94437-147-m",
+            "button_style_secondary_2": true,
+            "color_scheme": "scheme-1"
+          }
+        },
+        "image_box_r64m6E": {
+          "type": "image-box",
+          "settings": {
+            "image": "shopify://shop_images/HypercourtPinnacle_Desktop_433x228_18dc1d94-c441-42be-a1ab-8f5e8a4fde73.jpg",
+            "title": "Hypercourt Pinnacle",
+            "text": "<p>All-Purpose</p>",
+            "text_desc": "",
+            "link_label": "MEN",
+            "link": "shopify://products/04432-656-m",
+            "button_style_secondary": true,
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "color_scheme": "scheme-1"
+          }
+        },
+        "image_box_ngP8X8": {
+          "type": "image-box",
+          "settings": {
+            "image": "shopify://shop_images/HypercourtExpress2_Desktop_433x228_70091668-4826-49cd-95ca-a159481dec95.jpg",
+            "title": "HYPERCOURT EXPRESS 2",
+            "text": "<p>Comfortable & No Break-In Time</p>",
+            "text_desc": "",
+            "link_label": "MEN",
+            "link": "shopify://products/06613-407-m",
+            "button_style_secondary": true,
+            "link_label_2": "WOMEN",
+            "link_2": "shopify://products/96613-102-m",
+            "button_style_secondary_2": true,
+            "color_scheme": "scheme-1"
+          }
+        },
+        "image_box_Ac7fYJ": {
+          "type": "image-box",
+          "settings": {
+            "image": "shopify://shop_images/HypercourtExpress3_Mobile_360x504_2.jpg",
+            "title": "Hypercourt Express 3",
+            "text": "<p>Newly Enhanced Comfort</p>",
+            "text_desc": "",
+            "link_label": "MEN",
+            "link": "shopify://products/04603-416-m",
+            "button_style_secondary": true,
+            "link_label_2": "WOMEN",
+            "link_2": "shopify://products/94603-160-m",
+            "button_style_secondary_2": true,
+            "color_scheme": "scheme-1"
+          }
+        }
+      },
+      "block_order": [
+        "image_box_eGPfgq",
+        "image_box_r64m6E",
+        "image_box_ngP8X8",
+        "image_box_Ac7fYJ"
+      ],
+      "custom_css": [
+        "h2,h3 {text-transform: uppercase;}",
+        ".rte {margin: 0;}",
+        "h3 {font-size: 3rem;}",
+        ".button {margin-top: 10px;}",
+        ".slider-buttons {display: none;}"
+      ],
+      "name": "Multicolumn New",
+      "settings": {
+        "full_width": true,
+        "title": "Tennis Shoe Lineup",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "square",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 4,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "section_id": ""
+      }
+    },
+    "multicolumn_new_CcMMfk": {
+      "type": "multicolumn-new",
+      "blocks": {
+        "custom_FK4EcX": {
+          "type": "custom",
+          "settings": {
+            "image_top": "shopify://shop_images/AndreyRublev-Athletes-Shoes_Desktop_460x483_4e6b2497-a010-4480-8a1a-b21bf83a6ccb.jpg",
+            "link_image_top": "shopify://pages/andrey-rublev-tennis-athlete",
+            "image": "shopify://shop_images/AndreyRublev-Athletes-Shoe_Desktop_460x177_87245e2f-686c-4789-8392-484d7601f040.jpg",
+            "link_image": "shopify://products/09483-306-m",
+            "title": "Andrey Rublev",
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "custom_jFqrbi": {
+          "type": "custom",
+          "settings": {
+            "image_top": "shopify://shop_images/LiudmilaSamsonova-Athletes-Shoes_Desktop_460x483_ae5d33db-3e8c-4c02-8c8b-c98a3efdf604.jpg",
+            "link_image_top": "shopify://pages/liudmila-samsonova-tennis-athlete",
+            "image": "shopify://shop_images/LiudmilaSamsonova-Athletes-Shoe_Desktop_460x177_92ea111f-77c6-4972-a518-267606d46136.jpg",
+            "link_image": "shopify://products/99071-182-m",
+            "title": "Liudmila Samsonova",
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "custom_bcQ4HA": {
+          "type": "custom",
+          "settings": {
+            "image_top": "shopify://shop_images/TomasEtcheverry-Athletes-Shoes_Desktop_460x483_cfd3819d-063a-4905-bd03-38f7a2d8bf95.jpg",
+            "link_image_top": "shopify://pages/tomas-etcheverry-tennis-athlete",
+            "image": "shopify://shop_images/TomasEtcheverry-Athletes-Shoe_Desktop_460x177_ec2b8669-66a2-4a78-b6fa-05c728e1bba4.jpg",
+            "link_image": "shopify://products/04437-059-m",
+            "title": "Tomas Etcheverry",
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "custom_8N3wPf": {
+          "type": "custom",
+          "settings": {
+            "image_top": "shopify://shop_images/EkaterinaAlexandrova-Athletes-Shoes_Desktop_460x483_b77972a3-9e92-4a1a-bf72-8abf52eef71b.jpg",
+            "link_image_top": "shopify://pages/ekaterina-alexandrova-tennis-athlete",
+            "image": "shopify://shop_images/EkaterinaAlexandrova-Athletes-Shoe_Desktop_460x177_12bf121e-e7d3-43d7-9031-743f82ee74d1.jpg",
+            "link_image": "shopify://products/94437-162-m",
+            "title": "Ekaterina Alexandrova",
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "color_scheme": "scheme-1"
+          }
+        }
+      },
+      "block_order": [
+        "custom_FK4EcX",
+        "custom_jFqrbi",
+        "custom_bcQ4HA",
+        "custom_8N3wPf"
+      ],
+      "custom_css": [
+        "h2,h3 {text-transform: uppercase;}",
+        "h3 {font-size: 2.5rem; color: white;}",
+        ".multicolumn-card__info {position: absolute; top: 0;}",
+        ".multicolumn-card__info {padding-top: 1rem;}",
+        ".multicolumn-card__image-wrapper {margin: 0px;}",
+        ".slider-buttons {display: none;}",
+        ".image_bottom .media {padding-bottom: 25%;}"
+      ],
+      "name": "Multicolumn New",
+      "settings": {
+        "full_width": true,
+        "title": "K-SWISS ATHLETES",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "portrait",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 4,
+        "column_alignment": "left",
+        "background_style": "none",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "section_id": ""
+      }
+    },
+    "rich_text_r84MEP": {
+      "type": "rich-text",
+      "blocks": {
+        "text_3x3Wmk": {
+          "type": "text",
+          "settings": {
+            "text": "<p>*K-Swiss athletes may play with customized shoes.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_3x3Wmk"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 52
+      }
+    },
+    "collection_tabs_EnPMkL": {
+      "type": "collection-tabs",
+      "blocks": {
+        "tab_4mhnRh": {
+          "type": "tab",
+          "settings": {
+            "collection": "tennis-mens-new-arrivals",
+            "tab_txt": "MEN",
+            "viewall": true
+          }
+        },
+        "tab_GQVWxH": {
+          "type": "tab",
+          "settings": {
+            "collection": "tennis-womens-new-arrivals",
+            "tab_txt": "WOMEN",
+            "viewall": true
+          }
+        }
+      },
+      "block_order": [
+        "tab_4mhnRh",
+        "tab_GQVWxH"
+      ],
+      "custom_css": [
+        "p {margin: 0px;}",
+        ".grid__item {height: auto !important;}",
+        ".button {color: white;}"
+      ],
+      "name": "Collection Tabs",
+      "settings": {
+        "title": "NEW ARRIVALS",
+        "useslider": true,
+        "image_ratio": "square",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "show_siblings": false,
+        "quick_add": "none",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collection_tabs_CHFK89": {
+      "type": "collection-tabs",
+      "blocks": {
+        "tab_kpgxEN": {
+          "type": "tab",
+          "settings": {
+            "collection": "mens-tennis-shoes",
+            "tab_txt": "MEN",
+            "viewall": true
+          }
+        },
+        "tab_dw4RpQ": {
+          "type": "tab",
+          "settings": {
+            "collection": "womens-tennis-shoes",
+            "tab_txt": "WOMEN",
+            "viewall": true
+          }
+        }
+      },
+      "block_order": [
+        "tab_kpgxEN",
+        "tab_dw4RpQ"
+      ],
+      "custom_css": [
+        "p {margin: 0px;}",
+        ".grid__item {height: auto !important;}",
+        ".button {color: white;}"
+      ],
+      "name": "Collection Tabs",
+      "settings": {
+        "title": "TENNIS SHOES",
+        "useslider": true,
+        "image_ratio": "square",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "show_siblings": false,
+        "quick_add": "none",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collection_tabs_kqH9bC": {
+      "type": "collection-tabs",
+      "blocks": {
+        "tab_QxxHQm": {
+          "type": "tab",
+          "settings": {
+            "collection": "apparel-men",
+            "tab_txt": "MEN",
+            "viewall": true
+          }
+        },
+        "tab_LTrQzM": {
+          "type": "tab",
+          "settings": {
+            "collection": "apparel-women",
+            "tab_txt": "WOMEN",
+            "viewall": true
+          }
+        }
+      },
+      "block_order": [
+        "tab_QxxHQm",
+        "tab_LTrQzM"
+      ],
+      "custom_css": [
+        "p {margin: 0px;}",
+        ".grid__item {height: auto !important;}",
+        ".button {color: white;}"
+      ],
+      "name": "Collection Tabs",
+      "settings": {
+        "title": "TENNIS CLOTHING",
+        "useslider": true,
+        "image_ratio": "square",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "show_siblings": false,
+        "quick_add": "none",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collection_tabs_WALbKm": {
+      "type": "collection-tabs",
+      "blocks": {
+        "tab_rFHWkG": {
+          "type": "tab",
+          "disabled": true,
+          "settings": {
+            "collection": "apparel-men",
+            "tab_txt": "MEN",
+            "viewall": true
+          }
+        },
+        "tab_MHnhxw": {
+          "type": "tab",
+          "settings": {
+            "collection": "accessories-1",
+            "tab_txt": "",
+            "viewall": true
+          }
+        }
+      },
+      "block_order": [
+        "tab_rFHWkG",
+        "tab_MHnhxw"
+      ],
+      "custom_css": [
+        "p {margin: 0px;}",
+        ".grid__item {height: auto !important;}",
+        ".button {color: white;}"
+      ],
+      "name": "Collection Tabs",
+      "settings": {
+        "title": "ACCESSORIES",
+        "useslider": true,
+        "image_ratio": "square",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "show_siblings": false,
+        "quick_add": "none",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "shogun-helper",
+    "main",
+    "shogun-optimizer",
+    "rich_text_JqtzUG",
+    "autoplay_video_n4tzax",
+    "autoplay_video_4pG9iY",
+    "multicolumn_new_TRyHdW",
+    "multicolumn_new_CcMMfk",
+    "rich_text_r84MEP",
+    "collection_tabs_EnPMkL",
+    "collection_tabs_CHFK89",
+    "collection_tabs_kqH9bC",
+    "collection_tabs_WALbKm"
+  ]
+}

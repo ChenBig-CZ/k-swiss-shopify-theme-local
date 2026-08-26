@@ -1,0 +1,1306 @@
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign cols = section.settings.columns_desktop
+  assign cols_mobile = section.settings.columns_mobile | plus: 0
+  assign fx = section.settings.hover_effect
+  assign has_overlay = false
+  if fx != 'none'
+    assign has_overlay = true
+  endif
+
+  assign mobile_pos = section.settings.mobile_text_position
+
+  case section.settings.heading_alignment
+    when 'center'
+      assign heading_justify = 'center'
+    when 'right'
+      assign heading_justify = 'flex-end'
+    else
+      assign heading_justify = 'flex-start'
+  endcase
+
+  case section.settings.image_ratio
+    when 'square'
+      assign ratio = 1.0
+    when 'portrait'
+      assign ratio = 1.25
+    when 'landscape'
+      assign ratio = 0.75
+    else
+      assign ratio = 0
+  endcase
+
+  assign overlay_pad_mobile = section.settings.overlay_padding | times: 0.6 | round: 0
+  assign overlay_title_mobile = section.settings.overlay_title_size | times: 0.8 | round: 0
+  assign overlay_text_mobile = section.settings.overlay_text_size | times: 0.85 | round: 0
+-%}
+
+{%- style -%}
+  #Decades-{{ section.id }} {
+    --dc-cols: {{ cols_mobile }};
+    --dc-gap: {{ section.settings.gap_mobile }}px;
+    --dc-peek: {{ section.settings.peek_mobile }}px;
+  }
+
+  {%- comment -%}
+    .page-width--narrow is only defined from 750px up in base.css, so on mobile it
+    contributes no padding at all. This restores the gutter below that breakpoint.
+  {%- endcomment -%}
+  @media screen and (max-width: 749px) {
+    #Decades-{{ section.id }}.decades {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  #Decades-{{ section.id }} .decades__anchor {
+    display: block;
+    height: 0;
+    scroll-margin-top: 10rem;
+  }
+
+  #Decades-{{ section.id }} .decades__inner {
+    display: block;
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  #Decades-{{ section.id }} .decades__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.2rem;
+    margin-bottom: 1.8rem;
+  }
+
+  #Decades-{{ section.id }} .decades__heading-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: {{ heading_justify }};
+    gap: 0 1.2rem;
+    flex: 1 1 auto;
+    min-width: 0;
+    text-align: {{ section.settings.heading_alignment }};
+  }
+
+  #Decades-{{ section.id }} .decades__title {
+    margin: 0;
+    line-height: 1.1;
+    word-break: break-word;
+  }
+
+  #Decades-{{ section.id }} .decades__subtitle {
+    margin: 0;
+    font-size: {{ section.settings.subtitle_size_mobile }}px;
+    line-height: 1.4;
+    opacity: 0.85;
+  }
+
+  {%- if section.settings.subtitle_below -%}
+    #Decades-{{ section.id }} .decades__title,
+    #Decades-{{ section.id }} .decades__subtitle {
+      flex: 0 0 100%;
+      width: 100%;
+    }
+
+    #Decades-{{ section.id }} .decades__subtitle {
+      order: 2;
+      margin-top: 0.6rem;
+    }
+  {%- endif -%}
+
+  {%- comment -%} Arrows are kept in the DOM for the slider JS, only hidden visually {%- endcomment -%}
+  {%- unless section.settings.show_arrows_mobile -%}
+    @media screen and (max-width: 749px) {
+      #Decades-{{ section.id }} .slider-buttons {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+      }
+    }
+  {%- endunless -%}
+
+  #Decades-{{ section.id }} .decades__track {
+    display: flex;
+    align-items: stretch;
+    gap: var(--dc-gap);
+    margin: 0;
+    padding: 0 0 1.2rem;
+    list-style: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  {%- comment -%} Dawn hides slider scrollbars globally, so this section opts back in {%- endcomment -%}
+  {%- if section.settings.show_scrollbar -%}
+    #Decades-{{ section.id }} .decades__track {
+      scrollbar-width: thin;
+      scrollbar-color: rgb(var(--color-foreground)) rgba(var(--color-foreground), 0.08);
+    }
+
+    #Decades-{{ section.id }} .decades__track::-webkit-scrollbar {
+      display: block;
+      height: 4px;
+    }
+
+    #Decades-{{ section.id }} .decades__track::-webkit-scrollbar-thumb {
+      background-color: rgb(var(--color-foreground));
+      border-radius: 4px;
+    }
+
+    #Decades-{{ section.id }} .decades__track::-webkit-scrollbar-track {
+      background: rgba(var(--color-foreground), 0.08);
+      border-radius: 4px;
+    }
+  {%- else -%}
+    #Decades-{{ section.id }} .decades__track {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    #Decades-{{ section.id }} .decades__track::-webkit-scrollbar {
+      display: none;
+    }
+  {%- endif -%}
+
+  #Decades-{{ section.id }} .decades__item {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: calc((100% - var(--dc-peek) - (var(--dc-cols) - 1) * var(--dc-gap)) / var(--dc-cols));
+  }
+
+  #Decades-{{ section.id }} .decades__card {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+  }
+
+  #Decades-{{ section.id }} .decades__media {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background: rgba(var(--color-foreground), 0.04);
+    {%- if ratio > 0 %}aspect-ratio: 1 / {{ ratio }};{% endif -%}
+  }
+
+  #Decades-{{ section.id }} .decades__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+
+  {%- if section.settings.enable_zoom -%}
+    #Decades-{{ section.id }} .decades__card:hover .decades__media img {
+      transform: scale(1.06);
+    }
+  {%- endif -%}
+
+  #Decades-{{ section.id }} .decades__btn {
+    width: 100%;
+    margin-top: {{ section.settings.button_gap }}px;
+    text-transform: uppercase;
+  }
+
+  {%- comment -%} Copy shown under the image: the only layout on mobile by default {%- endcomment -%}
+  #Decades-{{ section.id }} .decades__info {
+    margin-top: {{ section.settings.info_gap }}px;
+    text-align: {{ section.settings.info_alignment }};
+  }
+
+  {%- comment -%}
+    Absorbing the leftover height here is what lines the card buttons up with each
+    other, since the copy is what varies in length from card to card.
+  {%- endcomment -%}
+  {%- if section.settings.align_buttons -%}
+    #Decades-{{ section.id }} .decades__info {
+      flex: 1 1 auto;
+    }
+  {%- endif -%}
+
+  #Decades-{{ section.id }} .decades__info--empty {
+    margin-top: 0;
+  }
+
+  #Decades-{{ section.id }} .decades__info > * {
+    margin: 0;
+  }
+
+  #Decades-{{ section.id }} .decades__info-title {
+    font-size: {{ section.settings.info_title_size_mobile }}px;
+    line-height: 1.1;
+    word-break: break-word;
+  }
+
+  #Decades-{{ section.id }} .decades__info-text {
+    margin-top: 0.8rem;
+    font-size: {{ section.settings.info_text_size_mobile }}px;
+    line-height: 1.5;
+  }
+
+  #Decades-{{ section.id }} .decades__info-text > * {
+    margin: 0;
+  }
+
+  #Decades-{{ section.id }} .decades__info-text > * + * {
+    margin-top: 0.6em;
+  }
+
+  #Decades-{{ section.id }} .decades__footer {
+    margin-top: 2.4rem;
+    text-align: center;
+  }
+
+  {%- comment -%} Hover overlay: shared shell, effect-specific motion added below {%- endcomment -%}
+  {%- if has_overlay -%}
+    #Decades-{{ section.id }} .decades__overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      padding: {{ overlay_pad_mobile }}px;
+      color: {{ section.settings.hover_text_color }};
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    #Decades-{{ section.id }} .decades__overlay::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: {{ section.settings.hover_bg_color }};
+      opacity: {{ section.settings.hover_opacity | divided_by: 100.0 }};
+    }
+
+    #Decades-{{ section.id }} .decades__overlay > * {
+      position: relative;
+      max-width: 100%;
+    }
+
+    #Decades-{{ section.id }} .decades__overlay-title {
+      margin: 0;
+      font-size: {{ overlay_title_mobile }}px;
+      line-height: 1.2;
+      color: inherit;
+      word-break: break-word;
+    }
+
+    #Decades-{{ section.id }} .decades__overlay-text {
+      margin: 0.8rem 0 0;
+      font-size: {{ overlay_text_mobile }}px;
+      line-height: 1.5;
+      color: inherit;
+      word-break: break-word;
+    }
+
+    #Decades-{{ section.id }} .decades__overlay-text > * {
+      margin: 0;
+      color: inherit;
+    }
+
+    {%- comment -%}
+      Long copy would otherwise spill out of the card. max-height is used instead of
+      -webkit-line-clamp because the text sits inside an .rte wrapper, where clamp
+      does not apply reliably across browsers.
+    {%- endcomment -%}
+    {%- if section.settings.overlay_text_lines > 0 -%}
+      #Decades-{{ section.id }} .decades__overlay-text {
+        max-height: calc({{ section.settings.overlay_text_lines }} * 1.5em);
+        overflow: hidden;
+      }
+    {%- endif -%}
+  {%- endif -%}
+
+  {%- case fx -%}
+    {%- when 'scrim' -%}
+      #Decades-{{ section.id }} .decades__overlay {
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.35s ease;
+      }
+
+      #Decades-{{ section.id }} .decades__card:hover .decades__overlay,
+      #Decades-{{ section.id }} .decades__media:focus-visible .decades__overlay {
+        opacity: 1;
+      }
+
+    {%- when 'curtain' -%}
+      #Decades-{{ section.id }} .decades__overlay {
+        justify-content: flex-end;
+        transform: translateY(101%);
+        transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.3, 1);
+      }
+
+      #Decades-{{ section.id }} .decades__card:hover .decades__overlay,
+      #Decades-{{ section.id }} .decades__media:focus-visible .decades__overlay {
+        transform: translateY(0);
+      }
+
+    {%- when 'rule' -%}
+      #Decades-{{ section.id }} .decades__overlay {
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.35s ease;
+      }
+
+      #Decades-{{ section.id }} .decades__overlay-title {
+        transform: translateY(-12px);
+        transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.3, 1);
+      }
+
+      #Decades-{{ section.id }} .decades__rule {
+        display: block;
+        width: 0;
+        height: 1px;
+        margin: 1.2rem 0 0;
+        background: currentColor;
+        transition: width 0.5s cubic-bezier(0.2, 0.7, 0.3, 1) 0.06s;
+      }
+
+      #Decades-{{ section.id }} .decades__card:hover .decades__overlay,
+      #Decades-{{ section.id }} .decades__media:focus-visible .decades__overlay {
+        opacity: 1;
+      }
+
+      #Decades-{{ section.id }} .decades__card:hover .decades__overlay-title,
+      #Decades-{{ section.id }} .decades__media:focus-visible .decades__overlay-title {
+        transform: translateY(0);
+      }
+
+      #Decades-{{ section.id }} .decades__card:hover .decades__rule,
+      #Decades-{{ section.id }} .decades__media:focus-visible .decades__rule {
+        width: {{ section.settings.rule_width }}px;
+      }
+  {%- endcase -%}
+
+  {%- comment -%}
+    Mobile copy placement. Overlay and under-image copy are both in the markup and
+    swapped with display, so only one of the two is ever in the accessibility tree.
+  {%- endcomment -%}
+  {%- if has_overlay -%}
+    @media screen and (max-width: 749px) {
+      {%- case mobile_pos -%}
+        {%- when 'below' -%}
+          #Decades-{{ section.id }} .decades__overlay {
+            display: none;
+          }
+        {%- when 'overlay' -%}
+          #Decades-{{ section.id }} .decades__info {
+            display: none;
+          }
+
+          #Decades-{{ section.id }} .decades__overlay {
+            opacity: 1;
+            transform: none;
+          }
+
+          #Decades-{{ section.id }} .decades__overlay-title {
+            transform: none;
+          }
+
+          #Decades-{{ section.id }} .decades__rule {
+            width: {{ section.settings.rule_width }}px;
+          }
+        {%- when 'hidden' -%}
+          #Decades-{{ section.id }} .decades__info,
+          #Decades-{{ section.id }} .decades__overlay {
+            display: none;
+          }
+      {%- endcase -%}
+    }
+
+    {%- comment -%}
+      Touch tablets sit above the mobile breakpoint but can never fire a hover,
+      so the under-image copy stays visible for them too.
+    {%- endcomment -%}
+    {%- if mobile_pos == 'below' -%}
+      @media (hover: none) and (min-width: 750px) {
+        #Decades-{{ section.id }} .decades__info {
+          display: block;
+        }
+
+        #Decades-{{ section.id }} .decades__overlay {
+          display: none;
+        }
+      }
+    {%- endif -%}
+  {%- endif -%}
+
+  {%- comment -%} Drag state: snap and smooth scrolling both fight a manual drag {%- endcomment -%}
+  #Decades-{{ section.id }} .decades__track.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+    user-select: none;
+  }
+
+  #Decades-{{ section.id }} .decades__track.is-dragging a,
+  #Decades-{{ section.id }} .decades__track.is-dragging button {
+    pointer-events: none;
+  }
+
+  #Decades-{{ section.id }} .decades__track img,
+  #Decades-{{ section.id }} .decades__track a {
+    -webkit-user-drag: none;
+    user-drag: none;
+  }
+
+  @media screen and (min-width: 750px) {
+    #Decades-{{ section.id }} {
+      --dc-cols: {{ cols }};
+      --dc-gap: {{ section.settings.gap }}px;
+      --dc-peek: {{ section.settings.peek }}px;
+    }
+
+    #Decades-{{ section.id }} .decades__inner {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    #Decades-{{ section.id }} .decades__header {
+      gap: 2rem;
+      margin-bottom: 2.4rem;
+    }
+
+    #Decades-{{ section.id }} .decades__subtitle {
+      font-size: inherit;
+    }
+
+    #Decades-{{ section.id }} .decades__info-title {
+      font-size: {{ section.settings.info_title_size }}px;
+    }
+
+    #Decades-{{ section.id }} .decades__info-text {
+      font-size: {{ section.settings.info_text_size }}px;
+    }
+
+    {%- comment -%} With a hover effect on, the desktop copy lives in the overlay only {%- endcomment -%}
+    {%- if has_overlay -%}
+      #Decades-{{ section.id }} .decades__info {
+        display: none;
+      }
+
+      #Decades-{{ section.id }} .decades__overlay {
+        padding: {{ section.settings.overlay_padding }}px;
+      }
+
+      #Decades-{{ section.id }} .decades__overlay-title {
+        font-size: {{ section.settings.overlay_title_size }}px;
+      }
+
+      #Decades-{{ section.id }} .decades__overlay-text {
+        font-size: {{ section.settings.overlay_text_size }}px;
+      }
+    {%- endif -%}
+
+    {%- if section.settings.enable_drag -%}
+      #Decades-{{ section.id }} .decades__track.is-draggable {
+        cursor: grab;
+      }
+    {%- endif -%}
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #Decades-{{ section.id }} .decades__track {
+      scroll-behavior: auto;
+    }
+
+    #Decades-{{ section.id }} .decades__media img,
+    #Decades-{{ section.id }} .decades__overlay,
+    #Decades-{{ section.id }} .decades__overlay-title,
+    #Decades-{{ section.id }} .decades__rule {
+      transition-duration: 0.01ms;
+    }
+  }
+{%- endstyle -%}
+
+<div
+  id="Decades-{{ section.id }}"
+  class="decades color-{{ section.settings.color_scheme }} gradient{% unless section.settings.full_width %} page-width{% else %} page-width--narrow{% endunless %}"
+>
+  {%- if section.settings.section_id != blank -%}
+    <span class="decades__anchor" id="{{ section.settings.section_id }}"></span>
+  {%- endif -%}
+
+  <slider-component
+    class="decades__inner{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+    {% if settings.animations_reveal_on_scroll %}
+      data-cascade
+    {% endif %}
+  >
+    {%- if section.settings.title != blank
+      or section.settings.subtitle != blank
+      or section.settings.show_arrows
+    -%}
+      <div class="decades__header">
+        <div class="decades__heading-group">
+          {%- if section.settings.title != blank -%}
+            <h2 class="decades__title inline-richtext {{ section.settings.heading_size }}">
+              {{- section.settings.title -}}
+            </h2>
+          {%- endif -%}
+
+          {%- if section.settings.subtitle != blank -%}
+            <p
+              class="decades__subtitle inline-richtext {{ section.settings.subtitle_size }}"
+              {% if section.settings.subtitle_color != 'rgba(0,0,0,0)' and section.settings.subtitle_color != blank %}
+                style="color: {{ section.settings.subtitle_color }};"
+              {% endif %}
+            >
+              {{- section.settings.subtitle -}}
+            </p>
+          {%- endif -%}
+        </div>
+
+        {%- comment -%}
+          SliderComponent bails out unless both buttons exist, so they are always
+          rendered and only hidden visually when the merchant turns arrows off.
+        {%- endcomment -%}
+        <div class="slider-buttons{% unless section.settings.show_arrows %} visually-hidden{% endunless %}">
+          <button
+            type="button"
+            class="slider-button slider-button--prev"
+            name="previous"
+            aria-label="{{ 'general.slider.previous_slide' | t }}"
+          >
+            <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
+          </button>
+          <div class="slider-counter caption">
+            <span class="slider-counter--current">1</span>
+            <span aria-hidden="true"> / </span>
+            <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
+            <span class="slider-counter--total">{{ section.blocks.size }}</span>
+          </div>
+          <button
+            type="button"
+            class="slider-button slider-button--next"
+            name="next"
+            aria-label="{{ 'general.slider.next_slide' | t }}"
+          >
+            <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
+          </button>
+        </div>
+      </div>
+    {%- endif -%}
+
+    <ul
+      id="Slider-{{ section.id }}"
+      class="decades__track"
+      role="list"
+    >
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign media_href = block.settings.image_link
+          assign btn_href = block.settings.link
+
+          comment
+            When the image and the button point at the same place, the image link is
+            taken out of the tab and accessibility tree to avoid a duplicate link.
+          endcomment
+          assign mute_media_link = false
+          if media_href != blank and media_href == btn_href and block.settings.link_label != blank
+            assign mute_media_link = true
+          endif
+
+          assign has_copy = false
+          if block.settings.title != blank or block.settings.text != blank
+            assign has_copy = true
+          endif
+        -%}
+
+        <li
+          id="Slide-{{ section.id }}-{{ forloop.index }}"
+          class="decades__item color-{{ block.settings.color_scheme }}"
+          {{ block.shopify_attributes }}
+        >
+          <div class="decades__card">
+            {%- if media_href != blank -%}
+              <a
+                class="decades__media"
+                href="{{ media_href }}"
+                {% if mute_media_link %}
+                  tabindex="-1" aria-hidden="true"
+                {% endif %}
+              >
+            {%- else -%}
+              <div class="decades__media">
+            {%- endif -%}
+
+            {%- if block.settings.image != blank -%}
+              {%- capture img_sizes -%}
+                (min-width: 750px) calc(100vw / {{ cols }}), calc(100vw / {{ cols_mobile }})
+              {%- endcapture -%}
+              {{
+                block.settings.image
+                | image_url: width: 1600
+                | image_tag:
+                  widths: '800, 1000, 1200, 1600',
+                  sizes: img_sizes,
+                  alt: block.settings.image.alt
+              }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+
+            {%- if has_overlay and has_copy -%}
+              <div class="decades__overlay">
+                {%- if block.settings.title != blank -%}
+                  <h3 class="decades__overlay-title">{{ block.settings.title }}</h3>
+                {%- endif -%}
+
+                {%- if fx == 'rule' -%}
+                  <span class="decades__rule" aria-hidden="true"></span>
+                {%- endif -%}
+
+                {%- if block.settings.text != blank -%}
+                  <div class="decades__overlay-text rte">{{ block.settings.text }}</div>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            {%- if media_href != blank -%}
+              </a>
+            {%- else -%}
+              </div>
+            {%- endif -%}
+
+            {%- comment -%}
+              Always rendered. CSS decides whether this or the overlay is shown, so the
+              same copy is never announced twice. The wrapper stays in place even when
+              empty so it can still absorb height and keep the buttons aligned.
+            {%- endcomment -%}
+            <div class="decades__info{% unless has_copy %} decades__info--empty{% endunless %}">
+              {%- if block.settings.title != blank -%}
+                <h3 class="decades__info-title inline-richtext" aria-level="2">
+                  {{- block.settings.title -}}
+                </h3>
+              {%- endif -%}
+              {%- if block.settings.text != blank -%}
+                <div class="decades__info-text rte">{{ block.settings.text }}</div>
+              {%- endif -%}
+            </div>
+
+            {%- if block.settings.link_label != blank -%}
+              <a
+                class="button decades__btn{% if section.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+                {% if btn_href == blank %}
+                  role="link" aria-disabled="true"
+                {% else %}
+                  href="{{ btn_href }}"
+                {% endif %}
+              >
+                {{- block.settings.link_label | escape -}}
+              </a>
+            {%- endif -%}
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+
+    {%- if section.settings.button_label != blank -%}
+      <div class="decades__footer">
+        <a
+          class="button button--primary"
+          {% if section.settings.button_link == blank %}
+            role="link" aria-disabled="true"
+          {% else %}
+            href="{{ section.settings.button_link }}"
+          {% endif %}
+        >
+          {{- section.settings.button_label | escape -}}
+        </a>
+      </div>
+    {%- endif -%}
+  </slider-component>
+</div>
+
+{%- if section.settings.enable_drag -%}
+  <script>
+    (function () {
+      var SECTION_ID = {{ section.id | json }};
+
+      function initDrag() {
+        var track = document.getElementById('Slider-' + SECTION_ID);
+        if (!track || track.dataset.dragReady === 'true') return;
+        track.dataset.dragReady = 'true';
+        track.classList.add('is-draggable');
+
+        var dragging = false;
+        var moved = false;
+        var startX = 0;
+        var startScroll = 0;
+
+        function onMove(event) {
+          if (!dragging) return;
+          var delta = event.clientX - startX;
+          if (Math.abs(delta) > 5) moved = true;
+          track.scrollLeft = startScroll - delta;
+        }
+
+        function onUp() {
+          dragging = false;
+          track.classList.remove('is-dragging');
+          window.removeEventListener('pointermove', onMove);
+          window.removeEventListener('pointerup', onUp);
+          window.removeEventListener('pointercancel', onUp);
+        }
+
+        track.addEventListener('pointerdown', function (event) {
+          // Touch and pen keep the browser's own momentum scrolling
+          if (event.pointerType !== 'mouse' || event.button !== 0) return;
+
+          dragging = true;
+          moved = false;
+          startX = event.clientX;
+          startScroll = track.scrollLeft;
+          track.classList.add('is-dragging');
+
+          window.addEventListener('pointermove', onMove);
+          window.addEventListener('pointerup', onUp);
+          window.addEventListener('pointercancel', onUp);
+        });
+
+        // Native image and link dragging would otherwise hijack the gesture
+        track.addEventListener('dragstart', function (event) {
+          event.preventDefault();
+        });
+
+        // A drag that ends over a link must not navigate
+        track.addEventListener(
+          'click',
+          function (event) {
+            if (!moved) return;
+            event.preventDefault();
+            event.stopPropagation();
+            moved = false;
+          },
+          true
+        );
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initDrag);
+      } else {
+        initDrag();
+      }
+
+      document.addEventListener('shopify:section:load', function (event) {
+        if (event.detail && event.detail.sectionId === SECTION_ID) initDrag();
+      });
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Multicolumn Advance",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 12,
+  "disabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Make section full width",
+      "default": true
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Heading",
+      "default": "Holding court for 60 years"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "default": "h1",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" },
+        { "value": "hxl", "label": "Extra large" },
+        { "value": "hxxl", "label": "Extra extra large" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "info": "Small text shown below the heading.",
+      "default": "Shop the Decades"
+    },
+    {
+      "type": "select",
+      "id": "subtitle_size",
+      "label": "Subtitle size",
+      "default": "h5",
+      "options": [
+        { "value": "h6", "label": "Small" },
+        { "value": "h5", "label": "Medium" },
+        { "value": "h4", "label": "Large" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size_mobile",
+      "label": "Subtitle size (mobile)",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color"
+    },
+    {
+      "type": "checkbox",
+      "id": "subtitle_below",
+      "label": "Show subtitle below heading",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "default": "square",
+      "options": [
+        { "value": "adapt", "label": "Adapt to image" },
+        { "value": "square", "label": "Square" },
+        { "value": "portrait", "label": "Portrait" },
+        { "value": "landscape", "label": "Landscape" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Columns on desktop",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Space between cards",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "peek",
+      "label": "Next card peek",
+      "info": "How much of the following card stays visible.",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "default": "1",
+      "options": [
+        { "value": "1", "label": "1 column" },
+        { "value": "2", "label": "2 columns" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "label": "Space between cards (mobile)",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "peek_mobile",
+      "label": "Next card peek (mobile)",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Scrolling"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_drag",
+      "label": "Drag to scroll",
+      "info": "Applies to mouse only. Touch keeps native scrolling.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show arrows",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows_mobile",
+      "label": "Show arrows on mobile",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_scrollbar",
+      "label": "Show scrollbar",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Image hover effect"
+    },
+    {
+      "type": "select",
+      "id": "hover_effect",
+      "label": "Hover effect",
+      "info": "Uses each card's heading and text. Set to None to always show them under the image.",
+      "default": "scrim",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "scrim", "label": "Scrim fade" },
+        { "value": "curtain", "label": "Curtain wipe" },
+        { "value": "rule", "label": "Rule draw" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_zoom",
+      "label": "Zoom image on hover",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "hover_bg_color",
+      "label": "Overlay color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "hover_opacity",
+      "label": "Overlay opacity",
+      "info": "Use 100% for the curtain wipe.",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 90
+    },
+    {
+      "type": "color",
+      "id": "hover_text_color",
+      "label": "Overlay text color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "overlay_title_size",
+      "label": "Overlay heading size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "overlay_text_size",
+      "label": "Overlay text size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "overlay_text_lines",
+      "label": "Overlay text max lines",
+      "info": "Trims long copy so it cannot spill out of the card. Set to 0 for no limit.",
+      "min": 0,
+      "max": 12,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "overlay_padding",
+      "label": "Overlay padding",
+      "min": 8,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "rule_width",
+      "label": "Rule width",
+      "info": "Only used by the rule draw effect.",
+      "min": 20,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "select",
+      "id": "mobile_text_position",
+      "label": "Card text on mobile",
+      "info": "Touch screens cannot hover, so the copy sits under the image by default.",
+      "default": "below",
+      "options": [
+        { "value": "below", "label": "Below the image" },
+        { "value": "overlay", "label": "On the image" },
+        { "value": "hidden", "label": "Hidden" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Card text under image"
+    },
+    {
+      "type": "select",
+      "id": "info_alignment",
+      "label": "Text alignment",
+      "default": "center",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "info_title_size",
+      "label": "Heading size",
+      "min": 16,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "info_title_size_mobile",
+      "label": "Heading size (mobile)",
+      "min": 14,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "info_text_size",
+      "label": "Text size",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "info_text_size_mobile",
+      "label": "Text size (mobile)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "info_gap",
+      "label": "Space above text",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "checkbox",
+      "id": "align_buttons",
+      "label": "Align buttons across cards",
+      "info": "Keeps every card button on the same line when the card text differs in length.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "button_style_secondary",
+      "label": "Use outline style for card buttons",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "button_gap",
+      "label": "Space above card button",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Section button label",
+      "info": "Sits below the slider. Leave blank to hide."
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Section button link"
+    },
+    {
+      "type": "header",
+      "content": "Section"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "section_id",
+      "label": "Section ID",
+      "info": "Optional. Used for in-page links."
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "image_link",
+          "label": "Image link"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button link"
+        },
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "Color scheme",
+          "default": "scheme-1"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Multicolumn Advance",
+      "blocks": [
+        { "type": "column", "settings": { "link_label": "Shop Classic VN" } },
+        { "type": "column", "settings": { "link_label": "Shop Court Styles" } },
+        { "type": "column", "settings": { "link_label": "Shop Gstaad" } },
+        { "type": "column", "settings": { "link_label": "Shop SI-18" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

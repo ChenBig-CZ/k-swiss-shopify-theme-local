@@ -1,0 +1,15 @@
+{% if settings.cart_payment_icons_show and shop.enabled_payment_types != empty %}
+  <div 
+    class="ml-cart-payment-icons"
+    aria-label="{{ 'custom.cart.payment_methods' | t }}"
+    role="list">
+    {% for type in shop.enabled_payment_types %}
+      <div role="listitem">
+        {{ type | payment_type_svg_tag: class: 'icon' }}
+      </div>
+    {% endfor %}
+  </div>
+  <span class="ml-cart-payment-icons-text caption-large">
+    {{ 'custom.cart.payment_methods_secure' | t }}
+  </span>
+{% endif %}

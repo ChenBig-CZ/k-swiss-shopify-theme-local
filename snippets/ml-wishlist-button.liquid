@@ -1,0 +1,15 @@
+{% if settings.ml_wishlist %}
+  <ml-wishlist-btn
+    title="{{ 'custom.wishlist.add' | t }}"
+    class="ml-wishlist-btn color-{{ settings.ml_wishlist_color_scheme }}"
+    data-product-url="{{ product.url | split: '?' | first }}"
+  >
+    <button
+      class=""
+      aria-label="{{ 'custom.wishlist.add' | t }}"
+      aria-pressed="false"
+    >
+      {% render 'ml-svg-icons', icon: 'heart', size: 18, stroke_width: 1.5 %}
+    </button>
+  </ml-wishlist-btn>
+{% endif %}

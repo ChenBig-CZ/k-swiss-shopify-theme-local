@@ -1,0 +1,1647 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "shogun-helper": {
+      "type": "shogun-helper",
+      "settings": {}
+    },
+    "shogun-above": {
+      "type": "shogun-above",
+      "settings": {}
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "liquid_title_FEQFYT": {
+          "type": "liquid_title",
+          "settings": {
+            "liquid": "{% assign productTitle = product.title | split: '|' %}\n{{ productTitle[1] }}"
+          }
+        },
+        "promo_messaging_rPCQLz": {
+          "type": "promo_messaging",
+          "settings": {}
+        },
+        "rating_Q764MW": {
+          "type": "rating",
+          "disabled": true,
+          "settings": {}
+        },
+        "vendor": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "disabled": true,
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "loox_reviews_loox_rating_cbtXVy": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-rating/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "contentSize": 16,
+            "pattern": "",
+            "hideText": false,
+            "alignment": "",
+            "layout": "",
+            "textColor": "",
+            "starColor": "",
+            "showAllReviews": false,
+            "looxOpenFloatingWidget": false,
+            "emptyRatingWidget": true
+          }
+        },
+        "motivator_4Jm8GY": {
+          "type": "motivator",
+          "disabled": true,
+          "settings": {
+            "title": "Black Friday Sale 30% OFF Sitewide*",
+            "link_text": "terms & conditions",
+            "link": "https://kswiss.com/pages/terms-and-conditions",
+            "tags": ""
+          }
+        },
+        "motivator_jAKWAQ": {
+          "type": "motivator",
+          "settings": {
+            "title": "15% off when you preorder this item today",
+            "link_text": "",
+            "link": "",
+            "tags": "SMART_TAG_PRESALES"
+          }
+        },
+        "afterpay_on_site_messaging_payments_messaging_9FFzgr": {
+          "type": "shopify://apps/afterpay-on-site-messaging/blocks/payments-messaging/f45a5524-d177-4475-bf59-281efd2215a8",
+          "settings": {
+            "text_align": "left",
+            "margin_top": 12,
+            "margin_bottom": 12,
+            "color": "",
+            "size": "xs",
+            "intro_text": "Pay",
+            "show_interest_free": true,
+            "payment_amount_is_bold": true,
+            "show_with": true,
+            "logo_type": "badge",
+            "logo_theme": "black-on-mint",
+            "modal_link_style": "circled-info-icon",
+            "modal_theme": "mint",
+            "breakpoint": 749,
+            "text_align_mobile": "inherit",
+            "margin_top_mobile": 16,
+            "margin_bottom_mobile": 16,
+            "show_lower_limit": true,
+            "show_upper_limit": false,
+            "show_if_outside_limits": true,
+            "product": "{{product}}"
+          }
+        },
+        "sibling_eBxRG6": {
+          "type": "sibling",
+          "settings": {}
+        },
+        "custom_liquid_AA8a3J": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{%  if settings.prod_add_info2 == true %}\n{% assign split_tags = settings.prod_add_info_tag | split: ',' %}\n{% assign avail_tag= false %}\n{% for stag in split_tags %}\n{%   if product.tags contains  stag %}\n   {% assign avail_tag= true %}\n  {% endif %}\n{% endfor %}\n{% if avail_tag == true %}\n<div class=\"flex items-center p-4 text-sm text-gray-800 rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-gray-300\" role=\"alert\">\n  <svg class=\"flex-shrink-0 inline w-4 h-4 me-3\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" viewBox=\"0 0 20 20\">\n    <path d=\"M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z\"></path>\n  </svg>\n  <span class=\"sr-only\">Info</span>\n  <div>\n    <span class=\"font-medium px-2 md:px-0 md:pl-2\">Runs Small-Size Up\n  </div>\n</div>\n  {%  endif %}\n  {%  endif %}"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "none"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "amazon_mcf_and_buy_with_prime_promotion_banner_container_CiymM4": {
+          "type": "shopify://apps/amazon-mcf-and-buy-with-prime/blocks/promotion-banner-container/cd9463cc-4da0-4f9f-92a6-6e3f345eb3ce",
+          "disabled": true,
+          "settings": {
+            "horizontal_alignment": "center"
+          }
+        },
+        "custom_liquid_6n8RjJ": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'different-gender-btn', product: product %}"
+          }
+        },
+        "wishlist_plus_wishlist_pdp_button_EHmADT": {
+          "type": "shopify://apps/wishlist-plus/blocks/wishlist-pdp-button/80c3b1fc-3a8f-407e-8367-ffdeebb8b612",
+          "disabled": true,
+          "settings": {
+            "swym_atw_button_icon": "heart",
+            "swym_atw_icon_thickness": 1.7,
+            "swym_atw_display_btn_text": false,
+            "swym_button_position": "default",
+            "swym_atw_button_vertical_offset": 0,
+            "swym_atw_full_width": false,
+            "swym_atw_button_alignment": "center",
+            "swym_add_to_wishlist_color": "#000000",
+            "swym_added_to_wishlist_color": "#222222",
+            "swym_button_text_color": "#ffffff",
+            "swym_atw_border_color": "#000000",
+            "swym_atw_border_thickness": 0,
+            "swym_atw_button_border_radius": 0,
+            "swym_enable_hover_customization": false,
+            "swym_hover_add_to_wishlist_color": "#000000",
+            "swym_hover_added_to_wishlist_color": "#222222",
+            "swym_hover_button_text_color": "#ffffff",
+            "swym_hover_atw_border_color": "#000000",
+            "swym_hover_atw_border_thickness": 0,
+            "swym_hover_atw_button_border_radius": 0,
+            "swym_custom_css": ""
+          }
+        },
+        "custom_liquid_KdkhLU": {
+          "type": "custom_liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<center>\n<img src=\"https://cdn.shopify.com/s/files/1/0006/9969/5159/files/Group_1947.svg?v=1768547560\" width=\"50%\"></center>"
+          }
+        },
+        "giftnote_engine_for_gifting_button_JQCcfH": {
+          "type": "shopify://apps/giftnote-engine-for-gifting/blocks/button/37eb4f2f-4979-41f3-a677-fa25a2a97659",
+          "disabled": true,
+          "settings": {
+            "add_label": "Add a gift message 🎁",
+            "edit_label": "Edit gift message 🎁",
+            "font_size": 16,
+            "font": "inter_n4",
+            "letter_spacing": 1,
+            "button_type": "button",
+            "background_color": "#ffffff",
+            "border_color": "#000000",
+            "font_color": "#000000",
+            "border_radius": 6,
+            "alignment": "center",
+            "height": 50,
+            "width": 250,
+            "full_width": true,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "breakpoint": 740,
+            "mobile_alignment": "center",
+            "mobile_height": 50,
+            "mobile_width": 250,
+            "mobile_full_width": true,
+            "mobile_margin_top": 0,
+            "mobile_margin_bottom": 0,
+            "exclusion_tags": "",
+            "custom_styles": ""
+          }
+        },
+        "motivator_i8pbEV": {
+          "type": "motivator",
+          "disabled": true,
+          "settings": {
+            "title": "FREE SHIPPING ON ORDERS OVER $50",
+            "link_text": "More Info",
+            "link": "shopify://pages/shipping-policy",
+            "tags": ""
+          }
+        },
+        "collapsible_tab_bMfHKy": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Size Chart",
+            "icon": "none",
+            "content": "",
+            "page": "",
+            "custom_liquid": "{% render \"size-chart\" %}"
+          }
+        },
+        "collapsible_tab_TbJ8h3": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Details",
+            "icon": "none",
+            "content": "",
+            "page": "",
+            "custom_liquid": "{{ product.description }}"
+          }
+        },
+        "custom_liquid_7pkznj": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"product__accordion accordion\">\n<summary style=\"cursor: unset;\" role=\"button\"><div class=\"summary__title\">\n<h2 class=\"h5 accordion__title inline-richtext\">\n              FREE SHIPPING ON ORDERS OVER $90</h2></div>\n</summary>\n</div>"
+          }
+        },
+        "collapsible_tab_Wkme4D": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Shipping and Returns/Exchanges",
+            "icon": "none",
+            "content": "<p><strong>SHIPPING</strong></p><p>Palladiumboots.com will ship all orders Monday-Friday. Orders placed after 11:00AM EST will ship the following business day.</p><p>Note that all orders placed after 11:00AM ET on Fridays, Saturday or Sunday will not ship until the Next Business Day.</p><p><strong>RETURNS</strong></p><p>We hope you love your Palladiumboots product, but if you’re not completely satisfied, you can return merchandise within 30 days of purchase.</p>",
+            "page": "",
+            "custom_liquid": ""
+          }
+        },
+        "custom_liquid_qxzB7m": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% assign productTitle = product.title | split: '|' %}\n<div class=\"product__accordion accordion\">\n<summary style=\"cursor: unset;\" role=\"button\"><div class=\"summary__title\">\n<h3 class=\"h5 accordion__title inline-richtext\">\n              Style: {{ productTitle[0] }}</h3></div>\n</summary>\n</div>"
+          }
+        },
+        "custom_liquid_c7ihmn": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"product__accordion accordion medium-hide large-up-hide quick-add-hidden\">\n                  <details id=\"Details-custom\" class=\"accordion__details\">\n                    <summary role=\"button\" aria-expanded=\"false\" aria-controls=\"ProductAccordion-custom\">\n                      <div class=\"summary__title\">\n                        \n                        <h3 class=\"h5 accordion__title inline-richtext\">\n                          Product Details\n                        </h3>\n                      </div><svg class=\"icon icon-caret\" viewBox=\"0 0 10 6\"><path fill=\"currentColor\" fill-rule=\"evenodd\" d=\"M9.354.646a.5.5 0 0 0-.708 0L5 4.293 1.354.646a.5.5 0 0 0-.708.708l4 4a.5.5 0 0 0 .708 0l4-4a.5.5 0 0 0 0-.708\" clip-rule=\"evenodd\"></path></svg>\n</summary>\n                    <div id=\"ProductAccordion-custom\" class=\"accordion__content\"><div class=\"rte\">{{ product.description }}\n                      \n                    </div></div>\n                  </details>\n                </div>"
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "disabled": true,
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "ml_sticky_atc_F68RA3": {
+          "type": "ml-sticky-atc",
+          "settings": {
+            "color_scheme": "scheme-1",
+            "border_top_opacity": 100,
+            "max_width": "",
+            "img_ratio": "adapt",
+            "btn_style": "button--primary"
+          }
+        }
+      },
+      "block_order": [
+        "liquid_title_FEQFYT",
+        "promo_messaging_rPCQLz",
+        "rating_Q764MW",
+        "vendor",
+        "title",
+        "price",
+        "loox_reviews_loox_rating_cbtXVy",
+        "motivator_4Jm8GY",
+        "motivator_jAKWAQ",
+        "afterpay_on_site_messaging_payments_messaging_9FFzgr",
+        "sibling_eBxRG6",
+        "custom_liquid_AA8a3J",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "amazon_mcf_and_buy_with_prime_promotion_banner_container_CiymM4",
+        "custom_liquid_6n8RjJ",
+        "wishlist_plus_wishlist_pdp_button_EHmADT",
+        "custom_liquid_KdkhLU",
+        "giftnote_engine_for_gifting_button_JQCcfH",
+        "motivator_i8pbEV",
+        "collapsible_tab_bMfHKy",
+        "collapsible_tab_TbJ8h3",
+        "custom_liquid_7pkznj",
+        "collapsible_tab_Wkme4D",
+        "custom_liquid_qxzB7m",
+        "custom_liquid_c7ihmn",
+        "description",
+        "share",
+        "ml_sticky_atc_F68RA3"
+      ],
+      "custom_css": [
+        ".product_description_custom.medium-hide {display: none;}"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "large",
+        "constrain_to_viewport": false,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "hover",
+        "zoom_scale": 2,
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12,
+        "promo_messaging": "MENS | EXTRA WIDE | WOMENS | WIDE | VARSITY | CHILDREN | INFANTS"
+      }
+    },
+    "multicolumn_RCr9Et": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_fUyxM7": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/01Feature-icon.png",
+            "image_link": "",
+            "title": "LIGHTWEIGHT",
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_KkRKTQ": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/02Feature-icon.png",
+            "image_link": "",
+            "title": "BREATHABLE",
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_3C7yRm": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/03Feature-icon.png",
+            "image_link": "",
+            "title": "DURABLE",
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_bRaVV9": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/04Feature-icon.png",
+            "image_link": "",
+            "title": "HIGH-TOP SUPPORT",
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_fUyxM7",
+        "column_KkRKTQ",
+        "column_3C7yRm",
+        "column_bRaVV9"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "#border_top {border-top: 1px solid #e5e5e5; margin-top: 40px;}",
+        ".multicolumn-card {display: flex; align-items: center; column-gap: 10px;}",
+        ".multicolumn-card__image-wrapper {width: 25%;}",
+        ".multicolumn-card__info {width: 75%;}",
+        ".multicolumn-card__info h3 {text-transform: uppercase;}",
+        ".multicolumn-card__info p {font-size: 16px;}",
+        ".rte {margin: 0px; line-height: normal;}",
+        ".slider-buttons {display: none;}"
+      ],
+      "name": "Icon Column New",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 4,
+        "column_alignment": "left",
+        "background_style": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "color_scheme": "",
+        "padding_top": 44,
+        "padding_bottom": 44,
+        "section_id": "border_top"
+      }
+    },
+    "multicolumn_custom_width_UBhxnD": {
+      "type": "multicolumn-custom-width",
+      "blocks": {
+        "column_Aer8Uj": {
+          "type": "column",
+          "settings": {
+            "desktop_width": "25",
+            "mobile_width": "50",
+            "text_alignment": "center",
+            "image_width": "half",
+            "image": "shopify://shop_images/icon_lightweight.png",
+            "image_link": "",
+            "image_caption": "<p>LIGHTWEIGHT</p>",
+            "title": "",
+            "title_size": "h2",
+            "heading_uppercase": false,
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": ""
+          }
+        },
+        "column_mncXMj": {
+          "type": "column",
+          "settings": {
+            "desktop_width": "25",
+            "mobile_width": "50",
+            "text_alignment": "center",
+            "image_width": "half",
+            "image": "shopify://shop_images/icon_breathable.png",
+            "image_link": "",
+            "image_caption": "<p>BREATHABLE</p>",
+            "title": "",
+            "title_size": "h2",
+            "heading_uppercase": false,
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": ""
+          }
+        },
+        "column_ywVBXd": {
+          "type": "column",
+          "settings": {
+            "desktop_width": "25",
+            "mobile_width": "50",
+            "text_alignment": "center",
+            "image_width": "half",
+            "image": "shopify://shop_images/icon_durable.png",
+            "image_link": "",
+            "image_caption": "<p>DURABLE</p>",
+            "title": "",
+            "title_size": "h2",
+            "heading_uppercase": false,
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": ""
+          }
+        },
+        "column_WzLAjy": {
+          "type": "column",
+          "settings": {
+            "desktop_width": "25",
+            "mobile_width": "50",
+            "text_alignment": "center",
+            "image_width": "half",
+            "image": "shopify://shop_images/icon_hightop_support.png",
+            "image_link": "",
+            "image_caption": "<p>HIGH-TOP SUPPORT</p>",
+            "title": "",
+            "title_size": "h2",
+            "heading_uppercase": false,
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_Aer8Uj",
+        "column_mncXMj",
+        "column_ywVBXd",
+        "column_WzLAjy"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".title-wrapper-with-link {justify-content: center;}"
+      ],
+      "name": "Multicolumn Icon Old",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "title": "BUILT FOR EVERY STEP. MADE TO EXPLORE.",
+        "heading_size": "h0",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "button_style_secondary": false,
+        "desktop_content_position": "top",
+        "background_style": "none",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "section_id": ""
+      }
+    },
+    "image_banner_UTekgy": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_A6iKng": {
+          "type": "heading",
+          "settings": {
+            "heading": "Built for every step.",
+            "heading_size": "h2",
+            "heading_uppercase": true
+          }
+        },
+        "heading_mBUpzd": {
+          "type": "heading",
+          "settings": {
+            "heading": "Made to explore",
+            "heading_size": "h0",
+            "heading_uppercase": true
+          }
+        }
+      },
+      "block_order": [
+        "heading_A6iKng",
+        "heading_mBUpzd"
+      ],
+      "custom_css": [
+        "h2 {margin: 0px;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "custom-class": "",
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "banner_link": "",
+        "image": "shopify://shop_images/01Desktop-Pampa-Hi-Main-Banner-1920x.jpg",
+        "mobile_image": "shopify://shop_images/01-TechSheet-HeroBanner-1170x.jpg",
+        "image_overlay_opacity": 20,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "scheme-4",
+        "stack_images_on_mobile": false,
+        "mobile_content_position": "middle-center",
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "multicolumn_custom_width_BGKUh6": {
+      "type": "multicolumn-custom-width",
+      "blocks": {
+        "column_4zRyDD": {
+          "type": "column",
+          "settings": {
+            "desktop_width": "25",
+            "mobile_width": "100",
+            "text_alignment": "center",
+            "image_width": "full",
+            "image": "shopify://shop_images/photo_canvas_upper_side.png",
+            "image_link": "",
+            "image_caption": "",
+            "title": "BREATHABLE CANVAS UPPER",
+            "title_size": "h2",
+            "heading_uppercase": false,
+            "text": "<p>Durable canvas lets your feet breathe.</p>",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": ""
+          }
+        },
+        "column_XipRtd": {
+          "type": "column",
+          "settings": {
+            "desktop_width": "25",
+            "mobile_width": "100",
+            "text_alignment": "center",
+            "image_width": "full",
+            "image": "shopify://shop_images/photo_canvas_upper_interior.png",
+            "image_link": "",
+            "image_caption": "",
+            "title": "BREATHABLE CANVAS UPPER",
+            "title_size": "h2",
+            "heading_uppercase": false,
+            "text": "<p>Comfortable interior for all-day wear.</p>",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": ""
+          }
+        },
+        "column_CKc7KV": {
+          "type": "column",
+          "settings": {
+            "desktop_width": "25",
+            "mobile_width": "100",
+            "text_alignment": "center",
+            "image_width": "full",
+            "image": "shopify://shop_images/photo_cushioned_footbed.png",
+            "image_link": "",
+            "image_caption": "",
+            "title": "CUSHIONED FOOTBED",
+            "title_size": "h2",
+            "heading_uppercase": false,
+            "text": "<p>Soft EVA footbed provides lasting cushioning and support.</p>",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": ""
+          }
+        },
+        "column_hQ4XrM": {
+          "type": "column",
+          "settings": {
+            "desktop_width": "25",
+            "mobile_width": "100",
+            "text_alignment": "center",
+            "image_width": "full",
+            "image": "shopify://shop_images/photo_traction_outsole.png",
+            "image_link": "",
+            "image_caption": "",
+            "title": "HIGH-TRACTION OUTSOLE",
+            "title_size": "h2",
+            "heading_uppercase": false,
+            "text": "<p>Built for grip, durability, and urban terrain performance.</p>",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_4zRyDD",
+        "column_XipRtd",
+        "column_CKc7KV",
+        "column_hQ4XrM"
+      ],
+      "disabled": true,
+      "name": "Multicolumn Custom-Width",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "title": "",
+        "heading_size": "h0",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "button_style_secondary": false,
+        "desktop_content_position": "top",
+        "background_style": "none",
+        "color_scheme": "",
+        "padding_top": 44,
+        "padding_bottom": 44,
+        "section_id": ""
+      }
+    },
+    "multicolumn_custom_width_xaEgFw": {
+      "type": "multicolumn-custom-width",
+      "blocks": {
+        "column_pi7rcR": {
+          "type": "column",
+          "settings": {
+            "desktop_width": "25",
+            "mobile_width": "50",
+            "text_alignment": "center",
+            "image_width": "full",
+            "image": "shopify://shop_images/01-TechSheet-HeroBanner-1170x880.jpg",
+            "image_link": "",
+            "image_caption": "",
+            "title": "BREATHABLE CANVAS UPPER",
+            "title_size": "",
+            "heading_uppercase": false,
+            "text": "<p>Durable canvas lets your feet breathe.</p>",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": ""
+          }
+        },
+        "column_Xtb6t8": {
+          "type": "column",
+          "settings": {
+            "desktop_width": "25",
+            "mobile_width": "50",
+            "text_alignment": "center",
+            "image_width": "full",
+            "image": "shopify://shop_images/02-TechSheet-HeroBanner-1170x880.jpg",
+            "image_link": "",
+            "image_caption": "",
+            "title": "BREATHABLE CANVAS UPPER",
+            "title_size": "",
+            "heading_uppercase": false,
+            "text": "<p>Comfortable interior for all-day wear.</p>",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": ""
+          }
+        },
+        "column_HmbtNz": {
+          "type": "column",
+          "settings": {
+            "desktop_width": "25",
+            "mobile_width": "50",
+            "text_alignment": "center",
+            "image_width": "full",
+            "image": "shopify://shop_images/03-TechSheet-HeroBanner-1170x880.jpg",
+            "image_link": "",
+            "image_caption": "",
+            "title": "CUSHIONED FOOTBED",
+            "title_size": "",
+            "heading_uppercase": false,
+            "text": "<p>Soft EVA footbed provides lasting cushioning and support.</p>",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": ""
+          }
+        },
+        "column_9bQ8hP": {
+          "type": "column",
+          "settings": {
+            "desktop_width": "25",
+            "mobile_width": "50",
+            "text_alignment": "center",
+            "image_width": "full",
+            "image": "shopify://shop_images/04-TechSheet-HeroBanner-1170x880.jpg",
+            "image_link": "",
+            "image_caption": "",
+            "title": "HIGH-TRACTION OUTSOLE",
+            "title_size": "",
+            "heading_uppercase": false,
+            "text": "<p>Built for grip, durability, and urban terrain performance.</p>",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_pi7rcR",
+        "column_Xtb6t8",
+        "column_HmbtNz",
+        "column_9bQ8hP"
+      ],
+      "custom_css": [
+        ".multicolumn-card__image-wrapper {margin: 0;}",
+        "@media screen and (max-width: 989px) {.multicolumn .page-width {padding-left: 15px; padding-right: 15px; } .multicolumn-card--top .multicolumn-card__info {padding: 10px 0; }}"
+      ],
+      "name": "Multicolumn Custom-Width",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "title": "",
+        "heading_size": "h0",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "button_style_secondary": false,
+        "desktop_content_position": "top",
+        "background_style": "none",
+        "color_scheme": "",
+        "padding_top": 52,
+        "padding_bottom": 52,
+        "section_id": ""
+      }
+    },
+    "multicolumn_custom_width_exy4jp": {
+      "type": "multicolumn-custom-width",
+      "blocks": {
+        "column_NjLUBU": {
+          "type": "column",
+          "settings": {
+            "desktop_width": "20",
+            "mobile_width": "100",
+            "text_alignment": "left",
+            "image_width": "full",
+            "image_link": "",
+            "image_caption": "",
+            "title": "SHORT HEADER",
+            "title_size": "h2",
+            "heading_uppercase": false,
+            "text": "<h1>SHORT HEADLINE</h1>",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": "scheme-4"
+          }
+        },
+        "column_LRDJaW": {
+          "type": "column",
+          "settings": {
+            "desktop_width": "20",
+            "mobile_width": "100",
+            "text_alignment": "left",
+            "image_width": "full",
+            "image": "shopify://shop_images/01A-TechSheet-Lifestyle-880x1170_d5f52998-e392-46ce-b833-53fbe1f0e336.jpg",
+            "image_link": "",
+            "image_caption": "<p>City Exploration</p>",
+            "title": "",
+            "title_size": "h1",
+            "heading_uppercase": false,
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": "scheme-4"
+          }
+        },
+        "column_LA3fkT": {
+          "type": "column",
+          "settings": {
+            "desktop_width": "20",
+            "mobile_width": "100",
+            "text_alignment": "left",
+            "image_width": "full",
+            "image": "shopify://shop_images/02A-TechSheet-Lifestyle-880x1170_c92f2817-6def-47db-a401-b479cb45c44b.jpg",
+            "image_link": "",
+            "image_caption": "<p>Travel On The Go</p>",
+            "title": "",
+            "title_size": "h1",
+            "heading_uppercase": false,
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": "scheme-4"
+          }
+        },
+        "column_AhryX6": {
+          "type": "column",
+          "settings": {
+            "desktop_width": "20",
+            "mobile_width": "100",
+            "text_alignment": "left",
+            "image_width": "full",
+            "image": "shopify://shop_images/03A-TechSheet-Lifestyle-880x1170_081492f9-a68d-4e45-8f75-da5cc601951b.jpg",
+            "image_link": "",
+            "image_caption": "<p>Outdoor Escapes</p>",
+            "title": "",
+            "title_size": "h1",
+            "heading_uppercase": false,
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": "scheme-4"
+          }
+        },
+        "column_9wAzke": {
+          "type": "column",
+          "disabled": true,
+          "settings": {
+            "desktop_width": "20",
+            "mobile_width": "50",
+            "text_alignment": "left",
+            "image_width": "full",
+            "image": "shopify://shop_images/04B-TechSheet-Lifestyle-880x1170.jpg",
+            "image_link": "",
+            "image_caption": "",
+            "title": "",
+            "title_size": "h1",
+            "heading_uppercase": false,
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_NjLUBU",
+        "column_LRDJaW",
+        "column_LA3fkT",
+        "column_AhryX6",
+        "column_9wAzke"
+      ],
+      "custom_css": [
+        "@media screen and (min-width: 750px) {.background-none .multicolumn-card__image-wrapper {margin: 0; } .custom-multicolumn-grid {display: flex; gap: 20px; } .multicolumn-list__item {flex: 1; } .multicolumn-list__item:first-child {flex: 1.5; }}",
+        ".custom-multicolumn-grid {padding: 10px;}",
+        ".image_caption {position: absolute; left: 20px; bottom: 20px; font-size: 2rem;}"
+      ],
+      "name": "Multicolumn Custom-Width",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "button_style_secondary": false,
+        "desktop_content_position": "middle",
+        "background_style": "none",
+        "color_scheme": "scheme-4",
+        "padding_top": 44,
+        "padding_bottom": 44,
+        "section_id": ""
+      }
+    },
+    "custom_section_JeR3Yj": {
+      "type": "custom-section",
+      "blocks": {
+        "image_dnf3De": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/left_side.png",
+            "image_link": "",
+            "width_desktop": "40",
+            "width_mobile": "100"
+          }
+        },
+        "image_DtMfqB": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/right_side.png",
+            "image_link": "",
+            "width_desktop": "60",
+            "width_mobile": "100"
+          }
+        }
+      },
+      "block_order": [
+        "image_dnf3De",
+        "image_DtMfqB"
+      ],
+      "disabled": true,
+      "name": "Custom Flex Grid",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "title": "",
+        "heading_size": "h1",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_custom_width_wd6UQG": {
+      "type": "multicolumn-custom-width",
+      "blocks": {
+        "column_7qCf7J": {
+          "type": "column",
+          "settings": {
+            "desktop_width": "20",
+            "mobile_width": "100",
+            "text_alignment": "left",
+            "image_width": "full",
+            "image_link": "",
+            "image_caption": "",
+            "title": "SHORT HEADER",
+            "title_size": "h2",
+            "heading_uppercase": false,
+            "text": "<h1>SHORT HEADLINE</h1>",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": "scheme-4"
+          }
+        },
+        "column_Gafx9L": {
+          "type": "column",
+          "settings": {
+            "desktop_width": "20",
+            "mobile_width": "100",
+            "text_alignment": "left",
+            "image_width": "full",
+            "image": "shopify://shop_images/Gemini_Generated_Image_xvavl9xvavl9xvav.png",
+            "image_link": "",
+            "image_caption": "<p>CITY EXPLORATION</p>",
+            "title": "",
+            "title_size": "h1",
+            "heading_uppercase": false,
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": ""
+          }
+        },
+        "column_69Utyw": {
+          "type": "column",
+          "settings": {
+            "desktop_width": "20",
+            "mobile_width": "100",
+            "text_alignment": "left",
+            "image_width": "full",
+            "image": "shopify://shop_images/Gemini_Generated_Image_sgbcsysgbcsysgbc.png",
+            "image_link": "",
+            "image_caption": "<p>TRAVEL ON THE GO</p>",
+            "title": "",
+            "title_size": "h1",
+            "heading_uppercase": false,
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "column_NXAiAJ": {
+          "type": "column",
+          "settings": {
+            "desktop_width": "20",
+            "mobile_width": "100",
+            "text_alignment": "left",
+            "image_width": "full",
+            "image": "shopify://shop_images/Gemini_Generated_Image_of8x1lof8x1lof8x.png",
+            "image_link": "",
+            "image_caption": "<p>OUTDOOR ESCAPES</p>",
+            "title": "",
+            "title_size": "h1",
+            "heading_uppercase": false,
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": ""
+          }
+        },
+        "column_Jpeg9i": {
+          "type": "column",
+          "settings": {
+            "desktop_width": "20",
+            "mobile_width": "100",
+            "text_alignment": "left",
+            "image_width": "full",
+            "image": "shopify://shop_images/Gemini_Generated_Image_5j29xb5j29xb5j29.png",
+            "image_link": "",
+            "image_caption": "<p>DAILY URBAN LIVING</p>",
+            "title": "",
+            "title_size": "h1",
+            "heading_uppercase": false,
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_7qCf7J",
+        "column_Gafx9L",
+        "column_69Utyw",
+        "column_NXAiAJ",
+        "column_Jpeg9i"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".multicolumn-card__image-wrapper {margin: 0;}",
+        ".image_caption {font-size: 22px; position: absolute; top: 0; height: 100%; width: 100%; margin: 0; display: flex; align-items: center; justify-content: center; color: white;}"
+      ],
+      "name": "Multicolumn Custom-Width",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "button_style_secondary": false,
+        "desktop_content_position": "middle",
+        "background_style": "none",
+        "color_scheme": "scheme-4",
+        "padding_top": 44,
+        "padding_bottom": 44,
+        "section_id": ""
+      }
+    },
+    "rich_text_PLqrbh": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_t4VDYD": {
+          "type": "heading",
+          "settings": {
+            "heading": "MADE FOR REAL LIFE, READY FOR ANYWHERE",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading_t4VDYD"
+      ],
+      "disabled": true,
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 12,
+        "padding_bottom": 12
+      }
+    },
+    "image_banner_UFUqK3": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "custom-class": "",
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "banner_link": "",
+        "image": "shopify://shop_images/Men.jpg",
+        "mobile_image": "shopify://shop_images/Mobile-Mock-up.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": false,
+        "mobile_content_position": "middle-center",
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "multicolumn_custom_width_eFDfb7": {
+      "type": "multicolumn-custom-width",
+      "blocks": {
+        "column_4WYFVd": {
+          "type": "column",
+          "settings": {
+            "desktop_width": "100",
+            "mobile_width": "100",
+            "text_alignment": "left",
+            "image_width": "full",
+            "image": "shopify://shop_images/size_chart.png",
+            "image_link": "",
+            "image_caption": "",
+            "title": "",
+            "title_size": "h1",
+            "heading_uppercase": false,
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "button_bg_color": "",
+            "button_text_color": "",
+            "link_label_2": "",
+            "link_2": "",
+            "button_style_secondary_2": false,
+            "button_bg_color_2": "",
+            "button_text_color_2": "",
+            "link_label_3": "",
+            "link_3": "",
+            "button_style_secondary_3": false,
+            "button_bg_color_3": "",
+            "button_text_color_3": "",
+            "custom_liquid": "",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_4WYFVd"
+      ],
+      "disabled": true,
+      "name": "Multicolumn Custom-Width",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "button_style_secondary": false,
+        "desktop_content_position": "top",
+        "background_style": "none",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "section_id": ""
+      }
+    },
+    "featured_collection_hXbyKK": {
+      "type": "featured-collection",
+      "disabled": true,
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "all-product",
+        "products_to_show": 8,
+        "title": "Featured collection",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": true,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "show_siblings": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "transport": "",
+        "id": "",
+        "heading": "You May Also Like",
+        "heading_size": "h2",
+        "products_to_show": 6,
+        "columns_desktop": 6,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "1769532479756ad48a": {
+      "type": "apps",
+      "blocks": {
+        "loox_reviews_loox_dynamic_section_b6mXfB": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-dynamic-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "reviews_to_display": "",
+            "default_tab": "automatic",
+            "only_photos": false,
+            "aggregated": false,
+            "limit": 20,
+            "hide_thumbnails": false,
+            "maxwidth": 1600,
+            "is_sample": true
+          }
+        }
+      },
+      "block_order": [
+        "loox_reviews_loox_dynamic_section_b6mXfB"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "shogun-below": {
+      "type": "shogun-below",
+      "settings": {}
+    },
+    "shogun-optimizer": {
+      "type": "shogun-optimizer",
+      "settings": {}
+    }
+  },
+  "order": [
+    "shogun-helper",
+    "shogun-above",
+    "main",
+    "multicolumn_RCr9Et",
+    "multicolumn_custom_width_UBhxnD",
+    "image_banner_UTekgy",
+    "multicolumn_custom_width_BGKUh6",
+    "multicolumn_custom_width_xaEgFw",
+    "multicolumn_custom_width_exy4jp",
+    "custom_section_JeR3Yj",
+    "multicolumn_custom_width_wd6UQG",
+    "rich_text_PLqrbh",
+    "image_banner_UFUqK3",
+    "multicolumn_custom_width_eFDfb7",
+    "featured_collection_hXbyKK",
+    "related-products",
+    "1769532479756ad48a",
+    "shogun-below",
+    "shogun-optimizer"
+  ]
+}

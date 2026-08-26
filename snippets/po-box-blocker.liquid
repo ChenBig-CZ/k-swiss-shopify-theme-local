@@ -1,0 +1,9 @@
+<script>
+  checkout_shipping_address_address1?.addEventListener('blur', e => {
+    if(e.target.value.replace(/\./g,'').replace(/ /g,'').toUpperCase().includes('POBOX')){
+      alert(`{{ 'checkout.pobox_blocked' | t }}`)
+      e.target.value = ''
+      e.target.focus()
+    }
+  })
+</script>

@@ -1,0 +1,126 @@
+<div class="quick_atc_box">
+    <form action="/cart/add" method="post" class="inline-variant-form">
+
+    {% if card_product.variants.size == 1 %}
+    <input type="hidden" name="id" value="{{ card_product.variants.first.id }}" />
+
+    {% else %}
+    <input 
+      type="hidden" 
+      name="id" 
+      value="{{ card_product.selected_or_first_available_variant.id }}" 
+      class="selected-variant-id">
+
+    <div class="quick_atc_grid">
+        {% for variant in card_product.variants %}
+          <button
+            type="button"
+            class="variant-btn 
+              {% unless variant.available %}disabled{% endunless %}
+              {% if variant.id == card_product.selected_or_first_available_variant.id %}active{% endif %}"
+            data-variant-id="{{ variant.id }}"
+            {% unless variant.available %}disabled{% endunless %}
+          >
+            {% render 'variant-label',
+              value: variant.title,
+              product: card_product
+            %}
+          </button>
+          {% endfor %}
+    </div>
+    {% endif %}
+
+    <input
+  type="submit"
+  class="ls-add-to-cart button button--full-width button--primary"
+  name="add"
+  value="ADD TO CART"
+  {% unless card_product.selected_or_first_available_variant.available %}disabled{% endunless %}
+/>
+</form>
+</div>
+
+<script>
+function initQuickAtcScroll(context = document) {
+  context.querySelectorAll('.quick_atc_grid').forEach(grid => {
+    if (grid.dataset.scrollInit === 'true') return;
+    grid.dataset.scrollInit = 'true';
+
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+    let hasDragged = false;
+
+    grid.addEventListener('mousedown', e => {
+      e.stopPropagation();
+      isDown = true;
+      startX = e.pageX;
+      scrollLeft = grid.scrollLeft;
+      hasDragged = false;
+      grid.classList.add('is-dragging');
+    });
+
+        /* MOBILE FIX */
+    grid.addEventListener('touchstart', e => {
+      e.stopPropagation();
+    }, { passive: false });
+
+    grid.addEventListener('touchmove', e => {
+      e.stopPropagation();   // 👈 THIS is the main fix
+    }, { passive: false });
+
+    grid.addEventListener('touchend', e => {
+      e.stopPropagation();
+    });
+
+    grid.addEventListener('mousemove', e => {
+  if (!isDown) return;
+
+  const dx = e.pageX - startX;
+
+  if (Math.abs(dx) > 6) {
+    hasDragged = true;
+    grid.scrollLeft = scrollLeft - dx;
+  }
+});
+
+    document.addEventListener('mouseup', () => {
+      if (!isDown) return;
+      isDown = false;
+      grid.classList.remove('is-dragging');
+    });
+
+    /* 🔒 CLICK CONTROL — ONLY IF DRAGGED */
+    grid.addEventListener('click', e => {
+      if (hasDragged) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        hasDragged = false;
+      }
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initQuickAtcScroll();
+});
+function observeQuickAtcGrid() {
+  const target = document.querySelector('#ProductGridContainer');
+  if (!target) return;
+
+  const observer = new MutationObserver(() => {
+    initQuickAtcScroll(document);
+  });
+
+  observer.observe(target, {
+    childList: true,
+    subtree: true
+  });
+}
+
+/* INIT */
+document.addEventListener('DOMContentLoaded', () => {
+  initQuickAtcScroll();
+  observeQuickAtcGrid();
+});
+</script>

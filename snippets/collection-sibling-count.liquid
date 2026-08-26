@@ -1,0 +1,18 @@
+<div
+  class="collection-sibling-count"
+  data-handle="{{ card_product.handle }}"
+  data-family="{{ card_product.title | split: '-' | first | strip }}"
+>
+  <span class="sibling-count-badge"></span>
+</div>
+
+
+<script>
+function renderSiblingCount(container, siblings) {
+  const badge = container.querySelector('.sibling-count-badge');
+  if (!badge || siblings.length < 1) return;
+
+  const count = siblings.length;
+  badge.textContent = `${count} ${count === 1 ? 'Color' : 'Colors'}`;
+}
+</script>

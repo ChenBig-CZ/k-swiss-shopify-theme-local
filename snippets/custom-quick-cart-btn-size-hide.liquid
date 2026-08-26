@@ -1,0 +1,36 @@
+<div class="quick_atc_box">
+  <form class="inline-variant-form">
+
+    <input 
+      type="hidden" 
+      name="id" 
+      value="{{ card_product.selected_or_first_available_variant.id }}" 
+      class="selected-variant-id">
+
+    <!-- SIZE GRID -->
+    <div class="quick_atc_grid quick_atc_grid_new hidden-block">
+      {% for variant in card_product.variants %}
+        <button
+          type="button"
+          class="variant-btn variant-btn_new {% unless variant.available %}disabled{% endunless %}"
+          data-variant-id="{{ variant.id }}"
+          {% unless variant.available %}disabled{% endunless %}
+        >
+          {% render 'variant-label',
+              value: variant.title,
+              product: card_product
+            %}
+        </button>
+      {% endfor %}
+    </div>
+
+    <!-- BUTTON -->
+    <button
+      type="submit"
+      class="ls-add-to-cart button button--primary button--full-width"
+    >
+      {{ 'products.product.add_to_cart' | t }}
+    </button>
+
+  </form>
+</div>

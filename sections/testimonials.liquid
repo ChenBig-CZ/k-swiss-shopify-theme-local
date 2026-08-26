@@ -1,0 +1,433 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #ml-testimonials-{{ section.id }} {
+    padding-top: {{ section.settings.pt | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.pb | times: 0.75 | round: 0 }}px;
+  }
+
+  #ml-testimonials-{{ section.id }} .card {
+    --border-radius: {{ section.settings.card_corner_radius | divided_by: 10.0 }}rem;
+    --border-width: {{ section.settings.card_border_thickness | divided_by: 10.0 }}rem;
+    --border-opacity: {{ section.settings.card_border_opacity | divided_by: 100.0 }};
+    --text-alignment: {{ section.settings.card_text_alignment }};
+  }
+
+  @media screen and (min-width: 750px) {
+    #ml-testimonials-{{ section.id }} {
+      padding-top: {{ section.settings.pt }}px;
+      padding-bottom: {{ section.settings.pb }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div 
+  id="ml-testimonials-{{ section.id }}"
+  class="ml-testimonials color-{{ section.settings.color_scheme }} gradient">
+
+  <div class="page-width">
+    {%- unless section.settings.title == blank -%}
+      <h2 
+        class="
+          title title-wrapper--no-top-margin inline-richtext 
+          {{ section.settings.heading_size }}
+          {% if settings.animations_reveal_on_scroll %}scroll-trigger animate--slide-in{% endif %}
+        ">
+        {{ section.settings.title }}
+      </h2>
+    {%- endunless -%}
+  </div>
+
+  <slider-component 
+    class="
+      slider-mobile-gutter slider-component-desktop
+      {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}
+    ">
+    <ul
+      id="Slider-{{ section.id }}"
+      data-id="{{ section.id }}"
+      class="
+        grid grid--peek contains-card contains-card--standard 
+        grid--1-col-tablet-down
+        grid--2-col-tablet
+        grid--{{ section.settings.columns_desktop }}-col-desktop 
+        slider slider--tablet slider--desktop 
+      "
+      role="list"
+      aria-label="{{ 'general.slider.name' | t }}">
+      {%- for block in section.blocks -%}
+        <li
+          id="Slide-{{ section.id }}-{{ forloop.index }}"
+          class="grid__item slider__slide {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          {% if settings.animations_reveal_on_scroll %}
+            data-cascade
+            style="--animation-order: {{ forloop.index }};"
+          {% endif %}
+        >
+          <div class="card-wrapper underline-linml-hover">
+            <div class="card card--standard">
+              <div class="card__inner color-{{ section.settings.card_color_scheme }} gradient">
+                <div class="card__content">
+                  <div class="card__information">
+                    {% if section.settings.testimonial_show_stars %}
+                      <div 
+                        class="ml-testimonials-card-stars" 
+                        style="color: {{ section.settings.stars_color_scheme }}"
+                        aria-hidden="true">
+                        {% for n in (1..5) %}
+                          {% render 'ml-svg-icons', icon: 'star', size: 15 %}
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                    {% unless block.settings.title == blank %}
+                      <h3 class="card__heading {{ section.settings.testimonial_title_font_size }}">
+                        {{ block.settings.title }}
+                      </h3>
+                    {% endunless %}
+                    {% unless block.settings.description == blank %}
+                      <div class="description rte {{ section.settings.testimonial_description_font_size }}">
+                        {{ block.settings.description }}
+                      </div>
+                    {% endunless %}
+                    {% if block.settings.img != blank or block.settings.author != blank %}
+                      <div 
+                        class="ml-testimonials-card-footer"
+                        data-has-footer-img="{% if block.settings.img != nil %}true{% else %}false{% endif %}">
+                        {% unless block.settings.img == blank %}
+                          <div class="ml-testimonials-card-footer-img">
+                            <img
+                              src="{{ block.settings.img | image_url: width: 80, height: 80, crop: 'center' }}"
+                              class="img-fluid d-block"
+                              alt="{{ block.settings.img.alt | escape }}"
+                              width="40" 
+                              height="40"
+                              loading="lazy">
+                          </div>
+                        {% endunless %}
+                        {% unless block.settings.author == blank %}
+                          <p class="ml-testimonials-card-footer-author fs-sm">
+                            {{ block.settings.author }} 
+                            {% unless block.settings.author_subtitle == blank %}
+                              <span class="">
+                                <svg class="me-1" width="16" height="16" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z" fill="currentColor"></path>
+                                </svg>
+                                {{ block.settings.author_subtitle }}
+                              </span>
+                            {% endunless %}
+                          </p>
+                        {% endunless %}
+                      </div>
+                    {% endif %}
+                    {% unless block.settings.product == blank %}
+                      {% assign product = block.settings.product %}
+                      <hr>
+                      <a 
+                        href="{{ product.url }}"
+                        class="ml-testimonials-card-product full-unstyled-link">
+                        <div class="img-wrapper">
+                          <img
+                            src="{{ product.featured_image | image_url: width: 120 }}"
+                            class="img-fluid d-block"
+                            alt="{{ product.featured_image.alt | escape }}"
+                            width="{{ section.settings.testimonial_product_img_size }}"
+                            height="{{ section.settings.testimonial_product_img_size | divided_by: product.featured_image.aspect_ratio | ceil }}"
+                            loading="lazy">
+                        </div>
+                        <div class="">
+                          <h3 class="title h5 text-truncate-2-lines">
+                            {{ block.settings.product.title }}
+                          </h3>
+                          {% if section.settings.testimonial_product_show_price %}
+                            <div class="price">
+                              <div class="price__container">
+                                <span class="price-item price-item--last">
+                                  {{ product.price | money }}
+                                </span>
+                              </div>
+                            </div>
+                          {% endif %} 
+                        </div>
+                      </a>
+                    {% endunless %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+    <div class="slider-buttons">
+      <button
+        type="button"
+        class="slider-button slider-button--prev"
+        name="previous"
+        aria-label="{{ 'general.slider.previous_slide' | t }}"
+        aria-controls="Slider-{{ section.id }}">
+        <span class="svg-wrapper">
+          {{- 'icon-caret.svg' | inline_asset_content -}}
+        </span>
+      </button>
+      <div class="slider-counter caption">
+        <span class="slider-counter--current">1</span>
+        <span aria-hidden="true"> / </span>
+        <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
+        <span class="slider-counter--total">{{ section.blocks.size }}</span>
+      </div>
+      <button
+        type="button"
+        class="slider-button slider-button--next"
+        name="next"
+        aria-label="{{ 'general.slider.next_slide' | t }}"
+        aria-controls="Slider-{{ section.id }}">
+        <span class="svg-wrapper">
+          {{- 'icon-caret.svg' | inline_asset_content -}}
+        </span>
+      </button>
+    </div>
+  </slider-component>
+</div>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Heading",
+      "default": "Testimonials",
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" },
+        { "value": "hxl", "label": "Extra large" },
+        { "value": "hxxl", "label": "Extra extra large" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "header",
+      "content": "Testimonials"
+    },
+    {
+      "type": "checkbox",
+      "id": "testimonial_show_stars",
+      "label": "Show stars",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "stars_color_scheme",
+      "label": "Stars - color",
+      "default": "#121212"
+    },
+    {
+      "type": "select",
+      "id": "testimonial_title_font_size",
+      "label": "Title font-size",
+      "default": "fs-lg",
+      "options": [
+        { "value": "fs-xs", "label": "xs" },
+        { "value": "fs-sm", "label": "sm" },
+        { "value": "fs-md", "label": "md" },
+        { "value": "fs-lg", "label": "lg" },
+        { "value": "fs-xl", "label": "xl" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "testimonial_description_font_size",
+      "label": "Description font-size",
+      "default": "fs-md",
+      "options": [
+        { "value": "fs-xs", "label": "xs" },
+        { "value": "fs-sm", "label": "sm" },
+        { "value": "fs-md", "label": "md" },
+        { "value": "fs-lg", "label": "lg" },
+        { "value": "fs-xl", "label": "xl" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "testimonial_product_show_price",
+      "label": "Show product price",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "testimonial_product_img_size",
+      "label": "Product image size",
+      "default": 60,
+      "min": 20,
+      "max": 120,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Card styling"
+    },
+    {
+      "type": "color_scheme",
+      "id": "card_color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-2"
+    },
+    {
+      "type": "select",
+      "id": "card_text_alignment",
+      "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" },
+      ],
+    },
+    {
+      "type": "range",
+      "id": "card_border_thickness",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Border thickness",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "card_border_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Border opacity",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "card_corner_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Corner radius",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Slider"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 4,
+      "label": "Number of columns on desktop"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "pt",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 36,
+      "unit": "px",
+    },
+    {
+      "type": "range",
+      "id": "pb",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 36,
+      "unit": "px",
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Testimonial Title"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>\"Shopping at [Store Name] has been an absolute delight! The carefully curated selection of products is a testament to the store's commitment to quality. From trendy fashion pieces to unique home decor items, every product exudes style and craftsmanship.\"</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "Author's Name",
+          "info": "Leave empty to disable"
+        },
+        {
+          "type": "text",
+          "id": "author_subtitle",
+          "label": "Author's subtitle",
+          "default": "Verified Customer",
+          "info": "Leave empty to disable"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" },
+      ]
+    }
+  ]
+}
+{% endschema %}

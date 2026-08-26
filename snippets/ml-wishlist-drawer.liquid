@@ -1,0 +1,64 @@
+{% if settings.ml_wishlist %}
+  {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
+  <style>
+    .drawer {
+      visibility: hidden;
+    }
+  </style>
+  <ml-wishlist-drawer class="drawer ml-drawer">
+    <div class="ml-wishlist-drawer">
+      <div class="drawer__overlay"></div>
+      <ml-wishlist-container
+        class="ml-wishlist-container"
+        data-img-ratio="ratio-1x1"
+      >
+        <div
+          class="drawer__inner gradient color-{{ settings.cart_color_scheme }}"
+          role="dialog"
+          aria-modal="true"
+          aria-label="{{ 'custom.wishlist.title' | t }}"
+          tabindex="-1"
+        >
+          <div class="drawer__inner-empty ml-wishlist-empty" hidden>
+            <div class="drawer__empty-content">
+              <h2 class="title">
+                {{ 'custom.wishlist.empty' | t }}
+              </h2>
+              <button
+                class="drawer__close"
+                type="button"
+                onclick="this.closest('ml-wishlist-drawer').close()"
+                aria-label="{{ 'accessibility.close' | t }}"
+              >
+                <span class="svg-wrapper">
+                  {{- 'icon-close.svg' | inline_asset_content -}}
+                </span>
+              </button>
+              <a href="{{ routes.all_products_collection_url }}" class="button">
+                {{ 'general.continue_shopping' | t }}
+              </a>
+            </div>
+          </div>
+          <div class="ml-wishlist-drawer-product-list-wrapper" hidden>
+            <div class="drawer__header">
+              <h2 class="drawer__heading">{{ 'custom.wishlist.title' | t }}</h2>
+              <button
+                class="drawer__close"
+                type="button"
+                onclick="this.closest('ml-wishlist-drawer').close()"
+                aria-label="{{ 'accessibility.close' | t }}"
+              >
+                <span class="svg-wrapper">
+                  {{- 'icon-close.svg' | inline_asset_content -}}
+                </span>
+              </button>
+            </div>
+            <div class="ml-wishlist-drawer-product-list ml-grid-product-list" role="list">
+              {% comment %} Injected dynamically {% endcomment %}
+            </div>
+          </div>
+        </div>
+      </ml-wishlist-container>
+    </div>
+  </ml-wishlist-drawer>
+{% endif %}

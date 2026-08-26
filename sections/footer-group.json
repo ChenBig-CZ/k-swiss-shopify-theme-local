@@ -1,0 +1,195 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "newsletter_popup_ih9RxL": {
+      "type": "newsletter-popup",
+      "disabled": true,
+      "name": "Newsletter popup",
+      "settings": {
+        "color_scheme": "",
+        "max_width": "600",
+        "config_delay": 5,
+        "config_days_to_wait": 3,
+        "title": "Newsletter Subscribe",
+        "heading_size": "h1",
+        "description": "<p>An optional description for this section</p>",
+        "description_size": "fs-md",
+        "img_height": "300",
+        "notice": "<p>By signing up for email, you agree to our <a href=\"/policies/terms-of-service\">Terms of Service</a> and <a href=\"/policies/privacy-policy\">Privacy Policy</a>.</p>"
+      }
+    },
+    "multicolumn_KBwed8": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_Bf9etN": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/svgexport-45.svg",
+            "image_link": "",
+            "title": "Customer Services",
+            "text": "<p>Our customer service team is available from M-F.</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": "scheme-2"
+          }
+        },
+        "column_YY3fik": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/svgexport-46.svg",
+            "image_link": "",
+            "title": "Free Standard Delivery",
+            "text": "<p>Standard Delivery takes up to 3-7 working days.</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": "scheme-2"
+          }
+        },
+        "column_XjAKb9": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/svgexport-47.svg",
+            "image_link": "",
+            "title": "Quick Turn Times",
+            "text": "<p>Receive your decorated apparel in as few as 2 weeks.</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": "scheme-2"
+          }
+        },
+        "column_j3Y78i": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/svgexport-48.svg",
+            "image_link": "",
+            "title": "SAFE & SECURE PAYMENT",
+            "text": "<p>All payment information is protected by secure connection</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": "scheme-2"
+          }
+        }
+      },
+      "block_order": [
+        "column_Bf9etN",
+        "column_YY3fik",
+        "column_XjAKb9",
+        "column_j3Y78i"
+      ],
+      "custom_css": [
+        ".multicolumn-card {display: flex; align-items: center; column-gap: 10px;}",
+        ".multicolumn-card__image-wrapper {width: 15%;}",
+        ".multicolumn-card__info {width: 85%;}",
+        ".background-none .multicolumn-card__image-wrapper + .multicolumn-card__info {padding-top: 0px;}",
+        ".multicolumn-card__info h3 {text-transform: uppercase;}",
+        ".multicolumn-card__info p {font-size: 16px;}",
+        ".rte {margin: 0px; line-height: normal;}",
+        ".slider-buttons {display: none;}"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 4,
+        "column_alignment": "left",
+        "background_style": "none",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "color_scheme": "scheme-2",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "section_id": ""
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "custom_tbt6Hw": {
+          "type": "custom",
+          "settings": {
+            "newsletter_enable": false,
+            "newsletter_heading": "STAY INFORMED",
+            "newsletter_text": "<p>Be the first to know about new product. By clicking on “Subscribe”</p>",
+            "heading": "CONNECT WITH US:",
+            "subtext": "",
+            "show_social": true,
+            "custom_liquid": "{% comment %}<a href=\"#\" style=\"text-decoration: none;\" class=\"tel link list-social__link\">{{- 'icon-phone.svg' | inline_asset_content -}} <span>1.844.284.1292</span>\n</a>{% endcomment %}\n<br><h2 class=\"footer-block__heading inline-richtext\">JOIN THE KLUB</h2>\n\n<div class=\"klaviyo-form-T7EnX6\"></div>\n<br><br>\n<p>Be the first to know about new product. By clicking on “Sign Up”, you agree to receive marketing emails and have read and agree to K-Swiss's <a href=\"/pages/privacy-and-cookie-policy\" class=\"link link--text list-menu__item list-menu__item--link\" target=\"_blank\"> Privacy</a> and <a href=\"/pages/terms-of-use\" class=\"link link--text list-menu__item list-menu__item--link\" target=\"_blank\">Terms of Use</a>.</p>",
+            "image_width": 220
+          }
+        },
+        "link_list_GWVqCV": {
+          "type": "link_list",
+          "settings": {
+            "heading": "COMPANY",
+            "menu": "company-2"
+          }
+        },
+        "link_list_WwGRRL": {
+          "type": "link_list",
+          "settings": {
+            "heading": "CUSTOMER SUPPORT",
+            "menu": "customer-support"
+          }
+        },
+        "link_list_YPNC3M": {
+          "type": "link_list",
+          "settings": {
+            "heading": "PRIVACY & TERMS",
+            "menu": "privacy-terms-1"
+          }
+        }
+      },
+      "block_order": [
+        "custom_tbt6Hw",
+        "link_list_GWVqCV",
+        "link_list_WwGRRL",
+        "link_list_YPNC3M"
+      ],
+      "custom_css": [
+        ".list-social {padding: 0px; justify-content: flex-start;}",
+        ".h2 {font-size: calc(var(--font-heading-scale) * 3.2rem) !important;}",
+        ".tel span {margin-left: 10px; font-weight: bold; font-size: 20px;}",
+        ".footer__content-bottom {border-top: none; background-color: #e9e9e9; padding: 22px 0;}",
+        ".footer__copyright {margin: 0px;}"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "newsletter_enable": false,
+        "newsletter_heading": "Stay Informed",
+        "enable_follow_on_shop": false,
+        "show_social": false,
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "payment_enable": false,
+        "show_policy": false,
+        "link_title": "Change Region",
+        "url": "shopify://pages/choose-your-location",
+        "link_style_secondary": true,
+        "flag_icon": "shopify://shop_images/481321_american_circle_flag_states_united_icon_3c07c8bf-2db7-4f57-b017-8e87f2522071.png",
+        "footer_copy_nav": "footer-privacy-terms",
+        "margin_top": 0,
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "newsletter_popup_ih9RxL",
+    "multicolumn_KBwed8",
+    "footer"
+  ]
+}

@@ -1,0 +1,7 @@
+{% if settings.cart_continue_shopping_btn %}
+  <button 
+    class="button--continue-shopping button button--full-width button--secondary"
+    onclick="this.closest('cart-drawer').close()">
+    {{ 'general.continue_shopping' | t }}
+  </button>
+{% endif %}

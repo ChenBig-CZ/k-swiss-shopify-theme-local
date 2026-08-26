@@ -1,0 +1,14 @@
+{% unless settings.cart_announcement == blank %}
+  <div 
+    class="ml-cart-announcement"
+    style="
+      background: {{ settings.cart_announcement_bg_color }}; 
+      color: {{ settings.cart_announcement_text_color }};
+      border-radius: {{ settings.cart_announcement_corner_radius | append: 'px' }};
+    ">
+    <div class="description rte">
+      {{ settings.cart_announcement }}
+    </div>
+  </div>
+{% endunless %}
+    

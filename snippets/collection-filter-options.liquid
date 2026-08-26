@@ -1,0 +1,17 @@
+{% liquid 
+
+assign start = offset | minus: 1
+
+for block in blocks offset:offset
+  
+  if block.type != 'dynamic' and block.type != 'option' and block.type != 'swatch'
+    break 
+  endif
+
+  if collection.all_tags contains block.settings.value
+    render 'collection-filters-option' set:filter.title, value:block.settings.value, label:block.settings.label format:format
+  endif
+
+endfor 
+
+%}

@@ -1,0 +1,52 @@
+<article class="country-selector" aria-live="polite">
+
+  {% assign regions = section.blocks | where: "type", "region" %}
+  {% assign countries = section.blocks | where: "type", "country" %}
+
+  {% for region in regions %}
+    <div class="country-selector__region">
+
+      <h2 class="country-selector__region-title text-sm px-3 tracking-widest text-gray-600">
+        {{ region.settings.title }}
+      </h2>
+
+      {% for country in countries %}
+        {% unless country.settings.region == region.settings.title %}
+          {% continue %}
+        {% endunless %}
+
+        <div class="country_select">
+        <a
+          href="{{ country.settings.url }}"
+          class="country-selector--item p-3 flex items-center rounded-sm bg-gray-100 mb-2 hover:bg-gray-50 transition-colors"
+        >
+          {% if country.settings.show_flag %}
+            {% if country.settings.is_eu %}
+              <img
+                src="https://cdn.shopify.com/s/files/1/0007/0028/4983/files/European-Union_430x.svg"
+                alt="{{ country.settings.title }} flag"
+                class="mr-2 w-4 h-auto"
+              >
+            {% elsif country.settings.code != blank %}
+              <img
+                src="https://flagcdn.com/{{ country.settings.code | downcase }}.svg"
+                alt="{{ country.settings.title }} flag"
+                class="mr-2 w-4 h-auto"
+              >
+            {% else %}
+              <span class="mr-2 w-4"></span>
+            {% endif %}
+          {% else %}
+            <span class="mr-2 w-4"></span>
+          {% endif %}
+
+          <span>{{ country.settings.title }}</span>
+        </a>
+        </div>
+
+      {% endfor %}
+
+    </div>
+  {% endfor %}
+
+</article>

@@ -1,0 +1,1060 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "shogun-helper": {
+      "type": "shogun-helper",
+      "settings": {}
+    },
+    "video_tv_frtgRr": {
+      "type": "video-tv",
+      "blocks": {
+        "channel_bxApLT": {
+          "type": "channel",
+          "settings": {
+            "channel_label": "1",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/2b0330b6c74d4c03967105cb9c219dc3.mp4",
+            "poster": "shopify://shop_images/KSxRakeem-AFM-Video-Thumbnails-Desktop-1.jpg",
+            "video_url_mobile": "https://cdn.shopify.com/videos/c/o/v/43b18a363eeb4842be0895857560165f.mp4",
+            "poster_mobile": "shopify://shop_images/cover.png"
+          }
+        },
+        "channel_hNXCEQ": {
+          "type": "channel",
+          "settings": {
+            "channel_label": "2",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/d55880f7083842bb91b2c72af9d32fe2.mp4",
+            "poster": "shopify://shop_images/KSxRakeem-AFM-Video-Thumbnails-Desktop-2.jpg",
+            "video_url_mobile": "https://cdn.shopify.com/videos/c/o/v/c001258cd3b441db96413486cf6206d0.mp4",
+            "poster_mobile": "shopify://shop_images/vlcsnap-2026-02-28-04h36m33s286.png"
+          }
+        },
+        "channel_3Fe4TJ": {
+          "type": "channel",
+          "settings": {
+            "channel_label": "3",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/69a0160cdda441febfc38b35c346a2dd.mp4",
+            "poster": "shopify://shop_images/KSxRakeem-AFM-Video-Thumbnails-Desktop-3.jpg",
+            "video_url_mobile": "https://cdn.shopify.com/videos/c/o/v/bc4b5dc3db644abc9b4034b1adbccce6.mp4",
+            "poster_mobile": "shopify://shop_images/vlcsnap-2026-02-28-04h37m16s661.png"
+          }
+        },
+        "channel_DeTFRF": {
+          "type": "channel",
+          "settings": {
+            "channel_label": "4",
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/9c91cf899064456ea88192c2eb8d2db3.mp4",
+            "poster": "shopify://shop_images/KSxRakeem-AFM-Video-Thumbnails-Desktop-4.jpg",
+            "video_url_mobile": "https://cdn.shopify.com/videos/c/o/v/f05c4fdc2e73483e81d6c99430e84a11.mp4",
+            "poster_mobile": "shopify://shop_images/vlcsnap-2026-02-28-04h37m48s481.png"
+          }
+        }
+      },
+      "block_order": [
+        "channel_bxApLT",
+        "channel_hNXCEQ",
+        "channel_3Fe4TJ",
+        "channel_DeTFRF"
+      ],
+      "name": "TV Channel Video",
+      "settings": {}
+    },
+    "autoplay_video_aWmtYe": {
+      "type": "autoplay-video",
+      "disabled": true,
+      "name": "Autoplay Video",
+      "settings": {
+        "show_desktop": true,
+        "show_mobile": false,
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/fedbff9173064bc5ac1c43964e334dda.mp4",
+        "fallback_image": "shopify://shop_images/vlcsnap-2026-01-23-11h20m02s277.png",
+        "parallax": false
+      }
+    },
+    "autoplay_video_qRrcEi": {
+      "type": "autoplay-video",
+      "disabled": true,
+      "name": "Autoplay Video",
+      "settings": {
+        "show_desktop": false,
+        "show_mobile": true,
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/550b2001679541d9984ba8d5ed87bf60.mp4",
+        "fallback_image": "shopify://shop_images/vlcsnap-2026-01-23-11h20m42s517.png",
+        "parallax": false
+      }
+    },
+    "rich_text_fYC6Tk": {
+      "type": "rich-text",
+      "blocks": {
+        "liquid_JimBUY": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"img_left\">\n<img src=\"https://cdn.shopify.com/s/files/1/0006/9969/5159/files/Vector_4.png\"></div>\n\n<div class=\"img_right\">\n<img src=\"https://cdn.shopify.com/s/files/1/0006/9969/5159/files/Vector_6.png\"></div>\n\n<style>\n#shopify-section-{{ section.id }} .img_left{\nposition: absolute;\ntop: -90px;\nleft: -5px;\nwidth: 200px;\n}\n#shopify-section-{{ section.id }} .img_right{\nposition: absolute;\nbottom: 0px;\nright: 0px;\nwidth: 120px;\n}\n.img_left img, .img_right img{\nborder: none;\n}\n#shopify-section-{{ section.id }}{\n  overflow: hidden;\n}\n\n@media (min-width: 320px) and (max-width: 480px) {\n.shopify-section-{{ section.id }}-padding {\n    padding-top: 100px;\n    padding-bottom: 100px;\n}\n#shopify-section-{{ section.id }} .img_left{\nposition: absolute;\ntop: 90px;\nleft: -30px;\nwidth: 80px;\n}\n#shopify-section-{{ section.id }} .img_right{\nposition: absolute;\nbottom: 350px;\nright: -10px;\nwidth: 50px;\n}\n}\n</style>"
+          }
+        },
+        "heading_Bmih36": {
+          "type": "heading",
+          "settings": {
+            "heading": "K-SWISS AND Rakeem Miles PRESENT",
+            "heading_size": "h2"
+          }
+        },
+        "heading_TCpxcP": {
+          "type": "heading",
+          "settings": {
+            "heading": "Action Figure Miles x Court Tiebreak II",
+            "heading_size": "h1"
+          }
+        },
+        "text_UMFgJE": {
+          "type": "text",
+          "settings": {
+            "text": "<p>K-Swiss returns with a third installment of its collaboration with Rakeem Miles. Drop 3 is based on the classic Court Tie Break silhouette –reinvented through the lens of Rakeem’s lived experience and storytelling beyond the product.</p><p>“Action Figure Miles really comes from my childhood,” says Rakeem. “Growing up in foster care, dealing with mental health, and not always feeling safe, imagination was my escape. Creating this character was my way of turning pain into purpose. He represents healing, growth, compassion, resilience, and believing in yourself even when life hasn’t been easy. Stay true to who you are, even when it’s hard. That’s what this drop is about.”</p>"
+          }
+        }
+      },
+      "block_order": [
+        "liquid_JimBUY",
+        "heading_Bmih36",
+        "heading_TCpxcP",
+        "text_UMFgJE"
+      ],
+      "custom_css": [
+        "h2 {text-transform: uppercase; margin: 0px;}",
+        "p {font-size: 1.8rem;}"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "multicolumn_XQNhra": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_E3CXDL": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Group_1974.jpg",
+            "image_link": "shopify://products/74732-166-m",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_wrbJTf": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Group_1960.jpg",
+            "image_link": "shopify://products/74732-359-m",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_jgHFET": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Group_2007.png",
+            "image_link": "",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "color_scheme": "scheme-1"
+          }
+        }
+      },
+      "block_order": [
+        "column_E3CXDL",
+        "column_wrbJTf",
+        "column_jgHFET"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "@media (min-width: 768px) {.multicolumn-list li:nth-child(3) {max-width: 48%; } .multicolumn.background-none .multicolumn-card {height: 100%; }}",
+        ".multicolumn-list__item.center .media--adapt {height: 100%;}",
+        "@media (min-width: 320px) and (max-width: 767px) {.multicolumn-list li:nth-child(3) {max-width: 100%; } .multicolumn-list__item.center .media--adapt {padding-bottom: 130% !important; }}",
+        ".multicolumn-card__image {width: 100%;}",
+        ".multicolumn-card__image-wrapper {margin-left: 0; margin-right: 0; height: 100%;}"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "RUN TOWARDS GREATNESS",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 4,
+        "column_alignment": "center",
+        "background_style": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "section_id": ""
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "shogun-optimizer": {
+      "type": "shogun-optimizer",
+      "settings": {}
+    },
+    "custom_section_XNpeGb": {
+      "type": "custom-section",
+      "blocks": {
+        "image_h8dEim": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/KSxRakeemMiles-AFM-LandingPage-Desktop-ProductTile.jpg",
+            "image_link": "shopify://products/74737-427-m",
+            "width_desktop": "33",
+            "width_mobile": "100"
+          }
+        },
+        "image_kzPeiN": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Group_1960.jpg",
+            "image_link": "shopify://products/74732-359-m",
+            "width_desktop": "25",
+            "width_mobile": "100"
+          }
+        },
+        "image_PNFmFE": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Group_2095.png",
+            "image_link": "",
+            "width_desktop": "66",
+            "width_mobile": "100"
+          }
+        }
+      },
+      "block_order": [
+        "image_h8dEim",
+        "image_kzPeiN",
+        "image_PNFmFE"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 749px) {.title-wrapper-with-link {justify-content: center; }}"
+      ],
+      "name": "Custom Flex Grid",
+      "settings": {
+        "title": "RUN TOWARDS GREATNESS",
+        "heading_size": "h1",
+        "color_scheme": "scheme-1",
+        "padding_top": 16,
+        "padding_bottom": 40
+      }
+    },
+    "newsletter_KH3E9K": {
+      "type": "newsletter",
+      "blocks": {
+        "liquid_7C78PM": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "<br>\n<div class=\"img_left\">\n<img src=\"https://cdn.shopify.com/s/files/1/0006/9969/5159/files/Vector_5.png\"></div>\n\n<div class=\"img_right\">\n<img src=\"https://cdn.shopify.com/s/files/1/0006/9969/5159/files/Vector_7.png\"></div>\n\n<style>\n#shopify-section-{{ section.id }} .img_left{\nposition: absolute;\ntop: -160px;\nleft: 0px;\nwidth: 125px;\n}\n#shopify-section-{{ section.id }} .img_right{\nposition: absolute;\nbottom: -80px;\nright: 0px;\nwidth: 180px;\n}\n.img_left img, .img_right img{\nborder: none;\n}\n\n@media (min-width: 320px) and (max-width: 480px) {\n#shopify-section-{{ section.id }}{\n    overflow: hidden;\n  }\n.shopify-section-{{ section.id }}-padding {\n    padding-top: 30px;\n    padding-bottom: 30px;\n}\n#shopify-section-{{ section.id }} .img_left{\nposition: absolute;\ntop: 15px;\nleft: -10px;\nwidth: 50px;\n}\n#shopify-section-{{ section.id }} .img_right{\nposition: absolute;\nbottom: 25px;\nright: -10px;\nwidth: 80px;\n}\n}\n</style>"
+          }
+        },
+        "heading_WRrCMy": {
+          "type": "heading",
+          "settings": {
+            "heading": "“This isn’t just about a sneaker...It’s about showing that you can come from tough circumstances and still build something meaningful.”",
+            "heading_size": "h1"
+          }
+        },
+        "heading_jkhx9N": {
+          "type": "heading",
+          "settings": {
+            "heading": "- Rakeem Miles",
+            "heading_size": "h2"
+          }
+        },
+        "paragraph_eaVYyB": {
+          "type": "paragraph",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Share your email and get notified about new product launches.</p>"
+          }
+        },
+        "email_form_wPQJpK": {
+          "type": "email_form",
+          "disabled": true,
+          "settings": {}
+        },
+        "liquid_JBmBhq": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "<br>"
+          }
+        }
+      },
+      "block_order": [
+        "liquid_7C78PM",
+        "heading_WRrCMy",
+        "heading_jkhx9N",
+        "paragraph_eaVYyB",
+        "email_form_wPQJpK",
+        "liquid_JBmBhq"
+      ],
+      "custom_css": [
+        "h2 {text-transform: uppercase;}",
+        "p {font-size: 1.8rem;}",
+        ".inline-richtext {max-width: 85%; margin: 0 auto;}",
+        "@media screen and (max-width: 749px) {.inline-richtext {max-width: 100%; }}"
+      ],
+      "name": "t:sections.newsletter.presets.name",
+      "settings": {
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "carousel_slider_pzPwG4": {
+      "type": "carousel-slider",
+      "blocks": {
+        "image_fVjVkJ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/image_28.jpg",
+            "title": "",
+            "link": "",
+            "new_tab": false
+          }
+        },
+        "image_zziK3w": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/AFM_2761_2_def4299b-2fbe-470a-b584-7fc1af20a6d9.jpg",
+            "title": "",
+            "link": "",
+            "new_tab": false
+          }
+        },
+        "image_GkHFJb": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/image_30.jpg",
+            "title": "",
+            "link": "",
+            "new_tab": false
+          }
+        },
+        "image_bAMzBd": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/AFM_2761_3.jpg",
+            "title": "",
+            "link": "",
+            "new_tab": false
+          }
+        },
+        "image_hqfXXW": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/AFM_2946_6.jpg",
+            "title": "",
+            "link": "",
+            "new_tab": false
+          }
+        },
+        "image_EBGjXm": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/AFM_2946_4.jpg",
+            "title": "",
+            "link": "",
+            "new_tab": false
+          }
+        },
+        "image_hGex77": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/AFM_2888_5.jpg",
+            "title": "",
+            "link": "",
+            "new_tab": false
+          }
+        },
+        "image_LbfQEQ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/AFM_2941_4.jpg",
+            "title": "",
+            "link": "",
+            "new_tab": false
+          }
+        },
+        "image_Uce66h": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/AFM_2848_4.jpg",
+            "title": "",
+            "link": "",
+            "new_tab": false
+          }
+        },
+        "image_jJPbDN": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/AFM_2761_4.jpg",
+            "title": "",
+            "link": "",
+            "new_tab": false
+          }
+        }
+      },
+      "block_order": [
+        "image_fVjVkJ",
+        "image_zziK3w",
+        "image_GkHFJb",
+        "image_bAMzBd",
+        "image_hqfXXW",
+        "image_EBGjXm",
+        "image_hGex77",
+        "image_LbfQEQ",
+        "image_Uce66h",
+        "image_jJPbDN"
+      ],
+      "custom_css": [
+        ".splide__track {padding: 0px;}",
+        ".splide__list {margin: 0;}",
+        ".splide__arrow {background-color: transparent; box-shadow: none;}",
+        "h3 {display: none;}"
+      ],
+      "name": "Carousel slider",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "per_row": 3,
+        "background_color": "#ffffff",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "fancy_slideshow_UY9Nwm": {
+      "type": "fancy-slideshow",
+      "blocks": {
+        "slide_6MHdmC": {
+          "type": "slide",
+          "settings": {
+            "img_mobile": "shopify://shop_images/Group_2111.png",
+            "img_desktop": "shopify://shop_images/Group_2111.png",
+            "overlay_color": "#121212",
+            "overlay_opacity": 0,
+            "overlay_blur": 0,
+            "caption_position_mobile": "center",
+            "caption_text_align_mobile": "text-center",
+            "caption_position_desktop": "center",
+            "caption_text_align_desktop": "text-desktop-center",
+            "caption_max_width": "900",
+            "subtitle": "",
+            "subtitle_font_size": "fs-sm",
+            "title": "",
+            "title_font_size": "hxl",
+            "description": "",
+            "description_font_size": "fs-xl",
+            "btn_primary_text": "",
+            "btn_primary_style": "button--primary",
+            "btn_primary_url": "",
+            "btn_secondary_text": "",
+            "btn_secondary_style": "button--secondary",
+            "btn_secondary_url": ""
+          }
+        },
+        "slide_Fpxa67": {
+          "type": "slide",
+          "settings": {
+            "img_mobile": "shopify://shop_images/Group_2111.png",
+            "img_desktop": "shopify://shop_images/Group_2111.png",
+            "overlay_color": "#121212",
+            "overlay_opacity": 0,
+            "overlay_blur": 0,
+            "caption_position_mobile": "center",
+            "caption_text_align_mobile": "text-center",
+            "caption_position_desktop": "center",
+            "caption_text_align_desktop": "text-desktop-center",
+            "caption_max_width": "900",
+            "subtitle": "",
+            "subtitle_font_size": "fs-sm",
+            "title": "",
+            "title_font_size": "hxl",
+            "description": "",
+            "description_font_size": "fs-xl",
+            "btn_primary_text": "",
+            "btn_primary_style": "button--primary",
+            "btn_primary_url": "",
+            "btn_secondary_text": "",
+            "btn_secondary_style": "button--secondary",
+            "btn_secondary_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_6MHdmC",
+        "slide_Fpxa67"
+      ],
+      "disabled": true,
+      "name": " Fancy slideshow",
+      "settings": {
+        "color_scheme": "",
+        "slider_navigation": true,
+        "slider_pagination": "bullets",
+        "slider_effect": "slide",
+        "slider_speed": 700,
+        "slider_autoplay": 5,
+        "slider_partial": false,
+        "slider_spacing": false,
+        "media_mobile_height": 300,
+        "media_desktop_height": 800,
+        "media_adapt": false,
+        "pt": 0,
+        "pb": 0
+      }
+    },
+    "masonry_gallery_cWimWn": {
+      "type": "masonry-gallery",
+      "blocks": {
+        "image_gDd39X": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/2c5433c07a297b9e88d14213abfbe529a6bb6174.jpg",
+            "caption_text": "",
+            "product": "",
+            "col_span": 1,
+            "row_span": 1,
+            "aspect_ratio": "1/1"
+          }
+        },
+        "image_9UUaQy": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/9c978c1358684859b2e874fe41885b1aea0d2245.jpg",
+            "caption_text": "",
+            "product": "",
+            "col_span": 1,
+            "row_span": 1,
+            "aspect_ratio": "1/1"
+          }
+        },
+        "image_8jgexd": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ea6e5b7cb9d20e71d7552813c59698a35a49246e.jpg",
+            "caption_text": "",
+            "product": "",
+            "col_span": 2,
+            "row_span": 3,
+            "aspect_ratio": "3/4"
+          }
+        },
+        "image_tngzkG": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/5fd71b773474ce3e3aaea7dd01a37641bfa7bd9e.jpg",
+            "caption_text": "",
+            "product": "",
+            "col_span": 2,
+            "row_span": 2,
+            "aspect_ratio": "4/3"
+          }
+        }
+      },
+      "block_order": [
+        "image_gDd39X",
+        "image_9UUaQy",
+        "image_8jgexd",
+        "image_tngzkG"
+      ],
+      "disabled": true,
+      "name": "Masonry Gallery",
+      "settings": {
+        "transport": "",
+        "show_desktop": true,
+        "show_mobile": true,
+        "col_grid": 4,
+        "col_gape": 5,
+        "full_width": false,
+        "enable_popup": true,
+        "padding_top": 32,
+        "padding_bottom": 32,
+        "color_scheme": "",
+        "custom_liquid": ""
+      }
+    },
+    "image_with_text_yGhBNQ": {
+      "type": "image-with-text",
+      "blocks": {
+        "liquid_46ap6H": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "<br>\n<div class=\"img_left\">\n<img src=\"https://cdn.shopify.com/s/files/1/0006/9969/5159/files/Vector_13.png\"></div>\n\n<div class=\"img_right\">\n<img src=\"https://cdn.shopify.com/s/files/1/0006/9969/5159/files/Vector_12.png\"></div>\n\n<style>\n#shopify-section-{{ section.id }} .img_left{\nposition: absolute;\nbottom: -80px;\nleft: -0px;\nwidth: 100px;\nopacity: 0;\n}\n#shopify-section-{{ section.id }} .img_left img{\nwidth: 100%;\n}\n#shopify-section-{{ section.id }} .img_right{\nposition: absolute;\ntop: -75px;\nright: 30px;\nwidth: 180px;\n}\n#shopify-section-{{ section.id }} .img_right img{\nwidth: 100%;\n}\n.img_left img, .img_right img{\nborder: none;\n}\n#shopify-section-{{ section.id }}{\n  overflow: hidden;\n}\n\n@media (min-width: 320px) and (max-width: 480px) {\n.shopify-section-{{ section.id }}-padding {\n    padding-top: 60px;\n    padding-bottom: 60px;\n}\n#shopify-section-{{ section.id }} .img_left{\nposition: absolute;\nbottom: -50px;\nleft: -10px;\nwidth: 50px;\ntop: unset;\n}\n#shopify-section-{{ section.id }} .img_right{\nposition: absolute;\ntop: -30px;\nright: -45px;\nwidth: 120px;\n}\n}\n</style>\n<script>\nwindow.addEventListener(\"load\", function() {\n\n  const section = document.querySelector('#shopify-section-{{ section.id }}');\n  if (!section) return;\n\n  const pageWidth = section.querySelector('.page-width');\n  const imgLeft = section.querySelector('.img_left');\n\n  if (pageWidth && imgLeft) {\n    \n    // Move after .page-width\n    pageWidth.after(imgLeft);\n\n    // Make visible\n    imgLeft.style.opacity = \"1\";\n\n  }\n\n});\n</script>\n<br>"
+          }
+        },
+        "heading_YzDp3J": {
+          "type": "heading",
+          "settings": {
+            "heading": "A FULL CIRCLE MOMENT",
+            "heading_size": "h2"
+          }
+        },
+        "text_zDGDqL": {
+          "type": "text",
+          "settings": {
+            "text": "<p>I grew up inspired by Pharrell and Chad Hugo. When I first heard “Grinding” at 11 years old, it shifted something in me. Around the same time, I discovered Ice Cream and Billionaire Boys Club after seeing Teyana Taylor modeling the brand. I started following the Ice Cream skate team and was heavily influenced by that early 2000s era. Watching skaters like Jimmy Gorecki and the rest of the team made me want to skateboard, dress like them, and be part of that world. It gave me direction during a time when I was a troubled kid, getting kicked out of schools and spending time in group homes. That culture opened my mind and made me want to create music and build something of my own.</p><p>Years later, I’ve come full circle — I now have a song with Chad Hugo. What started as inspiration turned into collaboration. That early Ice Cream and BBC influence still shows up in my work, including the colors and design of this K-Swiss sneaker. Jimmy was one of the original Ice Cream skaters, so having him involved in this launch felt natural. To me, he represents originality and authenticity, and it’s an honor to have him bring this project to life in his own way.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "liquid_46ap6H",
+        "heading_YzDp3J",
+        "text_zDGDqL"
+      ],
+      "custom_css": [
+        ".gradient {position: relative;}",
+        ".image-with-text__media {display: none;}",
+        "@media (min-width: 320px) and (max-width: 480px) {.image-with-text__media-item {order: 2; } .page-width {padding: 0; }}"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "image_link": "",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "center",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 32,
+        "section_id": "second_section_1"
+      }
+    },
+    "rich_text_hH3JhY": {
+      "type": "rich-text",
+      "blocks": {
+        "liquid_qiMm7N": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"img_left\">\n<img src=\"https://cdn.shopify.com/s/files/1/0006/9969/5159/files/Vector_8.png\"></div>\n\n<div class=\"img_right\">\n<img src=\"https://cdn.shopify.com/s/files/1/0006/9969/5159/files/Vector_9.png\"></div>\n\n<style>\n#shopify-section-template--16993982251063__rich_text_hH3JhY .img_left{\nposition: absolute;\ntop: 10px;\nleft: -10px;\nwidth: 130px;\n}\n#shopify-section-template--16993982251063__rich_text_hH3JhY .img_right{\nposition: absolute;\ntop: 0px;\nright: -30px;\nwidth: 140px;\n}\n.img_left img, .img_right img{\nborder: none;\n}\n#shopify-section-template--16993982251063__rich_text_hH3JhY{\n  overflow: hidden;\n}\n\n@media (min-width: 320px) and (max-width: 480px) {\n.section-template--16993982251063__rich_text_hH3JhY-padding {\n    padding-top: 60px;\n    padding-bottom: 60px;\n}\n#shopify-section-template--16993982251063__rich_text_hH3JhY .img_left{\nposition: absolute;\nbottom: 0px;\nleft: -10px;\nwidth: 50px;\ntop: unset;\n}\n#shopify-section-template--16993982251063__rich_text_hH3JhY .img_right{\nposition: absolute;\ntop: -40px;\nright: -10px;\nwidth: 70px;\n}\n}\n</style>"
+          }
+        },
+        "heading_3XDcYe": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Rakeem’s IMPACT",
+            "heading_size": "h1"
+          }
+        },
+        "text_fqYMWi": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Drop 3 pushes that world forward visually and conceptually. The sneaker leads, but the story carries the weight. Custom packaging features messages like “Run Toward Greatness,” paired with playful interior graphics pulled from the Action Figure Miles universe. The release also includes a canvas tote and a rubberized hang tag created by Swapnice, embedded with NFC technology that unlocks exclusive content directly from Rakeem.</p><p>Rakeem remains hands-on across every creative touchpoint. This rollout expands the Action Figure Miles universe more than ever, channeling early-2000s energy through a styled photoshoot, a two-minute animated short starring the character, and a new skit continuing the narrative from previous drops. An eight-minute TV show pilot, originally developed with Adult Swim in mind, will also be available, alongside additional exclusive content, accessible through the Swapnice NFC experience.</p><p>Drop 3 amplifies the AFM x K-Swiss collaboration with its most personal chapter yet, grounded in real experience and led by Rakeem’s story from start to finish.<br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "liquid_qiMm7N",
+        "heading_3XDcYe",
+        "text_fqYMWi"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "h2 {text-transform: uppercase;}",
+        "p {font-size: 1.8rem;}"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 52
+      }
+    },
+    "masonry_gallery_7FzbYV": {
+      "type": "masonry-gallery",
+      "blocks": {
+        "image_4B9KMw": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/BS6A5557_1.png",
+            "caption_text": "",
+            "product": "",
+            "col_span": 1,
+            "row_span": 1,
+            "aspect_ratio": "1/1"
+          }
+        },
+        "image_NYyj8J": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/BS6A5565_1.png",
+            "caption_text": "",
+            "product": "",
+            "col_span": 1,
+            "row_span": 1,
+            "aspect_ratio": "1/1"
+          }
+        },
+        "image_eWTwQH": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/BS6A5568_1_1.png",
+            "caption_text": "",
+            "product": "",
+            "col_span": 2,
+            "row_span": 3,
+            "aspect_ratio": "3/4"
+          }
+        },
+        "image_6ipxzd": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/BS6A5555_1_1.png",
+            "caption_text": "",
+            "product": "",
+            "col_span": 2,
+            "row_span": 2,
+            "aspect_ratio": "4/3"
+          }
+        },
+        "image_QUYBkn": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Group_2092_1.png",
+            "caption_text": "",
+            "product": "",
+            "col_span": 1,
+            "row_span": 1,
+            "aspect_ratio": "1/1"
+          }
+        }
+      },
+      "block_order": [
+        "image_4B9KMw",
+        "image_NYyj8J",
+        "image_eWTwQH",
+        "image_6ipxzd",
+        "image_QUYBkn"
+      ],
+      "custom_css": [
+        ".image_block {height: 100%;}",
+        ".page-width {gap: 5px;}"
+      ],
+      "name": "Masonry Gallery",
+      "settings": {
+        "transport": "",
+        "show_desktop": true,
+        "show_mobile": true,
+        "col_grid": 4,
+        "col_gape": 8,
+        "full_width": true,
+        "enable_popup": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "color_scheme": "",
+        "custom_liquid": "<style>\n\n#shopify-section-{{ section.id }} .grid-gallery-{{ section.id }}{\nposition: relative;\n}\n\n#shopify-section-{{ section.id }} .grid-gallery-{{ section.id }} > div:last-child{\nposition: absolute;\nwidth: 250px;\ntop: 40%;\nleft: 50%;\nz-index: 2;\ntransform: translate(-50%, -50%);\n}\n\n#shopify-section-{{ section.id }} .grid-gallery-{{ section.id }} > div:last-child img{\nobject-fit: contain;\n}\n\n@media (min-width: 320px) and (max-width: 480px){\n\n#shopify-section-{{ section.id }} .grid-gallery-{{ section.id }}{\ngrid-template-columns: repeat(2,1fr);\n}\n\n#shopify-section-{{ section.id }} .grid-gallery-{{ section.id }} > div:last-child{\nwidth:150px;\ntop:50%;\n}\n\n.grid-gallery-{{ section.id }} > div:nth-child(1){\norder:2;\n}\n\n.grid-gallery-{{ section.id }} > div:nth-child(2){\norder:3;\n}\n\n.grid-gallery-{{ section.id }} > div:nth-child(3){\norder:1;\n}\n\n.grid-gallery-{{ section.id }} > div:nth-child(4){\norder:4;\n}\n}\n\n</style>"
+      }
+    },
+    "masonry_gallery_JrLmzQ": {
+      "type": "masonry-gallery",
+      "blocks": {
+        "image_9epcYV": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/AFM_2761_1.jpg",
+            "caption_text": "",
+            "product": "",
+            "col_span": 1,
+            "row_span": 1,
+            "aspect_ratio": "1/1"
+          }
+        },
+        "image_GcCeCF": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/AFM_2941_1.jpg",
+            "caption_text": "",
+            "product": "",
+            "col_span": 1,
+            "row_span": 1,
+            "aspect_ratio": "1/1"
+          }
+        },
+        "image_zytLqf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/AFM_2946_7_1.jpg",
+            "caption_text": "",
+            "product": "",
+            "col_span": 1,
+            "row_span": 1,
+            "aspect_ratio": "3/4"
+          }
+        },
+        "image_B6Tk4V": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/AFM_2819_1.jpg",
+            "caption_text": "",
+            "product": "",
+            "col_span": 1,
+            "row_span": 1,
+            "aspect_ratio": "3/4"
+          }
+        },
+        "image_aCTiVk": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/AFM_2888_1.jpg",
+            "caption_text": "",
+            "product": "",
+            "col_span": 1,
+            "row_span": 1,
+            "aspect_ratio": "3/4"
+          }
+        },
+        "image_AYccgF": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/AFM_2848_1.jpg",
+            "caption_text": "",
+            "product": "",
+            "col_span": 1,
+            "row_span": 1,
+            "aspect_ratio": "3/4"
+          }
+        }
+      },
+      "block_order": [
+        "image_9epcYV",
+        "image_GcCeCF",
+        "image_zytLqf",
+        "image_B6Tk4V",
+        "image_aCTiVk",
+        "image_AYccgF"
+      ],
+      "custom_css": [
+        ".image_block {height: 100%;}",
+        ".page-width {gap: 5px;}",
+        "@media (min-width: 320px) and (max-width: 480px) {.section-template--16993982251063__masonry_gallery_JrLmzQ-padding {padding-bottom: 50px; }}"
+      ],
+      "name": "Masonry Gallery",
+      "settings": {
+        "transport": "#second_section_1 .image-with-text__media-item",
+        "show_desktop": true,
+        "show_mobile": true,
+        "col_grid": 3,
+        "col_gape": 8,
+        "full_width": true,
+        "enable_popup": true,
+        "padding_top": 32,
+        "padding_bottom": 0,
+        "color_scheme": "",
+        "custom_liquid": ""
+      }
+    },
+    "image_with_text_3BMqnU": {
+      "type": "image-with-text",
+      "blocks": {
+        "liquid_MyPTKB": {
+          "type": "liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"img_left\">\n<img src=\"https://cdn.shopify.com/s/files/1/0006/9969/5159/files/Vector_15.png\"></div>\n\n<div class=\"img_right\">\n<img src=\"https://cdn.shopify.com/s/files/1/0006/9969/5159/files/Vector_14.png\"></div>\n\n<style>\n#shopify-section-{{ section.id }} .img_left{\nposition: absolute;\nbottom: -75px;\nleft: -5px;\nwidth: 150px;\nopacity: 0;\n}\n#shopify-section-{{ section.id }} .img_left img{\nwidth: 100%;\n}\n#shopify-section-{{ section.id }} .img_right{\nposition: absolute;\ntop: -100px;\nright: -7px;\nwidth: 120px;\nopacity: 0;\n}\n#shopify-section-{{ section.id }} .img_right img{\nwidth: 100%;\n}\n.img_left img, .img_right img{\nborder: none;\n}\n#shopify-section-{{ section.id }}{\n  overflow: hidden;\n}\n\n@media (min-width: 320px) and (max-width: 480px) {\n.shopify-section-{{ section.id }}-padding {\n    padding-top: 60px;\n    padding-bottom: 60px;\n}\n#shopify-section-{{ section.id }} .img_left{\n        position: absolute;\n        bottom: -55px;\n        left: -10px;\n        width: 100px;\n}\n#shopify-section-{{ section.id }} .img_right{\n        position: absolute;\n        top: -55px;\n        right: 0;\n        width: 70px;\n        transform: rotate(-90deg);\n}\n}\n</style>\n<script>\nwindow.addEventListener(\"load\", function() {\n\n  const section = document.querySelector('#shopify-section-{{ section.id }}');\n  if (!section) return;\n\n  const pageWidth = section.querySelector('.page-width');\n  const imgLeft = section.querySelector('.img_left');\n  const imgRight = section.querySelector('.img_right');\n\n  if (pageWidth && imgLeft && imgRight) {\n    \n    // Move after .page-width\n    pageWidth.after(imgLeft, imgRight);\n\n    // Make visible\n    imgLeft.style.opacity = \"1\";\n    imgRight.style.opacity = \"1\";\n\n  }\n\n});\n</script>"
+          }
+        },
+        "heading_mg4iBV": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Image with text",
+            "heading_size": "h1"
+          }
+        },
+        "text_mPVTNB": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Drop 3 pushes that world forward visually and conceptually. The sneaker leads, but the story carries the weight. Custom packaging features messages like “Run Toward Greatness,” paired with playful interior graphics pulled from the Action Figure Miles universe. The release also includes a canvas tote and a rubberized hang tag created by Swapnice, embedded with NFC technology that unlocks exclusive content directly from Rakeem.</p><p>Rakeem remains hands-on across every creative touchpoint. This rollout expands the Action Figure Miles universe more than ever, channeling early-2000s energy through a styled photoshoot, a two-minute animated short starring the character, and a new skit continuing the narrative from previous drops. An eight-minute TV show pilot, originally developed with Adult Swim in mind, will also be available, alongside additional exclusive content, accessible through the Swapnice NFC experience.</p><p>Drop 3 amplifies the AFM x K-Swiss collaboration with its most personal chapter yet, grounded in real experience and led by Rakeem’s story from start to finish.<br/><br/><a href=\"http://actionfiguremiles.shop/\" target=\"_blank\" title=\"http://actionfiguremiles.shop/\">COMPLETE THE LOOK BY VISITING THE ACTION FIGURE MILES SHOP</a><br/><br/></p>",
+            "text_style": "body"
+          }
+        },
+        "button_G7FHat": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Complete the look by visiting the Action Figure Miles shop",
+            "button_link": "#",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "liquid_MyPTKB",
+        "heading_mg4iBV",
+        "text_mPVTNB",
+        "button_G7FHat"
+      ],
+      "custom_css": [
+        ".gradient {position: relative;}",
+        "@media (min-width: 320px) and (max-width: 480px) {.image-with-text__media-item {order: 2; max-width: 80%; margin: -30px auto 50px; }}"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "image": "shopify://shop_images/AFM_2761_2.jpg",
+        "image_link": "",
+        "height": "adapt",
+        "desktop_image_width": "small",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "center",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "section_id": ""
+      }
+    },
+    "custom_liquid_F7gFf7": {
+      "type": "custom-liquid",
+      "custom_css": [
+        ".gradient {overflow: hidden;}"
+      ],
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<img width=\"100%\" class=\"footer-img\" src=\"https://cdn.shopify.com/s/files/1/0006/9969/5159/files/footer_gif.gif?v=1771495742\">\n\n<style>\n\n.footer-img{\nmargin-bottom: -10px;\n}\n@media (max-width: 768px){\n  .footer-img{\n    width: 145%;\n    position: relative;\n    left: 50%;\n    transform: translateX(-50%);\n  }\n}\n</style>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom_liquid_DY8R3M": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n/* Also keep .nav__link cursor default globally */\n body, a {\n  cursor: url(\"https://cdn.shopify.com/s/files/1/0006/9969/5159/files/Group_2130.png?v=1771495008\"), auto;\n}\n/* Hand cursor for clickable links with class block inside #MainContent */\n#MainContent a.block, .button, .cursor-pointer, .splide__arrow, .link, .channel-btn, .mega-menu__link, .tv-volume, .tv-player-controls button, .custom-flex-grid__media a, #contact_form *, modal-opener-image, .shopify-section-group-footer-group li a, .language_btn{\n  cursor: url(\"https://cdn.shopify.com/s/files/1/0006/9969/5159/files/cursor-hand.png\"), pointer !important;\n}\n</style>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "newsletter_Qh4JwP": {
+      "type": "newsletter",
+      "blocks": {
+        "liquid_rG6Yzi": {
+          "type": "liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<div class=\"img_left\">\n<img src=\"https://cdn.shopify.com/s/files/1/0006/9969/5159/files/Vector_10.png\"></div>\n\n<div class=\"img_right\">\n<img src=\"https://cdn.shopify.com/s/files/1/0006/9969/5159/files/Vector_11.png\"></div>\n\n<style>\n#shopify-section-{{ section.id }} .img_left{\nposition: absolute;\nbottom: -80px;\nleft: 0px;\nwidth: 165px;\n}\n#shopify-section-{{ section.id }} .img_right{\nposition: absolute;\ntop: -90px;\nright: 0px;\nwidth: 180px;\n}\n.img_left img, .img_right img{\nborder: none;\n}\n#shopify-section-{{ section.id }}{\n  overflow: hidden;\n}\n\n@media (min-width: 320px) and (max-width: 480px) {\n.shopify-section-{{ section.id }}-padding {\n    padding-top: 70px;\n    padding-bottom: 70px;\n}\n#shopify-section-{{ section.id }} .img_left{\nposition: absolute;\nbottom: -50px;\nleft: 0px;\nwidth: 80px;\n}\n#shopify-section-{{ section.id }} .img_right{\nposition: absolute;\ntop: -40px;\nright: 0px;\nwidth: 80px;\n}\n}\n</style>"
+          }
+        },
+        "heading_WLdVmp": {
+          "type": "heading",
+          "settings": {
+            "heading": "Stay Up To Date",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph_rff6GX": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Share your email and get notified about new product launches.</p>"
+          }
+        },
+        "email_form_hhKegc": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "liquid_rG6Yzi",
+        "heading_WLdVmp",
+        "paragraph_rff6GX",
+        "email_form_hhKegc"
+      ],
+      "custom_css": [
+        "h2 {text-transform: uppercase;}",
+        "p {font-size: 1.8rem;}",
+        ".inline-richtext {max-width: 85%; margin: 0 auto;}"
+      ],
+      "name": "t:sections.newsletter.presets.name",
+      "settings": {
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    }
+  },
+  "order": [
+    "shogun-helper",
+    "video_tv_frtgRr",
+    "autoplay_video_aWmtYe",
+    "autoplay_video_qRrcEi",
+    "rich_text_fYC6Tk",
+    "multicolumn_XQNhra",
+    "main",
+    "shogun-optimizer",
+    "custom_section_XNpeGb",
+    "newsletter_KH3E9K",
+    "carousel_slider_pzPwG4",
+    "fancy_slideshow_UY9Nwm",
+    "masonry_gallery_cWimWn",
+    "image_with_text_yGhBNQ",
+    "rich_text_hH3JhY",
+    "masonry_gallery_7FzbYV",
+    "masonry_gallery_JrLmzQ",
+    "image_with_text_3BMqnU",
+    "custom_liquid_F7gFf7",
+    "custom_liquid_DY8R3M",
+    "newsletter_Qh4JwP"
+  ]
+}

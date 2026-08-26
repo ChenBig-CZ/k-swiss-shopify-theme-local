@@ -1,0 +1,33 @@
+<script>
+  (function(w, k) {w[k] = window[k] || function () { (window[k].q = window[k].q || []).push(arguments) }})(window, "doofinderApp")
+  var dfKvCustomerEmail = "{{ customer.email }}";
+  var dfPageType = "{{ request.page_type }}";
+  var dfProductId = "{{ product.id }}";
+  var dfCategoryName = "{{ collection.title }}";
+
+  doofinderApp("config", "currency", Shopify.currency.active);
+  doofinderApp("config", "language", Shopify.locale);
+  let context = Shopify.country;
+  var b2b_customer = {% if customer.b2b? %}true{% else %}false{% endif %};
+  if (b2b_customer) {
+    context = "{{customer.current_location.id}}";
+  }
+  doofinderApp("config", "priceName", context);
+  localStorage.setItem("shopify-language", Shopify.locale);
+
+  doofinderApp("init", "layer", {
+    params:{
+      "":{
+        exclude: {
+          not_published_in: [context]
+        }
+      },
+      "product":{
+        exclude: {
+          not_published_in: [context]
+        }
+      }
+    }
+  });
+</script>
+<script src="https://us1-config.doofinder.com/2.x/95889634-58ff-459f-a9f8-da395a09be96.js" async></script>

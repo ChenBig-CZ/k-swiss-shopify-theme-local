@@ -1,0 +1,503 @@
+{% liquid
+  assign featured_menu = section.settings.menu
+  assign products_per_collection = section.settings.products_per_collection
+%}
+
+<section class="ks-sitemap section-{{ section.id }}">
+  <div class="ks-sitemap__container">
+    <header class="ks-sitemap__header">
+      <p class="ks-sitemap__eyebrow">K-SWISS</p>
+      <h1 class="ks-sitemap__title">{{ page.title | default: 'Sitemap' | escape }}</h1>
+      {% if page.content != blank %}
+        <div class="ks-sitemap__intro rte">
+          {{ page.content }}
+        </div>
+      {% else %}
+        <p class="ks-sitemap__subtitle">
+          Browse K-Swiss collections, products, pages, support resources, and more.
+        </p>
+      {% endif %}
+    </header>
+
+    {% if section.settings.show_menu and section.settings.menu != blank %}
+      <section class="ks-sitemap__panel">
+        <div class="ks-sitemap__panel-head">
+          <h2 class="ks-sitemap__heading">{{ section.settings.menu_title | escape }}</h2>
+        </div>
+
+        <div class="ks-sitemap__columns ks-sitemap__columns--menu">
+          {% for link in featured_menu.links %}
+            <div class="ks-sitemap__card">
+              <h3 class="ks-sitemap__card-title">
+                <a href="{{ link.url }}">{{ link.title | escape }}</a>
+              </h3>
+
+              {% if link.links != blank %}
+                <ul class="ks-sitemap__list">
+                  {% for child_link in link.links %}
+                    <li>
+                      <a href="{{ child_link.url }}">{{ child_link.title | escape }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% if section.settings.show_pages %}
+      <section class="ks-sitemap__panel">
+        <div class="ks-sitemap__panel-head">
+          <h2 class="ks-sitemap__heading">Company & Support</h2>
+        </div>
+
+        {% paginate pages by 50 %}
+          <div class="ks-sitemap__columns">
+            <div class="ks-sitemap__card ks-sitemap__card--wide">
+              <ul class="ks-sitemap__list ks-sitemap__list--columns">
+                {% for item in pages %}
+                  {% unless item.handle == page.handle %}
+                    <li>
+                      <a href="{{ item.url }}">{{ item.title | escape }}</a>
+                    </li>
+                  {% endunless %}
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+
+          {% if paginate.pages > 1 %}
+            <nav class="ks-sitemap__pagination" aria-label="Pages pagination">
+              {{ paginate | default_pagination }}
+            </nav>
+          {% endif %}
+        {% endpaginate %}
+      </section>
+    {% endif %}
+
+    {% if section.settings.show_collections %}
+      <section class="ks-sitemap__panel">
+        <div class="ks-sitemap__panel-head">
+          <h2 class="ks-sitemap__heading">Shop by Collection</h2>
+          <p class="ks-sitemap__panel-copy">
+            Collections with featured product links underneath each category.
+          </p>
+        </div>
+
+        <div class="ks-sitemap__collection-grid">
+          {% for collection in collections %}
+            {% if collection.all_products_count > 0 %}
+              <article class="ks-sitemap__collection-card">
+                <div class="ks-sitemap__collection-top">
+                  <h3 class="ks-sitemap__collection-title">
+                    <a href="{{ collection.url }}">{{ collection.title | escape }}</a>
+                  </h3>
+
+                  {% if section.settings.show_collection_counts %}
+                    <p class="ks-sitemap__meta">
+                      {{ collection.all_products_count }} product{% if collection.all_products_count != 1 %}s{% endif %}
+                    </p>
+                  {% endif %}
+                </div>
+
+                {% if collection.description != blank and section.settings.show_collection_descriptions %}
+                  <div class="ks-sitemap__description">
+                    {{ collection.description | strip_html | truncate: 120 }}
+                  </div>
+                {% endif %}
+
+                {% paginate collection.products by 50 %}
+                  <ul class="ks-sitemap__list ks-sitemap__list--products">
+                    {% for product in collection.products limit: products_per_collection %}
+                      <li>
+                        <a href="{{ product.url }}">{{ product.title | escape }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endpaginate %}
+
+                {% if collection.products_count > products_per_collection %}
+                  <p class="ks-sitemap__more">
+                    <a href="{{ collection.url }}">
+                      View all {{ collection.products_count }} in {{ collection.title | escape }}
+                    </a>
+                  </p>
+                {% endif %}
+              </article>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% if section.settings.show_blogs %}
+      <section class="ks-sitemap__panel">
+        <div class="ks-sitemap__panel-head">
+          <h2 class="ks-sitemap__heading">Editorial & Stories</h2>
+        </div>
+
+        <div class="ks-sitemap__columns">
+          {% for blog in blogs %}
+            <div class="ks-sitemap__card">
+              <h3 class="ks-sitemap__card-title">
+                <a href="{{ blog.url }}">{{ blog.title | escape }}</a>
+              </h3>
+
+              {% if section.settings.show_articles %}
+                {% paginate blog.articles by 50 %}
+                  <ul class="ks-sitemap__list">
+                    {% for article in blog.articles limit: section.settings.articles_per_blog %}
+                      <li>
+                        <a href="{{ article.url }}">{{ article.title | escape }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endpaginate %}
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% if section.settings.show_policies %}
+      <section class="ks-sitemap__panel">
+        <div class="ks-sitemap__panel-head">
+          <h2 class="ks-sitemap__heading">Policies</h2>
+        </div>
+
+        <div class="ks-sitemap__columns">
+          <div class="ks-sitemap__card ks-sitemap__card--wide">
+            <ul class="ks-sitemap__list ks-sitemap__list--columns">
+              {% if shop.privacy_policy != blank %}
+                <li><a href="{{ shop.privacy_policy.url }}">{{ shop.privacy_policy.title | escape }}</a></li>
+              {% endif %}
+              {% if shop.refund_policy != blank %}
+                <li><a href="{{ shop.refund_policy.url }}">{{ shop.refund_policy.title | escape }}</a></li>
+              {% endif %}
+              {% if shop.shipping_policy != blank %}
+                <li><a href="{{ shop.shipping_policy.url }}">{{ shop.shipping_policy.title | escape }}</a></li>
+              {% endif %}
+              {% if shop.terms_of_service != blank %}
+                <li><a href="{{ shop.terms_of_service.url }}">{{ shop.terms_of_service.title | escape }}</a></li>
+              {% endif %}
+              {% if shop.subscription_policy != blank %}
+                <li><a href="{{ shop.subscription_policy.url }}">{{ shop.subscription_policy.title | escape }}</a></li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </section>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .ks-sitemap {
+    background: #ffffff;
+    color: #111111;
+    padding: 40px 0 72px;
+  }
+
+  .ks-sitemap__container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .ks-sitemap__header {
+    margin-bottom: 40px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .ks-sitemap__eyebrow {
+    margin: 0 0 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: #767676;
+  }
+
+  .ks-sitemap__title {
+    margin: 0 0 10px;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .ks-sitemap__subtitle,
+  .ks-sitemap__intro {
+    max-width: 780px;
+    color: #555555;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .ks-sitemap__panel {
+    margin-bottom: 42px;
+  }
+
+  .ks-sitemap__panel-head {
+    margin-bottom: 18px;
+  }
+
+  .ks-sitemap__heading {
+    margin: 0 0 6px;
+    font-size: 1.45rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .ks-sitemap__panel-copy {
+    margin: 0;
+    color: #666666;
+    font-size: 0.98rem;
+  }
+
+  .ks-sitemap__columns {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .ks-sitemap__columns--menu {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .ks-sitemap__collection-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .ks-sitemap__card,
+  .ks-sitemap__collection-card {
+    background: #fafafa;
+    border: 1px solid #e8e8e8;
+    border-radius: 16px;
+    padding: 18px 18px 16px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .ks-sitemap__card:hover,
+  .ks-sitemap__collection-card:hover {
+    border-color: #d7d7d7;
+    transform: translateY(-1px);
+  }
+
+  .ks-sitemap__card--wide {
+    grid-column: 1 / -1;
+  }
+
+  .ks-sitemap__card-title,
+  .ks-sitemap__collection-title {
+    margin: 0 0 10px;
+    font-size: 1.08rem;
+    line-height: 1.3;
+  }
+
+  .ks-sitemap__collection-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .ks-sitemap__meta {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #767676;
+    white-space: nowrap;
+  }
+
+  .ks-sitemap__description {
+    margin-bottom: 12px;
+    color: #666666;
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  .ks-sitemap__list,
+  .ks-sitemap__list ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ks-sitemap__list li {
+    margin: 0 0 8px;
+    line-height: 1.45;
+  }
+
+  .ks-sitemap__list--columns {
+    column-count: 3;
+    column-gap: 28px;
+  }
+
+  .ks-sitemap__list--columns li {
+    break-inside: avoid;
+  }
+
+  .ks-sitemap__list--products li:last-child,
+  .ks-sitemap__list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .ks-sitemap a {
+    color: #111111;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  .ks-sitemap a:hover,
+  .ks-sitemap a:focus {
+    border-bottom-color: #111111;
+  }
+
+  .ks-sitemap__more {
+    margin: 14px 0 0;
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  .ks-sitemap__pagination {
+    margin-top: 18px;
+  }
+
+  .ks-sitemap__pagination .pagination {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @media screen and (max-width: 1199px) {
+    .ks-sitemap__columns,
+    .ks-sitemap__collection-grid,
+    .ks-sitemap__columns--menu {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ks-sitemap__list--columns {
+      column-count: 2;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ks-sitemap {
+      padding: 28px 0 56px;
+    }
+
+    .ks-sitemap__container {
+      padding: 0 16px;
+    }
+
+    .ks-sitemap__columns,
+    .ks-sitemap__collection-grid,
+    .ks-sitemap__columns--menu {
+      grid-template-columns: 1fr;
+    }
+
+    .ks-sitemap__collection-top {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .ks-sitemap__list--columns {
+      column-count: 1;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "K-Swiss HTML sitemap",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_menu",
+      "label": "Show selected menu",
+      "default": true
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    },
+    {
+      "type": "text",
+      "id": "menu_title",
+      "label": "Menu section heading",
+      "default": "Shop Navigation"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pages",
+      "label": "Show pages",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collections",
+      "label": "Show collections with products",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "products_per_collection",
+      "min": 3,
+      "max": 12,
+      "step": 1,
+      "label": "Products to show per collection",
+      "default": 6
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_counts",
+      "label": "Show collection product counts",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_descriptions",
+      "label": "Show collection descriptions",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_blogs",
+      "label": "Show blogs",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_articles",
+      "label": "Show blog articles",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "articles_per_blog",
+      "min": 3,
+      "max": 12,
+      "step": 1,
+      "label": "Articles to show per blog",
+      "default": 6
+    },
+    {
+      "type": "checkbox",
+      "id": "show_policies",
+      "label": "Show policies",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "K-Swiss HTML sitemap"
+    }
+  ]
+}
+{% endschema %}

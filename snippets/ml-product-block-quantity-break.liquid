@@ -1,0 +1,119 @@
+{% liquid
+  assign current_variant = product.selected_or_first_available_variant
+
+  assign qty = block.settings.qty
+  assign discount = block.settings.discount
+  assign compare_total = current_variant.price | times: qty | money_without_trailing_zeros
+  assign total = 100 | minus: discount | divided_by: 100.0 | times: current_variant.price | times: qty | money_without_trailing_zeros
+  # assign savings = discount | divided_by: 100.0 | times: current_variant.price | times: qty | money_without_trailing_zeros
+
+  for count in (1..qty)
+    unless forloop.last
+      assign current_variant_ids = current_variant_ids | append: current_variant.id | append: ','
+    else
+      assign current_variant_ids = current_variant_ids | append: current_variant.id
+    endunless
+  endfor
+%}
+
+{%- style -%}
+  #product-block-qty-break-{{ block.id }} {
+    margin-top: {{ block.settings.mt }}px;
+    margin-bottom: {{ block.settings.mt }}px;
+  }
+{%- endstyle -%}
+
+<ml-product-qty-break
+  id="ml-product-block-qty-break-{{ block.id }}"
+  class="ml-product-block-qty-break color-{{ block.settings.color_scheme }}"
+  data-product-url="{{ product.url }}"
+  data-block-id="{{ block.id }}"
+  data-qty="{{ qty }}"
+  data-discount="{{ discount }}"
+  data-index=""
+  {{ block.shopify_attributes }}
+>
+  <div class="bs-form-check">
+    <input
+      class="bs-form-check-input"
+      type="radio"
+      name="qty-break-{{ product.id }}"
+      id="ml-qty-break-{{ block.id }}"
+      value="{{ current_variant_ids }}"
+      {% if block.settings.selected %}
+        checked
+      {% endif %}
+    >
+    <label for="ml-qty-break-{{ block.id }}" class="bs-form-check-label">
+      {% unless block.settings.badge == blank %}
+        <span
+          class="ml-product-block-qty-break-badge badge"
+          style="background-color: {{ block.settings.badge_color }}"
+        >
+          {{ block.settings.badge }}
+        </span>
+      {% endunless %}
+      <div class="ml-product-block-qty-break-inner">
+        <div class="">
+          <div class="ml-product-block-qty-break-title">
+            {{ block.settings.title }}
+          </div>
+          <div class="ml-product-block-qty-break-subtitle">
+            {{ block.settings.subtitle }}
+          </div>
+        </div>
+        <div class="ml-product-block-qty-break-total ms-3">
+          {{ total }}
+          {% if discount > 0 %}
+            <s>{{ compare_total }}</s>
+          {% endif %}
+        </div>
+      </div>
+      <div
+        class="ml-product-block-qty-break-variants"
+        role="list"
+        aria-label="Select variants"
+        {% if product.has_only_default_variant %}
+          hidden
+        {% endif %}
+      >
+        {% for count in (1..qty) %}
+          <div
+            class="ml-product-block-qty-break-variant"
+            role="listitem"
+          >
+            <div class="ml-product-block-qty-break-variant-title" aria-hidden="true">#{{ count }}</div>
+            <div
+              class="ml-product-block-qty-break-variant-options"
+              role="list"
+              aria-label="Variant options"
+            >
+              {% for option in product.options_with_values %}
+                <div
+                  class="ml-product-block-qty-break-variant-option"
+                  role="listitem"
+                >
+                  <select
+                    class="ml-form-select"
+                    aria-label="{{ option.name }}"
+                  >
+                    {% for value in option.values %}
+                      <option
+                        value="{{ value | escape }}"
+                        {% if value == option.selected_value %}
+                          selected
+                        {% endif %}
+                      >
+                        {{ value }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </label>
+  </div>
+</ml-product-qty-break>

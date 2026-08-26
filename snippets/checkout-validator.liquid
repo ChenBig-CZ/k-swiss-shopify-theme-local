@@ -1,0 +1,17 @@
+{% if shop.name contains " EU" %}
+<script>
+    document.getElementById("checkout_shipping_address_country").addEventListener("change", zipCodeValidator);
+    function zipCodeValidator() {
+      var countrySelector = document.getElementById("checkout_shipping_address_country");
+      var selectedCountry = countrySelector.value;
+      if(selectedCountry === "Lithuania")
+      {
+        var zipCodefield = document.getElementById("checkout_shipping_address_zip");
+        zipCodefield.placeholder="Postal code - Only Numeric";
+        document.getElementById("checkout_shipping_address_zip").type = "number";        
+      } else {
+        document.getElementById("checkout_shipping_address_zip").type = "text";
+      }
+    }
+</script>
+{% endif %}

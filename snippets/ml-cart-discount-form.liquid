@@ -1,0 +1,76 @@
+{% if settings.cart_discount_form_show %}
+  {% liquid 
+    assign count_discounts = 0
+
+    for discount in cart.cart_level_discount_applications
+      if discount.type == 'discount_code'
+        assign count_discounts = count_discounts | plus: 1
+      endif
+    endfor
+  %}
+  <details class="ml-cart-discount-form">
+    <summary onclick="mlCartDrawerFixScrollPosition(this)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="ml-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+      </svg>
+      <span class="summary__title">
+        {{ 'custom.cart.discount_form_title' | t }}
+        {% if count_discounts > 0 %}
+          ({{ count_discounts }})
+        {% endif %}
+        {{- 'icon-caret.svg' | inline_asset_content -}}
+      </span>
+    </summary>
+    <div class="details-inner">
+      <ml-cart-discount-form>
+        <form method="post" action="{{ routes.cart_update_url }}">
+          <div class="field">
+            <input 
+              type="text" 
+              class="field__input" 
+              name="discount"
+              required
+              placeholder="{{ 'custom.cart.discount_form.input_label' | t }}">
+            <label 
+              class="field__label" 
+              for="ml-shipping-calculator-zip">
+              {{ 'custom.cart.discount_form.input_label' | t }}
+            </label>
+          </div>
+          <button 
+            class="button" 
+            type="submit"
+            data-text="{{ 'custom.cart.discount_form.button_label' | t }}">
+            <span>{{ 'custom.cart.discount_form.button_label' | t }}</span>
+            {%- render 'loading-spinner' -%}
+          </button>
+        </form>
+        <p class="ml-alert ml-alert-warning" role="alert" hidden>
+          {{ 'custom.cart.discount_form.error' | t }}
+        </p>
+        {%- if cart.cart_level_discount_applications.size > 0 -%}
+          <ul 
+            class="discounts list-unstyled" 
+            role="list" 
+            aria-label="{{ 'customer.order.discount' | t }}">
+            {%- for discount in cart.cart_level_discount_applications -%}
+              {%- if discount.type == 'discount_code' -%}
+                <li class="discounts__discount discounts__discount--end">
+                  <button 
+                    type="button" 
+                    aria-label="{{ 'custom.cart.discount_form.remove_discount' | t: discount_code: discount.title }}">
+                    {{- 'icon-discount.svg' | inline_asset_content -}}
+                    {{ discount.title | escape }}
+                    <span class="svg-wrapper">
+                      {{- 'icon-close.svg' | inline_asset_content -}}
+                    </span>
+                  </button>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </ml-cart-discount-form>
+    </div>
+  </details>
+{% endif %}

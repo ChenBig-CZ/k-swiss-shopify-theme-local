@@ -1,0 +1,57 @@
+.collection-filters {
+  padding: 16px;
+  border-right: 1px solid rgba(0,0,0,.08);
+}
+
+.collection-filters__title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.filter-set {
+  margin-bottom: 24px;
+}
+
+.filter-set__title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.filter-set__values {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.filter-set__values li {
+  margin-bottom: 6px;
+}
+
+.filter-set__values label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.filter-set__values input[type="checkbox"],
+.filter-set__values input[type="radio"] {
+  cursor: pointer;
+}
+
+.active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.active-filter {
+  background: #f1f1f1;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+}

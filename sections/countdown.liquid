@@ -1,0 +1,287 @@
+{% liquid
+  assign show_section = false
+  assign now = 'now' | date: '%s'
+  assign unixtime = section.settings.datetime | date: '%s'
+
+  if unixtime > now
+    assign show_section = true
+  endif
+
+  if shop.permanent_domain contains 'dawn-theme'
+    assign show_section = true
+  endif
+%}
+
+{%- style -%}
+  #ml-countdown-{{ section.id }} {
+    padding-top: {{ section.settings.pt | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.pb | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #ml-countdown-{{ section.id }} {
+      padding-top: {{ section.settings.pt }}px;
+      padding-bottom: {{ section.settings.pb }}px;
+    }
+  }
+{%- endstyle -%}
+
+{% if show_section %}
+  <div
+    id="ml-countdown-{{ section.id }}"
+    class="ml-countdown color-{{ section.settings.color_scheme }} gradient"
+  >
+    <div
+      class="page-width"
+      style="max-width: {{ section.settings.page_width | append: 'px' }}"
+    >
+      <div class="ml-countdown-inner color-{{ section.settings.color_scheme_inner }} gradient {% if settings.animations_reveal_on_scroll %}scroll-trigger animate--slide-in{% endif %}">
+        <ml-animated-countdown
+          class="ml-animated-countdown"
+          data-time="{{ unixtime }}"
+          data-format="long"
+          role="timer"
+        >
+          <span>
+            <span>
+              <span data-days></span>
+            </span>
+          </span>
+          <span>
+            <span>
+              <span data-hours></span>
+            </span>
+          </span>
+          <span>
+            <span>
+              <span data-min></span>
+            </span>
+          </span>
+          <span>
+            <span>
+              <span data-sec></span>
+            </span>
+          </span>
+        </ml-animated-countdown>
+        <div
+          class="
+            ml-countdown-content
+            {{ section.settings.text_align_mobile }}
+            {{ section.settings.text_align_desktop }}
+          "
+        >
+          {% render 'ml-section-content' %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Countdown",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "datetime",
+      "label": "Datetime",
+      "default": "2026-01-01 00:00",
+      "info": "Format: yyyy-mm-dd hh:mm. NOTE: The date/time is based on the timezone specified in the Shopify general settings."
+    },
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Outter color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme_inner",
+      "label": "Inner color scheme",
+      "default": "scheme-3"
+    },
+    {
+      "type": "text",
+      "id": "page_width",
+      "label": "Page width (px)",
+      "default": "900",
+      "info": "Leave empty to use the global \"page-width\"."
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "select",
+      "id": "text_align_mobile",
+      "label": "Text align - mobile",
+      "options": [
+        { "value": "text-start", "label": "Left" },
+        { "value": "text-center", "label": "Center" },
+        { "value": "text-end", "label": "Right" }
+      ],
+      "default": "text-center"
+    },
+    {
+      "type": "select",
+      "id": "text_align_desktop",
+      "label": "Text align - desktop",
+      "options": [
+        { "value": "text-desktop-start", "label": "Left" },
+        { "value": "text-desktop-center", "label": "Center" },
+        { "value": "text-desktop-end", "label": "Right" }
+      ],
+      "default": "text-desktop-center"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Optional Subtitle",
+      "info": "Leave empty to disable"
+    },
+    {
+      "type": "select",
+      "id": "subtitle_font_size",
+      "label": "Subtitle font-size",
+      "default": "fs-sm",
+      "options": [
+        { "value": "fs-xs", "label": "xs" },
+        { "value": "fs-sm", "label": "sm" },
+        { "value": "fs-md", "label": "md" },
+        { "value": "fs-lg", "label": "lg" },
+        { "value": "fs-xl", "label": "xl" }
+      ]
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "Animated Countdown",
+      "info": "Leave empty to disable"
+    },
+    {
+      "type": "select",
+      "id": "title_font_size",
+      "label": "Title font-size",
+      "default": "h1",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" },
+        { "value": "hxl", "label": "Extra large" },
+        { "value": "hxxl", "label": "Extra extra large" }
+      ]
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>An optional description for this slide</p>",
+      "info": "Leave empty to disable"
+    },
+    {
+      "type": "select",
+      "id": "description_font_size",
+      "label": "Description font-size",
+      "default": "fs-lg",
+      "options": [
+        { "value": "fs-xs", "label": "xs" },
+        { "value": "fs-sm", "label": "sm" },
+        { "value": "fs-md", "label": "md" },
+        { "value": "fs-lg", "label": "lg" },
+        { "value": "fs-xl", "label": "xl" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Primary button"
+    },
+    {
+      "type": "text",
+      "id": "btn_primary_text",
+      "label": "Button text",
+      "default": "Primary button",
+      "info": "Leave empty to disable"
+    },
+    {
+      "type": "select",
+      "id": "btn_primary_style",
+      "label": "Button style",
+      "default": "button--primary",
+      "options": [
+        { "value": "button--primary", "label": "Primary" },
+        { "value": "button--secondary", "label": "Secondary" }
+      ]
+    },
+    {
+      "type": "url",
+      "id": "btn_primary_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Secondary button"
+    },
+    {
+      "type": "text",
+      "id": "btn_secondary_text",
+      "label": "Button text",
+      "default": "Secondary button",
+      "info": "Leave empty to disable"
+    },
+    {
+      "type": "select",
+      "id": "btn_secondary_style",
+      "label": "Button style",
+      "default": "button--secondary",
+      "options": [
+        { "value": "button--primary", "label": "Primary" },
+        { "value": "button--secondary", "label": "Secondary" }
+      ]
+    },
+    {
+      "type": "url",
+      "id": "btn_secondary_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "pt",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 36,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "pb",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 36,
+      "unit": "px"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "presets": [
+    {
+      "name": "Countdown"
+    }
+  ]
+}
+{% endschema %}

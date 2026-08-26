@@ -1,0 +1,465 @@
+<link href="{{ 'ml-vendor-image-compare.min.css' | asset_url }}" rel="stylesheet">
+<script src="{{ 'ml-vendor-image-compare.min.js' | asset_url }}" defer></script>
+
+{%- style -%}
+  #ml-image-compare-{{ section.id }} {
+    padding-top: {{ section.settings.pt | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.pb | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #ml-image-compare-{{ section.id }} {
+      padding-top: {{ section.settings.pt }}px;
+      padding-bottom: {{ section.settings.pb }}px;
+    }
+  }
+
+  #ml-image-compare-{{ section.id }} .icv__label {
+    font-size: {{ section.settings.icv_labels_font_size | append: 'rem' }};
+  }
+
+  #ml-image-compare-{{ section.id }} .icv__icv--horizontal .icv__label {
+    {% if section.settings.icv_labels_position == 'top' %}
+      top: 1rem;
+      bottom: auto;
+    {% elsif section.settings.icv_labels_position == 'center' %}
+      top: 50%;
+      transform: translateY(-50%);
+      bottom: auto;
+    {% else %}
+      top: auto;
+      bottom: 1rem;
+    {% endif %}
+  }
+
+  #ml-image-compare-{{ section.id }} .icv__icv--vertical .icv__label {
+    {% if section.settings.icv_labels_position == 'top' %}
+      left: 1rem;
+      right: auto;
+    {% elsif section.settings.icv_labels_position == 'center' %}
+      left: 50%;
+      transform: translateX(-50%);
+      right: auto;
+    {% else %}
+      left: auto;
+      right: 1rem;
+    {% endif %}
+  }
+{%- endstyle -%}
+
+<ml-image-compare 
+  id="ml-image-compare-{{ section.id }}"
+  class="ml-image-compare color-{{ section.settings.color_scheme }} gradient"
+  data-section-id="{{ section.id }}"
+  data-icv-controls-color="{{ section.settings.icv_controls_color }}"
+  data-icv-controls-circle="{{ section.settings.icv_controls_circle }}"
+  data-icv-smoothing="{{ section.settings.icv_smoothing }}"
+  data-icv-hover-start="{{ section.settings.icv_hover_start }}"
+  data-icv-vertical-mode="{{ section.settings.icv_vertical_mode }}"
+  data-icv-starting-point="{{ section.settings.icv_starting_point }}"
+  data-icv-show-labels="{{ section.settings.icv_show_labels }}"
+  data-icv-label-before="{{ section.settings.icv_label_before }}"
+  data-icv-label-after="{{ section.settings.icv_label_after }}"
+  data-icv-labels-on-hover="{{ section.settings.icv_labels_on_hover }}">
+  <div 
+    class="page-width"
+    style="max-width: {{ section.settings.page_width | append: 'px' }}">
+    <div class="
+      ml-image-compare-content 
+      {% if section.settings.img_alignment == 'right' %}ml-image-compare-content-desktop-reversed{% endif %}
+      {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="{% if section.settings.show_only_img %}ml-image-compare-content-only-img{% else %}ml-image-compare-content-left{% endif %}">
+        <div 
+          class="ml-image-compare-mobile d-flex d-tablet-none" 
+          data-image-compare>
+          {% comment %}theme-check-disable{% endcomment %}
+            {% if section.settings.mobile_before_img == nil %}
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAIAAAA7N+mxAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAFKADAAQAAAABAAAACgAAAABOxfskAAAAHElEQVQoFWPsjvnGQC5gIlcjSN+oZhJDb4gGGACG5wHxdzHH3QAAAABJRU5ErkJggg==" width="800">
+            {% else %}
+              <img
+                src="{{ section.settings.mobile_before_img | image_url: width: 800 }}"
+                alt="{{ section.settings.mobile_before_img.alt }}"
+                class="ml-image-compare-img"
+                width="800"
+                height="{{ 800 | divided_by: section.settings.mobile_before_img.aspect_ratio | round }}"
+                loading="lazy">
+            {% endif %}
+            {% if section.settings.mobile_after_img == nil %}
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAIAAAA7N+mxAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAFKADAAQAAAABAAAACgAAAABOxfskAAAAHElEQVQoFWN8KOvBQC5gIlcjSN+oZhJDb4gGGAAhPAFaGAdiqAAAAABJRU5ErkJggg==" width="800">
+            {% else %}
+              <img
+                src="{{ section.settings.mobile_after_img | image_url: width: 800 }}"
+                alt="{{ section.settings.mobile_after_img.alt }}"
+                class="ml-image-compare-img"
+                width="800"
+                height="{{ 800 | divided_by: section.settings.mobile_after_img.aspect_ratio | round }}"
+                loading="lazy">
+            {% endif %}
+          </div>
+          <div 
+            class="ml-image-compare-tablet d-none d-tablet-flex" 
+            data-image-compare>
+            {% if section.settings.desktop_before_img == nil %}
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAIAAAA7N+mxAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAFKADAAQAAAABAAAACgAAAABOxfskAAAAHElEQVQoFWPsjvnGQC5gIlcjSN+oZhJDb4gGGACG5wHxdzHH3QAAAABJRU5ErkJggg==" width="1600">
+            {% else %}
+              <img
+                src="{{ section.settings.desktop_before_img | image_url: width: 1600 }}"
+                alt="{{ section.settings.desktop_before_img.alt }}"
+                class="ml-image-compare-img"
+                width="1600"
+                height="{{ 1600 | divided_by: section.settings.desktop_before_img.aspect_ratio | round }}"
+                loading="lazy">
+            {% endif %}
+            {% if section.settings.desktop_after_img == nil %}
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAIAAAA7N+mxAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAFKADAAQAAAABAAAACgAAAABOxfskAAAAHElEQVQoFWN8KOvBQC5gIlcjSN+oZhJDb4gGGAAhPAFaGAdiqAAAAABJRU5ErkJggg==" width="1600">
+            {% else %}
+              <img
+                src="{{ section.settings.desktop_after_img | image_url: width: 1600 }}"
+                alt="{{ section.settings.desktop_after_img.alt }}"
+                class="ml-image-compare-img"
+                width="1600"
+                height="{{ 1600 | divided_by: section.settings.desktop_after_img.aspect_ratio | round }}"
+                loading="lazy">
+            {% endif %}
+          {% comment %}theme-check-enable{% endcomment %}
+        </div>
+      </div>
+      {% unless section.settings.show_only_img %}
+        <div 
+          class="
+            ml-image-compare-content-right
+            {{ section.settings.text_align_mobile }}
+            {{ section.settings.text_align_desktop }}
+          ">
+          {% render 'ml-section-content' %}
+        </div>
+      {% endunless %}
+    </div>
+  </div>
+</ml-image-compare>
+
+{% schema %}
+{
+  "name": "Image compare",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "General"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "page_width",
+      "label": "Page width (px)",
+      "info": "Leave empty to use the global \"page-width\"."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_only_img",
+      "label": "Show only the image",
+      "info": "If this setting is enabled, the text will hide and the image compare will show in full-width",
+      "default": false,
+    },
+    {
+      "type": "select",
+      "id": "img_alignment",
+      "label": "Image aligmnment - desktop",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Image - mobile"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_before_img",
+      "label": "Before image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_after_img",
+      "label": "After image"
+    },
+    {
+      "type": "header",
+      "content": "Image - desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_before_img",
+      "label": "Before image"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_after_img",
+      "label": "After image"
+    },
+    {
+      "type": "header",
+      "content": "Slider"
+    },
+    {
+      "type": "color",
+      "id": "icv_controls_color",
+      "label": "Controls color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "icv_controls_circle",
+      "label": "Controls as circles",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "icv_smoothing",
+      "label": "Smooth transition",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "icv_hover_start",
+      "label": "Hover start",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "icv_vertical_mode",
+      "label": "Vertical mode",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "icv_starting_point",
+      "label": "Starting point",
+      "default": 50,
+      "min": 0,
+      "max": 100,
+      "unit": "%"
+    },
+    {
+      "type": "header",
+      "content": "Labels (Before/After)"
+    },
+    {
+      "type": "checkbox",
+      "id": "icv_show_labels",
+      "label": "Show labels",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "icv_label_before",
+      "label": "Text - Before",
+      "default": "Before"
+    },
+    {
+      "type": "text",
+      "id": "icv_label_after",
+      "label": "Text - After",
+      "default": "After"
+    },
+    {
+      "type": "range",
+      "id": "icv_labels_font_size",
+      "label": "Font size",
+      "default": 0.9,
+      "min": 0.5,
+      "max": 2.0,
+      "step": 0.1,
+      "unit": "rem"
+    },
+    {
+      "type": "select",
+      "id": "icv_labels_position",
+      "label": "Labels position",
+      "default": "bottom",
+      "options": [
+        { "value": "top", "label": "Top" },
+        { "value": "center", "label": "Center" },
+        { "value": "bottom", "label": "Bottom" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "select",
+      "id": "text_align_mobile",
+      "label": "Text align - mobile",
+      "options": [
+        { "value": "text-start", "label": "Left" },
+        { "value": "text-center", "label": "Center" },
+        { "value": "text-end", "label": "Right" },
+      ],
+      "default": "text-center"
+    },
+    {
+      "type": "select",
+      "id": "text_align_desktop",
+      "label": "Text align - desktop",
+      "options": [
+        { "value": "text-tablet-start", "label": "Left" },
+        { "value": "text-tablet-center", "label": "Center" },
+        { "value": "text-tablet-end", "label": "Right" },
+      ],
+      "default": "text-tablet-start"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Optional Subtitle",
+      "info": "Leave empty to disable"
+    },
+    {
+      "type": "select",
+      "id": "subtitle_font_size",
+      "label": "Subtitle font-size",
+      "default": "fs-sm",
+      "options": [
+        { "value": "fs-xs", "label": "xs" },
+        { "value": "fs-sm", "label": "sm" },
+        { "value": "fs-md", "label": "md" },
+        { "value": "fs-lg", "label": "lg" },
+        { "value": "fs-xl", "label": "xl" }
+      ]
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "Image Compare",
+      "info": "Leave empty to disable"
+    },
+    {
+      "type": "select",
+      "id": "title_font_size",
+      "label": "Title font-size",
+      "default": "h1",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" },
+        { "value": "hxl", "label": "Extra large" },
+        { "value": "hxxl", "label": "Extra extra large" }
+      ]
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>An optional description for this slide</p>",
+      "info": "Leave empty to disable"
+    },
+    {
+      "type": "select",
+      "id": "description_font_size",
+      "label": "Description font-size",
+      "default": "fs-lg",
+      "options": [
+        { "value": "fs-xs", "label": "xs" },
+        { "value": "fs-sm", "label": "sm" },
+        { "value": "fs-md", "label": "md" },
+        { "value": "fs-lg", "label": "lg" },
+        { "value": "fs-xl", "label": "xl" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Primary button"
+    },
+    {
+      "type": "text",
+      "id": "btn_primary_text",
+      "label": "Button text",
+      "default": "Primary button",
+      "info": "Leave empty to disable"
+    },
+    {
+      "type": "select",
+      "id": "btn_primary_style",
+      "label": "Button style",
+      "default": "button--primary",
+      "options": [
+        { "value": "button--primary", "label": "Primary" },
+        { "value": "button--secondary", "label": "Secondary" }
+      ]
+    },
+    {
+      "type": "url",
+      "id": "btn_primary_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Secondary button"
+    },
+    {
+      "type": "text",
+      "id": "btn_secondary_text",
+      "label": "Button text",
+      "default": "Secondary button",
+      "info": "Leave empty to disable"
+    },
+    {
+      "type": "select",
+      "id": "btn_secondary_style",
+      "label": "Button style",
+      "default": "button--secondary",
+      "options": [
+        { "value": "button--primary", "label": "Primary" },
+        { "value": "button--secondary", "label": "Secondary" }
+      ]
+    },
+    {
+      "type": "url",
+      "id": "btn_secondary_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "pt",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 36,
+      "unit": "px",
+    },
+    {
+      "type": "range",
+      "id": "pb",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 36,
+      "unit": "px",
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "presets": [
+    {
+      "name": "Image compare"
+    }
+  ]
+}
+{% endschema %}

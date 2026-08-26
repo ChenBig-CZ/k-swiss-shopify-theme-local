@@ -1,0 +1,157 @@
+{% if settings.cart_goal_one_value contains cart.currency.iso_code %}
+  {% liquid
+    if settings.cart_goal_three_value != blank
+      assign no_of_tiers = 3
+    elsif settings.cart_goal_two_value != blank
+      assign no_of_tiers = 2
+    else
+      assign no_of_tiers = 1
+    endif
+
+    assign goal_one_value_list = settings.cart_goal_one_value | split: ','
+    assign goal_two_value_list = settings.cart_goal_two_value | split: ','
+    assign goal_three_value_list = settings.cart_goal_three_value | split: ','
+
+
+    for item in goal_one_value_list
+      if item contains cart.currency.iso_code
+        assign goal_one_value = item | split: ':' | last | strip
+      endif
+    endfor
+
+    for item in goal_two_value_list
+      if item contains cart.currency.iso_code
+        assign goal_two_value = item | split: ':' | last | strip
+        assign goal_two_diff = goal_two_value | minus: goal_one_value
+      endif
+    endfor
+
+    for item in goal_three_value_list
+      if item contains cart.currency.iso_code
+        assign goal_three_value = item | split: ':' | last | strip
+        assign goal_three_diff = goal_three_value | minus: goal_two_value
+      endif
+    endfor
+
+    assign goal_one_value_with_cents = goal_one_value | times: 100
+    assign goal_two_value_with_cents = goal_two_value | times: 100
+    assign goal_three_value_with_cents = goal_three_value | times: 100
+
+    if goal_three_value
+      assign divider = 33.33
+    elsif goal_two_value
+      assign divider = 50.00
+    else
+      assign divider = 100.00
+    endif
+
+    if cart.total_price < goal_one_value_with_cents
+      assign percentage = cart.total_price | divided_by: goal_one_value | times: divider | divided_by: 100
+      assign goal_remaining_money = goal_one_value_with_cents | minus: cart.total_price | money
+      assign desc = settings.cart_goal_one_desc | replace: '[amount]', goal_remaining_money
+    elsif cart.total_price < goal_two_value_with_cents
+      assign percentage = cart.total_price | minus: goal_one_value_with_cents | divided_by: goal_two_diff | times: divider | divided_by: 100 | plus: 33.33
+      assign goal_remaining_money = goal_two_value_with_cents | minus: cart.total_price | money
+      assign desc = settings.cart_goal_two_desc | replace: '[amount]', goal_remaining_money
+      assign goal_completed = 1
+    elsif cart.total_price < goal_three_value_with_cents
+      assign percentage = cart.total_price | minus: goal_two_value_with_cents | divided_by: goal_three_diff | times: divider | divided_by: 100 | plus: 66.66
+      assign goal_remaining_money = goal_three_value_with_cents | minus: cart.total_price | money
+      assign desc = settings.cart_goal_three_desc | replace: '[amount]', goal_remaining_money
+      assign goal_completed = 2
+    else
+      assign percentage = 100
+      assign desc = settings.cart_goal_desc_completed
+      assign goal_completed = 3
+    endif
+  %}
+
+  {% if settings.cart_goal_confetti %}
+    <script src="{{ 'ml-vendor-confetti.min.js' | asset_url }}" defer></script>
+  {% endif %}
+
+  <ml-cart-goal 
+    class="ml-cart-goal"
+    data-no-of-tiers="{{ no_of_tiers }}"
+    data-goal-completed="{{ goal_completed | default: 0 }}"
+    data-show-confetti="{{ settings.cart_goal_confetti }}"
+    style="--color-foreground: {{ settings.cart_goal_color  | color_to_rgb | remove: 'rgb(' | remove: ')' }}">
+    <div class="description rte">
+      {{ desc }}
+    </div>
+    <div 
+      class="bs-progress" 
+      style="--bs-progress-height: {{ settings.cart_goal_progress_height | append: 'px' }};">
+      <div 
+        class="bs-progress-bar bs-progress-bar-animated bs-progress-bar-striped" 
+        role="progressbar" 
+        aria-valuenow="{{ percentage }}" 
+        aria-valuemin="0"
+        aria-valuemax="100"
+        data-width="{{ percentage }}%"
+        style="width: 0%;">
+      </div>
+      <div 
+        class="ml-cart-goal-icons" 
+        aria-label="Cart offerings"
+        role="list">
+        {% for n in (1..no_of_tiers) %}
+          {% liquid 
+            case n
+              when 1
+                assign icon = settings.cart_goal_one_icon
+                assign title = settings.cart_goal_one_title
+              when 2
+                assign icon = settings.cart_goal_two_icon
+                assign title = settings.cart_goal_two_title
+              when 3
+                assign icon = settings.cart_goal_three_icon
+                assign title = settings.cart_goal_three_title
+            endcase
+          %}
+          <div 
+            aria-label="{{ title }}" 
+            class="{% if forloop.index <= goal_completed %}active{% endif %}"
+            role="listitem">
+            <div>
+              {% case icon %}
+                {% when 'award' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="ml-svg-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>        
+                  </svg>
+                {% when 'smile' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="ml-svg-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line>
+                  </svg>
+                {% when 'star' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="ml-svg-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                {% when 'percent' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="ml-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle>
+                  </svg>
+                {% when 'truck' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="ml-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle>
+                  </svg>
+                {% when 'gift' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="ml-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+                  </svg>
+                {% when 'heart' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="ml-svg-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                  </svg>
+                {% when 'cart' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="ml-svg-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="10" cy="20.5" r="1"/><circle cx="18" cy="20.5" r="1"/><path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1"/>
+                  </svg>
+              {% endcase %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </ml-cart-goal>
+{% endif %}

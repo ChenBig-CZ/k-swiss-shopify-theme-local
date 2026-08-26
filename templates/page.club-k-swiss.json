@@ -1,0 +1,594 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "shogun-helper": {
+      "type": "shogun-helper",
+      "settings": {}
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "shogun-optimizer": {
+      "type": "shogun-optimizer",
+      "settings": {}
+    },
+    "image_banner_hYk4E6": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_yHFbG7": {
+          "type": "heading",
+          "settings": {
+            "heading": "CLUB K-SWISS REWARDS",
+            "heading_size": "h1"
+          }
+        },
+        "text_eNKWa3": {
+          "type": "text",
+          "settings": {
+            "text": "Shop with us to earn valuable reward points with our exclusive loyalty program.The more you spend, the greater the rewards!",
+            "text_style": "body"
+          }
+        },
+        "buttons_an7EKg": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "JOIN NOW",
+            "button_link_1": "https://kswiss.com/account/register",
+            "button_style_secondary_1": false,
+            "button_label_2": "LOG IN",
+            "button_link_2": "https://kswiss.com/account/login",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_yHFbG7",
+        "text_eNKWa3",
+        "buttons_an7EKg"
+      ],
+      "custom_css": [
+        "p {font-size: 2rem;}",
+        ".banner--desktop-transparent .banner__box {max-width: 60rem;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "hide_mobile": true,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "image": "shopify://shop_images/Desktop-HeroBanner-ClubK-Swiss.jpg",
+        "image_overlay_opacity": 20,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-4",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "image_banner_hd7BWW": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_zrUbCE": {
+          "type": "heading",
+          "settings": {
+            "heading": "CLUB K-SWISS REWARDS",
+            "heading_size": "h1"
+          }
+        },
+        "text_LJ4b7X": {
+          "type": "text",
+          "settings": {
+            "text": "Shop with us to earn valuable reward points with our exclusive loyalty program.The more you spend, the greater the rewards!",
+            "text_style": "body"
+          }
+        },
+        "buttons_NJHprb": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "JOIN NOW",
+            "button_link_1": "https://kswiss.com/account/register",
+            "button_style_secondary_1": false,
+            "button_label_2": "LOG IN",
+            "button_link_2": "https://kswiss.com/account/login",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_zrUbCE",
+        "text_LJ4b7X",
+        "buttons_NJHprb"
+      ],
+      "custom_css": [
+        "p {font-size: 2rem;}",
+        ".banner--desktop-transparent .banner__box {max-width: 60rem;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": true,
+        "hide_desktop": true,
+        "image": "shopify://shop_images/Mobile-HeroBanner-ClubK-Swiss.jpg",
+        "image_overlay_opacity": 20,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-2",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "rich_text_ApediH": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_qQqBMf": {
+          "type": "heading",
+          "settings": {
+            "heading": "HOW TO REDEEM POINTS",
+            "heading_size": "h1"
+          }
+        },
+        "text_jEQFrK": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Redeem your points for a discount directly at checkout.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_qQqBMf",
+        "text_jEQFrK"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "multicolumn_qTyRGL": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_qhmU43": {
+          "type": "column",
+          "settings": {
+            "image_link": "",
+            "title": "500 Points = $5",
+            "text": "<p>Loyalty voucher redeemable on any order.</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "column_iJHRXK": {
+          "type": "column",
+          "settings": {
+            "image_link": "",
+            "title": "1,000 Points = $10",
+            "text": "<p>Loyalty voucher redeemable on any order.</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "column_nK3mac": {
+          "type": "column",
+          "settings": {
+            "image_link": "",
+            "title": "1,500 Points = $15",
+            "text": "<p>Loyalty voucher redeemable on any order over $150.</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_mMYWCH": {
+          "type": "column",
+          "settings": {
+            "image_link": "",
+            "title": "2,000 Points = $20",
+            "text": "<p>Loyalty voucher redeemable on any order over $200.</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_4LmzeR": {
+          "type": "column",
+          "settings": {
+            "image_link": "",
+            "title": "2,500 Points = $25",
+            "text": "<p>Loyalty voucher redeemable on any order over $250.</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_qhmU43",
+        "column_iJHRXK",
+        "column_nK3mac",
+        "column_mMYWCH",
+        "column_4LmzeR"
+      ],
+      "custom_css": [],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "square",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 5,
+        "column_alignment": "center",
+        "background_style": "none",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "section_id": ""
+      }
+    },
+    "rich_text_jXXLjd": {
+      "type": "rich-text",
+      "blocks": {
+        "text_BCwzcK": {
+          "type": "text",
+          "settings": {
+            "text": "<p>* All of your points will expire if you have not earned or redeemed points for a continuous period of 1 year. We will notify you before your points expire.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_BCwzcK"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "multicolumn_WKbq6r": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_UtJwTc": {
+          "type": "column",
+          "settings": {
+            "image_link": "",
+            "title": "BRONZE",
+            "text": "<h6>0 - 699 Club Points</h6><p> • 2 Club Points Earned Per $1 Spent<br/> • Free Shipping Coupon for 250 Club Points</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_6YmwYU": {
+          "type": "column",
+          "settings": {
+            "image_link": "",
+            "title": "SILVER",
+            "text": "<h6>700 - 1,999 Club Points</h6><p> • 3 Club Points for Every $1 Spent<br/> • 25 Extra Birthday Points<br/> • Early Access to Sales Events<br/> • Early Access to Exclusive Product Releases<br/> • $10 OFF Loyalty Coupon for 1,000 Club Points</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_hD9Dcz": {
+          "type": "column",
+          "settings": {
+            "image_link": "",
+            "title": "GOLD",
+            "text": "<h6>2,000+ Club Points</h6><p> • 4 Club-Points for Every $1 Spent<br/> • 50 Extra Birthday Points <br/> • Early Access to Sales Events<br/> • Early Access to Exclusive Product Releases<br/> • $20 OFF Loyalty Coupon for 2,000 Club Points<br/> • Free Gift with Purchase Each Year</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_UtJwTc",
+        "column_6YmwYU",
+        "column_hD9Dcz"
+      ],
+      "custom_css": [
+        "h3 {font-size: 3rem;}",
+        "h6 {font-size: 2rem; border-bottom: 1px solid; margin-bottom: 10px;}",
+        ".title-wrapper-with-link {justify-content: center;}"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "WAYS TO EARN MORE",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "square",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "section_id": ""
+      }
+    },
+    "multicolumn_4EUChQ": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_Lpa3xB": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Desktop-SignUp-2_7fce2e3e-31af-46af-8d89-0c552cdc5b33.png",
+            "image_link": "",
+            "title": "SIGN UP",
+            "text": "<p>Earn 100 Club Points</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_nQB6z3": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Desktop-REFER-A-FRIEND_1.png",
+            "image_link": "",
+            "title": "REFER A FRIEND",
+            "text": "<p>Give $10 & Get $10</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_pAUwVF": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Desktop-LikeOnFacebook-2_d678a9f3-189b-484f-bc37-8af109c177bb.png",
+            "image_link": "",
+            "title": "LIKE ON FACEBOOK",
+            "text": "<p>Earn 20 Club Points</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_AC9a8k": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Desktop-FollowOnInstagram-2_f85d8d7b-5ca5-4757-a877-abe56f969bbb.png",
+            "image_link": "",
+            "title": "FOLLOW ON INSTAGRAM",
+            "text": "<p>Earn 20 Club Points</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_tPnCUR": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Desktop-ShareOnFacebook-2_30cb9345-d2fc-4f62-a06b-08d9612110dd.png",
+            "image_link": "",
+            "title": "SHARE ON FACEBOOK",
+            "text": "<p>Earn 20 Club Points</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_Yw7Bie": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Desktop-Birthday-2_0e348078-f196-4c84-8ec8-d1e177833f7b.png",
+            "image_link": "",
+            "title": "CELEBRATE A BIRTHDAY",
+            "text": "<p>Earn 50 Club Points</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_Lpa3xB",
+        "column_nQB6z3",
+        "column_pAUwVF",
+        "column_AC9a8k",
+        "column_tPnCUR",
+        "column_Yw7Bie"
+      ],
+      "custom_css": [
+        ".background-none .multicolumn-card__image-wrapper + .multicolumn-card__info {padding-top: 0px;}",
+        ".rte {margin: 0px; line-height: normal;}",
+        ".slider-buttons {display: none;}",
+        ".grid__item {width: calc(75% - var(--grid-mobile-horizontal-spacing) - 3rem);}"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "third",
+        "image_ratio": "square",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 6,
+        "column_alignment": "center",
+        "background_style": "none",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "section_id": ""
+      }
+    },
+    "multicolumn_Fqqnp9": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_UqdYei": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Court_Wristband_9eac9c34-6453-44f3-91a8-a6f709bd6e3a.png",
+            "image_link": "",
+            "title": "750 CLUB POINTS",
+            "text": "<p>Court Wristband</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_DAb9D7": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Jet_Mesh_Court_Hat_1656d1b2-058a-42fd-889d-2b4b547e5e0f.png",
+            "image_link": "",
+            "title": "1,200 CLUB POINTS",
+            "text": "<p>Mesh Court Hat</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_AVL8zG": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Womens_Laser_Court_Visor_727688a6-3ce5-4b72-927a-91d86bf93b0c.png",
+            "image_link": "",
+            "title": "1,200 CLUB POINTS",
+            "text": "<p>Women's Laser Court Visor</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_UqdYei",
+        "column_DAb9D7",
+        "column_AVL8zG"
+      ],
+      "custom_css": [
+        "p {font-size: 2rem;}",
+        "h3 {font-size: 3rem;}",
+        "h6 {font-size: 2rem; border-bottom: 1px solid; margin-bottom: 10px;}",
+        ".title-wrapper-with-link {justify-content: center;}"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "REWARDS TO EARN",
+        "heading_size": "h1",
+        "image_width": "half",
+        "image_ratio": "square",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "section_id": ""
+      }
+    },
+    "rich_text_UtbTPg": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_79Y8gN": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Talk about your brand",
+            "heading_size": "h1"
+          }
+        },
+        "text_agQcDj": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+          }
+        },
+        "button_hMk6Eq": {
+          "type": "button",
+          "settings": {
+            "button_label": "JOIN NOW",
+            "button_link": "https://kswiss.com/account/register",
+            "button_style_secondary": false,
+            "button_label_2": "LOG IN",
+            "button_link_2": "https://kswiss.com/account/login",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_79Y8gN",
+        "text_agQcDj",
+        "button_hMk6Eq"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": false,
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "shogun-helper",
+    "main",
+    "shogun-optimizer",
+    "image_banner_hYk4E6",
+    "image_banner_hd7BWW",
+    "rich_text_ApediH",
+    "multicolumn_qTyRGL",
+    "rich_text_jXXLjd",
+    "multicolumn_WKbq6r",
+    "multicolumn_4EUChQ",
+    "multicolumn_Fqqnp9",
+    "rich_text_UtbTPg"
+  ]
+}

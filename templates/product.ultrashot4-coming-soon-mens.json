@@ -1,0 +1,550 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "shogun-helper": {
+      "type": "shogun-helper",
+      "settings": {}
+    },
+    "shogun-above": {
+      "type": "shogun-above",
+      "settings": {}
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "liquid_title_FEQFYT": {
+          "type": "liquid_title",
+          "settings": {
+            "liquid": "{% assign productTitle = product.title | split: '|' %}\n{{ productTitle[1] }}"
+          }
+        },
+        "promo_messaging_rPCQLz": {
+          "type": "promo_messaging",
+          "settings": {}
+        },
+        "rating_Q764MW": {
+          "type": "rating",
+          "settings": {}
+        },
+        "vendor": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "disabled": true,
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "motivator_4Jm8GY": {
+          "type": "motivator",
+          "disabled": true,
+          "settings": {
+            "title": "Black Friday Sale 30% OFF Sitewide*",
+            "link_text": "terms & conditions",
+            "link": "https://kswiss.com/pages/terms-and-conditions",
+            "tags": ""
+          }
+        },
+        "motivator_jAKWAQ": {
+          "type": "motivator",
+          "settings": {
+            "title": "15% off when you preorder this item today",
+            "link_text": "",
+            "link": "",
+            "tags": "SMART_TAG_PRESALES"
+          }
+        },
+        "afterpay_on_site_messaging_payments_messaging_9FFzgr": {
+          "type": "shopify://apps/afterpay-on-site-messaging/blocks/payments-messaging/f45a5524-d177-4475-bf59-281efd2215a8",
+          "settings": {
+            "text_align": "left",
+            "margin_top": 12,
+            "margin_bottom": 12,
+            "color": "",
+            "size": "xs",
+            "intro_text": "Pay",
+            "show_interest_free": true,
+            "payment_amount_is_bold": true,
+            "show_with": true,
+            "logo_type": "badge",
+            "logo_theme": "black-on-mint",
+            "modal_link_style": "circled-info-icon",
+            "modal_theme": "mint",
+            "breakpoint": 749,
+            "text_align_mobile": "inherit",
+            "margin_top_mobile": 16,
+            "margin_bottom_mobile": 16,
+            "show_lower_limit": true,
+            "show_upper_limit": false,
+            "show_if_outside_limits": true,
+            "product": "{{product}}"
+          }
+        },
+        "sibling_eBxRG6": {
+          "type": "sibling",
+          "settings": {}
+        },
+        "custom_liquid_AA8a3J": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{%  if settings.prod_add_info2 == true %}\n{% assign split_tags = settings.prod_add_info_tag | split: ',' %}\n{% assign avail_tag= false %}\n{% for stag in split_tags %}\n{%   if product.tags contains  stag %}\n   {% assign avail_tag= true %}\n  {% endif %}\n{% endfor %}\n{% if avail_tag == true %}\n<div class=\"flex items-center p-4 text-sm text-gray-800 rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-gray-300\" role=\"alert\">\n  <svg class=\"flex-shrink-0 inline w-4 h-4 me-3\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" viewBox=\"0 0 20 20\">\n    <path d=\"M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z\"></path>\n  </svg>\n  <span class=\"sr-only\">Info</span>\n  <div>\n    <span class=\"font-medium px-2 md:px-0 md:pl-2\">Runs Small-Size Up\n  </div>\n</div>\n  {%  endif %}\n  {%  endif %}"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "giftnote_engine_for_gifting_button_JQCcfH": {
+          "type": "shopify://apps/giftnote-engine-for-gifting/blocks/button/37eb4f2f-4979-41f3-a677-fa25a2a97659",
+          "settings": {
+            "add_label": "Add a gift message 🎁",
+            "edit_label": "Edit gift message 🎁",
+            "font_size": 16,
+            "font": "inter_n4",
+            "letter_spacing": 1,
+            "button_type": "button",
+            "background_color": "#ffffff",
+            "border_color": "#000000",
+            "font_color": "#000000",
+            "border_radius": 6,
+            "alignment": "center",
+            "height": 50,
+            "width": 250,
+            "full_width": true,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "breakpoint": 740,
+            "mobile_alignment": "center",
+            "mobile_height": 50,
+            "mobile_width": 250,
+            "mobile_full_width": true,
+            "mobile_margin_top": 0,
+            "mobile_margin_bottom": 0,
+            "exclusion_tags": "",
+            "custom_styles": ""
+          }
+        },
+        "motivator_i8pbEV": {
+          "type": "motivator",
+          "disabled": true,
+          "settings": {
+            "title": "FREE SHIPPING ON ORDERS OVER $50",
+            "link_text": "More Info",
+            "link": "shopify://pages/shipping-policy",
+            "tags": ""
+          }
+        },
+        "collapsible_tab_bMfHKy": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Size Chart",
+            "icon": "none",
+            "content": "",
+            "page": "",
+            "custom_liquid": "{% render \"size-chart\" %}"
+          }
+        },
+        "collapsible_tab_TbJ8h3": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Details",
+            "icon": "none",
+            "content": "",
+            "page": "",
+            "custom_liquid": "{{ product.description }}"
+          }
+        },
+        "custom_liquid_QXf7Jt": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"product__accordion accordion\">\n<summary style=\"cursor: unset;\" role=\"button\"><div class=\"summary__title\">\n<h3 class=\"h5 accordion__title inline-richtext\">\n              FREE SHIPPING ON ORDERS OVER $50</h3></div>\n</summary>\n</div>"
+          }
+        },
+        "collapsible_tab_Wkme4D": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Shipping and Returns/Exchanges",
+            "icon": "none",
+            "content": "<p><strong>SHIPPING</strong></p><p>Kswiss.com will ship all orders Monday-Friday. All Standard orders will ship within 2 to 3 business days. </p><p>Note that all orders placed after 10:30AM PST on Fridays, Saturday or Sunday will not processed until the next business day.</p><p><strong>RETURNS/EXCHANGES</strong></p><p>We hope you love your K-Swiss product, but if you’re not completely satisfied, you can return or exchange merchandise within 30 days of purchase. Extended return/exchanges window may apply during holiday. </p>",
+            "page": "",
+            "custom_liquid": ""
+          }
+        },
+        "custom_liquid_7pkznj": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% assign productTitle = product.title | split: '|' %}\n<div class=\"product__accordion accordion\">\n<summary style=\"cursor: unset;\" role=\"button\"><div class=\"summary__title\">\n<h3 class=\"h5 accordion__title inline-richtext\">\n              Style: {{ productTitle[0] }}</h3></div>\n</summary>\n</div>"
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "disabled": true,
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "ml_sticky_atc_PCiKii": {
+          "type": "ml-sticky-atc",
+          "settings": {
+            "color_scheme": "scheme-1",
+            "border_top_opacity": 100,
+            "max_width": "",
+            "img_ratio": "adapt",
+            "btn_style": "button--primary"
+          }
+        }
+      },
+      "block_order": [
+        "liquid_title_FEQFYT",
+        "promo_messaging_rPCQLz",
+        "rating_Q764MW",
+        "vendor",
+        "title",
+        "price",
+        "motivator_4Jm8GY",
+        "motivator_jAKWAQ",
+        "afterpay_on_site_messaging_payments_messaging_9FFzgr",
+        "sibling_eBxRG6",
+        "custom_liquid_AA8a3J",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "giftnote_engine_for_gifting_button_JQCcfH",
+        "motivator_i8pbEV",
+        "collapsible_tab_bMfHKy",
+        "collapsible_tab_TbJ8h3",
+        "custom_liquid_QXf7Jt",
+        "collapsible_tab_Wkme4D",
+        "custom_liquid_7pkznj",
+        "description",
+        "share",
+        "ml_sticky_atc_PCiKii"
+      ],
+      "custom_css": [],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "columns",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "hover",
+        "zoom_scale": 2,
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12,
+        "promo_messaging": "MENS | EXTRA WIDE | WOMENS | WIDE | VARSITY | CHILDREN | INFANTS"
+      }
+    },
+    "custom_liquid_m8FACr": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<br>",
+        "color_scheme": "",
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "image_banner_N8riNh": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_6z639F": {
+          "type": "heading",
+          "settings": {
+            "heading": "The Ultrashot 4",
+            "heading_size": "hxl",
+            "heading_uppercase": false
+          }
+        },
+        "text_fR4T8z": {
+          "type": "text",
+          "settings": {
+            "text": "Introducing the next evolution of our court favorite.",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_6z639F",
+        "text_fR4T8z"
+      ],
+      "custom_css": [
+        ".banner__box {max-width: 50rem;}",
+        ".banner__text {font-size: 2rem;}",
+        "h2 {text-transform: uppercase;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "hide_mobile": true,
+        "hide_tablet": true,
+        "hide_desktop": false,
+        "banner_link": "",
+        "image": "shopify://shop_images/ULTRASHOT4-BANNER-DESKTOP_dc316d77-01ee-42a6-b4a2-7254e2807321.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-right",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "image_banner_7qQTat": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_8NEr9C": {
+          "type": "heading",
+          "settings": {
+            "heading": "The Ultrashot 4",
+            "heading_size": "h0",
+            "heading_uppercase": false
+          }
+        },
+        "text_PVpN8a": {
+          "type": "text",
+          "settings": {
+            "text": "Introducing the next evolution of our court favorite.",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_8NEr9C",
+        "text_PVpN8a"
+      ],
+      "custom_css": [
+        ".banner__box {max-width: 50rem;}",
+        ".banner__text {font-size: 2rem;}",
+        "h2 {text-transform: uppercase;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "hide_mobile": false,
+        "hide_tablet": false,
+        "hide_desktop": true,
+        "banner_link": "",
+        "image": "shopify://shop_images/ULTRASHOT4-BANNER-MOBILE_87b72941-2462-4bff-8ce4-cf2860d3d6b9.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-right",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "multicolumn_bFqq7e": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_UbWxci": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/ULTRASHOT4-SOFTLANDINGS-DESKTOP_43a8d0d7-4240-47f6-9b1b-cb0438d2e76f.jpg",
+            "image_link": "",
+            "title": "ULTIMATE CUSHIONING",
+            "text": "<p>A shock frame technology provides an endless bouncy ride on the court.</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_L6Edkg": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/ULTRASHOT4-360SUPPORT-DESKTOP_d55640c2-d71b-4ea6-bda9-692cafe577cf.jpg",
+            "image_link": "",
+            "title": "360 SUPPORT",
+            "text": "<p>A molded TPU Support Chassis provides all-around support in every aggressive movement.</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_PRC6iN": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/ULTRASHOT4-BREATHABLEUPPER-DESKTOP_1ad79b64-1951-425c-977a-6821ec034b5d.jpg",
+            "image_link": "",
+            "title": "SUPERIOR GRIP",
+            "text": "<p>An improved DragGuard 7.0 outsole ensures optimal traction and durability.</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_UbWxci",
+        "column_L6Edkg",
+        "column_PRC6iN"
+      ],
+      "custom_css": [
+        "h3.inline-richtext {text-transform: uppercase; font-size: 2.7rem;}",
+        ".rte {font-size: 2rem;}"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "square",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "section_id": ""
+      }
+    },
+    "multicolumn_ieDKjt": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_x3NFzP": {
+          "type": "column",
+          "settings": {
+            "image_link": "",
+            "title": "OUTSOLE WARRANTY",
+            "text": "",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        },
+        "column_4Yqihf": {
+          "type": "column",
+          "settings": {
+            "image_link": "",
+            "title": "",
+            "text": "<p>Every pair of Ultrashot 4 tennis shoes is backed by our outsole warranty. If you wear through the outsole from regular play within 180 days, we'll replace them.</p>",
+            "link_label": "",
+            "link": "",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_x3NFzP",
+        "column_4Yqihf"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".grid {align-items: center; justify-content: center;}",
+        "h3 {font-size: 4rem;}",
+        ".grid li {background: transparent;}",
+        ".multicolumn-list li:nth-child(2) {width: 100%; max-width: 60%;}",
+        ".multicolumn-card__info {padding: 0px;}",
+        ".slider-mobile-gutter {background-color: #f4f4f4; border: 1px solid; padding: 40px 10px;}"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "square",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "section_id": ""
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "id": "",
+        "heading": "You May Also Like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "shogun-below": {
+      "type": "shogun-below",
+      "settings": {}
+    },
+    "shogun-optimizer": {
+      "type": "shogun-optimizer",
+      "settings": {}
+    }
+  },
+  "order": [
+    "shogun-helper",
+    "shogun-above",
+    "main",
+    "custom_liquid_m8FACr",
+    "image_banner_N8riNh",
+    "image_banner_7qQTat",
+    "multicolumn_bFqq7e",
+    "multicolumn_ieDKjt",
+    "related-products",
+    "shogun-below",
+    "shogun-optimizer"
+  ]
+}
