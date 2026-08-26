@@ -4061,7 +4061,7 @@ giftnote-button{
   background-color: white;
   opacity: 0.89;
   transition: none !important;
-  padding: 8px;
+  padding: 0px;
 }
 .fix_transparent_image_collection_sibling{
   background: rgb(154 154 134);
