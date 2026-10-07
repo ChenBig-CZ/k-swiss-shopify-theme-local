@@ -479,21 +479,7 @@
           style="--animation-order: {{ rendered_count | plus: 1 }};"
         {% endif %}
       >
-        {% render 'card-product',
-          card_product: product,
-          media_aspect_ratio: section.settings.image_ratio,
-          image_shape: section.settings.image_shape,
-          show_secondary_image: section.settings.show_secondary_image,
-          show_vendor: section.settings.show_vendor,
-          show_rating: section.settings.show_rating,
-          lazy_load: lazy_load,
-          skip_styles: skip_card_product_styles,
-          quick_add: section.settings.quick_add,
-          section_id: section.id,
-          show_siblings: show_siblings,
-          show_siblings_count: show_siblings_count,
-          number: rendered_count | plus: 1
-        %}
+        {% render 'card-product', card_product: product, media_aspect_ratio: section.settings.image_ratio, image_shape: section.settings.image_shape, show_secondary_image: section.settings.show_secondary_image, show_vendor: section.settings.show_vendor, show_rating: section.settings.show_rating, lazy_load: lazy_load, skip_styles: skip_card_product_styles, quick_add: section.settings.quick_add, section_id: section.id, show_siblings: show_siblings, show_siblings_count: show_siblings_count, number: rendered_count, plus: 1 %}
       </li>
 
       {% assign rendered_count = rendered_count | plus: 1 %}
@@ -900,3 +886,33 @@
 ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'card-product',
+              card_product: product,
+              media_aspect_ratio: section.settings.image_ratio,
+              image_shape: section.settings.image_shape,
+              show_secondary_image: section.settings.show_secondary_image,
+              show_vendor: section.settings.show_vendor,
+              show_rating: section.settings.show_rating,
+              lazy_load: lazy_load,
+              skip_styles: skip_card_product_styles,
+              quick_add: section.settings.quick_add,
+              section_id: section.id,
+              show_siblings: show_siblings,
+              show_siblings_count: show_siblings_count,
+              number: rendered_count | plus: 1
+            %}
+  to: "{% render 'card-product', card_product: product, media_aspect_ratio: section.settings.image_ratio,
+    image_shape: section.settings.image_shape, show_secondary_image: section.settings.show_secondary_image,
+    show_vendor: section.settings.show_vendor, show_rating: section.settings.show_rating,
+    lazy_load: lazy_load, skip_styles: skip_card_product_styles, quick_add: section.settings.quick_add,
+    section_id: section.id, show_siblings: show_siblings, show_siblings_count: show_siblings_count,
+    number: rendered_count, plus: 1 %}"
+  position: 17595..18114
+{% endcomment %}
